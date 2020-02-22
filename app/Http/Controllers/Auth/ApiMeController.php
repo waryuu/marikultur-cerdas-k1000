@@ -9,6 +9,7 @@ class ApiMeController extends Controller
 {
     public function __construct(){
         $this->middleware(['auth:api']);
+         return response(null, 401);
     }
 
     public function __invoke(Request $request){
