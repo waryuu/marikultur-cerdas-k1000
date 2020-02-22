@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import DashboardLayout from './layout/DashboardLayout'
 import AuthLayout from './layout/AuthLayout'
+import store from './store'
 Vue.use(Router)
 
 export default new Router({
@@ -11,6 +12,14 @@ export default new Router({
       path: '/',
       redirect: 'beranda',
       component: DashboardLayout,
+      beforeEnter: (to, from, next) => {
+        if(!store.getters['auth/authenticated']){
+            return next({
+                name: 'login'
+            })
+        }
+        next()
+      },
       children: [
         {
           path: '/beranda',
@@ -21,14 +30,39 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue')
         },
         {
+            path: '/profil',
+            name: 'profil',
+            component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
+        },
+        {
+            path: '/sensor',
+            name: 'sensor',
+            component: () => import(/* webpackChunkName: "demo" */ './views/Sensor.vue')
+        },
+        {
+            path: '/pakan',
+            name: 'pakan',
+            component: () => import(/* webpackChunkName: "demo" */ './views/Pakan.vue')
+        },
+        {
+            path: '/produksi',
+            name: 'produksi',
+            component: () => import(/* webpackChunkName: "demo" */ './views/Produksi.vue')
+        },
+        {
+            path: '/keramba',
+            name: 'keramba',
+            component: () => import(/* webpackChunkName: "demo" */ './views/Keramba.vue')
+        },
+        {
+            path: '/kelompok',
+            name: 'kelompok',
+            component: () => import(/* webpackChunkName: "demo" */ './views/Kelompok.vue')
+        },
+        {
           path: '/icons',
           name: 'icons',
           component: () => import(/* webpackChunkName: "demo" */ './views/Icons.vue')
-        },
-        {
-          path: '/profile',
-          name: 'profile',
-          component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
         },
         {
           path: '/maps',
@@ -46,6 +80,14 @@ export default new Router({
       path: '/',
       redirect: 'login',
       component: AuthLayout,
+      beforeEnter: (to, from, next) => {
+        if(store.getters['auth/authenticated']){
+            return next({
+                name: 'beranda'
+            })
+        }
+        next()
+      },
       children: [
         {
           path: '/login',

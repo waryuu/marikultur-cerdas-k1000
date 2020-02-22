@@ -13,14 +13,12 @@
             path: '/beranda'
           }"
         />
-
-        <sidebar-item :link="{name: 'Icons', icon: 'ni ni-planet text-blue', path: '/icons'}"/>
-        <sidebar-item :link="{name: 'Maps', icon: 'ni ni-pin-3 text-orange', path: '/maps'}"/>
-        <sidebar-item :link="{name: 'User Profile', icon: 'ni ni-single-02 text-yellow', path: '/profile'}"/>
-        <sidebar-item :link="{name: 'Tables', icon: 'ni ni-bullet-list-67 text-red', path: '/tables'}"/>
-        <sidebar-item :link="{name: 'Login', icon: 'ni ni-key-25 text-info', path: '/login'}"/>
-        <sidebar-item :link="{name: 'Register', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/>
-
+        <sidebar-item :link="{name: 'Sensor IoT', icon: 'fa fa-rss text-blue', path: '/sensor'}"/>
+        <sidebar-item :link="{name: 'Pakan Otomatis', icon: 'fa fa-braille text-blue', path: '/pakan'}"/>
+        <sidebar-item :link="{name: 'Produksi', icon: 'ni ni-box-2 text-blue', path: '/produksi'}"/>
+        <sidebar-item :link="{name: 'Keramba', icon: 'fa fa-anchor text-blue', path: '/keramba'}"/>
+        <sidebar-item :link="{name: 'Kelompok', icon: 'fa fa-users text-blue', path: '/kelompok'}"/>
+        <sidebar-item :link="{name: 'Profil Saya', icon: 'ni ni-single-02 text-yellow', path: '/profil'}"/>
       </template>
     </side-bar>
     <div class="main-content" :data="sidebarBackground">

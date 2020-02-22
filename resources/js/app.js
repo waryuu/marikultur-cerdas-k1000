@@ -20,11 +20,21 @@ import App from './App.vue'
 import router from './router'
 import './registerServiceWorker'
 import ArgonDashboard from './plugins/argon-dashboard'
+import axios from 'axios'
+import store from './store'
 
+require('./store/localsubs')
+
+axios.defaults.baseURL = 'http://localhost:8000/api'
 Vue.config.productionTip = false
 
-Vue.use(ArgonDashboard)
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
+    Vue.use(ArgonDashboard)
+    new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+})
+
+

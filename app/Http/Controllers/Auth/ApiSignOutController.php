@@ -9,6 +9,5 @@ class ApiSignOutController extends Controller
 {
     public function __invoke(){
         auth()->logout();
-        return response(null, 401);
     }
 }
