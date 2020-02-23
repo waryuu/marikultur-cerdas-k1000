@@ -18,6 +18,11 @@ export default new Router({
                 name: 'login'
             })
         }
+        else if(store.getters['auth/authenticated'] && store.getters['auth/user'].kelompok_id === null){
+            return next({
+                name: 'tambahkelompok'
+            })
+        }
         next()
       },
       children: [
@@ -100,6 +105,31 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Register.vue')
         }
       ]
+    },
+    {
+        path: '/',
+        redirect: 'tambahkelompok',
+        component: AuthLayout,
+        beforeEnter: (to, from, next) => {
+        if(!store.getters['auth/authenticated']){
+            return next({
+                name: 'login'
+            })
+        }
+        else if(store.getters['auth/authenticated'] && store.getters['auth/user'].kelompok_id !== null){
+            return next({
+                name: 'beranda'
+            })
+        }
+        next()
+        },
+        children: [
+        {
+            path: '/tambahkelompok',
+            name: 'tambahkelompok',
+            component: () => import(/* webpackChunkName: "demo" */ './views/TambahKelompok.vue')
+        }
+        ]
     }
   ]
 })

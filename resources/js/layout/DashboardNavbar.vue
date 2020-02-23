@@ -17,7 +17,7 @@
                 <base-dropdown class="nav-link pr-0">
                     <div class="media align-items-center" slot="title">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="img/theme/team-4-800x800.jpg">
+                  <img alt="Image placeholder" src="img/theme/user.png">
                 </span>
                         <div class="media-body ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{ user.name }}</span>
@@ -28,7 +28,7 @@
                         <div class=" dropdown-header noti-title">
                             <h6 class="text-overflow m-0">Selamat Datang!</h6>
                         </div>
-                        <router-link to="/profile" class="dropdown-item">
+                        <router-link to="/profil" class="dropdown-item">
                             <i class="ni ni-single-02"></i>
                             <span>Profil Saya</span>
                         </router-link>

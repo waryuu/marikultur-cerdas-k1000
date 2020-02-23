@@ -10765,7 +10765,7 @@ var render = function() {
                               _c("img", {
                                 attrs: {
                                   alt: "Image placeholder",
-                                  src: "img/theme/team-1-800x800.jpg"
+                                  src: "img/theme/user.png"
                                 }
                               })
                             ]
@@ -10784,7 +10784,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "dropdown-item",
-                        attrs: { to: "/profile" }
+                        attrs: { to: "/profil" }
                       },
                       [
                         _c("i", { staticClass: "ni ni-single-02" }),
@@ -11723,7 +11723,7 @@ var render = function() {
                           _c("img", {
                             attrs: {
                               alt: "Image placeholder",
-                              src: "img/theme/team-4-800x800.jpg"
+                              src: "img/theme/user.png"
                             }
                           })
                         ]
@@ -11754,7 +11754,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "dropdown-item",
-                        attrs: { to: "/profile" }
+                        attrs: { to: "/profil" }
                       },
                       [
                         _c("i", { staticClass: "ni ni-single-02" }),
@@ -30870,6 +30870,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         return next({
           name: 'login'
         });
+      } else if (_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters['auth/authenticated'] && _store__WEBPACK_IMPORTED_MODULE_4__["default"].getters['auth/user'].kelompok_id === null) {
+        return next({
+          name: 'tambahkelompok'
+        });
       }
 
       next();
@@ -30962,6 +30966,30 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       name: 'register',
       component: function component() {
         return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Register.vue */ "./resources/js/views/Register.vue"));
+      }
+    }]
+  }, {
+    path: '/',
+    redirect: 'tambahkelompok',
+    component: _layout_AuthLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
+    beforeEnter: function beforeEnter(to, from, next) {
+      if (!_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters['auth/authenticated']) {
+        return next({
+          name: 'login'
+        });
+      } else if (_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters['auth/authenticated'] && _store__WEBPACK_IMPORTED_MODULE_4__["default"].getters['auth/user'].kelompok_id !== null) {
+        return next({
+          name: 'beranda'
+        });
+      }
+
+      next();
+    },
+    children: [{
+      path: '/tambahkelompok',
+      name: 'tambahkelompok',
+      component: function component() {
+        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/TambahKelompok.vue */ "./resources/js/views/TambahKelompok.vue"));
       }
     }]
   }]

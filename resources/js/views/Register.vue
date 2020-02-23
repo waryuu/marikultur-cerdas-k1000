@@ -4,7 +4,7 @@
             <div class="card bg-secondary shadow border-0">
                 <div class="card-header bg-transparent">
                     <div class="text-center text-muted">
-                        <small>Silahkan isi form berikut</small>
+                        <h4>Silahkan isi form berikut</h4>
                     </div>
                         <base-alert v-if="errors.length" class="px-lg-5 mt-4" type="warning" dismissible>
                             <span class="alert-inner--text"><strong>Perhatian!</strong> {{ errors }}</span>
@@ -30,13 +30,10 @@
                             <option value="user">Anggota</option>
                         </select>
 
-                        <base-input v-if="model.status === 'user'" class="input-group-alternative mb-3"
-                                    placeholder="Kelompok Anda"
-                                    addon-left-icon="fa fa-users"
-                                    type="number"
-                                    v-model="model.kelompok_id">
-                        </base-input>
-                        {{model.kelompok_id}}
+                        <select v-if="model.status === 'user'" v-model="model.kelompok_id" class="input-group-alternative mb-3 form-control">
+                            <option disabled value="">Pilih Kelompok Anda</option>
+                            <option v-for="kelompok in kelompoks" v-bind:value="kelompok.id">{{ kelompok.nama_kelompok }}</option>
+                        </select>
 
                         <base-input class="input-group-alternative mb-3"
                                     :required="true"
@@ -101,8 +98,16 @@
           kelompok_id: '',
           password: '',
           password_confirmation: ''
+        },
+        kelompoks: [],
+        kelompok: {
+            id: '',
+            nama_kelompok: ''
         }
       }
+    },
+    created() {
+        this.fetchKelompok();
     },
     methods:{
         ...mapActions({
@@ -110,14 +115,30 @@
         }),
         submit() {
             this.errors = '';
-            this.Register(this.model).then(() =>{
-                this.$router.replace({
-                    name: 'beranda'
+            if (this.model.status === 'ketua'){
+                this.Register(this.model).then(() =>{
+                    this.$router.replace({
+                        name: 'kelompok'
+                    })
+                }).catch(() => {
+                        this.errors = 'Harap isi semua form dengan benar!';
+                    })
+            } else {
+                this.Register(this.model).then(() =>{
+                    this.$router.replace({
+                        name: 'beranda'
+                    })
+                }).catch(() => {
+                        this.errors = 'Silahkan isi semua form dengan benar!';
+                    })
+            }
+        },
+        fetchKelompok(){
+            fetch('api/apikelompok')
+                .then(res=>res.json())
+                .then(res=>{
+                    this.kelompoks = res.data;
                 })
-            }).catch(() => {
-                    this.errors = 'Silahkan isi semua form dengan benar!';
-                })
-
         }
     }
   }
