@@ -1227,6 +1227,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1308,50 +1315,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'register',
   data: function data() {
     return {
-      errors: [],
+      errors: '',
       model: {
         name: '',
         email: '',
         status: '',
         kelompok_id: '',
-        password: ''
+        password: '',
+        password_confirmation: ''
       }
     };
   },
-  methods: {
-    checkForm: function checkForm(e) {
-      if (this.model.name && this.model.email && this.model.status && this.model.kelompok_id && this.model.password) {
-        return true;
-      }
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
+    Register: 'auth/Register'
+  }), {
+    submit: function submit() {
+      var _this = this;
 
-      this.errors = [];
-      console.log(this.errors);
-
-      if (!this.model.name) {
-        this.errors.push('Silahkan isi Nama Anda!');
-      }
-
-      if (!this.model.email) {
-        this.errors.push('Silahkan isi Email Anda!');
-      }
-
-      if (!this.model.status) {
-        this.errors.push('Silahkan isi Jabatan Anda!');
-      }
-
-      if (!this.model.kelompok_id) {
-        this.errors.push('Silahkan isi Kelompok Anda!');
-      }
-
-      if (!this.model.password) {
-        this.errors.push('Silahkan isi Kata Sandi Anda!');
-      }
+      this.errors = '';
+      this.Register(this.model).then(function () {
+        _this.$router.replace({
+          name: 'beranda'
+        });
+      })["catch"](function () {
+        _this.errors = 'Silahkan isi semua form dengan benar!';
+      });
     }
-  }
+  })
 });
 
 /***/ }),
@@ -3498,49 +3501,47 @@ var render = function() {
   return _c("div", { staticClass: "row justify-content-center" }, [
     _c("div", { staticClass: "col-lg-5 col-md-7" }, [
       _c("div", { staticClass: "card bg-secondary shadow border-0" }, [
-        _c("div", { staticClass: "card-header bg-transparent" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _vm.errors.length
-            ? _c(
-                "div",
-                _vm._l(_vm.errors, function(error) {
-                  return _c(
-                    "base-alert",
-                    {
-                      key: error,
-                      staticClass: "px-lg-5 mt-4",
-                      attrs: { data: error, type: "warning", dismissible: "" }
-                    },
-                    [
-                      _c("span", { staticClass: "alert-inner--text" }, [
-                        _c("strong", [_vm._v("Perhatian!")]),
-                        _vm._v(" " + _vm._s(error))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "close",
-                          attrs: {
-                            type: "button",
-                            "data-dismiss": "alert",
-                            "aria-label": "Close"
-                          }
-                        },
-                        [
-                          _c("span", { attrs: { "aria-hidden": "true" } }, [
-                            _vm._v("×")
-                          ])
-                        ]
-                      )
-                    ]
-                  )
-                }),
-                1
-              )
-            : _vm._e()
-        ]),
+        _c(
+          "div",
+          { staticClass: "card-header bg-transparent" },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm.errors.length
+              ? _c(
+                  "base-alert",
+                  {
+                    staticClass: "px-lg-5 mt-4",
+                    attrs: { type: "warning", dismissible: "" }
+                  },
+                  [
+                    _c("span", { staticClass: "alert-inner--text" }, [
+                      _c("strong", [_vm._v("Perhatian!")]),
+                      _vm._v(" " + _vm._s(_vm.errors))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: {
+                          type: "button",
+                          "data-dismiss": "alert",
+                          "aria-label": "Close"
+                        }
+                      },
+                      [
+                        _c("span", { attrs: { "aria-hidden": "true" } }, [
+                          _vm._v("×")
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              : _vm._e()
+          ],
+          1
+        ),
         _vm._v(" "),
         _c("div", { staticClass: "card-body px-lg-5 " }, [
           _c(
@@ -3550,7 +3551,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.checkForm($event)
+                  return _vm.submit($event)
                 }
               }
             },
@@ -3612,18 +3613,19 @@ var render = function() {
                     _vm._v("Ketua Kelompok")
                   ]),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "anggota" } }, [
+                  _c("option", { attrs: { value: "user" } }, [
                     _vm._v("Anggota")
                   ])
                 ]
               ),
               _vm._v(" "),
-              _vm.model.status === "anggota"
+              _vm.model.status === "user"
                 ? _c("base-input", {
                     staticClass: "input-group-alternative mb-3",
                     attrs: {
                       placeholder: "Kelompok Anda",
-                      "addon-left-icon": "ni ni-email-83"
+                      "addon-left-icon": "fa fa-users",
+                      type: "number"
                     },
                     model: {
                       value: _vm.model.kelompok_id,
@@ -3634,7 +3636,11 @@ var render = function() {
                     }
                   })
                 : _vm._e(),
-              _vm._v(" "),
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.model.kelompok_id) +
+                  "\n\n                    "
+              ),
               _c("base-input", {
                 staticClass: "input-group-alternative mb-3",
                 attrs: {
@@ -3665,6 +3671,23 @@ var render = function() {
                     _vm.$set(_vm.model, "password", $$v)
                   },
                   expression: "model.password"
+                }
+              }),
+              _vm._v(" "),
+              _c("base-input", {
+                staticClass: "input-group-alternative",
+                attrs: {
+                  required: true,
+                  placeholder: "Konfirmasi Sandi",
+                  type: "password",
+                  "addon-left-icon": "ni ni-lock-circle-open"
+                },
+                model: {
+                  value: _vm.model.password_confirmation,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model, "password_confirmation", $$v)
+                  },
+                  expression: "model.password_confirmation"
                 }
               }),
               _vm._v(" "),

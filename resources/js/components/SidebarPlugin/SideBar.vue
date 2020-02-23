@@ -29,7 +29,7 @@
                             <span>Profil Saya</span>
                         </router-link>
                         <div class="dropdown-divider"></div>
-                        <a href="#!" class="dropdown-item">
+                        <a href="#" @click.prevent="signOut" class="dropdown-item">
                             <i class="ni ni-user-run"></i>
                             <span>Keluar</span>
                         </a>
@@ -62,9 +62,16 @@
 </template>
 <script>
   import NavbarToggleButton from '../../components/NavbarToggleButton'
+  import {mapGetters, mapActions} from 'vuex'
 
   export default {
     name: 'sidebar',
+    computed: {
+        ...mapGetters({
+            authenticated: 'auth/authenticated',
+            user: 'auth/user',
+        })
+    },
     components: {
       NavbarToggleButton
     },
@@ -86,6 +93,17 @@
       };
     },
     methods: {
+        ...mapActions({
+            signOutAction: 'auth/signOut'
+        }),
+
+        signOut(){
+            this.signOutAction().then(() =>{
+                this.$router.replace({
+                    name: 'login'
+                })
+            })
+        },
       closeSidebar() {
         this.$sidebar.displaySidebar(false)
       },

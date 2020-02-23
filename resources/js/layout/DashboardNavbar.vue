@@ -35,7 +35,7 @@
                         <div class="dropdown-divider"></div>
                         <a href="#" @click.prevent="signOut" class="dropdown-item">
                             <i class="ni ni-user-run"></i>
-                            <span>Logout</span>
+                            <span>Keluar</span>
                         </a>
                     </template>
                 </base-dropdown>

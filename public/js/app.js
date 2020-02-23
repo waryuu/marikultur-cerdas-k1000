@@ -3775,6 +3775,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_NavbarToggleButton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/NavbarToggleButton */ "./resources/js/components/NavbarToggleButton.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3838,8 +3845,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'sidebar',
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    authenticated: 'auth/authenticated',
+    user: 'auth/user'
+  })),
   components: {
     NavbarToggleButton: _components_NavbarToggleButton__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -3860,14 +3872,25 @@ __webpack_require__.r(__webpack_exports__);
       autoClose: this.autoClose
     };
   },
-  methods: {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
+    signOutAction: 'auth/signOut'
+  }), {
+    signOut: function signOut() {
+      var _this = this;
+
+      this.signOutAction().then(function () {
+        _this.$router.replace({
+          name: 'login'
+        });
+      });
+    },
     closeSidebar: function closeSidebar() {
       this.$sidebar.displaySidebar(false);
     },
     showSidebar: function showSidebar() {
       this.$sidebar.displaySidebar(true);
     }
-  },
+  }),
   beforeDestroy: function beforeDestroy() {
     if (this.$sidebar.showSidebar) {
       this.$sidebar.showSidebar = false;
@@ -10774,7 +10797,16 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "a",
-                      { staticClass: "dropdown-item", attrs: { href: "#!" } },
+                      {
+                        staticClass: "dropdown-item",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.signOut($event)
+                          }
+                        }
+                      },
                       [
                         _c("i", { staticClass: "ni ni-user-run" }),
                         _vm._v(" "),
@@ -11748,7 +11780,7 @@ var render = function() {
                       [
                         _c("i", { staticClass: "ni ni-user-run" }),
                         _vm._v(" "),
-                        _c("span", [_vm._v("Logout")])
+                        _c("span", [_vm._v("Keluar")])
                       ]
                     )
                   ]
@@ -31011,61 +31043,92 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return signIn;
     }(),
-    attempt: function () {
-      var _attempt = _asyncToGenerator(
+    Register: function () {
+      var _Register = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, token) {
-        var commit, state, response;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(_ref2, credentials) {
+        var dispatch, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                commit = _ref2.commit, state = _ref2.state;
+                dispatch = _ref2.dispatch;
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('auth/register', credentials);
+
+              case 3:
+                response = _context2.sent;
+                return _context2.abrupt("return", dispatch('attempt', response.data.token));
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      function Register(_x3, _x4) {
+        return _Register.apply(this, arguments);
+      }
+
+      return Register;
+    }(),
+    attempt: function () {
+      var _attempt = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, token) {
+        var commit, state, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                commit = _ref3.commit, state = _ref3.state;
 
                 if (token) {
                   commit('SET_TOKEN', token);
                 }
 
                 if (state.token) {
-                  _context2.next = 4;
+                  _context3.next = 4;
                   break;
                 }
 
-                return _context2.abrupt("return");
+                return _context3.abrupt("return");
 
               case 4:
-                _context2.prev = 4;
-                _context2.next = 7;
+                _context3.prev = 4;
+                _context3.next = 7;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('auth/me');
 
               case 7:
-                response = _context2.sent;
+                response = _context3.sent;
                 commit('SET_USER', response.data);
-                _context2.next = 15;
+                _context3.next = 15;
                 break;
 
               case 11:
-                _context2.prev = 11;
-                _context2.t0 = _context2["catch"](4);
+                _context3.prev = 11;
+                _context3.t0 = _context3["catch"](4);
                 commit('SET_TOKEN', null);
                 commit('SET_USER', null);
 
               case 15:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, null, [[4, 11]]);
+        }, _callee3, null, [[4, 11]]);
       }));
 
-      function attempt(_x3, _x4) {
+      function attempt(_x5, _x6) {
         return _attempt.apply(this, arguments);
       }
 
       return attempt;
     }(),
-    signOut: function signOut(_ref3) {
-      var commit = _ref3.commit;
+    signOut: function signOut(_ref4) {
+      var commit = _ref4.commit;
       return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('auth/signout').then(function () {
         commit('SET_TOKEN', null);
         commit('SET_USER', null);

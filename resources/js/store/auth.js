@@ -31,6 +31,11 @@ export default {
             return dispatch('attempt', response.data.token)
         },
 
+        async Register({dispatch}, credentials){
+            let response = await axios.post('auth/register', credentials)
+            return dispatch('attempt', response.data.token)
+        },
+
         async attempt({commit,state}, token){
             if(token){
                 commit('SET_TOKEN', token)

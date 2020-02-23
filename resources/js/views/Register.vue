@@ -6,19 +6,17 @@
                     <div class="text-center text-muted">
                         <small>Silahkan isi form berikut</small>
                     </div>
-                    <div v-if="errors.length" >
-                        <base-alert v-for="error in errors" v-bind:data="error" v-bind:key="error" class="px-lg-5 mt-4" type="warning" dismissible>
-                            <span class="alert-inner--text"><strong>Perhatian!</strong> {{ error }}</span>
+                        <base-alert v-if="errors.length" class="px-lg-5 mt-4" type="warning" dismissible>
+                            <span class="alert-inner--text"><strong>Perhatian!</strong> {{ errors }}</span>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </base-alert>
-                    </div>
                 </div>
 
 
                 <div class="card-body px-lg-5 ">
-                    <form @submit.prevent="checkForm" role="form" >
+                    <form @submit.prevent="submit" role="form" >
                         <base-input class="input-group-alternative mb-3"
                                     :required="true"
                                     placeholder="Nama"
@@ -29,14 +27,16 @@
                         <select v-model="model.status" class="input-group-alternative mb-3 form-control">
                             <option disabled value="">Pilih Jabatan Anda</option>
                             <option value="ketua">Ketua Kelompok</option>
-                            <option value="anggota">Anggota</option>
+                            <option value="user">Anggota</option>
                         </select>
 
-                        <base-input v-if="model.status === 'anggota'" class="input-group-alternative mb-3"
+                        <base-input v-if="model.status === 'user'" class="input-group-alternative mb-3"
                                     placeholder="Kelompok Anda"
-                                    addon-left-icon="ni ni-email-83"
+                                    addon-left-icon="fa fa-users"
+                                    type="number"
                                     v-model="model.kelompok_id">
                         </base-input>
+                        {{model.kelompok_id}}
 
                         <base-input class="input-group-alternative mb-3"
                                     :required="true"
@@ -51,6 +51,14 @@
                                     type="password"
                                     addon-left-icon="ni ni-lock-circle-open"
                                     v-model="model.password">
+                        </base-input>
+
+                        <base-input class="input-group-alternative"
+                                    :required="true"
+                                    placeholder="Konfirmasi Sandi"
+                                    type="password"
+                                    addon-left-icon="ni ni-lock-circle-open"
+                                    v-model="model.password_confirmation">
                         </base-input>
 
                         <div v-if="model.status === 'ketua'" class="text-center">
@@ -80,43 +88,35 @@
     </div>
 </template>
 <script>
+  import { mapActions } from 'vuex'
   export default {
     name: 'register',
     data() {
       return {
-        errors: [],
+        errors: '',
         model: {
           name: '',
           email: '',
           status: '',
           kelompok_id: '',
-          password: ''
+          password: '',
+          password_confirmation: ''
         }
       }
     },
     methods:{
-        checkForm: function (e) {
-        if (this.model.name && this.model.email && this.model.status && this.model.kelompok_id && this.model.password) {
-            return true;
-        }
-        this.errors = [];
-        console.log(this.errors);
-
-        if (!this.model.name) {
-            this.errors.push('Silahkan isi Nama Anda!');
-        }
-        if (!this.model.email) {
-            this.errors.push('Silahkan isi Email Anda!');
-        }
-        if (!this.model.status) {
-            this.errors.push('Silahkan isi Jabatan Anda!');
-        }
-        if (!this.model.kelompok_id) {
-            this.errors.push('Silahkan isi Kelompok Anda!');
-        }
-        if (!this.model.password) {
-            this.errors.push('Silahkan isi Kata Sandi Anda!');
-        }
+        ...mapActions({
+            Register: 'auth/Register'
+        }),
+        submit() {
+            this.errors = '';
+            this.Register(this.model).then(() =>{
+                this.$router.replace({
+                    name: 'beranda'
+                })
+            }).catch(() => {
+                    this.errors = 'Silahkan isi semua form dengan benar!';
+                })
 
         }
     }

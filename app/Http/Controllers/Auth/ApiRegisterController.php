@@ -16,6 +16,8 @@ class ApiRegisterController extends Controller
         {
                 $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
+                'status' => 'required|string|max:6',
+                'kelompok_id' => 'nullable|integer',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:6|confirmed',
             ]);
@@ -26,6 +28,8 @@ class ApiRegisterController extends Controller
 
             $user = User::create([
                 'name' => $request->get('name'),
+                'status' => $request->get('status'),
+                'kelompok_id' => $request->get('kelompok_id'),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
             ]);
@@ -34,10 +38,4 @@ class ApiRegisterController extends Controller
 
             return response()->json(compact('user','token'),201);
         }
-    // public function __invoke(Request $request){
-    //     if(!$token = auth()->attempt($request->only('email','password'))){
-    //         return response(null, 401);
-    //     }
-    //     return response()->json(compact('token'));
-    // }
 }
