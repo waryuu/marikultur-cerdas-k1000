@@ -86,25 +86,38 @@
           bendahara_kelompok: '',
           humas_kelompok: ''
         },
+        form: {
+            id_user: '',
+            kelompok_id: ''
+        }
       }
     },
     created() {
         this.model.ketua_kelompok = this.user.name;
+        this.form.id_user = this.user.id;
     },
     methods:{
         ...mapActions({
-            Register: 'auth/Register'
+            meUpdate: 'auth/meUpdate'
         }),
         submit() {
             this.errors = '';
 
         },
         async addKelompok(){
-            let response = await axios.post('apikelompok/store', this.model)
+            var response = await axios.post('apikelompok/store', this.model);
+            this.form.kelompok_id = response.data.kelompok.id;
+            this.meUpdate(this.form)
+            .then(() =>{
+                    this.$router.replace({
+                        name: 'beranda'
+                    })
+                })
             .catch(() => {
                     this.errors = 'Harap isi semua form dengan benar!';
                 })
-        console.log(response.data);
+        console.log(this.form);
+        console.log(response.data.kelompok.id);
         }
     }
   }

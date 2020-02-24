@@ -31103,61 +31103,92 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return Register;
     }(),
-    attempt: function () {
-      var _attempt = _asyncToGenerator(
+    meUpdate: function () {
+      var _meUpdate = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, token) {
-        var commit, state, response;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, credentials) {
+        var dispatch, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                commit = _ref3.commit, state = _ref3.state;
+                dispatch = _ref3.dispatch;
+                _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('auth/update/' + credentials.id_user, credentials.kelompok_id);
+
+              case 3:
+                response = _context3.sent;
+                return _context3.abrupt("return", dispatch('attempt', response.data.token));
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function meUpdate(_x5, _x6) {
+        return _meUpdate.apply(this, arguments);
+      }
+
+      return meUpdate;
+    }(),
+    attempt: function () {
+      var _attempt = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(_ref4, token) {
+        var commit, state, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                commit = _ref4.commit, state = _ref4.state;
 
                 if (token) {
                   commit('SET_TOKEN', token);
                 }
 
                 if (state.token) {
-                  _context3.next = 4;
+                  _context4.next = 4;
                   break;
                 }
 
-                return _context3.abrupt("return");
+                return _context4.abrupt("return");
 
               case 4:
-                _context3.prev = 4;
-                _context3.next = 7;
+                _context4.prev = 4;
+                _context4.next = 7;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('auth/me');
 
               case 7:
-                response = _context3.sent;
+                response = _context4.sent;
                 commit('SET_USER', response.data);
-                _context3.next = 15;
+                _context4.next = 15;
                 break;
 
               case 11:
-                _context3.prev = 11;
-                _context3.t0 = _context3["catch"](4);
+                _context4.prev = 11;
+                _context4.t0 = _context4["catch"](4);
                 commit('SET_TOKEN', null);
                 commit('SET_USER', null);
 
               case 15:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3, null, [[4, 11]]);
+        }, _callee4, null, [[4, 11]]);
       }));
 
-      function attempt(_x5, _x6) {
+      function attempt(_x7, _x8) {
         return _attempt.apply(this, arguments);
       }
 
       return attempt;
     }(),
-    signOut: function signOut(_ref4) {
-      var commit = _ref4.commit;
+    signOut: function signOut(_ref5) {
+      var commit = _ref5.commit;
       return axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('auth/signout').then(function () {
         commit('SET_TOKEN', null);
         commit('SET_USER', null);

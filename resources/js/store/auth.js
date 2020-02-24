@@ -36,6 +36,11 @@ export default {
             return dispatch('attempt', response.data.token)
         },
 
+        async meUpdate({dispatch}, credentials){
+            let response = await axios.put('auth/update/' + credentials.id_user, credentials.kelompok_id)
+            return dispatch('attempt', response.data.token)
+        },
+
         async attempt({commit,state}, token){
             if(token){
                 commit('SET_TOKEN', token)

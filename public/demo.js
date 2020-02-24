@@ -1840,14 +1840,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         ketua_kelompok: '',
         bendahara_kelompok: '',
         humas_kelompok: ''
+      },
+      form: {
+        id_user: '',
+        kelompok_id: ''
       }
     };
   },
   created: function created() {
     this.model.ketua_kelompok = this.user.name;
+    this.form.id_user = this.user.id;
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
-    Register: 'auth/Register'
+    meUpdate: 'auth/meUpdate'
   }), {
     submit: function submit() {
       this.errors = '';
@@ -1864,15 +1869,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apikelompok/store', this.model)["catch"](function () {
-                  _this.errors = 'Harap isi semua form dengan benar!';
-                });
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apikelompok/store', this.model);
 
               case 2:
                 response = _context.sent;
-                console.log(response.data);
+                this.form.kelompok_id = response.data.kelompok.id;
+                this.meUpdate(this.form).then(function () {
+                  _this.$router.replace({
+                    name: 'beranda'
+                  });
+                })["catch"](function () {
+                  _this.errors = 'Harap isi semua form dengan benar!';
+                });
+                console.log(this.form);
+                console.log(response.data.kelompok.id);
 
-              case 4:
+              case 7:
               case "end":
                 return _context.stop();
             }
