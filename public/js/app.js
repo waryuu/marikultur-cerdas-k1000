@@ -31106,7 +31106,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     meUpdate: function () {
       var _meUpdate = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, id_user, credentials) {
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, credentials) {
         var dispatch, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
@@ -31114,7 +31114,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 dispatch = _ref3.dispatch;
                 _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('auth/update/' + id_user, credentials);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('auth/profileupdate', credentials);
 
               case 3:
                 response = _context3.sent;
@@ -31128,7 +31128,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }));
 
-      function meUpdate(_x5, _x6, _x7) {
+      function meUpdate(_x5, _x6) {
         return _meUpdate.apply(this, arguments);
       }
 
@@ -31181,7 +31181,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4, null, [[4, 11]]);
       }));
 
-      function attempt(_x8, _x9) {
+      function attempt(_x7, _x8) {
         return _attempt.apply(this, arguments);
       }
 

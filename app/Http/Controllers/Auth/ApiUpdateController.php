@@ -15,11 +15,11 @@ class ApiUpdateController extends Controller
     public function update(Request $request,$id)
         {
                 $validator = Validator::make($request->all(), [
-                'name' => 'required|string|max:255',
-                'status' => 'required|string|max:6',
+                'name' => 'nullable|string|max:255',
+                'status' => 'nullable|string|max:6',
                 'kelompok_id' => 'nullable|integer',
-                'email' => 'required|string|email|max:255|unique:users',
-                'password' => 'required|string|min:6|confirmed',
+                'email' => 'nullable|string|email|max:255|unique:users',
+                'password' => 'nullable|string|min:6|confirmed',
             ]);
 
             if($validator->fails()){
@@ -44,23 +44,47 @@ class ApiUpdateController extends Controller
             // $email = $request->email;
             // $password = bcrypt($request->password);
             // $token = $request->token;
-            
+
             // $user = User::find($id);
             // $user->name = $name;
             // $user->status = $status;
             // $user->kelompok_id = $kelompok_id;
             // $user->email = $email;
             // $user->password = bcrypt($password);
-            
+
             // $token = JWTAuth::fromUser($user);
             // $user->save();
             // return response()->json(compact('user','token'),201);
-           
+
         }
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth('api')->user();
+
+
+        $this->validate($request,[
+            'name' => 'required|string|max:191',
+            'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
+            'status' => 'nullable|string|max:6',
+            'kelompok_id' => 'nullable|integer',
+            'password' => 'sometimes|required|min:6'
+        ]);
+
+
+        if(!empty($request->password)){
+            $request->merge(['password' => Hash::make($request['password'])]);
+        }
+
+
+        $user->update($request->all());
+        $token = JWTAuth::fromUser($user);
+        return response()->json(compact('user','token'),201);
+    }
 }
 // public function update(Request $request,$id)
 //     {
-    	
+
 //     	$nama_keramba = $request->nama_keramba;
 //     	$panjang_keramba = $request->panjang_keramba;
 //     	$lebar_keramba = $request->lebar_keramba;

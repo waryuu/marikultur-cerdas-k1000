@@ -87,14 +87,16 @@
           humas_kelompok: ''
         },
         form: {
+            name: '',
+            email: '',
             kelompok_id: ''
-        },
-        id_user: '',
+        }
       }
     },
     created() {
         this.model.ketua_kelompok = this.user.name;
-        this.id_user = this.user.id;
+        this.form.name = this.user.name;
+        this.form.email = this.user.email;
     },
     methods:{
         ...mapActions({
@@ -107,7 +109,7 @@
         async addKelompok(){
             var response = await axios.post('apikelompok/store', this.model);
             this.form.kelompok_id = response.data.kelompok.id;
-            this.meUpdate(this.id_user, this.form)
+            this.meUpdate(this.form)
             .then(() =>{
                     this.$router.replace({
                         name: 'beranda'
