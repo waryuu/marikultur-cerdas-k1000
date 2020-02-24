@@ -100,16 +100,13 @@
     },
     methods:{
         ...mapActions({
-            meUpdate: 'auth/meUpdate'
+            updateProfile: 'auth/updateProfile'
         }),
-        submit() {
-            this.errors = '';
-
-        },
         async addKelompok(){
+            this.errors = '';
             var response = await axios.post('apikelompok/store', this.model);
             this.form.kelompok_id = response.data.kelompok.id;
-            this.meUpdate(this.form)
+            this.updateProfile(this.form)
             .then(() =>{
                     this.$router.replace({
                         name: 'beranda'

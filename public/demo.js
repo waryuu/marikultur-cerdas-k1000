@@ -1854,11 +1854,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.form.email = this.user.email;
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
-    meUpdate: 'auth/meUpdate'
+    updateProfile: 'auth/updateProfile'
   }), {
-    submit: function submit() {
-      this.errors = '';
-    },
     addKelompok: function () {
       var _addKelompok = _asyncToGenerator(
       /*#__PURE__*/
@@ -1870,13 +1867,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                this.errors = '';
+                _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apikelompok/store', this.model);
 
-              case 2:
+              case 3:
                 response = _context.sent;
                 this.form.kelompok_id = response.data.kelompok.id;
-                this.meUpdate(this.form).then(function () {
+                this.updateProfile(this.form).then(function () {
                   _this.$router.replace({
                     name: 'beranda'
                   });
@@ -1887,7 +1885,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 console.log(this.form);
                 console.log(response.data.kelompok.id);
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -1916,6 +1914,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2033,6 +2033,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'user-profile',
@@ -2048,23 +2050,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         nama_kelompok: ''
       },
       model: {
-        username: '',
+        name: '',
         email: '',
-        kelompok_id: '',
-        firstName: '',
-        lastName: '',
-        address: '',
-        city: '',
-        country: '',
-        zipCode: '',
-        about: ''
+        kelompok_id: ''
+      },
+      form: {
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
       }
     };
   },
   created: function created() {
     this.fetchKelompok();
+    this.model.name = this.user.name;
+    this.model.email = this.user.email;
+    this.model.kelompok_id = this.user.kelompok_id;
+    this.form.name = this.user.name;
+    this.form.email = this.user.email;
   },
-  methods: {
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
+    updateProfile: 'auth/updateProfile'
+  }), {
     fetchKelompok: function fetchKelompok() {
       var _this = this;
 
@@ -2073,8 +2081,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (res) {
         _this.kelompoks = res.data;
       });
+    },
+    submitInfoUser: function submitInfoUser() {
+      var _this2 = this;
+
+      this.errors = '';
+      this.updateProfile(this.model).then(function () {
+        _this2.$router.replace({
+          name: 'profil'
+        });
+      })["catch"](function () {
+        _this2.errors = 'Harap isi semua form dengan benar!';
+      });
+    },
+    submitPassword: function submitPassword() {
+      var _this3 = this;
+
+      this.errors = '';
+      this.updateProfile(this.form).then(function () {
+        _this3.$router.replace({
+          name: 'profil'
+        });
+      })["catch"](function () {
+        _this3.errors = 'Harap isi semua form dengan benar!';
+      });
+    },
+    consolee: function consolee() {
+      console.log(this.model);
     }
-  }
+  })
 });
 
 /***/ }),
@@ -4956,9 +4991,11 @@ var render = function() {
                     _c(
                       "form",
                       {
+                        attrs: { role: "form" },
                         on: {
                           submit: function($event) {
                             $event.preventDefault()
+                            return _vm.submitInfoUser($event)
                           }
                         }
                       },
@@ -4983,11 +5020,11 @@ var render = function() {
                                     "input-classes": "form-control-alternative"
                                   },
                                   model: {
-                                    value: _vm.user.email,
+                                    value: _vm.model.email,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.user, "email", $$v)
+                                      _vm.$set(_vm.model, "email", $$v)
                                     },
-                                    expression: "user.email"
+                                    expression: "model.email"
                                   }
                                 })
                               ],
@@ -5006,11 +5043,11 @@ var render = function() {
                                     "input-classes": "form-control-alternative"
                                   },
                                   model: {
-                                    value: _vm.user.name,
+                                    value: _vm.model.name,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.user, "name", $$v)
+                                      _vm.$set(_vm.model, "name", $$v)
                                     },
-                                    expression: "user.name"
+                                    expression: "model.name"
                                   }
                                 })
                               ],
@@ -5035,8 +5072,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.user.kelompok_id,
-                                      expression: "user.kelompok_id"
+                                      value: _vm.model.kelompok_id,
+                                      expression: "model.kelompok_id"
                                     }
                                   ],
                                   staticClass:
@@ -5055,7 +5092,7 @@ var render = function() {
                                           return val
                                         })
                                       _vm.$set(
-                                        _vm.user,
+                                        _vm.model,
                                         "kelompok_id",
                                         $event.target.multiple
                                           ? $$selectedVal
@@ -5085,19 +5122,38 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "text-center" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { href: "#!" }
-                            },
-                            [_vm._v("Ubah")]
-                          )
-                        ]),
+                        _c(
+                          "div",
+                          { staticClass: "text-center" },
+                          [
+                            _c(
+                              "base-button",
+                              {
+                                staticClass: "my-4",
+                                attrs: { nativeType: "submit", type: "primary" }
+                              },
+                              [_vm._v("Ubah")]
+                            )
+                          ],
+                          1
+                        ),
                         _vm._v(" "),
-                        _c("hr", { staticClass: "my-4" }),
-                        _vm._v(" "),
+                        _c("hr", { staticClass: "my-4" })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "form",
+                      {
+                        attrs: { role: "form" },
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.submitPassword($event)
+                          }
+                        }
+                      },
+                      [
                         _c(
                           "h6",
                           { staticClass: "heading-small text-muted mb-4" },
@@ -5119,11 +5175,11 @@ var render = function() {
                                     type: "password"
                                   },
                                   model: {
-                                    value: _vm.model.address,
+                                    value: _vm.model.password,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.model, "address", $$v)
+                                      _vm.$set(_vm.model, "password", $$v)
                                     },
-                                    expression: "model.address"
+                                    expression: "model.password"
                                   }
                                 })
                               ],
@@ -5145,11 +5201,15 @@ var render = function() {
                                     type: "password"
                                   },
                                   model: {
-                                    value: _vm.model.city,
+                                    value: _vm.model.password_confirmation,
                                     callback: function($$v) {
-                                      _vm.$set(_vm.model, "city", $$v)
+                                      _vm.$set(
+                                        _vm.model,
+                                        "password_confirmation",
+                                        $$v
+                                      )
                                     },
-                                    expression: "model.city"
+                                    expression: "model.password_confirmation"
                                   }
                                 })
                               ],
@@ -5158,16 +5218,21 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("div", { staticClass: "text-center" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-primary",
-                              attrs: { href: "#!" }
-                            },
-                            [_vm._v("Ubah")]
-                          )
-                        ])
+                        _c(
+                          "div",
+                          { staticClass: "text-center" },
+                          [
+                            _c(
+                              "base-button",
+                              {
+                                staticClass: "my-4",
+                                attrs: { nativeType: "submit", type: "primary" }
+                              },
+                              [_vm._v("Ubah")]
+                            )
+                          ],
+                          1
+                        )
                       ]
                     )
                   ]

@@ -4311,6 +4311,22 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue2_transitions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-transitions */ "./node_modules/vue2-transitions/dist/vue2-transitions.m.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4398,8 +4414,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'auth-layout',
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
+    authenticated: 'auth/authenticated'
+  })),
   components: {
     SlideYUpTransition: vue2_transitions__WEBPACK_IMPORTED_MODULE_0__["SlideYUpTransition"]
   },
@@ -4408,7 +4428,20 @@ __webpack_require__.r(__webpack_exports__);
       year: new Date().getFullYear(),
       showMenu: false
     };
-  }
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
+    signOutAction: 'auth/signOut'
+  }), {
+    signOut: function signOut() {
+      var _this = this;
+
+      this.signOutAction().then(function () {
+        _this.$router.replace({
+          name: 'login'
+        });
+      });
+    }
+  })
 });
 
 /***/ }),
@@ -11271,55 +11304,78 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("ul", { staticClass: "navbar-nav ml-auto" }, [
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
+                  _vm.authenticated
+                    ? _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+                        _c("li", { staticClass: "nav-item" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "nav-link nav-link-icon",
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.signOut($event)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "ni ni-user-run" }),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Keluar")])
+                            ]
+                          )
+                        ])
+                      ])
+                    : _c("ul", { staticClass: "navbar-nav ml-auto" }, [
                         _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link nav-link-icon",
-                            attrs: { to: "/register" }
-                          },
+                          "li",
+                          { staticClass: "nav-item" },
                           [
-                            _c("i", { staticClass: "ni ni-circle-08" }),
-                            _vm._v(" "),
                             _c(
-                              "span",
-                              { staticClass: "nav-link-inner--text" },
-                              [_vm._v("Daftar")]
+                              "router-link",
+                              {
+                                staticClass: "nav-link nav-link-icon",
+                                attrs: { to: "/register" }
+                              },
+                              [
+                                _c("i", { staticClass: "ni ni-circle-08" }),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "nav-link-inner--text" },
+                                  [_vm._v("Daftar")]
+                                )
+                              ]
                             )
-                          ]
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "li",
-                      { staticClass: "nav-item" },
-                      [
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
                         _c(
-                          "router-link",
-                          {
-                            staticClass: "nav-link nav-link-icon",
-                            attrs: { to: "/login" }
-                          },
+                          "li",
+                          { staticClass: "nav-item" },
                           [
-                            _c("i", { staticClass: "ni ni-key-25" }),
-                            _vm._v(" "),
                             _c(
-                              "span",
-                              { staticClass: "nav-link-inner--text" },
-                              [_vm._v("Masuk")]
+                              "router-link",
+                              {
+                                staticClass: "nav-link nav-link-icon",
+                                attrs: { to: "/login" }
+                              },
+                              [
+                                _c("i", { staticClass: "ni ni-key-25" }),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "nav-link-inner--text" },
+                                  [_vm._v("Masuk")]
+                                )
+                              ]
                             )
-                          ]
+                          ],
+                          1
                         )
-                      ],
-                      1
-                    )
-                  ])
+                      ])
                 ]
               }
             }
@@ -31103,8 +31159,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return Register;
     }(),
-    meUpdate: function () {
-      var _meUpdate = _asyncToGenerator(
+    updateProfile: function () {
+      var _updateProfile = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(_ref3, credentials) {
         var dispatch, response;
@@ -31114,7 +31170,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 dispatch = _ref3.dispatch;
                 _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('auth/profileupdate', credentials);
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.put('auth/update/profile', credentials);
 
               case 3:
                 response = _context3.sent;
@@ -31128,11 +31184,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3);
       }));
 
-      function meUpdate(_x5, _x6) {
-        return _meUpdate.apply(this, arguments);
+      function updateProfile(_x5, _x6) {
+        return _updateProfile.apply(this, arguments);
       }
 
-      return meUpdate;
+      return updateProfile;
     }(),
     attempt: function () {
       var _attempt = _asyncToGenerator(

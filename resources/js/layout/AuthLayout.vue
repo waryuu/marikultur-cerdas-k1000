@@ -28,8 +28,17 @@
                         </div>
                     </div>
                 </div>
-                <!-- Navbar items -->
-                <ul class="navbar-nav ml-auto">
+                <!-- Navbar items Authd-->
+                <ul v-if="authenticated" class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#" @click.prevent="signOut" class="nav-link nav-link-icon">
+                            <i class="ni ni-user-run"></i>
+                            <span>Keluar</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Navbar items Unauthd-->
+                <ul v-else class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <router-link class="nav-link nav-link-icon" to="/register">
                             <i class="ni ni-circle-08"></i>
@@ -86,9 +95,14 @@
 </template>
 <script>
   import { SlideYUpTransition } from 'vue2-transitions'
-
+  import { mapGetters, mapActions } from 'vuex'
   export default {
     name: 'auth-layout',
+    computed: {
+        ...mapGetters({
+            authenticated: 'auth/authenticated',
+        })
+    },
     components: {
       SlideYUpTransition
     },
@@ -97,6 +111,19 @@
         year: new Date().getFullYear(),
         showMenu: false
       }
+    },
+    methods: {
+        ...mapActions({
+            signOutAction: 'auth/signOut'
+        }),
+
+        signOut(){
+            this.signOutAction().then(() =>{
+                this.$router.replace({
+                    name: 'login'
+                })
+            })
+        },
     }
   }
 </script>

@@ -9,12 +9,18 @@ use App\User;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Hash;
 
-class ApiUpdateController extends Controller
+class ApiProfileController extends Controller
 {
+    public function __construct(){
+        $this->middleware(['auth:api']);
+        return response(null, 401);
+    }
+
     public function update(Request $request,$id)
         {
-                $validator = Validator::make($request->all(), [
+            $validator = Validator::make($request->all(), [
                 'name' => 'nullable|string|max:255',
                 'status' => 'nullable|string|max:6',
                 'kelompok_id' => 'nullable|integer',
@@ -25,6 +31,7 @@ class ApiUpdateController extends Controller
             if($validator->fails()){
                     return response()->json($validator->errors()->toJson(), 400);
             }
+
             $user = User::updateOrCreate([
                 'id'=>$id],[
                 'name' => $request->get('name'),
@@ -62,18 +69,20 @@ class ApiUpdateController extends Controller
     {
         $user = auth('api')->user();
 
-
-        $this->validate($request,[
-            'name' => 'required|string|max:191',
-            'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
+        $validator = Validator::make($request->all(), [
+            'name' => 'nullable|string|max:255',
             'status' => 'nullable|string|max:6',
             'kelompok_id' => 'nullable|integer',
-            'password' => 'sometimes|required|min:6'
+            'email' => 'nullable|string|email|max:255|unique:users,email,'.$user->id,
+            'password' => 'nullable|string|min:6|confirmed',
         ]);
 
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
 
         if(!empty($request->password)){
-            $request->merge(['password' => Hash::make($request['password'])]);
+            $request->merge(['password' => bcrypt($request['password'])]);
         }
 
 

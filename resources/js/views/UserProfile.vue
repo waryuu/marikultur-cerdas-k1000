@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <template>
-                            <form @submit.prevent>
+                            <form @submit.prevent="submitInfoUser" role="form">
                                 <!-- Data Diri -->
                                 <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>
                                 <div class="pl-lg-4">
@@ -42,7 +42,7 @@
                                                         label="Alamat Email"
                                                         placeholder="jesse@example.com"
                                                         input-classes="form-control-alternative"
-                                                        v-model="user.email"
+                                                        v-model="model.email"
                                             />
                                         </div>
                                         <div class="col-lg-6">
@@ -50,7 +50,7 @@
                                                         label="Nama"
                                                         placeholder="Nama"
                                                         input-classes="form-control-alternative"
-                                                        v-model="user.name"
+                                                        v-model="model.name"
                                             />
                                         </div>
                                     </div>
@@ -60,18 +60,19 @@
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <select v-model="user.kelompok_id" class="input-group-alternative mb-3 form-control">
+                                            <select v-model="model.kelompok_id" class="input-group-alternative mb-3 form-control">
                                                 <option disabled value="">Pilih Kelompok Anda</option>
                                                 <option v-for="kelompok in kelompoks" v-bind:value="kelompok.id">{{ kelompok.nama_kelompok }}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Password -->
                                  <div class="text-center">
-                                    <a href="#!" class="btn btn-primary">Ubah</a>
+                                    <base-button nativeType="submit" type="primary" class="my-4">Ubah</base-button>
                                 </div>
                                 <hr class="my-4" />
+                            </form>
+                            <form @submit.prevent="submitPassword" role="form">
                                 <!-- Keamanan -->
                                 <h6 class="heading-small text-muted mb-4">Ubah Kata Sandi</h6>
                                 <div class="pl-lg-4">
@@ -81,7 +82,7 @@
                                                         label="Kata Sandi Baru"
                                                         placeholder="Masukkan Kata Sandi"
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.address"
+                                                        v-model="model.password"
                                                         type="password"
                                             />
                                         </div>
@@ -92,14 +93,14 @@
                                                         label="Konfirmasi Kata Sandi"
                                                         placeholder="Masukkan Kata Sandi"
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.city"
+                                                        v-model="model.password_confirmation"
                                                         type="password"
                                             />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <a href="#!" class="btn btn-primary">Ubah</a>
+                                    <base-button nativeType="submit" type="primary" class="my-4">Ubah</base-button>
                                 </div>
                             </form>
                         </template>
@@ -110,7 +111,8 @@
     </div>
 </template>
 <script>
-  import {mapGetters} from 'vuex'
+  import {mapGetters,mapActions} from 'vuex'
+  import axios from 'axios'
   export default {
     name: 'user-profile',
     computed: {
@@ -127,29 +129,63 @@
             nama_kelompok: ''
         },
         model: {
-          username: '',
-          email: '',
-          kelompok_id: '',
-          firstName: '',
-          lastName: '',
-          address: '',
-          city: '',
-          country: '',
-          zipCode: '',
-          about: '',
+            name: '',
+            email: '',
+            kelompok_id: '',
+        },
+        form: {
+            name: '',
+            email: '',
+            password: '',
+            password_confirmation: ''
         }
       }
     },
     created() {
         this.fetchKelompok();
+        this.model.name = this.user.name;
+        this.model.email = this.user.email;
+        this.model.kelompok_id = this.user.kelompok_id;
+        this.form.name = this.user.name;
+        this.form.email = this.user.email;
     },
     methods:{
+        ...mapActions({
+            updateProfile: 'auth/updateProfile'
+        }),
         fetchKelompok(){
             fetch('api/apikelompok')
                 .then(res=>res.json())
                 .then(res=>{
                     this.kelompoks = res.data;
                 })
+        },
+        submitInfoUser(){
+            this.errors = '';
+            this.updateProfile(this.model)
+            .then(() =>{
+                    this.$router.replace({
+                        name: 'profil'
+                    })
+                })
+            .catch(() => {
+                    this.errors = 'Harap isi semua form dengan benar!';
+                })
+        },
+        submitPassword(){
+            this.errors = '';
+            this.updateProfile(this.form)
+            .then(() =>{
+                    this.$router.replace({
+                        name: 'profil'
+                    })
+                })
+            .catch(() => {
+                    this.errors = 'Harap isi semua form dengan benar!';
+                })
+        },
+        consolee(){
+            console.log(this.model);
         }
     }
   };

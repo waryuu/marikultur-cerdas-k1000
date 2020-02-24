@@ -16,7 +16,8 @@ class ApiKelompokController extends Controller
      */
     public function index()
     {
-        $kelompok = KelompokModel::paginate(5);
+        // $kelompok = KelompokModel::paginate(5);
+        $kelompok = KelompokModel::all();
         return KelompokResources::collection($kelompok);
     }
 

@@ -36,8 +36,8 @@ export default {
             return dispatch('attempt', response.data.token)
         },
 
-        async meUpdate({dispatch}, credentials){
-            let response = await axios.put('auth/profileupdate', credentials)
+        async updateProfile({dispatch}, credentials){
+            let response = await axios.put('auth/update/profile', credentials)
             return dispatch('attempt', response.data.token)
         },
 

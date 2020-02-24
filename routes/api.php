@@ -18,8 +18,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function(){
     Route::post('signin','ApiSignInController');
     // Route::post('signin', [ 'as' => 'login', 'uses' => 'ApiSignInController']);
     Route::post('signout','ApiSignOutController');
-    Route::put('update/{id}','ApiUpdateController@update');
-    Route::put('profileupdate','ApiUpdateController@updateProfile');
+    Route::put('update/profile','ApiProfileController@updateProfile');
     Route::get('me','ApiMeController');
 });
 
