@@ -6,10 +6,11 @@ import store from './store'
 Vue.use(Router)
 
 export default new Router({
-    mode: 'history',
+  mode: 'history',
   linkExactActiveClass: 'active',
   routes: [
     {
+    // Default Route untuk user terauthenticated
       path: '/',
       redirect: 'beranda',
       component: DashboardLayout,
@@ -36,21 +37,6 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Dashboard.vue')
         },
         {
-            path: '/profil',
-            name: 'profil',
-            component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
-        },
-        {
-            path: '/sensor',
-            name: 'sensor',
-            component: () => import(/* webpackChunkName: "demo" */ './views/Sensor.vue')
-        },
-        {
-            path: '/pakan',
-            name: 'pakan',
-            component: () => import(/* webpackChunkName: "demo" */ './views/Pakan.vue')
-        },
-        {
             path: '/produksi',
             name: 'produksi',
             component: () => import(/* webpackChunkName: "demo" */ './views/Produksi.vue')
@@ -61,8 +47,47 @@ export default new Router({
             component: () => import(/* webpackChunkName: "demo" */ './views/Keramba.vue')
         },
         {
+            path: '/profil',
+            name: 'profil',
+            component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
+        },
+        {
+            path: '/sensor',
+            name: 'sensor',
+            beforeEnter: (to, from, next) => {
+                if(store.getters['auth/user'].status !== 'admin'){
+                    return next({
+                        name: 'beranda'
+                    })
+                }
+                next()
+            },
+            component: () => import(/* webpackChunkName: "demo" */ './views/Sensor.vue')
+        },
+        {
+            path: '/pakan',
+            name: 'pakan',
+            beforeEnter: (to, from, next) => {
+                if(store.getters['auth/user'].status !== 'admin'){
+                    return next({
+                        name: 'beranda'
+                    })
+                }
+                next()
+            },
+            component: () => import(/* webpackChunkName: "demo" */ './views/Pakan.vue')
+        },
+        {
             path: '/kelompok',
             name: 'kelompok',
+            beforeEnter: (to, from, next) => {
+                if(store.getters['auth/user'].status === 'user'){
+                    return next({
+                        name: 'beranda'
+                    })
+                }
+                next()
+            },
             component: () => import(/* webpackChunkName: "demo" */ './views/Kelompok.vue')
         },
         {
@@ -82,6 +107,7 @@ export default new Router({
         }
       ]
     },
+    // Default Route untuk user tidak terauthenticated
     {
       path: '/',
       redirect: 'login',
@@ -107,6 +133,7 @@ export default new Router({
         }
       ]
     },
+    // Default Route untuk user yang tidak memiliki kelompok
     {
         path: '/',
         redirect: 'tambahkelompok',

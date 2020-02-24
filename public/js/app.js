@@ -4488,6 +4488,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DashboardNavbar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DashboardNavbar.vue */ "./resources/js/layout/DashboardNavbar.vue");
 /* harmony import */ var _ContentFooter_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContentFooter.vue */ "./resources/js/layout/ContentFooter.vue");
 /* harmony import */ var vue2_transitions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-transitions */ "./node_modules/vue2-transitions/dist/vue2-transitions.m.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4524,6 +4531,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -4533,6 +4541,9 @@ __webpack_require__.r(__webpack_exports__);
     ContentFooter: _ContentFooter_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     FadeTransition: vue2_transitions__WEBPACK_IMPORTED_MODULE_2__["FadeTransition"]
   },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapGetters"])({
+    user: 'auth/user'
+  })),
   data: function data() {
     return {
       sidebarBackground: 'vue' //vue|blue|orange|green|red|primary
@@ -11605,26 +11616,6 @@ var render = function() {
               _c("sidebar-item", {
                 attrs: {
                   link: {
-                    name: "Sensor IoT",
-                    icon: "fa fa-rss text-blue",
-                    path: "/sensor"
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("sidebar-item", {
-                attrs: {
-                  link: {
-                    name: "Pakan Otomatis",
-                    icon: "fa fa-braille text-blue",
-                    path: "/pakan"
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("sidebar-item", {
-                attrs: {
-                  link: {
                     name: "Produksi",
                     icon: "ni ni-box-2 text-blue",
                     path: "/produksi"
@@ -11645,22 +11636,48 @@ var render = function() {
               _c("sidebar-item", {
                 attrs: {
                   link: {
-                    name: "Kelompok",
-                    icon: "fa fa-users text-blue",
-                    path: "/kelompok"
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("sidebar-item", {
-                attrs: {
-                  link: {
                     name: "Profil Saya",
                     icon: "ni ni-single-02 text-yellow",
                     path: "/profil"
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _vm.user.status === "admin" || _vm.user.status === "ketua"
+                ? _c("sidebar-item", {
+                    attrs: {
+                      link: {
+                        name: "Kelompok",
+                        icon: "fa fa-users text-blue",
+                        path: "/kelompok"
+                      }
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.status === "admin"
+                ? _c("sidebar-item", {
+                    attrs: {
+                      link: {
+                        name: "Sensor IoT",
+                        icon: "fa fa-rss text-blue",
+                        path: "/sensor"
+                      }
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.status === "admin"
+                ? _c("sidebar-item", {
+                    attrs: {
+                      link: {
+                        name: "Pakan Otomatis",
+                        icon: "fa fa-braille text-blue",
+                        path: "/pakan"
+                      }
+                    }
+                  })
+                : _vm._e()
             ],
             1
           )
@@ -30919,6 +30936,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   mode: 'history',
   linkExactActiveClass: 'active',
   routes: [{
+    // Default Route untuk user terauthenticated
     path: '/',
     redirect: 'beranda',
     component: _layout_DashboardLayout__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -30945,24 +30963,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/js/views/Dashboard.vue"));
       }
     }, {
-      path: '/profil',
-      name: 'profil',
-      component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/UserProfile.vue */ "./resources/js/views/UserProfile.vue"));
-      }
-    }, {
-      path: '/sensor',
-      name: 'sensor',
-      component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Sensor.vue */ "./resources/js/views/Sensor.vue"));
-      }
-    }, {
-      path: '/pakan',
-      name: 'pakan',
-      component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
-      }
-    }, {
       path: '/produksi',
       name: 'produksi',
       component: function component() {
@@ -30975,8 +30975,53 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
       }
     }, {
+      path: '/profil',
+      name: 'profil',
+      component: function component() {
+        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/UserProfile.vue */ "./resources/js/views/UserProfile.vue"));
+      }
+    }, {
+      path: '/sensor',
+      name: 'sensor',
+      beforeEnter: function beforeEnter(to, from, next) {
+        if (_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters['auth/user'].status !== 'admin') {
+          return next({
+            name: 'beranda'
+          });
+        }
+
+        next();
+      },
+      component: function component() {
+        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Sensor.vue */ "./resources/js/views/Sensor.vue"));
+      }
+    }, {
+      path: '/pakan',
+      name: 'pakan',
+      beforeEnter: function beforeEnter(to, from, next) {
+        if (_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters['auth/user'].status !== 'admin') {
+          return next({
+            name: 'beranda'
+          });
+        }
+
+        next();
+      },
+      component: function component() {
+        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
+      }
+    }, {
       path: '/kelompok',
       name: 'kelompok',
+      beforeEnter: function beforeEnter(to, from, next) {
+        if (_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters['auth/user'].status === 'user') {
+          return next({
+            name: 'beranda'
+          });
+        }
+
+        next();
+      },
       component: function component() {
         return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Kelompok.vue */ "./resources/js/views/Kelompok.vue"));
       }
@@ -30999,7 +31044,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Tables.vue */ "./resources/js/views/Tables.vue"));
       }
     }]
-  }, {
+  }, // Default Route untuk user tidak terauthenticated
+  {
     path: '/',
     redirect: 'login',
     component: _layout_AuthLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -31025,7 +31071,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Register.vue */ "./resources/js/views/Register.vue"));
       }
     }]
-  }, {
+  }, // Default Route untuk user yang tidak memiliki kelompok
+  {
     path: '/',
     redirect: 'tambahkelompok',
     component: _layout_AuthLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
