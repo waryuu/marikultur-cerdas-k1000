@@ -1842,14 +1842,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         humas_kelompok: ''
       },
       form: {
-        id_user: '',
         kelompok_id: ''
-      }
+      },
+      id_user: ''
     };
   },
   created: function created() {
     this.model.ketua_kelompok = this.user.name;
-    this.form.id_user = this.user.id;
+    this.id_user = this.user.id;
   },
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
     meUpdate: 'auth/meUpdate'
@@ -1874,17 +1874,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 2:
                 response = _context.sent;
                 this.form.kelompok_id = response.data.kelompok.id;
-                this.meUpdate(this.form).then(function () {
+                this.meUpdate(this.id_user, this.form).then(function () {
                   _this.$router.replace({
                     name: 'beranda'
                   });
                 })["catch"](function () {
                   _this.errors = 'Harap isi semua form dengan benar!';
                 });
+                console.log(this.id_user);
                 console.log(this.form);
                 console.log(response.data.kelompok.id);
 
-              case 7:
+              case 8:
               case "end":
                 return _context.stop();
             }

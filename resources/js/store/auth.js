@@ -36,8 +36,8 @@ export default {
             return dispatch('attempt', response.data.token)
         },
 
-        async meUpdate({dispatch}, credentials){
-            let response = await axios.put('auth/update/' + credentials.id_user, credentials.kelompok_id)
+        async meUpdate({dispatch}, id_user, credentials){
+            let response = await axios.put('auth/update/' + id_user, credentials)
             return dispatch('attempt', response.data.token)
         },
 
