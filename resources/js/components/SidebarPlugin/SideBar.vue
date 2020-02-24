@@ -22,7 +22,7 @@
                         </a>
 
                         <div class=" dropdown-header noti-title">
-                            <h6 class="text-overflow m-0">Selamat Datang!</h6>
+                            <h6 class="text-overflow m-0">{{user.name}}</h6>
                         </div>
                         <router-link to="/profil" class="dropdown-item">
                             <i class="ni ni-single-02"></i>

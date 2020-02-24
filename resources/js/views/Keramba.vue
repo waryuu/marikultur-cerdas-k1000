@@ -29,7 +29,17 @@
                             </div>
                         </div>
                         <template>
-
+                            <div class="card shadow card-body mb-3">
+                                <h3 class="card-title">Keramba 1</h3>
+                                <h4 class="card-subtitle text-muted">3x3 Meter</h4>
+                                <p class="card-text font-weight-bold mt-2">Kapasitas: 400 Ikan
+                                <br>
+                                Milik: Kelompok 1
+                                </p>
+                                <form class="row align-items-center px-3" action="" method="post">
+                                    <button type="button" class="col btn btn-primary">Detail</button>
+                                </form>
+                            </div>
                         </template>
                     </card>
                 </div>

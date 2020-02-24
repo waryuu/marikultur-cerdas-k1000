@@ -4418,7 +4418,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'auth-layout',
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    authenticated: 'auth/authenticated'
+    authenticated: 'auth/authenticated',
+    user: 'auth/user'
   })),
   components: {
     SlideYUpTransition: vue2_transitions__WEBPACK_IMPORTED_MODULE_0__["SlideYUpTransition"]
@@ -10820,7 +10821,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("div", { staticClass: " dropdown-header noti-title" }, [
                       _c("h6", { staticClass: "text-overflow m-0" }, [
-                        _vm._v("Selamat Datang!")
+                        _vm._v(_vm._s(_vm.user.name))
                       ])
                     ]),
                     _vm._v(" "),
@@ -11039,7 +11040,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "icon icon-shape text-white rounded-circle shadow",
+                        "icon icon-shape text-white rounded-circle mt-3 shadow",
                       class: ["bg-" + _vm.type, _vm.iconClasses]
                     },
                     [_c("i", { class: _vm.icon })]
@@ -11616,26 +11617,6 @@ var render = function() {
               _c("sidebar-item", {
                 attrs: {
                   link: {
-                    name: "Produksi",
-                    icon: "ni ni-box-2 text-blue",
-                    path: "/produksi"
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("sidebar-item", {
-                attrs: {
-                  link: {
-                    name: "Keramba",
-                    icon: "fa fa-anchor text-blue",
-                    path: "/keramba"
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("sidebar-item", {
-                attrs: {
-                  link: {
                     name: "Profil Saya",
                     icon: "ni ni-single-02 text-yellow",
                     path: "/profil"
@@ -11650,6 +11631,30 @@ var render = function() {
                         name: "Kelompok",
                         icon: "fa fa-users text-blue",
                         path: "/kelompok"
+                      }
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.status === "admin"
+                ? _c("sidebar-item", {
+                    attrs: {
+                      link: {
+                        name: "Produksi",
+                        icon: "ni ni-box-2 text-blue",
+                        path: "/produksi"
+                      }
+                    }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.user.status === "admin"
+                ? _c("sidebar-item", {
+                    attrs: {
+                      link: {
+                        name: "Keramba",
+                        icon: "fa fa-anchor text-blue",
+                        path: "/keramba"
                       }
                     }
                   })

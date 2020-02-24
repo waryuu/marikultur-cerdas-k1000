@@ -1,89 +1,100 @@
 <template>
     <div>
-        <base-header type="primary" class="pb-6 pb-8 pt-5 pt-md-8">
-
-        </base-header>
-
-        <!-- Keramba -->
-        <div class="container-fluid mt--7">
+        <base-header type="gradient-primary" class="pb-6 pb-8 pt-5 pt-md-8">
+            <!-- Buttons -->
             <div class="row">
-                <!-- Each Keramba -->
-                <div class="col-xl-6 mb-5 col-lg-6">
-                    <card header-classes="bg-transparent">
-                        <div slot="header" class="row align-items-center">
-                            <div class="col">
-                                <h6 class="text-uppercase text-muted ls-1 mb-1">Keramba 1</h6>
-                                <h5 class="h3 mb-0">Kerapu Cantang</h5>
-                            </div>
-                        </div>
-                    </card>
+                <div class="col-6">
+                    <stats-card title="Penebaran Ikan"
+                                type="gradient-orange"
+                                icon="ni ni-chart-pie-35"
+                                class="mb-4 mb-xl-0"
+                    >
+                    </stats-card>
                 </div>
-                <!-- End Each Keramba -->
+                <div class="col-6">
+                    <stats-card title="Pencucian Ikan"
+                                type="gradient-green"
+                                icon="ni ni-money-coins"
+                                class="mb-4 mb-xl-0"
+                    >
+                    </stats-card>
+
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-6">
+                    <stats-card title="Pemindahan Ikan"
+                                type="gradient-info"
+                                icon="ni ni-chart-bar-32"
+                                class="mb-4 mb-xl-0"
+                    >
+                    </stats-card>
+                </div>
+                <div class="col-6">
+                    <stats-card title="Panen Produksi"
+                                type="gradient-red"
+                                icon="ni ni-active-40"
+                                class="mb-4 mb-xl-0"
+                    >
+                    </stats-card>
+                </div>
+            </div>
+        </base-header>
+        <!-- Card stats -->
+        <div class="container-fluid mt--7">
+            <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card shadow card-body mb-3">
+                <h3 class="card-title">{{produksi.nama_ikan}}</h3>
+                <h4 class="card-subtitle text-muted">Keramba {{produksi.keramba_id}}</h4>
+                <p class="card-text font-weight-bold mt-2">Ukuran: {{produksi.panjang_ikan}} cm
+                    <br>
+                    Jumlah: {{produksi.jumlah_ikan}} Ekor
+                    <br>
+                    Tanggal Tebar: {{produksi.tanggal_tebar}}
+                    <br>
+                    Terakhir Mencuci: GADA
+                </p>
+                <form class="row align-items-center px-3" action="" method="post">
+                    <button type="button" class="col btn btn-primary">Informasi Sensor</button>
+                </form>
             </div>
         </div>
-
+        <!-- End card stats -->
     </div>
 </template>
 <script>
-  // Charts
-  import * as chartConfigs from '../components/Charts/config';
-  import LineChart from '../components/Charts/LineChart';
-  import BarChart from '../components/Charts/BarChart';
-
-  // Tables
-  import SocialTrafficTable from './Dashboard/SocialTrafficTable';
-  import PageVisitsTable from './Dashboard/PageVisitsTable';
-
+  import axios from 'axios'
   export default {
-    components: {
-      LineChart,
-      BarChart,
-      PageVisitsTable,
-      SocialTrafficTable,
-    },
+    name: 'beranda',
     data() {
       return {
-        bigLineChart: {
-          allData: [
-            [0, 20, 10, 30, 15, 40, 20, 60, 60],
-            [0, 20, 5, 25, 10, 30, 15, 40, 40]
-          ],
-          activeIndex: 0,
-          chartData: {
-            datasets: [],
-            labels: [],
-          },
-          extraOptions: chartConfigs.blueChartOptions,
+        errors: '',
+        produksis: [],
+        produksi: {
+          nama_ikan: '',
+          jumlah_ikan: '',
+          panjang_ikan: '',
+          tanggal_tebar: '',
+          tanggal_panen: '',
+          status_panen: '',
+          keramba_id: ''
         },
-        redBarChart: {
-          chartData: {
-            labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            datasets: [{
-              label: 'Sales',
-              data: [25, 20, 30, 22, 17, 29]
-            }]
-          }
-        }
-      };
-    },
-    methods: {
-      initBigChart(index) {
-        let chartData = {
-          datasets: [
-            {
-              label: 'Performance',
-              data: this.bigLineChart.allData[index]
-            }
-          ],
-          labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        };
-        this.bigLineChart.chartData = chartData;
-        this.bigLineChart.activeIndex = index;
       }
     },
-    mounted() {
-      this.initBigChart(0);
+    created() {
+        this.fetchProduksi();
+    },
+    methods:{
+        submit() {
+
+        },
+        fetchProduksi(){
+            fetch('api/apiproduksi')
+                .then(res=>res.json())
+                .then(res=>{
+                    this.produksis = res.data;
+                })
+        }
     }
-  };
+  }
 </script>
 <style></style>

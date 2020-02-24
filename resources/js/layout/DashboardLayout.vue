@@ -13,10 +13,10 @@
             path: '/beranda'
           }"
         />
-        <sidebar-item :link="{name: 'Produksi', icon: 'ni ni-box-2 text-blue', path: '/produksi'}"/>
-        <sidebar-item :link="{name: 'Keramba', icon: 'fa fa-anchor text-blue', path: '/keramba'}"/>
         <sidebar-item :link="{name: 'Profil Saya', icon: 'ni ni-single-02 text-yellow', path: '/profil'}"/>
         <sidebar-item v-if="user.status === 'admin' || user.status === 'ketua'" :link="{name: 'Kelompok', icon: 'fa fa-users text-blue', path: '/kelompok'}"/>
+        <sidebar-item v-if="user.status === 'admin'" :link="{name: 'Produksi', icon: 'ni ni-box-2 text-blue', path: '/produksi'}"/>
+        <sidebar-item v-if="user.status === 'admin'" :link="{name: 'Keramba', icon: 'fa fa-anchor text-blue', path: '/keramba'}"/>
         <sidebar-item v-if="user.status === 'admin'" :link="{name: 'Sensor IoT', icon: 'fa fa-rss text-blue', path: '/sensor'}"/>
         <sidebar-item v-if="user.status === 'admin'" :link="{name: 'Pakan Otomatis', icon: 'fa fa-braille text-blue', path: '/pakan'}"/>
       </template>

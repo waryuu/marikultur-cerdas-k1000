@@ -82,7 +82,7 @@
                                                         label="Kata Sandi Baru"
                                                         placeholder="Masukkan Kata Sandi"
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.password"
+                                                        v-model="form.password"
                                                         type="password"
                                             />
                                         </div>
@@ -93,7 +93,7 @@
                                                         label="Konfirmasi Kata Sandi"
                                                         placeholder="Masukkan Kata Sandi"
                                                         input-classes="form-control-alternative"
-                                                        v-model="model.password_confirmation"
+                                                        v-model="form.password_confirmation"
                                                         type="password"
                                             />
                                         </div>
@@ -134,8 +134,6 @@
             kelompok_id: '',
         },
         form: {
-            name: '',
-            email: '',
             password: '',
             password_confirmation: ''
         }
@@ -146,8 +144,6 @@
         this.model.name = this.user.name;
         this.model.email = this.user.email;
         this.model.kelompok_id = this.user.kelompok_id;
-        this.form.name = this.user.name;
-        this.form.email = this.user.email;
     },
     methods:{
         ...mapActions({
@@ -186,6 +182,7 @@
         },
         consolee(){
             console.log(this.model);
+            console.log(this.form);
         }
     }
   };

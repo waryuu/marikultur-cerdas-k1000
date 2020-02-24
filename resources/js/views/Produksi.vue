@@ -29,7 +29,17 @@
                             </div>
                         </div>
                         <template>
-
+                                <div class="card shadow card-body mb-3">
+                                    <h3 class="card-title">Kerapu Cantang</h3>
+                                    <h4 class="card-subtitle text-muted">200 Ekor</h4>
+                                    <p class="card-text font-weight-bold mt-2">Ukuran: 12 cm
+                                    <br>
+                                    Lokasi: Keramba 1
+                                    </p>
+                                    <form class="row align-items-center px-3" action="" method="post">
+                                        <button type="button" class="col btn btn-primary" >Detail</button>
+                                    </form>
+                                </div>
                         </template>
                     </card>
                 </div>

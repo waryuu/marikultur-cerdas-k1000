@@ -101,6 +101,7 @@
     computed: {
         ...mapGetters({
             authenticated: 'auth/authenticated',
+            user: 'auth/user'
         })
     },
     components: {
