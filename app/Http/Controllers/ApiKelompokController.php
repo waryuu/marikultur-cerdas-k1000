@@ -47,7 +47,7 @@ class ApiKelompokController extends Controller
         $kelompok->humas_kelompok = $request->input('humas_kelompok');
 
         if($kelompok->save()){
-            return new KelompokResources($kelompok);
+            return response()->json(compact('kelompok'),201);
         }
     }
 
@@ -99,5 +99,5 @@ class ApiKelompokController extends Controller
             return new KelompokResources($kelompok);
         }
     }
-}
+
 }

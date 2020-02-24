@@ -4,7 +4,7 @@
                 <div class="card bg-secondary shadow border-0">
                     <div class="card-header bg-transparent">
                         <div class="text-center text-muted">
-                            <small>Masuk menggunakan akun yang telah dibuat</small>
+                            <h4>Masuk menggunakan akun yang telah dibuat</h4>
                         </div>
                         <base-alert v-if="errors.length" class="px-lg-5 mt-4" type="warning" dismissible>
                             <span class="alert-inner--text"><strong>Perhatian!</strong> {{ errors }}</span>

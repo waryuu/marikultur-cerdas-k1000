@@ -59,25 +59,15 @@
                                 <h6 class="heading-small text-muted mb-4">Informasi Kelompok</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="Nama Kelompok"
-                                                        placeholder="Nama Kelompok"
-                                                        input-classes="form-control-alternative"
-                                                        disabled="true"
-                                                        v-model="user.kelompok_id"
-                                            />
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <base-input alternative=""
-                                                        label="ID Kelompok"
-                                                        placeholder="ID Kelompok"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="user.kelompok_id"
-                                            />
+                                        <div class="col-lg-12">
+                                            <select v-model="user.kelompok_id" class="input-group-alternative mb-3 form-control">
+                                                <option disabled value="">Pilih Kelompok Anda</option>
+                                                <option v-for="kelompok in kelompoks" v-bind:value="kelompok.id">{{ kelompok.nama_kelompok }}</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Password -->
                                  <div class="text-center">
                                     <a href="#!" class="btn btn-primary">Ubah</a>
                                 </div>
@@ -131,9 +121,15 @@
     },
     data() {
       return {
+        kelompoks: [],
+        kelompok: {
+            id: '',
+            nama_kelompok: ''
+        },
         model: {
           username: '',
           email: '',
+          kelompok_id: '',
           firstName: '',
           lastName: '',
           address: '',
@@ -144,6 +140,18 @@
         }
       }
     },
+    created() {
+        this.fetchKelompok();
+    },
+    methods:{
+        fetchKelompok(){
+            fetch('api/apikelompok')
+                .then(res=>res.json())
+                .then(res=>{
+                    this.kelompoks = res.data;
+                })
+        }
+    }
   };
 </script>
 <style></style>
