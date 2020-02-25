@@ -6,6 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="{{ url('img/brand/Animals-Fish-2-icon.png') }}" type="image/png">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#5e72e4">
         <title>Nelayan Cerdas K1000</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script> -->
@@ -18,5 +20,18 @@
         <!-- built files will be auto injected -->
         <!-- Argon JS -->
         <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+            if ('serviceWorker' in navigator ) {
+              window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+                      // Registration was successful
+                      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                  }, function(err) {
+                      // registration failed :(
+                      console.log('ServiceWorker registration failed: ', err);
+                  });
+              });
+          }
+        </script>
     </body>
 </html>
