@@ -40,7 +40,7 @@
 <script>
   import {mapGetters} from 'vuex'
   export default {
-    name: 'user-profile',
+    name: 'pakan',
     computed: {
         ...mapGetters({
             authenticated: 'auth/authenticated',

@@ -3,41 +3,40 @@
         <base-header type="gradient-primary" class="pb-6 pb-8 pt-5 pt-md-8">
             <!-- Buttons -->
             <div class="row">
-                <div class="col-6">
+                <router-link to="/tebar" class="col-6">
                     <stats-card title="Penebaran Ikan"
                                 type="gradient-orange"
                                 icon="ni ni-chart-pie-35"
                                 class="mb-4 mb-xl-0"
                     >
                     </stats-card>
-                </div>
-                <div class="col-6">
+                </router-link>
+                <router-link to="/cuci" class="col-6">
                     <stats-card title="Pencucian Ikan"
                                 type="gradient-green"
                                 icon="ni ni-money-coins"
                                 class="mb-4 mb-xl-0"
                     >
                     </stats-card>
-
-                </div>
+                </router-link>
             </div>
             <div class="row mt-3">
-                <div class="col-6">
+                <router-link to="/pindah" class="col-6">
                     <stats-card title="Pemindahan Ikan"
                                 type="gradient-info"
                                 icon="ni ni-chart-bar-32"
                                 class="mb-4 mb-xl-0"
                     >
                     </stats-card>
-                </div>
-                <div class="col-6">
+                </router-link>
+                <router-link to="/panen" class="col-6">
                     <stats-card title="Panen Produksi"
                                 type="gradient-red"
                                 icon="ni ni-active-40"
                                 class="mb-4 mb-xl-0"
                     >
                     </stats-card>
-                </div>
+                </router-link>
             </div>
         </base-header>
         <!-- Card stats -->
@@ -51,7 +50,7 @@
                     <br>
                     Tanggal Tebar: {{produksi.tanggal_tebar}}
                     <br>
-                    Terakhir Mencuci: GADA
+                    Terakhir Mencuci: -
                 </p>
                 <form class="row align-items-center px-3" action="" method="post">
                     <button type="button" class="col btn btn-primary">Informasi Sensor</button>

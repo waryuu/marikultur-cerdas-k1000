@@ -50,7 +50,7 @@
 <script>
   import {mapGetters} from 'vuex'
   export default {
-    name: 'user-profile',
+    name: 'keramba',
     computed: {
         ...mapGetters({
             authenticated: 'auth/authenticated',
