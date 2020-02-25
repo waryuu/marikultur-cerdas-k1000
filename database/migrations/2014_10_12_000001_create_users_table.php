@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('status')->default('user');
             $table->integer('kelompok_id')->unsigned()->nullable();
+            $table->foreign('kelompok_id')->references('id')->on('kelompok');
             $table->rememberToken();
             $table->timestamps();
         });

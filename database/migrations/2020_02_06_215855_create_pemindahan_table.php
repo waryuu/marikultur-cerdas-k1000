@@ -26,6 +26,7 @@ class CreatePemindahanTable extends Migration
             $table->foreign('produksi_id')->references('id')->on('produksi');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
         });
     }
 

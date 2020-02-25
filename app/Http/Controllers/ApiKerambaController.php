@@ -59,7 +59,15 @@ class ApiKerambaController extends Controller
     {
         //
     }
-
+    public function showkerambabyidkelompok($kelompok_id)
+    {
+        $keramba = KerambaModel::where(compact('kelompok_id'))->get();
+        if(is_null($keramba))
+        {
+            return response()->json("not found");
+        }
+        return KerambaResources::collection($keramba);
+    }
     /**
      * Update the specified resource in storage.
      *
