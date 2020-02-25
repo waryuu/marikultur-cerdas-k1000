@@ -27,6 +27,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/apikerambaidkelompok/{kelompok_id}','ApiKerambaController@showkerambabyidkelompok');
+Route::get('/apiproduksiidkelompok/{kelompok_id}','ApiProduksiController@showproduksibyidkelompok');
+
 Route::get('/apikelompok','ApiKelompokController@index');
 Route::get('/apikelompok/{id}','ApiKelompokController@show');
 Route::post('/apikelompok/store','ApiKelompokController@store');
