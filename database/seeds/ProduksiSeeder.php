@@ -19,6 +19,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_cuci' => '2020/10/21',
             'tanggal_pindah' => '2020/11/12',
             'tanggal_panen' => '2020/12/11',
+            'kelompok_id'=>'3',
             'keramba_id'=> '1',
             'user_id'=>'1',
             'created_at' => now(),
@@ -33,6 +34,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_pindah' => '2020/09/11',
             'tanggal_panen' => '2020/10/14',
             'keramba_id'=> '2',
+            'kelompok_id'=>'4',
             'user_id'=>'2',
             'created_at' => now(),
             'updated_at' => now()
@@ -47,6 +49,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_panen' => '2020/04/11',
             'keramba_id'=> '3',
             'user_id'=>'3',
+            'kelompok_id'=>'1',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -60,6 +63,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_panen' => '2020/05/11',
             'keramba_id'=> '4',
             'user_id'=>'3',
+            'kelompok_id'=>'4',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -73,6 +77,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_panen' => '2020/06/11',
             'keramba_id'=> '5',
             'user_id'=>'2',
+            'kelompok_id'=>'4',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -85,6 +90,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_pindah' => '2020/08/12',
             'tanggal_panen' => '2020/09/11',
             'keramba_id'=> '6',
+            'kelompok_id'=>'2',
             'user_id'=>'1',
             'created_at' => now(),
             'updated_at' => now()
@@ -98,6 +104,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_pindah' => '2020/11/12',
             'tanggal_panen' => '2020/12/11',
             'keramba_id'=> '7',
+            'kelompok_id'=>'4',
             'user_id'=>'3',
             'created_at' => now(),
             'updated_at' => now()
@@ -112,6 +119,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_panen' => '2020/10/11',
             'keramba_id'=> '2',
             'user_id'=>'2',
+            'kelompok_id'=>'5',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -124,6 +132,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_pindah' => '2020/08/12',
             'tanggal_panen' => '2020/09/11',
             'keramba_id'=> '4',
+            'kelompok_id'=>'6',
             'user_id'=>'1',
             'created_at' => now(),
             'updated_at' => now()
@@ -137,6 +146,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_pindah' => '2020/06/12',
             'tanggal_panen' => '2020/07/11',
             'keramba_id'=> '8',
+            'kelompok_id'=>'7',
             'user_id'=>'3',
             'created_at' => now(),
             'updated_at' => now()
@@ -150,6 +160,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_pindah' => '2020/07/12',
             'tanggal_panen' => '2020/08/11',
             'keramba_id'=> '9',
+            'kelompok_id'=>'6',
             'user_id'=>'3',
             'created_at' => now(),
             'updated_at' => now()
@@ -163,6 +174,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_pindah' => '2020/10/12',
             'tanggal_panen' => '2020/12/11',
             'keramba_id'=> '11',
+            'kelompok_id'=>'6',
             'user_id'=>'3',
             'created_at' => now(),
             'updated_at' => now()
@@ -176,6 +188,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_pindah' => '2020/05/12',
             'tanggal_panen' => '2020/06/11',
             'keramba_id'=> '11',
+            'kelompok_id'=>'7',
             'user_id'=>'1',
             'created_at' => now(),
             'updated_at' => now()
@@ -190,6 +203,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_panen' => '2020/12/11',
             'keramba_id'=> '13',
             'user_id'=>'3',
+            'kelompok_id'=>'11',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -202,6 +216,7 @@ class ProduksiSeeder extends Seeder
             'tanggal_pindah' => '2020/10/12',
             'tanggal_panen' => '2020/11/11',
             'keramba_id'=> '13',
+            'kelompok_id'=>'5',
             'user_id'=>'3',
             'created_at' => now(),
             'updated_at' => now()
