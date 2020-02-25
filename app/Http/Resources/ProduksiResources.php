@@ -25,6 +25,7 @@ class ProduksiResources extends JsonResource
             'tanggal_panen'=>$this->tanggal_panen,
             'status_panen'=>$this->status_panen,
             'keramba_id'=>$this->keramba_id,
+            'kelompok_id'=>$this->kelompok_id,
             'user_id'=>$this->user_id
         ];
     }

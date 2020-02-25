@@ -62,7 +62,7 @@ class KerambaSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('keramba')->insert([
-            'nama_keramba' => 'Keramba 6',
+            'nama_keramba' => 'Keramba Satu',
             'panjang_keramba' => '3',
             'lebar_keramba' => '3',
             'kapasitas_keramba' => '1000',
@@ -72,7 +72,7 @@ class KerambaSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('keramba')->insert([
-            'nama_keramba' => 'Keramba 7',
+            'nama_keramba' => 'Keramba Dua',
             'panjang_keramba' => '4',
             'lebar_keramba' => '3',
             'kapasitas_keramba' => '1500',
@@ -82,7 +82,7 @@ class KerambaSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('keramba')->insert([
-            'nama_keramba' => 'Keramba 8',
+            'nama_keramba' => 'Keramba Tiga',
             'panjang_keramba' => '2',
             'lebar_keramba' => '1',
             'kapasitas_keramba' => '800',
@@ -92,7 +92,7 @@ class KerambaSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('keramba')->insert([
-            'nama_keramba' => 'Keramba 9',
+            'nama_keramba' => 'Keramba Empat',
             'panjang_keramba' => '3',
             'lebar_keramba' => '3',
             'kapasitas_keramba' => '1200',
@@ -102,7 +102,7 @@ class KerambaSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('keramba')->insert([
-            'nama_keramba' => 'Keramba 10',
+            'nama_keramba' => 'Keramba Lima',
             'panjang_keramba' => '3',
             'lebar_keramba' => '3',
             'kapasitas_keramba' => '800',
@@ -112,7 +112,7 @@ class KerambaSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('keramba')->insert([
-            'nama_keramba' => 'Keramba 11',
+            'nama_keramba' => 'Keramba 1',
             'panjang_keramba' => '3',
             'lebar_keramba' => '4',
             'kapasitas_keramba' => '800',
@@ -122,7 +122,7 @@ class KerambaSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('keramba')->insert([
-            'nama_keramba' => 'Keramba 12',
+            'nama_keramba' => 'Keramba 2',
             'panjang_keramba' => '2',
             'lebar_keramba' => '2',
             'kapasitas_keramba' => '700',
@@ -132,7 +132,7 @@ class KerambaSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('keramba')->insert([
-            'nama_keramba' => 'Keramba 13',
+            'nama_keramba' => 'Keramba 3',
             'panjang_keramba' => '5',
             'lebar_keramba' => '5',
             'kapasitas_keramba' => '2000',
@@ -142,7 +142,7 @@ class KerambaSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('keramba')->insert([
-            'nama_keramba' => 'Keramba 14',
+            'nama_keramba' => 'Keramba 4',
             'panjang_keramba' => '5',
             'lebar_keramba' => '3',
             'kapasitas_keramba' => '1200',
@@ -152,7 +152,7 @@ class KerambaSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('keramba')->insert([
-            'nama_keramba' => 'Keramba 15',
+            'nama_keramba' => 'Keramba 5',
             'panjang_keramba' => '2',
             'lebar_keramba' => '1',
             'kapasitas_keramba' => '900',

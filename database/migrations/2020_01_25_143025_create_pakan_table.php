@@ -17,6 +17,7 @@ class CreatePakanTable extends Migration
             $table->Increments('id');
             $table->string('baterai_pakan');
             $table->integer('keramba_id')->unsigned();
+            $table->foreign('keramba_id')->references('id')->on('keramba');
             $table->timestamps();
         });
     }
