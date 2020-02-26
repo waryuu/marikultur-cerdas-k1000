@@ -20,7 +20,14 @@ class ApiProduksiController extends Controller
      */
     public function index()
     {
-        $produksi = ProduksiModel::paginate(5);
+        if(auth('api')->user()->status == 'admin'){
+            $produksi = ProduksiModel::paginate(5);
+        }
+        else{
+            $kelompok = auth('api')->user()->kelompok_id;
+            $produksi = ProduksiModel::where('kelompok_id', $kelompok)->paginate(5);
+        }
+        // $produksi = ProduksiModel::paginate(5);
         return ProduksiResources::collection($produksi);
     }
 
@@ -43,10 +50,10 @@ class ApiProduksiController extends Controller
         $produksi->user_id = $request->input('user_id');
     	$produksi->nama_ikan = $request->input('nama_ikan');
     	$produksi->panjang_ikan = $request->input('panjang_ikan');
-    	$produksi->jumlah_ikan = $request->input('jumlah_ikan'); 
+    	$produksi->jumlah_ikan = $request->input('jumlah_ikan');
     	$produksi->tanggal_tebar = $request->input('tanggal_tebar');
         $produksi->keramba_id = $request->input('keramba_id');
-        
+
         if($produksi->save()){
             return new ProduksiResources($produksi);
         }
@@ -59,29 +66,29 @@ class ApiProduksiController extends Controller
         $pencucian->id = $request->input('pencucian_id');
         $pencucian->user_id = $request->input('user_id');
     	$pencucian->panjang_ikan = $request->input('panjang_ikan');
-    	$pencucian->jumlah_ikan = $request->input('jumlah_ikan'); 
+    	$pencucian->jumlah_ikan = $request->input('jumlah_ikan');
     	$pencucian->tanggal_cuci = $request->input('tanggal_cuci');
         $pencucian->keramba_id = $request->input('keramba_id');
         $pencucian->produksi_id = $request->input('produksi_id');
-        
+
         if($pencucian->save()){
             return new PencucianResources($pencucian);
         }
 
     }
-    
+
     public function pemindahanstore(Request $request)
     {
         $pemindahan = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->pemindahan_id) : new pemindahanModel;
         $pemindahan->id = $request->input('pemindahan_id');
         $pemindahan->user_id = $request->input('user_id');
     	$pemindahan->panjang_ikan = $request->input('panjang_ikan');
-    	$pemindahan->jumlah_ikan = $request->input('jumlah_ikan'); 
+    	$pemindahan->jumlah_ikan = $request->input('jumlah_ikan');
     	$pemindahan->tanggal_cuci = $request->input('tanggal_pindah');
         $pemindahan->keramba_id = $request->input('keramba_sebelum');
         $pemindahan->keramba_id = $request->input('keramba_sesudah');
         $pemindahan->produksi_id = $request->input('produksi_id');
-        
+
         if($pemindahan->save()){
             return new pemindahanResources($pemindahan);
         }

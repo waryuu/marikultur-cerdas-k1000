@@ -16,8 +16,8 @@ class ApiSensorHumTempController extends Controller
      */
     public function index()
     {
-        $sensor_humtemp = Sensorhumtemp::paginate(5);
-        return SensorhumtempResources::collection($sensor_humtemp);
+        $sensor_humtemp = SensorHumTemp::paginate(5);
+        return SensorHumTempResources::collection($sensor_humtemp);
     }
 
     /**
@@ -38,7 +38,7 @@ class ApiSensorHumTempController extends Controller
      */
     public function store(Request $request)
     {
-        $sensor_humtemp = $request ->isMethod('put') ? Sensorhumtemp::findOrFail($request->sensor_humtemp_id) : new Sensorhumtemp;
+        $sensor_humtemp = $request ->isMethod('put') ? SensorHumTemp::findOrFail($request->sensor_humtemp_id) : new SensorHumTemp;
 
         $sensor_humtemp->id = $request->input('sensor_humtemp_id');
         $sensor_humtemp->time = $request->input('time');
@@ -49,7 +49,7 @@ class ApiSensorHumTempController extends Controller
 
 
         if($sensor_humtemp->save()){
-            return new SensorhumtempResources($sensor_humtemp);
+            return new SensorHumTempResources($sensor_humtemp);
         }
     }
 
@@ -61,8 +61,8 @@ class ApiSensorHumTempController extends Controller
      */
     public function show($id)
     {
-        $sensor_humtemp = Sensorhumtemp::findOrFail($id);
-        return new SensorhumtempResources($sensor_humtemp);
+        $sensor_humtemp = SensorHumTemp::findOrFail($id);
+        return new SensorHumTempResources($sensor_humtemp);
     }
 
     /**
@@ -96,8 +96,9 @@ class ApiSensorHumTempController extends Controller
      */
     public function destroy($id)
     {
-        $sensor_humtemp = Sensorhumtemp::findOrFail($id);
+        $sensor_humtemp = SensorHumTemp::findOrFail($id);
         if($sensor_humtemp->delete()){
-        return new SensorhumtempResources($sensor_humtemp);
-    }}
+        return new SensorHumTempResources($sensor_humtemp);
+        }
+    }
 }

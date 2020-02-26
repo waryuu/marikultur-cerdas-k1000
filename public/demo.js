@@ -176,14 +176,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'beranda',
   data: function data() {
     return {
       errors: '',
+      showModal: false,
+      offset: 4,
       produksis: [],
       produksi: {
+        id: '',
         nama_ikan: '',
         jumlah_ikan: '',
         panjang_ikan: '',
@@ -192,6 +212,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         tanggal_cuci: '',
         tanggal_pindah: '',
         status_panen: '',
+        keramba_id: ''
+      },
+      sensorSuhus: [],
+      sensorSuhu: {
+        id: '',
+        suhu_air: '',
+        keramba_id: ''
+      },
+      sensorDos: [],
+      sensorDo: {
+        id: '',
+        do_air: '',
         keramba_id: ''
       },
       meta: {
@@ -208,10 +240,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         last: '',
         prev: '',
         next: ''
-      },
-      produksi_id: '',
-      showed: false,
-      offset: 4
+      }
     };
   },
   mounted: function mounted() {
@@ -251,7 +280,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return getProduksi;
-    }()
+    }(),
+    showSensor: function showSensor(id) {
+      var _this2 = this;
+
+      this.showModal = true;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorsuhu/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensordo/where?keramba=".concat(id))]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseSuhu, responseDo) {
+        _this2.sensorSuhus = responseSuhu.data.data;
+        console.log(_this2.sensorSuhus);
+        _this2.sensorDos = responseDo.data.data;
+        console.log(_this2.sensorDos);
+      }))["catch"](function (error) {
+        console.log('Fetch Sensor Error!');
+      });
+    }
   }
 });
 
@@ -2627,7 +2669,28 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _vm._m(0, true)
+                _c(
+                  "form",
+                  {
+                    staticClass: "row align-items-center px-3",
+                    attrs: { action: "", method: "post" }
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "col btn btn-primary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.showSensor(produksi.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Informasi Sensor")]
+                    )
+                  ]
+                )
               ]
             )
           }),
@@ -2646,6 +2709,71 @@ var render = function() {
               })
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _c(
+                "modal",
+                {
+                  attrs: { show: _vm.showModal },
+                  on: {
+                    "update:show": function($event) {
+                      _vm.showModal = $event
+                    }
+                  }
+                },
+                [
+                  _c("template", { slot: "header" }, [
+                    _c(
+                      "h4",
+                      {
+                        staticClass: "modal-title",
+                        attrs: { id: "exampleModalLabel" }
+                      },
+                      [_vm._v("Informasi Sensor")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.sensorSuhus, function(sensorSuhu) {
+                    return _c("div", [
+                      _c("p", [
+                        _vm._v("Suhu Air: " + _vm._s(sensorSuhu.suhu_air))
+                      ])
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _vm._l(_vm.sensorDos, function(sensorDo) {
+                    return _c("div", [
+                      _c("p", [_vm._v("Do Air: " + _vm._s(sensorDo.do_air))])
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "template",
+                    { slot: "footer" },
+                    [
+                      _c(
+                        "base-button",
+                        {
+                          attrs: { type: "secondary" },
+                          on: {
+                            click: function($event) {
+                              _vm.showModal = false
+                            }
+                          }
+                        },
+                        [_vm._v("Kembali")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                2
+              )
+            ],
+            1
           )
         ],
         2
@@ -2654,27 +2782,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "form",
-      {
-        staticClass: "row align-items-center px-3",
-        attrs: { action: "", method: "post" }
-      },
-      [
-        _c(
-          "button",
-          { staticClass: "col btn btn-primary", attrs: { type: "button" } },
-          [_vm._v("Informasi Sensor")]
-        )
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

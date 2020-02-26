@@ -30,6 +30,13 @@ class ApiSensorSuhuController extends Controller
         //
     }
 
+    public function where(Request $request)
+    {
+        $keramba_id = $request->query('keramba');
+        $sensor_suhu = SensorSuhu::where('keramba_id', $keramba_id)->paginate(2);
+        return SensorSuhuResources::collection($sensor_suhu);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

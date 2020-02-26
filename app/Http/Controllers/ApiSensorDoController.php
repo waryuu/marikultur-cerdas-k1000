@@ -30,6 +30,13 @@ class ApiSensorDoController extends Controller
         //
     }
 
+    public function where(Request $request)
+    {
+        $keramba_id = $request->query('keramba');
+        $sensor_do = SensorDo::where('keramba_id', $keramba_id)->paginate(2);
+        return SensorDoResources::collection($sensor_do);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

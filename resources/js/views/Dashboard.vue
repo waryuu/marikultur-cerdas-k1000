@@ -61,7 +61,7 @@
                     Terakhir Pindah: {{produksi.tanggal_pindah}}
                 </p>
                 <form class="row align-items-center px-3" action="" method="post">
-                    <button type="button" class="col btn btn-primary">Informasi Sensor</button>
+                    <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Informasi Sensor</button>
                 </form>
             </div>
             <div class="d-flex justify-content-end">
@@ -70,8 +70,25 @@
                         :offset="4">
                 </base-pagination-dua>
             </div>
+            <div>
+                <modal :show.sync="showModal">
+                    <template slot="header">
+                        <h4 class="modal-title" id="exampleModalLabel">Informasi Sensor</h4>
+                    </template>
+                    <div v-for="sensorSuhu in sensorSuhus">
+                    <p>Suhu Air: {{sensorSuhu.suhu_air}}</p>
+                    </div>
+                    <div v-for="sensorDo in sensorDos">
+                    <p>Do Air: {{sensorDo.do_air}}</p>
+                    </div>
+                    <template slot="footer">
+                        <base-button type="secondary" @click="showModal = false">Kembali</base-button>
+                    </template>
+                </modal>
+            </div>
         </div>
         <!-- End card stats -->
+
     </div>
 </template>
 <script>
@@ -81,8 +98,11 @@
     data() {
       return {
         errors: '',
+        showModal: false,
+        offset: 4,
         produksis: [],
         produksi: {
+          id: '',
           nama_ikan: '',
           jumlah_ikan: '',
           panjang_ikan: '',
@@ -91,6 +111,18 @@
           tanggal_cuci: '',
           tanggal_pindah: '',
           status_panen: '',
+          keramba_id: ''
+        },
+        sensorSuhus: [],
+        sensorSuhu: {
+          id: '',
+          suhu_air: '',
+          keramba_id: ''
+        },
+        sensorDos: [],
+        sensorDo: {
+          id: '',
+          do_air: '',
           keramba_id: ''
         },
         meta: {
@@ -108,9 +140,6 @@
             prev: '',
             next: ''
         },
-        produksi_id: '',
-        showed: false,
-        offset: 4,
       }
     },
     mounted() {
@@ -131,6 +160,22 @@
                     console.log('Fetch Data Error!');
                 });
         },
+        showSensor(id){
+            this.showModal = true;
+            axios.all([
+                axios.get(`apisensorsuhu/where?keramba=${id}`),
+                axios.get(`apisensordo/where?keramba=${id}`)
+            ])
+            .then(axios.spread((responseSuhu, responseDo) => {
+                this.sensorSuhus = responseSuhu.data.data;
+                console.log(this.sensorSuhus);
+                this.sensorDos = responseDo.data.data;
+                console.log(this.sensorDos);
+            }))
+            .catch(function (error) {
+                console.log('Fetch Sensor Error!');
+            });
+        }
 
     }
   }

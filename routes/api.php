@@ -37,6 +37,7 @@ Route::put('/apikelompok/store','ApiKelompokController@store');
 Route::delete('/apikelompok/delete/{id}','ApiKelompokController@destroy');
 
 Route::get('/apisensorsuhu','ApiSensorSuhuController@index');
+Route::get('/apisensorsuhu/where','ApiSensorSuhuController@where');
 Route::get('/apisensorsuhu/{id}','ApiSensorSuhuController@show');
 Route::post('/apisensorsuhu/store','ApiSensorSuhuController@store');
 Route::put('/apisensorsuhu/store','ApiSensorSuhuController@store');
@@ -55,6 +56,7 @@ Route::put('/apiproduksi/store','ApiProduksiController@store');
 Route::delete('/apiproduksi/delete/{id}','ApiProduksiController@destroy');
 
 Route::get('/apisensordo','ApiSensorDoController@index');
+Route::get('/apisensordo/where','ApiSensorDoController@where');
 Route::get('/apisensordo/{id}','ApiSensorDoController@show');
 Route::post('/apisensordostore','ApiSensorDoController@store');
 Route::put('/apisensordostore','ApiSensorDoController@store');
