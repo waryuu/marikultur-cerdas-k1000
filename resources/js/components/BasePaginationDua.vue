@@ -1,6 +1,6 @@
 <template>
     <ul class="pagination">
-    <li class="page-item prev-page" v-if="pagination.current_page > 1">
+    <li class="page-item prev-page" :class="{disabled: pagination.current_page === 1}">
         <a class="page-link" href="javascript:void(0)" aria-label="Previous" v-on:click.prevent="changePage(pagination.current_page - 1)">
             <span aria-hidden="true">&#60;</span>
             </a>
@@ -8,7 +8,7 @@
     <li class="page-item" v-for="page in pagesNumber" :class="{'active': page == pagination.current_page}">
         <a class="page-link" href="javascript:void(0)" v-on:click.prevent="changePage(page)">{{ page }}</a>
         </li>
-    <li class="page-item next-page" v-if="pagination.current_page < pagination.last_page">
+    <li class="page-item next-page" :class="{disabled: pagination.current_page === pagination.last_page}">
         <a class="page-link" href="javascript:void(0)" aria-label="Next" v-on:click.prevent="changePage(pagination.current_page + 1)">
             <span aria-hidden="true">&#62;</span>
             </a>

@@ -10120,24 +10120,29 @@ var render = function() {
     "ul",
     { staticClass: "pagination" },
     [
-      _vm.pagination.current_page > 1
-        ? _c("li", { staticClass: "page-item prev-page" }, [
-            _c(
-              "a",
-              {
-                staticClass: "page-link",
-                attrs: { href: "javascript:void(0)", "aria-label": "Previous" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.changePage(_vm.pagination.current_page - 1)
-                  }
+      _c(
+        "li",
+        {
+          staticClass: "page-item prev-page",
+          class: { disabled: _vm.pagination.current_page === 1 }
+        },
+        [
+          _c(
+            "a",
+            {
+              staticClass: "page-link",
+              attrs: { href: "javascript:void(0)", "aria-label": "Previous" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.changePage(_vm.pagination.current_page - 1)
                 }
-              },
-              [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("<")])]
-            )
-          ])
-        : _vm._e(),
+              }
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("<")])]
+          )
+        ]
+      ),
       _vm._v(" "),
       _vm._l(_vm.pagesNumber, function(page) {
         return _c(
@@ -10165,24 +10170,31 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      _vm.pagination.current_page < _vm.pagination.last_page
-        ? _c("li", { staticClass: "page-item next-page" }, [
-            _c(
-              "a",
-              {
-                staticClass: "page-link",
-                attrs: { href: "javascript:void(0)", "aria-label": "Next" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.changePage(_vm.pagination.current_page + 1)
-                  }
+      _c(
+        "li",
+        {
+          staticClass: "page-item next-page",
+          class: {
+            disabled: _vm.pagination.current_page === _vm.pagination.last_page
+          }
+        },
+        [
+          _c(
+            "a",
+            {
+              staticClass: "page-link",
+              attrs: { href: "javascript:void(0)", "aria-label": "Next" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.changePage(_vm.pagination.current_page + 1)
                 }
-              },
-              [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v(">")])]
-            )
-          ])
-        : _vm._e()
+              }
+            },
+            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v(">")])]
+          )
+        ]
+      )
     ],
     2
   )

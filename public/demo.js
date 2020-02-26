@@ -2613,7 +2613,7 @@ var render = function() {
             { staticClass: "d-flex justify-content-end" },
             [
               _c("base-pagination-dua", {
-                attrs: { pagination: _vm.meta, offset: 4 },
+                attrs: { pagination: _vm.meta, offset: 1 },
                 on: {
                   paginate: function($event) {
                     return _vm.getProduksi()
@@ -2700,7 +2700,7 @@ var render = function() {
             { staticClass: "d-flex justify-content-end" },
             [
               _c("base-pagination-dua", {
-                attrs: { pagination: _vm.meta, offset: 4 },
+                attrs: { pagination: _vm.meta, offset: 1 },
                 on: {
                   paginate: function($event) {
                     return _vm.getProduksi()

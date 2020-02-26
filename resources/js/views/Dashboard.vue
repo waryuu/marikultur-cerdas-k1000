@@ -44,7 +44,7 @@
             <div class="d-flex justify-content-end">
                 <base-pagination-dua  :pagination="meta"
                         @paginate="getProduksi()"
-                        :offset="4">
+                        :offset="1">
                 </base-pagination-dua>
             </div>
             <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card shadow card-body mb-3">
@@ -67,7 +67,7 @@
             <div class="d-flex justify-content-end">
                 <base-pagination-dua  :pagination="meta"
                         @paginate="getProduksi()"
-                        :offset="4">
+                        :offset="1">
                 </base-pagination-dua>
             </div>
             <div>
