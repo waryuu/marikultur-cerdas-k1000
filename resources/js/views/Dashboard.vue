@@ -41,6 +41,12 @@
         </base-header>
         <!-- Card stats -->
         <div class="container-fluid mt--7">
+            <div class="d-flex justify-content-end">
+                <base-pagination-dua  :pagination="meta"
+                        @paginate="getProduksi()"
+                        :offset="4">
+                </base-pagination-dua>
+            </div>
             <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card shadow card-body mb-3">
                 <h3 class="card-title">{{produksi.nama_ikan}}</h3>
                 <h4 class="card-subtitle text-muted">Keramba {{produksi.keramba_id}}</h4>
@@ -50,11 +56,19 @@
                     <br>
                     Tanggal Tebar: {{produksi.tanggal_tebar}}
                     <br>
-                    Terakhir Mencuci: -
+                    Terakhir Mencuci: {{produksi.tanggal_cuci}}
+                    <br>
+                    Terakhir Pindah: {{produksi.tanggal_pindah}}
                 </p>
                 <form class="row align-items-center px-3" action="" method="post">
                     <button type="button" class="col btn btn-primary">Informasi Sensor</button>
                 </form>
+            </div>
+            <div class="d-flex justify-content-end">
+                <base-pagination-dua  :pagination="meta"
+                        @paginate="getProduksi()"
+                        :offset="4">
+                </base-pagination-dua>
             </div>
         </div>
         <!-- End card stats -->
@@ -74,25 +88,50 @@
           panjang_ikan: '',
           tanggal_tebar: '',
           tanggal_panen: '',
+          tanggal_cuci: '',
+          tanggal_pindah: '',
           status_panen: '',
           keramba_id: ''
         },
+        meta: {
+            current_page: 1,
+            from: 1,
+            last_page: '',
+            path: '',
+            per_page: '',
+            to: '',
+            total: ''
+        },
+        links: {
+            first: '',
+            last: '',
+            prev: '',
+            next: ''
+        },
+        produksi_id: '',
+        showed: false,
+        offset: 4,
       }
     },
-    created() {
-        this.fetchProduksi();
+    mounted() {
+        this.getProduksi();
     },
     methods:{
         submit() {
 
         },
-        fetchProduksi(){
-            fetch('api/apiproduksi')
-                .then(res=>res.json())
-                .then(res=>{
-                    this.produksis = res.data;
+        async getProduksi() {
+            await axios.get(`apiproduksi?page=${this.meta.current_page}`)
+                .then((response) => {
+                    this.produksis = response.data.data;
+                    this.meta = response.data.meta;
+                    this.links = response.data.links;
                 })
-        }
+                .catch(() => {
+                    console.log('Fetch Data Error!');
+                });
+        },
+
     }
   }
 </script>

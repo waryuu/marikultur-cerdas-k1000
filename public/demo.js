@@ -90,8 +90,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -167,25 +189,69 @@ __webpack_require__.r(__webpack_exports__);
         panjang_ikan: '',
         tanggal_tebar: '',
         tanggal_panen: '',
+        tanggal_cuci: '',
+        tanggal_pindah: '',
         status_panen: '',
         keramba_id: ''
-      }
+      },
+      meta: {
+        current_page: 1,
+        from: 1,
+        last_page: '',
+        path: '',
+        per_page: '',
+        to: '',
+        total: ''
+      },
+      links: {
+        first: '',
+        last: '',
+        prev: '',
+        next: ''
+      },
+      produksi_id: '',
+      showed: false,
+      offset: 4
     };
   },
-  created: function created() {
-    this.fetchProduksi();
+  mounted: function mounted() {
+    this.getProduksi();
   },
   methods: {
     submit: function submit() {},
-    fetchProduksi: function fetchProduksi() {
-      var _this = this;
+    getProduksi: function () {
+      var _getProduksi = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this = this;
 
-      fetch('api/apiproduksi').then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this.produksis = res.data;
-      });
-    }
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apiproduksi?page=".concat(this.meta.current_page)).then(function (response) {
+                  _this.produksis = response.data.data;
+                  _this.meta = response.data.meta;
+                  _this.links = response.data.links;
+                })["catch"](function () {
+                  console.log('Fetch Data Error!');
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getProduksi() {
+        return _getProduksi.apply(this, arguments);
+      }
+
+      return getProduksi;
+    }()
   }
 });
 
@@ -2499,46 +2565,90 @@ var render = function() {
       _c(
         "div",
         { staticClass: "container-fluid mt--7" },
-        _vm._l(_vm.produksis, function(produksi) {
-          return _c(
+        [
+          _c(
             "div",
-            { key: produksi.id, staticClass: "card shadow card-body mb-3" },
+            { staticClass: "d-flex justify-content-end" },
             [
-              _c("h3", { staticClass: "card-title" }, [
-                _vm._v(_vm._s(produksi.nama_ikan))
-              ]),
-              _vm._v(" "),
-              _c("h4", { staticClass: "card-subtitle text-muted" }, [
-                _vm._v("Keramba " + _vm._s(produksi.keramba_id))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text font-weight-bold mt-2" }, [
-                _vm._v(
-                  "Ukuran: " +
-                    _vm._s(produksi.panjang_ikan) +
-                    " cm\n                "
-                ),
-                _c("br"),
-                _vm._v(
-                  "\n                Jumlah: " +
-                    _vm._s(produksi.jumlah_ikan) +
-                    " Ekor\n                "
-                ),
-                _c("br"),
-                _vm._v(
-                  "\n                Tanggal Tebar: " +
-                    _vm._s(produksi.tanggal_tebar) +
-                    "\n                "
-                ),
-                _c("br"),
-                _vm._v("\n                Terakhir Mencuci: -\n            ")
-              ]),
-              _vm._v(" "),
-              _vm._m(0, true)
-            ]
+              _c("base-pagination-dua", {
+                attrs: { pagination: _vm.meta, offset: 4 },
+                on: {
+                  paginate: function($event) {
+                    return _vm.getProduksi()
+                  }
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.produksis, function(produksi) {
+            return _c(
+              "div",
+              { key: produksi.id, staticClass: "card shadow card-body mb-3" },
+              [
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(produksi.nama_ikan))
+                ]),
+                _vm._v(" "),
+                _c("h4", { staticClass: "card-subtitle text-muted" }, [
+                  _vm._v("Keramba " + _vm._s(produksi.keramba_id))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text font-weight-bold mt-2" }, [
+                  _vm._v(
+                    "Ukuran: " +
+                      _vm._s(produksi.panjang_ikan) +
+                      " cm\n                "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "\n                Jumlah: " +
+                      _vm._s(produksi.jumlah_ikan) +
+                      " Ekor\n                "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "\n                Tanggal Tebar: " +
+                      _vm._s(produksi.tanggal_tebar) +
+                      "\n                "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "\n                Terakhir Mencuci: " +
+                      _vm._s(produksi.tanggal_cuci) +
+                      "\n                "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "\n                Terakhir Pindah: " +
+                      _vm._s(produksi.tanggal_pindah) +
+                      "\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(0, true)
+              ]
+            )
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-flex justify-content-end" },
+            [
+              _c("base-pagination-dua", {
+                attrs: { pagination: _vm.meta, offset: 4 },
+                on: {
+                  paginate: function($event) {
+                    return _vm.getProduksi()
+                  }
+                }
+              })
+            ],
+            1
           )
-        }),
-        0
+        ],
+        2
       )
     ],
     1

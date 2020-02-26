@@ -6,6 +6,7 @@ import BaseInput from "../components/BaseInput";
 import BaseDropdown from "../components/BaseDropdown";
 import BaseNav from "../components/BaseNav";
 import BasePagination from "../components/BasePagination";
+import BasePaginationDua from "../components/BasePaginationDua";
 import BaseProgress from "../components/BaseProgress";
 import BaseRadio from "../components/BaseRadio";
 import BaseSlider from "../components/BaseSlider";
@@ -28,6 +29,7 @@ export default {
     Vue.component(BaseDropdown.name, BaseDropdown);
     Vue.component(BaseCheckbox.name, BaseCheckbox);
     Vue.component(BasePagination.name, BasePagination);
+    Vue.component(BasePaginationDua.name, BasePaginationDua);
     Vue.component(BaseProgress.name, BaseProgress);
     Vue.component(BaseRadio.name, BaseRadio);
     Vue.component(BaseSlider.name, BaseSlider);

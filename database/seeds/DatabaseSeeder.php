@@ -11,7 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(KelompokSeeder::class);
-        // $this->call(SensorSuhuSeeder::class);
+        $this->call(SensorDoSeeder::class);
+        $this->call(SensorHumTempSeeder::class);
+        $this->call(SensorWaveSeeder::class);
+        $this->call(SensorWindSeeder::class);
+        $this->call(SensorSuhuSeeder::class);
+
     }
 }
