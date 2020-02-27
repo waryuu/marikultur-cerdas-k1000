@@ -28521,7 +28521,7 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! ./store/localsubs */ "./resources/js/store/localsubs.js");
 
-axios__WEBPACK_IMPORTED_MODULE_5___default.a.defaults.baseURL = 'http://localhost:8000/api';
+axios__WEBPACK_IMPORTED_MODULE_5___default.a.defaults.baseURL = 'http://dev.localhost/api';
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.config.productionTip = false;
 _store__WEBPACK_IMPORTED_MODULE_6__["default"].dispatch('auth/attempt', localStorage.getItem('token')).then(function () {
   vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_plugins_argon_dashboard__WEBPACK_IMPORTED_MODULE_4__["default"]);
