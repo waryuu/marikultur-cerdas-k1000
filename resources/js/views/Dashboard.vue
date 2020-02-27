@@ -180,11 +180,8 @@
             ])
             .then(axios.spread((responseSuhu, responseDo, responseHumTemp) => {
                 this.sensorSuhu = responseSuhu.data;
-                console.log(this.sensorSuhu);
                 this.sensorDo = responseDo.data;
-                console.log(this.sensorDo);
                 this.sensorHumTemp = responseHumTemp.data;
-                console.log(this.sensorHumTemp);
             }))
             .catch(function (error) {
                 console.log('Fetch Sensor Error!');

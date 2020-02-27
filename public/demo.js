@@ -298,11 +298,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.showModal = true;
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorsuhu/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensordo/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorhumtemp")]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseSuhu, responseDo, responseHumTemp) {
         _this2.sensorSuhu = responseSuhu.data;
-        console.log(_this2.sensorSuhu);
         _this2.sensorDo = responseDo.data;
-        console.log(_this2.sensorDo);
         _this2.sensorHumTemp = responseHumTemp.data;
-        console.log(_this2.sensorHumTemp);
       }))["catch"](function (error) {
         console.log('Fetch Sensor Error!');
       });
@@ -2124,7 +2121,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2170,27 +2177,162 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'tebar',
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    authenticated: 'auth/authenticated',
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: 'auth/user'
   })),
   data: function data() {
     return {
+      kerambas: [],
+      keramba: {
+        id: '',
+        nama_keramba: ''
+      },
       model: {
-        username: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        address: '',
-        city: '',
-        country: '',
-        zipCode: '',
-        about: ''
+        nama_ikan: '',
+        jumlah_ikan: '',
+        panjang_ikan: '',
+        tanggal_tebar: '',
+        keramba_id: '',
+        kelompok_id: '',
+        user_id: ''
       }
     };
+  },
+  created: function created() {
+    this.getKeramba();
+    this.model.kelompok_id = this.user.kelompok_id;
+    this.model.user_id = this.user.id;
+  },
+  methods: {
+    getKeramba: function () {
+      var _getKeramba = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this = this;
+
+        var id;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                id = this.user.kelompok_id;
+                _context.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apikeramba/where?kelompok=".concat(id)).then(function (response) {
+                  _this.kerambas = response.data;
+                  console.log(response);
+                })["catch"](function () {
+                  console.log('Fetch Data Error!');
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getKeramba() {
+        return _getKeramba.apply(this, arguments);
+      }
+
+      return getKeramba;
+    }(),
+    submitPenebaran: function () {
+      var _submitPenebaran = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _this2 = this;
+
+        var credentials;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.errors = '';
+                credentials = this.model;
+                console.log(credentials);
+                _context2.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apikeramba/store', credentials).then(function () {
+                  _this2.$router.replace({
+                    name: 'beranda'
+                  });
+                })["catch"](function () {
+                  _this2.errors = 'Harap isi semua form dengan benar!';
+                });
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function submitPenebaran() {
+        return _submitPenebaran.apply(this, arguments);
+      }
+
+      return submitPenebaran;
+    }(),
+    consolee: function consolee() {
+      console.log(this.model);
+    }
   }
 });
 
@@ -2214,9 +2356,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
 //
 //
 //
@@ -5422,7 +5561,183 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  void 0
+                  [
+                    _c(
+                      "form",
+                      {
+                        attrs: { role: "form" },
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.submitPenebaran($event)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "h6",
+                          { staticClass: "heading-small text-muted mb-4" },
+                          [_vm._v("Silahkan Isi Form Berikut")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "pl-lg-4" },
+                          [
+                            _c("base-input", {
+                              attrs: {
+                                alternative: "",
+                                label: "Nama Ikan",
+                                placeholder: "Masukkan Nama Ikan",
+                                "input-classes": "form-control-alternative"
+                              },
+                              model: {
+                                value: _vm.model.nama_ikan,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.model, "nama_ikan", $$v)
+                                },
+                                expression: "model.nama_ikan"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("base-input", {
+                              attrs: {
+                                alternative: "",
+                                label: "Jumlah Ikan",
+                                placeholder: "Masukkan Jumlah Ikan",
+                                "input-classes": "form-control-alternative",
+                                type: "number"
+                              },
+                              model: {
+                                value: _vm.model.jumlah_ikan,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.model, "jumlah_ikan", $$v)
+                                },
+                                expression: "model.jumlah_ikan"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("base-input", {
+                              attrs: {
+                                alternative: "",
+                                label: "Panjang Ikan",
+                                placeholder: "Masukkan Panjang Ikan",
+                                "input-classes": "form-control-alternative",
+                                type: "number"
+                              },
+                              model: {
+                                value: _vm.model.panjang_ikan,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.model, "panjang_ikan", $$v)
+                                },
+                                expression: "model.panjang_ikan"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("base-input", {
+                              attrs: {
+                                alternative: "",
+                                label: "Tanggal Tebar",
+                                placeholder: "Masukkan Tanggal Tebar",
+                                "input-classes": "form-control-alternative",
+                                type: "date"
+                              },
+                              model: {
+                                value: _vm.model.tanggal_tebar,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.model, "tanggal_tebar", $$v)
+                                },
+                                expression: "model.tanggal_tebar"
+                              }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "pl-lg-4" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col-lg-12" }, [
+                              _c("div", { staticClass: "form-control-label" }, [
+                                _vm._v("Lokasi Tebar")
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.model.keramba_id,
+                                      expression: "model.keramba_id"
+                                    }
+                                  ],
+                                  staticClass:
+                                    "input-group-alternative mb-3 form-control",
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.model,
+                                        "keramba_id",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "option",
+                                    { attrs: { disabled: "", value: "" } },
+                                    [_vm._v("Pilih Lokasi Tebar")]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(_vm.kerambas, function(keramba) {
+                                    return _c(
+                                      "option",
+                                      { domProps: { value: keramba.id } },
+                                      [_vm._v(_vm._s(keramba.nama_keramba))]
+                                    )
+                                  })
+                                ],
+                                2
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "text-center" },
+                          [
+                            _c(
+                              "base-button",
+                              {
+                                staticClass: "my-4",
+                                attrs: { nativeType: "submit", type: "primary" }
+                              },
+                              [_vm._v("Simpan")]
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("hr", { staticClass: "my-4" })
+                      ]
+                    )
+                  ]
                 ],
                 2
               )
@@ -5512,21 +5827,10 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "row align-items-center" }, [
-                        _c("div", { staticClass: "col-8" }, [
+                        _c("div", { staticClass: "col-12" }, [
                           _c("h3", { staticClass: "mb-0" }, [
                             _vm._v("Profil Saya")
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-4 text-right" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-sm btn-primary",
-                              attrs: { href: "#!" }
-                            },
-                            [_vm._v("Pengaturan")]
-                          )
                         ])
                       ])
                     ]

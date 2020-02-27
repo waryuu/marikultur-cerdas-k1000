@@ -59,6 +59,17 @@ class ApiKerambaController extends Controller
     {
         //
     }
+
+    public function where(Request $request)
+    {
+        $kelompok_id = $request->query('kelompok');
+        $keramba = KerambaModel::where('kelompok_id', $kelompok_id)->get();
+        return response()->json($keramba);
+        // $keramba_id = $request->query('keramba');
+        // $sensor_do = SensorDo::where('keramba_id', $keramba_id)->paginate(2);
+        // return SensorDoResources::collection($sensor_do);
+    }
+
     public function showkerambabyidkelompok($kelompok_id)
     {
         $keramba = KerambaModel::where(compact('kelompok_id'))->get();

@@ -29,7 +29,58 @@
                             </div>
                         </div>
                         <template>
+                            <form @submit.prevent="submitPenebaran" role="form">
+                                <!-- Data Penebaran -->
+                                <h6 class="heading-small text-muted mb-4">Silahkan Isi Form Berikut</h6>
+                                <div class="pl-lg-4">
+                                    <base-input alternative=""
+                                                label="Nama Ikan"
+                                                placeholder="Masukkan Nama Ikan"
+                                                input-classes="form-control-alternative"
+                                                v-model="model.nama_ikan"
+                                    />
+                                    <base-input alternative=""
+                                                label="Jumlah Ikan"
+                                                placeholder="Masukkan Jumlah Ikan"
+                                                input-classes="form-control-alternative"
+                                                type="number"
+                                                v-model="model.jumlah_ikan"
 
+                                    />
+                                    <base-input alternative=""
+                                                label="Panjang Ikan"
+                                                placeholder="Masukkan Panjang Ikan"
+                                                input-classes="form-control-alternative"
+                                                type="number"
+                                                v-model="model.panjang_ikan"
+
+                                    />
+                                    <base-input alternative=""
+                                                label="Tanggal Tebar"
+                                                placeholder="Masukkan Tanggal Tebar"
+                                                input-classes="form-control-alternative"
+                                                type="date"
+                                                v-model="model.tanggal_tebar"
+
+                                    />
+                                </div>
+                                <!-- Keramba -->
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-control-label">Lokasi Tebar</div>
+                                            <select v-model="model.keramba_id" class="input-group-alternative mb-3 form-control">
+                                                <option disabled value="">Pilih Lokasi Tebar</option>
+                                                <option v-for="keramba in kerambas" v-bind:value="keramba.id">{{ keramba.nama_keramba }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="text-center">
+                                    <base-button nativeType="submit" type="primary" class="my-4">Simpan</base-button>
+                                </div>
+                                <hr class="my-4" />
+                            </form>
                         </template>
                     </card>
                 </div>
@@ -39,29 +90,67 @@
 </template>
 <script>
   import {mapGetters} from 'vuex'
+  import axios from 'axios'
   export default {
     name: 'tebar',
     computed: {
         ...mapGetters({
-            authenticated: 'auth/authenticated',
             user: 'auth/user',
         })
     },
     data() {
       return {
+        kerambas: [],
+        keramba: {
+            id: '',
+            nama_keramba: ''
+        },
         model: {
-          username: '',
-          email: '',
-          firstName: '',
-          lastName: '',
-          address: '',
-          city: '',
-          country: '',
-          zipCode: '',
-          about: '',
+            nama_ikan: '',
+            jumlah_ikan: '',
+            panjang_ikan: '',
+            tanggal_tebar: '',
+            keramba_id: '',
+            kelompok_id: '',
+            user_id: ''
         }
       }
     },
+    created() {
+        this.getKeramba();
+        this.model.kelompok_id = this.user.kelompok_id;
+        this.model.user_id = this.user.id;
+    },
+    methods:{
+        async getKeramba(){
+            let id = this.user.kelompok_id;
+            await axios.get(`apikeramba/where?kelompok=${id}`)
+                .then((response) => {
+                    this.kerambas = response.data;
+                    console.log(response);
+                })
+                .catch(() => {
+                    console.log('Fetch Data Error!');
+                });
+        },
+        async submitPenebaran(){
+            this.errors = '';
+            let credentials = this.model;
+            console.log(credentials);
+            await axios.post('apikeramba/store', credentials)
+            .then(() =>{
+                    this.$router.replace({
+                        name: 'beranda'
+                    })
+                })
+            .catch(() => {
+                    this.errors = 'Harap isi semua form dengan benar!';
+                })
+        },
+        consolee(){
+            console.log(this.model);
+        }
+    }
   };
 </script>
 <style></style>

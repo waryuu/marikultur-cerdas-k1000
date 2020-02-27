@@ -23,11 +23,8 @@
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
-                                <div class="col-8">
+                                <div class="col-12">
                                     <h3 class="mb-0">Profil Saya</h3>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary">Pengaturan</a>
                                 </div>
                             </div>
                         </div>

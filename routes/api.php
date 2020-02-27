@@ -44,10 +44,11 @@ Route::put('/apisensorsuhu/store','ApiSensorSuhuController@store');
 Route::delete('/apisensorsuhu/delete/{id}','ApiSensorSuhuController@destroy');
 
 Route::get('/apikeramba','ApiKerambaController@index');
+Route::get('/apikeramba/where','ApiKerambaController@where');
 Route::get('/apikeramba/{id}','ApiKerambaController@show');
-Route::post('/apikerambastore','ApiKerambaController@store');
-Route::put('/apikerambastore','ApiKerambaController@store');
-Route::delete('/apikerambadelete/{id}','ApiKerambaController@destroy');
+Route::post('/apikeramba/store','ApiKerambaController@store');
+Route::put('/apikeramba/store','ApiKerambaController@store');
+Route::delete('/apikeramba/delete/{id}','ApiKerambaController@destroy');
 
 Route::get('/apiproduksi','ApiProduksiController@index');
 Route::get('/apiproduksi/{id}','ApiProduksiController@show');
