@@ -193,6 +193,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'beranda',
@@ -214,17 +222,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         status_panen: '',
         keramba_id: ''
       },
-      sensorSuhus: [],
       sensorSuhu: {
         id: '',
         suhu_air: '',
         keramba_id: ''
       },
-      sensorDos: [],
       sensorDo: {
         id: '',
         do_air: '',
         keramba_id: ''
+      },
+      sensorHumTemp: {
+        id: '',
+        humidity: '',
+        temperature: ''
       },
       meta: {
         current_page: 1,
@@ -285,11 +296,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       this.showModal = true;
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorsuhu/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensordo/where?keramba=".concat(id))]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseSuhu, responseDo) {
-        _this2.sensorSuhus = responseSuhu.data.data;
-        console.log(_this2.sensorSuhus);
-        _this2.sensorDos = responseDo.data.data;
-        console.log(_this2.sensorDos);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorsuhu/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensordo/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorhumtemp")]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseSuhu, responseDo, responseHumTemp) {
+        _this2.sensorSuhu = responseSuhu.data;
+        console.log(_this2.sensorSuhu);
+        _this2.sensorDo = responseDo.data;
+        console.log(_this2.sensorDo);
+        _this2.sensorHumTemp = responseHumTemp.data;
+        console.log(_this2.sensorHumTemp);
       }))["catch"](function (error) {
         console.log('Fetch Sensor Error!');
       });
@@ -2736,19 +2749,43 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._l(_vm.sensorSuhus, function(sensorSuhu) {
-                    return _c("div", [
-                      _c("p", [
-                        _vm._v("Suhu Air: " + _vm._s(sensorSuhu.suhu_air))
-                      ])
+                  _c("div", [
+                    _c("p", { staticClass: "text-muted" }, [
+                      _vm._v("Suhu Air")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "font-weight-bold" }, [
+                      _vm._v(_vm._s(_vm.sensorSuhu.suhu_air) + " ° C")
                     ])
-                  }),
+                  ]),
                   _vm._v(" "),
-                  _vm._l(_vm.sensorDos, function(sensorDo) {
-                    return _c("div", [
-                      _c("p", [_vm._v("Do Air: " + _vm._s(sensorDo.do_air))])
+                  _c("div", [
+                    _c("p", { staticClass: "text-muted" }, [
+                      _vm._v("Oksigen Terlarut")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "font-weight-bold" }, [
+                      _vm._v(_vm._s(_vm.sensorDo.do_air))
                     ])
-                  }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("p", { staticClass: "text-muted" }, [
+                      _vm._v("Kelembaban")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "font-weight-bold" }, [
+                      _vm._v(_vm._s(_vm.sensorHumTemp.humidity))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-muted" }, [
+                      _vm._v("Temperatur Udara")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "font-weight-bold" }, [
+                      _vm._v(_vm._s(_vm.sensorHumTemp.temperature) + " ° C")
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
                     "template",

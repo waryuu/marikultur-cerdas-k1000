@@ -16,7 +16,7 @@ class ApiSensorSuhuController extends Controller
      */
     public function index()
     {
-        $sensor_suhu = SensorSuhu::paginate(2);
+        $sensor_suhu = SensorSuhu::paginate(5);
         return SensorSuhuResources::collection($sensor_suhu);
     }
 
@@ -33,8 +33,12 @@ class ApiSensorSuhuController extends Controller
     public function where(Request $request)
     {
         $keramba_id = $request->query('keramba');
-        $sensor_suhu = SensorSuhu::where('keramba_id', $keramba_id)->paginate(2);
-        return SensorSuhuResources::collection($sensor_suhu);
+        $sensor_suhu = SensorSuhu::where('keramba_id', $keramba_id)->latest('id')->first();
+        return response()->json($sensor_suhu);
+        // $sensor_suhu = SensorSuhu::where('keramba_id', $keramba_id)->paginate(2);
+        // return SensorSuhuResources::collection($sensor_suhu);
+
+
     }
 
     /**

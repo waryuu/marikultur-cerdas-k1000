@@ -75,11 +75,19 @@
                     <template slot="header">
                         <h4 class="modal-title" id="exampleModalLabel">Informasi Sensor</h4>
                     </template>
-                    <div v-for="sensorSuhu in sensorSuhus">
-                    <p>Suhu Air: {{sensorSuhu.suhu_air}}</p>
+                    <div>
+                            <p class="text-muted">Suhu Air</p>
+                            <p class="font-weight-bold">{{sensorSuhu.suhu_air}} &#176; C</p>
                     </div>
-                    <div v-for="sensorDo in sensorDos">
-                    <p>Do Air: {{sensorDo.do_air}}</p>
+                    <div>
+                            <p class="text-muted">Oksigen Terlarut</p>
+                            <p class="font-weight-bold">{{sensorDo.do_air}}</p>
+                    </div>
+                    <div>
+                            <p class="text-muted">Kelembaban</p>
+                            <p class="font-weight-bold">{{sensorHumTemp.humidity}}</p>
+                            <p class="text-muted">Temperatur Udara</p>
+                            <p class="font-weight-bold">{{sensorHumTemp.temperature}} &#176; C</p>
                     </div>
                     <template slot="footer">
                         <base-button type="secondary" @click="showModal = false">Kembali</base-button>
@@ -113,17 +121,20 @@
           status_panen: '',
           keramba_id: ''
         },
-        sensorSuhus: [],
         sensorSuhu: {
           id: '',
           suhu_air: '',
           keramba_id: ''
         },
-        sensorDos: [],
         sensorDo: {
           id: '',
           do_air: '',
           keramba_id: ''
+        },
+        sensorHumTemp: {
+          id: '',
+          humidity: '',
+          temperature: ''
         },
         meta: {
             current_page: 1,
@@ -164,13 +175,16 @@
             this.showModal = true;
             axios.all([
                 axios.get(`apisensorsuhu/where?keramba=${id}`),
-                axios.get(`apisensordo/where?keramba=${id}`)
+                axios.get(`apisensordo/where?keramba=${id}`),
+                axios.get(`apisensorhumtemp`)
             ])
-            .then(axios.spread((responseSuhu, responseDo) => {
-                this.sensorSuhus = responseSuhu.data.data;
-                console.log(this.sensorSuhus);
-                this.sensorDos = responseDo.data.data;
-                console.log(this.sensorDos);
+            .then(axios.spread((responseSuhu, responseDo, responseHumTemp) => {
+                this.sensorSuhu = responseSuhu.data;
+                console.log(this.sensorSuhu);
+                this.sensorDo = responseDo.data;
+                console.log(this.sensorDo);
+                this.sensorHumTemp = responseHumTemp.data;
+                console.log(this.sensorHumTemp);
             }))
             .catch(function (error) {
                 console.log('Fetch Sensor Error!');

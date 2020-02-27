@@ -16,8 +16,14 @@ class ApiSensorHumTempController extends Controller
      */
     public function index()
     {
-        $sensor_humtemp = SensorHumTemp::paginate(5);
-        return SensorHumTempResources::collection($sensor_humtemp);
+        if(auth('api')->user()->status == 'admin'){
+            $sensor_humtemp = SensorHumTemp::paginate(5);
+            return SensorHumTemp::collection($sensor_humtemp);
+        }
+        else{
+            $sensor_humtemp = SensorHumTemp::latest('id')->first();
+            return response()->json($sensor_humtemp);
+        }
     }
 
     /**
