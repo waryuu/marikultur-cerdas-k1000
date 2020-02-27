@@ -100,6 +100,7 @@
     },
     data() {
       return {
+        errors: '',
         kerambas: [],
         keramba: {
             id: '',
@@ -127,7 +128,6 @@
             await axios.get(`apikeramba/where?kelompok=${id}`)
                 .then((response) => {
                     this.kerambas = response.data;
-                    console.log(response);
                 })
                 .catch(() => {
                     console.log('Fetch Data Error!');
@@ -137,7 +137,7 @@
             this.errors = '';
             let credentials = this.model;
             console.log(credentials);
-            await axios.post('apikeramba/store', credentials)
+            await axios.post('apiproduksi/store', credentials)
             .then(() =>{
                     this.$router.replace({
                         name: 'beranda'

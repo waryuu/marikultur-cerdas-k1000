@@ -45,8 +45,8 @@ class ApiProduksiController extends Controller
 
     public function store(Request $request)
     {
-        $produksi = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->produksi_id) : new ProduksiModel;
-        $produksi->id = $request->input('produksi_id');
+        $produksi = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->id) : new ProduksiModel;
+        $produksi->id = $request->input('id');
         $produksi->user_id = $request->input('user_id');
     	$produksi->nama_ikan = $request->input('nama_ikan');
     	$produksi->panjang_ikan = $request->input('panjang_ikan');
@@ -62,8 +62,8 @@ class ApiProduksiController extends Controller
 
     public function pencucianstore(Request $request)
     {
-        $pencucian = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->pencucian_id) : new PencucianModel;
-        $pencucian->id = $request->input('pencucian_id');
+        $pencucian = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->id) : new PencucianModel;
+        $pencucian->id = $request->input('id');
         $pencucian->user_id = $request->input('user_id');
     	$pencucian->panjang_ikan = $request->input('panjang_ikan');
     	$pencucian->jumlah_ikan = $request->input('jumlah_ikan');

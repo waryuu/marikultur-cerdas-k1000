@@ -61,7 +61,8 @@
                     Terakhir Pindah: {{produksi.tanggal_pindah}}
                 </p>
                 <form class="row align-items-center px-3" action="" method="post">
-                    <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Informasi Sensor</button>
+                    <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Sensor IoT</button>
+                    <button @click="showPakan(produksi.id)" type="button" class="col btn btn-secondary">Pakan Otomatis</button>
                 </form>
             </div>
             <div class="d-flex justify-content-end">
@@ -70,8 +71,9 @@
                         :offset="1">
                 </base-pagination-dua>
             </div>
+            <!-- Modal Sensor -->
             <div>
-                <modal :show.sync="showModal">
+                <modal :show.sync="showModalSensor">
                     <template slot="header">
                         <h4 class="modal-title" id="exampleModalLabel">Informasi Sensor</h4>
                     </template>
@@ -90,10 +92,27 @@
                             <p class="font-weight-bold">{{sensorHumTemp.temperature}} &#176; C</p>
                     </div>
                     <template slot="footer">
-                        <base-button type="secondary" @click="showModal = false">Kembali</base-button>
+                        <base-button type="secondary" @click="showModalSensor = false">Kembali</base-button>
                     </template>
                 </modal>
             </div>
+            <!-- End Modal Sensor -->
+            <!-- Modal Pakan -->
+            <div>
+                <modal :show.sync="showModalPakan">
+                    <template slot="header">
+                        <h4 class="modal-title" id="exampleModalLabel">Informasi Pakan Otomatis</h4>
+                    </template>
+                    <div>
+                            <p class="text-muted">Baterai</p>
+                            <p class="font-weight-bold">{{sensorPakan.baterai_pakan}} &#37;</p>
+                    </div>
+                    <template slot="footer">
+                        <base-button type="secondary" @click="showModalPakan = false">Kembali</base-button>
+                    </template>
+                </modal>
+            </div>
+            <!-- End Modal Pakan -->
         </div>
         <!-- End card stats -->
 
@@ -106,7 +125,8 @@
     data() {
       return {
         errors: '',
-        showModal: false,
+        showModalSensor: false,
+        showModalPakan: false,
         offset: 4,
         produksis: [],
         produksi: {
@@ -136,6 +156,11 @@
           humidity: '',
           temperature: ''
         },
+        sensorPakan: {
+          id: '',
+          baterai_pakan: '',
+          keramba_id: ''
+        },
         meta: {
             current_page: 1,
             from: 1,
@@ -157,9 +182,6 @@
         this.getProduksi();
     },
     methods:{
-        submit() {
-
-        },
         async getProduksi() {
             await axios.get(`apiproduksi?page=${this.meta.current_page}`)
                 .then((response) => {
@@ -172,7 +194,7 @@
                 });
         },
         showSensor(id){
-            this.showModal = true;
+            this.showModalSensor = true;
             axios.all([
                 axios.get(`apisensorsuhu/where?keramba=${id}`),
                 axios.get(`apisensordo/where?keramba=${id}`),
@@ -186,6 +208,16 @@
             .catch(function (error) {
                 console.log('Fetch Sensor Error!');
             });
+        },
+        async showPakan(id){
+            this.showModalPakan = true;
+            await axios.get(`apipakan/where?keramba=${id}`)
+                .then((response) => {
+                    this.sensorPakan = response.data;
+                })
+                .catch(() => {
+                    console.log('Fetch Pakan Error!');
+                });
         }
 
     }

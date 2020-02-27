@@ -9,7 +9,17 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -55,27 +65,217 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'cuci',
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    authenticated: 'auth/authenticated',
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: 'auth/user'
   })),
   data: function data() {
     return {
+      errors: '',
+      showModal: false,
+      offset: 4,
+      produksis: [],
+      produksi: {
+        id: '',
+        nama_ikan: '',
+        jumlah_ikan: '',
+        panjang_ikan: '',
+        tanggal_tebar: '',
+        tanggal_panen: '',
+        tanggal_cuci: '',
+        tanggal_pindah: '',
+        status_panen: '',
+        keramba_id: ''
+      },
+      meta: {
+        current_page: 1,
+        from: 1,
+        last_page: '',
+        path: '',
+        per_page: '',
+        to: '',
+        total: ''
+      },
       model: {
-        username: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        address: '',
-        city: '',
-        country: '',
-        zipCode: '',
-        about: ''
+        jumlah_ikan: '',
+        panjang_ikan: '',
+        tanggal_cuci: '',
+        keramba_id: '',
+        produksi_id: '',
+        user_id: ''
+      },
+      model2: {
+        id: '',
+        jumlah_ikan: '',
+        panjang_ikan: '',
+        tanggal_cuci: ''
       }
     };
+  },
+  mounted: function mounted() {
+    this.getProduksi();
+    this.model.user_id = this.user.id;
+    this.model.keramba_id = this.produksi.keramba_id;
+  },
+  methods: {
+    getProduksi: function () {
+      var _getProduksi = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apiproduksi?page=".concat(this.meta.current_page)).then(function (response) {
+                  _this.produksis = response.data.data;
+                  _this.meta = response.data.meta;
+                })["catch"](function () {
+                  console.log('Fetch Data Error!');
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getProduksi() {
+        return _getProduksi.apply(this, arguments);
+      }
+
+      return getProduksi;
+    }(),
+    submitCuci: function submitCuci() {
+      var _this2 = this;
+
+      this.errors = '';
+      this.model2.jumlah_ikan = this.model.jumlah_ikan;
+      this.model2.panjang_ikan = this.model.panjang_ikan;
+      this.model2.tanggal_cuci = this.model.tanggal_cuci;
+      var credentials = this.model;
+      var credentials2 = this.model2;
+      console.log(credentials);
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.all([axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apipencucian/store', credentials), axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("apipencucian/store", credentials)]).then(axios__WEBPACK_IMPORTED_MODULE_2___default.a.spread(function (responseCuci, responseProduksi) {
+        _this2.$router.replace({
+          name: 'beranda'
+        });
+      }))["catch"](function (error) {
+        this.errors = 'Harap isi semua form dengan benar!';
+      });
+    },
+    showCuci: function () {
+      var _showCuci = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
+        var _this3 = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.showModal = true;
+                this.model.produksi_id = id;
+                _context2.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apiproduksi/".concat(id)).then(function (response) {
+                  _this3.model = response.data.data;
+                  console.log(response);
+                })["catch"](function () {
+                  _this3.errors = 'Harap isi semua form dengan benar!';
+                });
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function showCuci(_x) {
+        return _showCuci.apply(this, arguments);
+      }
+
+      return showCuci;
+    }()
   }
 });
 
@@ -201,13 +401,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'beranda',
   data: function data() {
     return {
       errors: '',
-      showModal: false,
+      showModalSensor: false,
+      showModalPakan: false,
       offset: 4,
       produksis: [],
       produksi: {
@@ -237,6 +457,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         humidity: '',
         temperature: ''
       },
+      sensorPakan: {
+        id: '',
+        baterai_pakan: '',
+        keramba_id: ''
+      },
       meta: {
         current_page: 1,
         from: 1,
@@ -258,7 +483,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.getProduksi();
   },
   methods: {
-    submit: function submit() {},
     getProduksi: function () {
       var _getProduksi = _asyncToGenerator(
       /*#__PURE__*/
@@ -295,7 +519,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     showSensor: function showSensor(id) {
       var _this2 = this;
 
-      this.showModal = true;
+      this.showModalSensor = true;
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorsuhu/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensordo/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorhumtemp")]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseSuhu, responseDo, responseHumTemp) {
         _this2.sensorSuhu = responseSuhu.data;
         _this2.sensorDo = responseDo.data;
@@ -303,7 +527,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))["catch"](function (error) {
         console.log('Fetch Sensor Error!');
       });
-    }
+    },
+    showPakan: function () {
+      var _showPakan = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
+        var _this3 = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.showModalPakan = true;
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apipakan/where?keramba=".concat(id)).then(function (response) {
+                  _this3.sensorPakan = response.data;
+                })["catch"](function () {
+                  console.log('Fetch Pakan Error!');
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function showPakan(_x) {
+        return _showPakan.apply(this, arguments);
+      }
+
+      return showPakan;
+    }()
   }
 });
 
@@ -1182,7 +1438,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1228,15 +1494,66 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'panen',
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    authenticated: 'auth/authenticated',
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: 'auth/user'
   })),
   data: function data() {
     return {
+      errors: '',
+      showModal: false,
+      offset: 4,
+      produksis: [],
+      produksi: {
+        id: '',
+        nama_ikan: '',
+        jumlah_ikan: '',
+        panjang_ikan: '',
+        tanggal_tebar: '',
+        tanggal_panen: '',
+        tanggal_cuci: '',
+        tanggal_pindah: '',
+        status_panen: '',
+        keramba_id: ''
+      },
+      meta: {
+        current_page: 1,
+        from: 1,
+        last_page: '',
+        path: '',
+        per_page: '',
+        to: '',
+        total: ''
+      },
       model: {
         username: '',
         email: '',
@@ -1249,6 +1566,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         about: ''
       }
     };
+  },
+  mounted: function mounted() {
+    this.getProduksi();
+  },
+  methods: {
+    getProduksi: function () {
+      var _getProduksi = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apiproduksi?page=".concat(this.meta.current_page)).then(function (response) {
+                  _this.produksis = response.data.data;
+                  _this.meta = response.data.meta;
+                })["catch"](function () {
+                  console.log('Fetch Data Error!');
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getProduksi() {
+        return _getProduksi.apply(this, arguments);
+      }
+
+      return getProduksi;
+    }(),
+    showPanen: function showPanen(id) {
+      this.showModal = true;
+    }
   }
 });
 
@@ -1263,7 +1620,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1309,15 +1676,66 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'pindah',
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    authenticated: 'auth/authenticated',
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: 'auth/user'
   })),
   data: function data() {
     return {
+      errors: '',
+      showModal: false,
+      offset: 4,
+      produksis: [],
+      produksi: {
+        id: '',
+        nama_ikan: '',
+        jumlah_ikan: '',
+        panjang_ikan: '',
+        tanggal_tebar: '',
+        tanggal_panen: '',
+        tanggal_cuci: '',
+        tanggal_pindah: '',
+        status_panen: '',
+        keramba_id: ''
+      },
+      meta: {
+        current_page: 1,
+        from: 1,
+        last_page: '',
+        path: '',
+        per_page: '',
+        to: '',
+        total: ''
+      },
       model: {
         username: '',
         email: '',
@@ -1330,6 +1748,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         about: ''
       }
     };
+  },
+  mounted: function mounted() {
+    this.getProduksi();
+  },
+  methods: {
+    getProduksi: function () {
+      var _getProduksi = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apiproduksi?page=".concat(this.meta.current_page)).then(function (response) {
+                  _this.produksis = response.data.data;
+                  _this.meta = response.data.meta;
+                })["catch"](function () {
+                  console.log('Fetch Data Error!');
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getProduksi() {
+        return _getProduksi.apply(this, arguments);
+      }
+
+      return getProduksi;
+    }(),
+    showPindah: function showPindah(id) {
+      this.showModal = true;
+    }
   }
 });
 
@@ -2237,6 +2695,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   })),
   data: function data() {
     return {
+      errors: '',
       kerambas: [],
       keramba: {
         id: '',
@@ -2274,7 +2733,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apikeramba/where?kelompok=".concat(id)).then(function (response) {
                   _this.kerambas = response.data;
-                  console.log(response);
                 })["catch"](function () {
                   console.log('Fetch Data Error!');
                 });
@@ -2308,7 +2766,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 credentials = this.model;
                 console.log(credentials);
                 _context2.next = 5;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apikeramba/store', credentials).then(function () {
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apiproduksi/store', credentials).then(function () {
                   _this2.$router.replace({
                     name: 'beranda'
                   });
@@ -2608,7 +3066,7 @@ var render = function() {
                       _c("div", { staticClass: "row align-items-center" }, [
                         _c("div", { staticClass: "col-8" }, [
                           _c("h3", { staticClass: "mb-0" }, [
-                            _vm._v("Informasi Pencucian")
+                            _vm._v("Daftar Produksi")
                           ])
                         ]),
                         _vm._v(" "),
@@ -2631,7 +3089,274 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  void 0
+                  _c(
+                    "div",
+                    { staticClass: "d-flex justify-content-end" },
+                    [
+                      _c("base-pagination-dua", {
+                        attrs: { pagination: _vm.meta, offset: 1 },
+                        on: {
+                          paginate: function($event) {
+                            return _vm.getProduksi()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.produksis, function(produksi) {
+                    return _c(
+                      "div",
+                      {
+                        key: produksi.id,
+                        staticClass: "card shadow card-body mb-3"
+                      },
+                      [
+                        _c("h3", { staticClass: "card-title" }, [
+                          _vm._v(_vm._s(produksi.nama_ikan))
+                        ]),
+                        _vm._v(" "),
+                        _c("h4", { staticClass: "card-subtitle text-muted" }, [
+                          _vm._v("Keramba " + _vm._s(produksi.keramba_id))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          { staticClass: "card-text font-weight-bold mt-2" },
+                          [
+                            _vm._v(
+                              "Ukuran: " +
+                                _vm._s(produksi.panjang_ikan) +
+                                " cm\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Jumlah: " +
+                                _vm._s(produksi.jumlah_ikan) +
+                                " Ekor\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Tanggal Tebar: " +
+                                _vm._s(produksi.tanggal_tebar) +
+                                "\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Terakhir Mencuci: " +
+                                _vm._s(produksi.tanggal_cuci) +
+                                "\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Terakhir Pindah: " +
+                                _vm._s(produksi.tanggal_pindah) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "form",
+                          {
+                            staticClass: "row align-items-center px-3",
+                            attrs: { action: "", method: "post" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "col btn btn-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.showCuci(produksi.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Lakukan Pencucian")]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "d-flex justify-content-end" },
+                    [
+                      _c("base-pagination-dua", {
+                        attrs: { pagination: _vm.meta, offset: 1 },
+                        on: {
+                          paginate: function($event) {
+                            return _vm.getProduksi()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    [
+                      _c(
+                        "modal",
+                        {
+                          attrs: { show: _vm.showModal },
+                          on: {
+                            "update:show": function($event) {
+                              _vm.showModal = $event
+                            }
+                          }
+                        },
+                        [
+                          _c("template", { slot: "header" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass: "modal-title",
+                                attrs: { id: "exampleModalLabel" }
+                              },
+                              [_vm._v("Form Pencucian")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          [
+                            _c(
+                              "form",
+                              {
+                                attrs: { role: "form" },
+                                on: {
+                                  submit: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.submitCuci($event)
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "h6",
+                                  {
+                                    staticClass: "heading-small text-muted mb-4"
+                                  },
+                                  [_vm._v("Silahkan Isi Form Berikut")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "pl-lg-4" },
+                                  [
+                                    _c("base-input", {
+                                      attrs: {
+                                        alternative: "",
+                                        label: "Jumlah Ikan Terakhir",
+                                        placeholder: "Masukkan Jumlah Ikan",
+                                        "input-classes":
+                                          "form-control-alternative",
+                                        type: "number"
+                                      },
+                                      model: {
+                                        value: _vm.model.jumlah_ikan,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.model,
+                                            "jumlah_ikan",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "model.jumlah_ikan"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("base-input", {
+                                      attrs: {
+                                        alternative: "",
+                                        label: "Panjang Ikan Terakhir",
+                                        placeholder: "Masukkan Panjang Ikan",
+                                        "input-classes":
+                                          "form-control-alternative",
+                                        type: "number"
+                                      },
+                                      model: {
+                                        value: _vm.model.panjang_ikan,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.model,
+                                            "panjang_ikan",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "model.panjang_ikan"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("base-input", {
+                                      attrs: {
+                                        alternative: "",
+                                        label: "Tanggal Cuci",
+                                        placeholder: "Masukkan Tanggal Cuci",
+                                        "input-classes":
+                                          "form-control-alternative",
+                                        type: "date"
+                                      },
+                                      model: {
+                                        value: _vm.model.tanggal_cuci,
+                                        callback: function($$v) {
+                                          _vm.$set(
+                                            _vm.model,
+                                            "tanggal_cuci",
+                                            $$v
+                                          )
+                                        },
+                                        expression: "model.tanggal_cuci"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ]
+                            )
+                          ],
+                          _vm._v(" "),
+                          _c(
+                            "template",
+                            { slot: "footer" },
+                            [
+                              _c(
+                                "base-button",
+                                {
+                                  attrs: { type: "secondary" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.showModal = false
+                                    }
+                                  }
+                                },
+                                [_vm._v("Batal")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "base-button",
+                                {
+                                  attrs: {
+                                    type: "primary",
+                                    nativeType: "submit"
+                                  }
+                                },
+                                [_vm._v("Simpan")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        2
+                      )
+                    ],
+                    1
+                  )
                 ],
                 2
               )
@@ -2839,7 +3564,21 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Informasi Sensor")]
+                      [_vm._v("Sensor IoT")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "col btn btn-secondary",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.showPakan(produksi.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Pakan Otomatis")]
                     )
                   ]
                 )
@@ -2869,10 +3608,10 @@ var render = function() {
               _c(
                 "modal",
                 {
-                  attrs: { show: _vm.showModal },
+                  attrs: { show: _vm.showModalSensor },
                   on: {
                     "update:show": function($event) {
-                      _vm.showModal = $event
+                      _vm.showModalSensor = $event
                     }
                   }
                 },
@@ -2936,7 +3675,66 @@ var render = function() {
                           attrs: { type: "secondary" },
                           on: {
                             click: function($event) {
-                              _vm.showModal = false
+                              _vm.showModalSensor = false
+                            }
+                          }
+                        },
+                        [_vm._v("Kembali")]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                2
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _c(
+                "modal",
+                {
+                  attrs: { show: _vm.showModalPakan },
+                  on: {
+                    "update:show": function($event) {
+                      _vm.showModalPakan = $event
+                    }
+                  }
+                },
+                [
+                  _c("template", { slot: "header" }, [
+                    _c(
+                      "h4",
+                      {
+                        staticClass: "modal-title",
+                        attrs: { id: "exampleModalLabel" }
+                      },
+                      [_vm._v("Informasi Pakan Otomatis")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("p", { staticClass: "text-muted" }, [_vm._v("Baterai")]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "font-weight-bold" }, [
+                      _vm._v(_vm._s(_vm.sensorPakan.baterai_pakan) + " %")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "template",
+                    { slot: "footer" },
+                    [
+                      _c(
+                        "base-button",
+                        {
+                          attrs: { type: "secondary" },
+                          on: {
+                            click: function($event) {
+                              _vm.showModalPakan = false
                             }
                           }
                         },
@@ -4006,7 +4804,7 @@ var render = function() {
                       _c("div", { staticClass: "row align-items-center" }, [
                         _c("div", { staticClass: "col-8" }, [
                           _c("h3", { staticClass: "mb-0" }, [
-                            _vm._v("Informasi Panen")
+                            _vm._v("Daftar Produksi")
                           ])
                         ]),
                         _vm._v(" "),
@@ -4029,7 +4827,115 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  void 0
+                  _c(
+                    "div",
+                    { staticClass: "d-flex justify-content-end" },
+                    [
+                      _c("base-pagination-dua", {
+                        attrs: { pagination: _vm.meta, offset: 1 },
+                        on: {
+                          paginate: function($event) {
+                            return _vm.getProduksi()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.produksis, function(produksi) {
+                    return _c(
+                      "div",
+                      {
+                        key: produksi.id,
+                        staticClass: "card shadow card-body mb-3"
+                      },
+                      [
+                        _c("h3", { staticClass: "card-title" }, [
+                          _vm._v(_vm._s(produksi.nama_ikan))
+                        ]),
+                        _vm._v(" "),
+                        _c("h4", { staticClass: "card-subtitle text-muted" }, [
+                          _vm._v("Keramba " + _vm._s(produksi.keramba_id))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          { staticClass: "card-text font-weight-bold mt-2" },
+                          [
+                            _vm._v(
+                              "Ukuran: " +
+                                _vm._s(produksi.panjang_ikan) +
+                                " cm\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Jumlah: " +
+                                _vm._s(produksi.jumlah_ikan) +
+                                " Ekor\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Tanggal Tebar: " +
+                                _vm._s(produksi.tanggal_tebar) +
+                                "\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Terakhir Mencuci: " +
+                                _vm._s(produksi.tanggal_cuci) +
+                                "\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Terakhir Pindah: " +
+                                _vm._s(produksi.tanggal_pindah) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "form",
+                          {
+                            staticClass: "row align-items-center px-3",
+                            attrs: { action: "", method: "post" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "col btn btn-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.showPanen(produksi.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Lakukan Panen")]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "d-flex justify-content-end" },
+                    [
+                      _c("base-pagination-dua", {
+                        attrs: { pagination: _vm.meta, offset: 1 },
+                        on: {
+                          paginate: function($event) {
+                            return _vm.getProduksi()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ],
                 2
               )
@@ -4115,7 +5021,7 @@ var render = function() {
                       _c("div", { staticClass: "row align-items-center" }, [
                         _c("div", { staticClass: "col-8" }, [
                           _c("h3", { staticClass: "mb-0" }, [
-                            _vm._v("Informasi Pemindahan")
+                            _vm._v("Daftar Produksi")
                           ])
                         ]),
                         _vm._v(" "),
@@ -4138,7 +5044,115 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  void 0
+                  _c(
+                    "div",
+                    { staticClass: "d-flex justify-content-end" },
+                    [
+                      _c("base-pagination-dua", {
+                        attrs: { pagination: _vm.meta, offset: 1 },
+                        on: {
+                          paginate: function($event) {
+                            return _vm.getProduksi()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.produksis, function(produksi) {
+                    return _c(
+                      "div",
+                      {
+                        key: produksi.id,
+                        staticClass: "card shadow card-body mb-3"
+                      },
+                      [
+                        _c("h3", { staticClass: "card-title" }, [
+                          _vm._v(_vm._s(produksi.nama_ikan))
+                        ]),
+                        _vm._v(" "),
+                        _c("h4", { staticClass: "card-subtitle text-muted" }, [
+                          _vm._v("Keramba " + _vm._s(produksi.keramba_id))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          { staticClass: "card-text font-weight-bold mt-2" },
+                          [
+                            _vm._v(
+                              "Ukuran: " +
+                                _vm._s(produksi.panjang_ikan) +
+                                " cm\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Jumlah: " +
+                                _vm._s(produksi.jumlah_ikan) +
+                                " Ekor\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Tanggal Tebar: " +
+                                _vm._s(produksi.tanggal_tebar) +
+                                "\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Terakhir Mencuci: " +
+                                _vm._s(produksi.tanggal_cuci) +
+                                "\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Terakhir Pindah: " +
+                                _vm._s(produksi.tanggal_pindah) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "form",
+                          {
+                            staticClass: "row align-items-center px-3",
+                            attrs: { action: "", method: "post" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "col btn btn-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.showPindah(produksi.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Lakukan Pemindahan")]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "d-flex justify-content-end" },
+                    [
+                      _c("base-pagination-dua", {
+                        attrs: { pagination: _vm.meta, offset: 1 },
+                        on: {
+                          paginate: function($event) {
+                            return _vm.getProduksi()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
                 ],
                 2
               )

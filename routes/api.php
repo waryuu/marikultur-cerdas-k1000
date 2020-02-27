@@ -65,9 +65,9 @@ Route::delete('/apisensordodelete/{id}','ApiSensorDoController@destroy');
 
 Route::get('/apisensorhumtemp','ApiSensorHumTempController@index');
 Route::get('/apisensorhumtemp/{id}','ApiSensorHumTempController@show');
-Route::post('/apisensorhumtempstore','ApiSensorHumTempController@store');
-Route::put('/apisensorhumtempstore','ApiSensorHumTempController@store');
-Route::delete('/apisensorhumtempdelete/{id}','ApiSensorHumTempController@destroy');
+Route::post('/apisensorhumtemp/store','ApiSensorHumTempController@store');
+Route::put('/apisensorhumtemp/store','ApiSensorHumTempController@store');
+Route::delete('/apisensorhumtemp/delete/{id}','ApiSensorHumTempController@destroy');
 
 Route::get('/apisensorwave','ApiSensorwaveController@index');
 Route::get('/apisensorwave/{id}','ApiSensorwaveController@show');
@@ -82,6 +82,7 @@ Route::put('/apisensorwindstore','ApiSensorwindController@store');
 Route::delete('/apisensorwinddelete/{id}','ApiSensorwindController@destroy');
 
 Route::get('/apipakan','ApiPakanController@index');
+Route::get('/apipakan/where','ApiPakanController@where');
 Route::get('/apipakan/{id}','ApiPakanController@show');
 Route::post('/apipakan/store','ApiPakanController@store');
 Route::put('/apipakan/store','ApiPakanController@store');
@@ -91,10 +92,10 @@ Route::get('/apipencucian','ApiProduksiController@pencucianget');
 Route::get('/apipemindahan','ApiProduksiController@pencucianget');
 Route::get('/apipencucian/{id}','ApiProduksiController@showcuci');
 Route::get('/apipemindahan/{id}','ApiProduksiController@showpindah');
-Route::post('/apipencucianstore','ApiProduksiController@pencucianstore');
-Route::post('/apipemindahanstore','ApiProduksiController@pemindahanstore');
-Route::put('/apipencucianstore','ApiProduksiController@pencucianstore');
-Route::put('/apipemindahanstore','ApiProduksiController@pemindahanstore');
-Route::delete('/apipencuciandelete/{id}','ApiProduksiController@destroycuci');
-Route::delete('/apipemindahandelete/{id}','ApiProduksiController@destroypindah');
+Route::post('/apipencucian/store','ApiProduksiController@pencucianstore');
+Route::post('/apipemindahan/store','ApiProduksiController@pemindahanstore');
+Route::put('/apipencucian/store','ApiProduksiController@pencucianstore');
+Route::put('/apipemindahan/store','ApiProduksiController@pemindahanstore');
+Route::delete('/apipencucian/delete/{id}','ApiProduksiController@destroycuci');
+Route::delete('/apipemindahan/delete/{id}','ApiProduksiController@destroypindah');
 
