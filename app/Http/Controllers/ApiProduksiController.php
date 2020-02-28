@@ -43,7 +43,8 @@ class ApiProduksiController extends Controller
     	$produksi->nama_ikan = $request->input('nama_ikan');
     	$produksi->panjang_ikan = $request->input('panjang_ikan');
     	$produksi->jumlah_ikan = $request->input('jumlah_ikan');
-    	$produksi->tanggal_tebar = $request->input('tanggal_tebar');
+        $produksi->tanggal_tebar = $request->input('tanggal_tebar');
+        $produksi->tanggal_panen = $request->input('tanggal_panen');
         $produksi->keramba_id = $request->input('keramba_id');
         $produksi->kelompok_id = $request->input('kelompok_id');
 
