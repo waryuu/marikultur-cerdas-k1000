@@ -31,17 +31,9 @@ class ApiProduksiController extends Controller
         return ProduksiResources::collection($produksi);
     }
 
-    public function pencucianget()
-    {
-        $pencucian = PencucianModel::paginate(15);
-        return PencucianResources::collection($pencucian);
-    }
+   
 
-    public function pemindahanget()
-    {
-        $pemindahan = PemindahanModel::paginate(15);
-        return PemindahanResources::collection($pemindahan);
-    }
+   
 
     public function store(Request $request)
     {
@@ -53,6 +45,7 @@ class ApiProduksiController extends Controller
     	$produksi->jumlah_ikan = $request->input('jumlah_ikan');
     	$produksi->tanggal_tebar = $request->input('tanggal_tebar');
         $produksi->keramba_id = $request->input('keramba_id');
+        $produksi->kelompok_id = $request->input('kelompok_id');
 
         if($produksi->save()){
             return new ProduksiResources($produksi);
@@ -60,40 +53,9 @@ class ApiProduksiController extends Controller
 
     }
 
-    public function pencucianstore(Request $request)
-    {
-        $pencucian = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->id) : new PencucianModel;
-        $pencucian->id = $request->input('id');
-        $pencucian->user_id = $request->input('user_id');
-    	$pencucian->panjang_ikan = $request->input('panjang_ikan');
-    	$pencucian->jumlah_ikan = $request->input('jumlah_ikan');
-    	$pencucian->tanggal_cuci = $request->input('tanggal_cuci');
-        $pencucian->keramba_id = $request->input('keramba_id');
-        $pencucian->produksi_id = $request->input('produksi_id');
+   
 
-        if($pencucian->save()){
-            return new PencucianResources($pencucian);
-        }
-
-    }
-
-    public function pemindahanstore(Request $request)
-    {
-        $pemindahan = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->pemindahan_id) : new pemindahanModel;
-        $pemindahan->id = $request->input('pemindahan_id');
-        $pemindahan->user_id = $request->input('user_id');
-    	$pemindahan->panjang_ikan = $request->input('panjang_ikan');
-    	$pemindahan->jumlah_ikan = $request->input('jumlah_ikan');
-    	$pemindahan->tanggal_cuci = $request->input('tanggal_pindah');
-        $pemindahan->keramba_id = $request->input('keramba_sebelum');
-        $pemindahan->keramba_id = $request->input('keramba_sesudah');
-        $pemindahan->produksi_id = $request->input('produksi_id');
-
-        if($pemindahan->save()){
-            return new pemindahanResources($pemindahan);
-        }
-
-    }
+   
     public function showproduksibyidkelompok($kelompok_id)
     {
         $produksi = ProduksiModel::where(compact('kelompok_id'))->get();
@@ -114,16 +76,8 @@ class ApiProduksiController extends Controller
         $produksi = ProduksiModel::findOrFail($id);
         return new ProduksiResources($produksi);
     }
-    public function showcuci($id)
-    {
-        $pencucian = PencucianModel::findOrFail($id);
-        return new PencucianResources($pencucian);
-    }
-    public function showpindah($id)
-    {
-        $pemindahan = PemindahanModel::findOrFail($id);
-        return new PemindahanResources($pemindahan);
-    }
+   
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -161,18 +115,42 @@ class ApiProduksiController extends Controller
         return new ProduksiResources($produksi);
     }
 }
-    public function destroypindah($id)
+
+
+public function where(Request $request)
     {
-        $pemindahan = PemindahanModel::findOrFail($id);
-        if($pemindahan->delete()){
-        return new PemindahanResources($pemindahan);
-    }
-}
-public function destroycuci($id)
-{
-    $pencucian = PencucianModel::findOrFail($id);
-    if($pencucian->delete()){
-    return new PencucianResources($pencucian);
-}
-}
+        $keramba_id = $request->query('keramba');
+        $kelompok_id = $request->query('kelompok');
+        $user_id = $request->query('user');
+        if(is_null($keramba_id)&&is_null($kelompok_id)){
+            $user = ProduksiModel::where('user_id',$user_id)->paginate(2);
+            return ProduksiResources::collection($user);
+       }
+       if(is_null($kelompok_id)&&is_null($user_id)){
+        $keramba = ProduksiModel::where('keramba_id',$keramba_id)->paginate(2);
+        return ProduksiResources::collection($keramba);
+       }
+       if(is_null($keramba_id)&&is_null($user_id)){
+        $kelompok = ProduksiModel::where('kelompok_id',$kelompok_id)->paginate(2);
+        return ProduksiResources::collection($kelompok);
+        }
+        if(is_null($kelompok_id)){
+        $kelompok = ProduksiModel::where('keramba_id',$keramba_id)->Where('user_id', $user_id)->paginate(2);
+        return ProduksiResources::collection($kelompok);
+        }
+        if(is_null($keramba_id)){
+            $keramba = ProduksiModel::where('kelompok_id',$kelompok_id)->Where('user_id', $user_id)->paginate(2);
+            return ProduksiResources::collection($keramba);
+            }
+            if(is_null($user_id)){
+                $user = ProduksiModel::where('kelompok_id',$kelompok_id)->Where('keramba_id', $keramba_id)->paginate(2);
+                return ProduksiResources::collection($user);
+                }
+                else{
+                    $all = ProduksiModel::where('kelompok_id',$kelompok_id)->Where('keramba_id', $keramba_id)->Where('user_id', $user_id)->paginate(2);
+                return ProduksiResources::collection($all);
+                }
+       
+   } 
+
 }

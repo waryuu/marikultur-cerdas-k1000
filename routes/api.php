@@ -20,6 +20,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function(){
     Route::post('signout','ApiSignOutController');
     Route::put('update/profile','ApiProfileController@updateProfile');
     Route::get('me','ApiMeController');
+    Route::get('user','ApiUserController@index');
 });
 
 
@@ -30,7 +31,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/apikerambaidkelompok/{kelompok_id}','ApiKerambaController@showkerambabyidkelompok');
 Route::get('/apiproduksiidkelompok/{kelompok_id}','ApiProduksiController@showproduksibyidkelompok');
 
+Route::get('/apipencucian/where','ApiPencucianController@where');
+
+Route::get('/apipemindahan/where','ApiPemindahanController@where');
+
 Route::get('/apikelompok','ApiKelompokController@index');
+Route::get('/apikelompok/where','ApiKelompokController@where');
 Route::get('/apikelompok/{id}','ApiKelompokController@show');
 Route::post('/apikelompok/store','ApiKelompokController@store');
 Route::put('/apikelompok/store','ApiKelompokController@store');
@@ -51,6 +57,7 @@ Route::put('/apikeramba/store','ApiKerambaController@store');
 Route::delete('/apikeramba/delete/{id}','ApiKerambaController@destroy');
 
 Route::get('/apiproduksi','ApiProduksiController@index');
+Route::get('/apiproduksi/where','ApiProduksiController@where');
 Route::get('/apiproduksi/{id}','ApiProduksiController@show');
 Route::post('/apiproduksi/store','ApiProduksiController@store');
 Route::put('/apiproduksi/store','ApiProduksiController@store');
@@ -88,14 +95,20 @@ Route::post('/apipakan/store','ApiPakanController@store');
 Route::put('/apipakan/store','ApiPakanController@store');
 Route::delete('/apipakan/delete/{id}','ApiPakanController@destroy');
 
-Route::get('/apipencucian','ApiProduksiController@pencucianget');
-Route::get('/apipemindahan','ApiProduksiController@pencucianget');
-Route::get('/apipencucian/{id}','ApiProduksiController@showcuci');
-Route::get('/apipemindahan/{id}','ApiProduksiController@showpindah');
-Route::post('/apipencucian/store','ApiProduksiController@pencucianstore');
-Route::post('/apipemindahan/store','ApiProduksiController@pemindahanstore');
-Route::put('/apipencucian/store','ApiProduksiController@pencucianstore');
-Route::put('/apipemindahan/store','ApiProduksiController@pemindahanstore');
-Route::delete('/apipencucian/delete/{id}','ApiProduksiController@destroycuci');
-Route::delete('/apipemindahan/delete/{id}','ApiProduksiController@destroypindah');
+Route::get('/apipencucian','ApiPencucianController@pencucianget');
+Route::get('/apipemindahan','ApiPemindahanController@pemindahanget');
+
+Route::get('/apipencucian/{id}','ApiPencucianController@showcuci');
+Route::get('/apipemindahan/{id}','ApiPemindahanController@showpindah');
+
+Route::post('/apipencucian/store','ApiPencucianController@pencucianstore');
+Route::post('/apipemindahan/store','ApiPemindahanController@pemindahanstore');
+
+Route::put('/apipencucian/store','ApiPencucianController@pencucianstore');
+Route::put('/apipemindahan/store','ApiPemindahanController@pemindahanstore');
+
+Route::delete('/apipencucian/delete/{id}','ApiPencucianController@destroycuci');
+Route::delete('/apipemindahan/delete/{id}','ApiPemindahanController@destroypindah');
+
+
 

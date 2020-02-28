@@ -9,7 +9,7 @@ use App\User as User;
 class ProduksiModel extends Model
 {
     protected $table = 'produksi';
-    protected $fillable = array('nama_ikan','jumlah_ikan','panjang_ikan','tanggal_cuci','tanggal_tebar','tanggal_pindah','status_panen','user_id','keramba_id');
+    protected $fillable = array('nama_ikan','jumlah_ikan','panjang_ikan','tanggal_cuci','tanggal_tebar','tanggal_pindah','status_panen','user_id','keramba_id','kelompok_id');
     protected $dates = ['tanggal_cuci','tanggal_tebar','tanggal_pindah','tanggal_panen'];
     public function keramba()
     {
