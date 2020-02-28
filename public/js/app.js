@@ -10990,7 +10990,7 @@ var render = function() {
                               _c("img", {
                                 attrs: {
                                   alt: "Image placeholder",
-                                  src: "img/theme/user.png"
+                                  src: "img/theme/fisher2.png"
                                 }
                               })
                             ]
@@ -11981,7 +11981,7 @@ var render = function() {
                           _c("img", {
                             attrs: {
                               alt: "Image placeholder",
-                              src: "img/theme/user.png"
+                              src: "img/theme/fisher2.png"
                             }
                           })
                         ]

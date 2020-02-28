@@ -498,6 +498,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.produksis = response.data.data;
                   _this.meta = response.data.meta;
                   _this.links = response.data.links;
+                  console.log(_this.meta);
                 })["catch"](function () {
                   console.log('Fetch Data Error!');
                 });
@@ -3122,7 +3123,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c(
-                          "p",
+                          "h4",
                           { staticClass: "card-text font-weight-bold mt-2" },
                           [
                             _vm._v(
@@ -3514,7 +3515,7 @@ var render = function() {
                   _vm._v("Keramba " + _vm._s(produksi.keramba_id))
                 ]),
                 _vm._v(" "),
-                _c("p", { staticClass: "card-text font-weight-bold mt-2" }, [
+                _c("h4", { staticClass: "card-text font-weight-bold mt-2" }, [
                   _vm._v(
                     "Ukuran: " +
                       _vm._s(produksi.panjang_ikan) +
@@ -4860,7 +4861,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c(
-                          "p",
+                          "h4",
                           { staticClass: "card-text font-weight-bold mt-2" },
                           [
                             _vm._v(
@@ -5077,7 +5078,7 @@ var render = function() {
                         ]),
                         _vm._v(" "),
                         _c(
-                          "p",
+                          "h4",
                           { staticClass: "card-text font-weight-bold mt-2" },
                           [
                             _vm._v(

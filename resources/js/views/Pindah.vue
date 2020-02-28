@@ -37,7 +37,7 @@
                         <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card shadow card-body mb-3">
                             <h3 class="card-title">{{produksi.nama_ikan}}</h3>
                             <h4 class="card-subtitle text-muted">Keramba {{produksi.keramba_id}}</h4>
-                            <p class="card-text font-weight-bold mt-2">Ukuran: {{produksi.panjang_ikan}} cm
+                            <h4 class="card-text font-weight-bold mt-2">Ukuran: {{produksi.panjang_ikan}} cm
                                 <br>
                                 Jumlah: {{produksi.jumlah_ikan}} Ekor
                                 <br>
@@ -46,7 +46,7 @@
                                 Terakhir Mencuci: {{produksi.tanggal_cuci}}
                                 <br>
                                 Terakhir Pindah: {{produksi.tanggal_pindah}}
-                            </p>
+                            </h4>
                             <form class="row align-items-center px-3" action="" method="post">
                                 <button @click="showPindah(produksi.id)" type="button" class="col btn btn-primary">Lakukan Pemindahan</button>
                             </form>

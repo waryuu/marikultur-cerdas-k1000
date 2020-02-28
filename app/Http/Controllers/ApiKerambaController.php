@@ -19,26 +19,26 @@ class ApiKerambaController extends Controller
         $keramba = KerambaModel::paginate(15);
         return KerambaResources::collection($keramba);
     }
-    public function where(Request $request)
-    {
-        $kelompok_id = $request->query('kelompok');
-        $user_id = $request->query('user');
-        if(is_null($kelompok_id)){
-             $user = KerambaModel::where('user_id',$user_id)->paginate(2);
-             return KerambaResources::collection($user);
-        }
-        if(is_null($user_id)){
-            $kelompok = KerambaModel::where('kelompok_id',$kelompok_id)->paginate(2);
-            return KerambaResources::collection($kelompok);
-       }
-       else{
-        $keramba = KerambaModel::where('kelompok_id',$kelompok_id)->Where('user_id', $user_id)->paginate(2);
-        return KerambaResources::collection($keramba);
-       }
-        // $keramba = KerambaModel::where($conditions)->paginate(2);
-        // return KerambaResources::collection($keramba);
-         
-    }
+    // public function where(Request $request)
+    // {
+    //     $kelompok_id = $request->query('kelompok');
+    //     $user_id = $request->query('user');
+    //     if(is_null($kelompok_id)){
+    //          $user = KerambaModel::where('user_id',$user_id)->paginate(2);
+    //          return KerambaResources::collection($user);
+    //     }
+    //     if(is_null($user_id)){
+    //         $kelompok = KerambaModel::where('kelompok_id',$kelompok_id)->paginate(2);
+    //         return KerambaResources::collection($kelompok);
+    //    }
+    //    else{
+    //     $keramba = KerambaModel::where('kelompok_id',$kelompok_id)->Where('user_id', $user_id)->paginate(2);
+    //     return KerambaResources::collection($keramba);
+    //    }
+    //     // $keramba = KerambaModel::where($conditions)->paginate(2);
+    //     // return KerambaResources::collection($keramba);
+
+    // }
 
 
     public function store(Request $request)
@@ -80,15 +80,15 @@ class ApiKerambaController extends Controller
         //
     }
 
-    // public function where(Request $request)
-    // {
-    //     $kelompok_id = $request->query('kelompok');
-    //     $keramba = KerambaModel::where('kelompok_id', $kelompok_id)->get();
-    //     return response()->json($keramba);
-    //     // $keramba_id = $request->query('keramba');
-    //     // $sensor_do = SensorDo::where('keramba_id', $keramba_id)->paginate(2);
-    //     // return SensorDoResources::collection($sensor_do);
-    // }
+    public function where(Request $request)
+    {
+        $kelompok_id = $request->query('kelompok');
+        $keramba = KerambaModel::where('kelompok_id', $kelompok_id)->get();
+        return response()->json($keramba);
+        // $keramba_id = $request->query('keramba');
+        // $sensor_do = SensorDo::where('keramba_id', $keramba_id)->paginate(2);
+        // return SensorDoResources::collection($sensor_do);
+    }
 
     public function showkerambabyidkelompok($kelompok_id)
     {
