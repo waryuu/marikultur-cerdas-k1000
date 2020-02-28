@@ -17,7 +17,7 @@ class CreatePencucianTable extends Migration
             $table->Increments('id');
             $table->integer('jumlah_ikan')->nullable();
             $table->integer('panjang_ikan')->nullable();
-            $table->date('tanggal_cuci')->nullable();
+            $table->string('tanggal_cuci')->nullable();
             $table->integer('keramba_id')->unsigned();
             $table->foreign('keramba_id')->references('id')->on('keramba');
             $table->integer('produksi_id')->unsigned();

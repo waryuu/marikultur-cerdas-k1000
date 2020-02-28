@@ -10,6 +10,7 @@ use App\PencucianModel;
 use App\Http\Resources\PencucianResources;
 use App\PemindahanModel;
 use App\Http\Resources\PemindahanResources;
+use Carbon\Carbon;
 
 class ApiProduksiController extends Controller
 {
@@ -42,11 +43,14 @@ class ApiProduksiController extends Controller
         $produksi->user_id = $request->input('user_id');
     	$produksi->nama_ikan = $request->input('nama_ikan');
     	$produksi->panjang_ikan = $request->input('panjang_ikan');
-    	$produksi->jumlah_ikan = $request->input('jumlah_ikan');
-        $produksi->tanggal_tebar = $request->input('tanggal_tebar');
-        $produksi->tanggal_panen = $request->input('tanggal_panen');
+        $produksi->jumlah_ikan = $request->input('jumlah_ikan');
+        $produksi->tanggal_tebar = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_tebar'))->format('d-m-Y');
+        $produksi->tanggal_panen = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_panen'))->format('d-m-Y');
+        // $produksi->tanggal_tebar = $request->input('tanggal_tebar');
+        // $produksi->tanggal_panen = $request->input('tanggal_panen');
         $produksi->keramba_id = $request->input('keramba_id');
         $produksi->kelompok_id = $request->input('kelompok_id');
+        
 
         if($produksi->save()){
             return new ProduksiResources($produksi);

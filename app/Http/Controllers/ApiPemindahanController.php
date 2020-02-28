@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\PemindahanModel;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use App\Http\Resources\PemindahanResources;
 
 class ApiPemindahanController extends Controller
@@ -20,10 +22,11 @@ class ApiPemindahanController extends Controller
         $pemindahan->id = $request->input('pemindahan_id');
         $pemindahan->user_id = $request->input('user_id');
     	$pemindahan->panjang_ikan = $request->input('panjang_ikan');
-    	$pemindahan->jumlah_ikan = $request->input('jumlah_ikan');
-    	$pemindahan->tanggal_cuci = $request->input('tanggal_pindah');
-        $pemindahan->keramba_id = $request->input('keramba_sebelum');
-        $pemindahan->keramba_id = $request->input('keramba_sesudah');
+        $pemindahan->jumlah_ikan = $request->input('jumlah_ikan');
+    	$pemindahan->tanggal_pindah = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_pindah'))->format('d-m-Y');
+    	// $pemindahan->tanggal_pindah = $request->input('tanggal_pindah');
+        $pemindahan->keramba_sebelum = $request->input('keramba_sebelum');
+        $pemindahan->keramba_sesudah = $request->input('keramba_sesudah');
         $pemindahan->produksi_id = $request->input('produksi_id');
 
         if($pemindahan->save()){

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\PencucianModel;
 use App\Http\Resources\PencucianResources;
+use Carbon\Carbon;
 
 class ApiPencucianController extends Controller
 {
@@ -21,7 +22,8 @@ class ApiPencucianController extends Controller
         $pencucian->user_id = $request->input('user_id');
     	$pencucian->panjang_ikan = $request->input('panjang_ikan');
     	$pencucian->jumlah_ikan = $request->input('jumlah_ikan');
-    	$pencucian->tanggal_cuci = $request->input('tanggal_cuci');
+        // $pencucian->tanggal_cuci = $request->input('tanggal_cuci');
+        $pencucian->tanggal_cuci = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_cuci'))->format('d-m-Y');
         $pencucian->keramba_id = $request->input('keramba_id');
         $pencucian->produksi_id = $request->input('produksi_id');
 

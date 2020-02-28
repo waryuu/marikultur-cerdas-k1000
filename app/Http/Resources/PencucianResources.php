@@ -15,11 +15,12 @@ class PencucianResources extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
+        $tanggal_pencucian_doang = substr($this->tanggal_cuci,0,10);
         return [
             'id'=> $this->id,
             'panjang_ikan'=>$this->panjang_ikan,
             'jumlah_ikan'=>$this->jumlah_ikan,
-            'tanggal_cuci'=>$this->tanggal_cuci,
+            'tanggal_cuci'=>$tanggal_pencucian_doang,
             'keramba_id'=>$this->keramba_id,
             'produksi_id'=>$this->produksi_id,
             'user_id'=>$this->user_id

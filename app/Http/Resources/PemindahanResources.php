@@ -15,6 +15,7 @@ class PemindahanResources extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
+        // $tanggal_pindah_doang = substr($this->tanggal_pindah,0,10);
         return [
             'id'=> $this->id,
             'panjang_ikan'=>$this->panjang_ikan,
