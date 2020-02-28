@@ -17,17 +17,18 @@ class ProduksiResources extends JsonResource
         // return parent::toArray($request);
         $tanggal_tebar_doang = substr($this->tanggal_tebar,0,10);
         $tanggal_panen_doang = substr($this->tanggal_panen,0,10);
-        $tanggal_cuci_doang = substr($this->tanggal_cuci,0,10);
-        $tanggal_pindah_doang = substr($this->tanggal_pindah,0,10);
+        // $tanggal_cuci_doang = substr($this->tanggal_cuci,0,10);
+        // $tanggal_pindah_doang = substr($this->tanggal_pindah,0,10);
         return [
             'id'=> $this->id,
             'nama_ikan'=>$this->nama_ikan,
             'panjang_ikan'=>$this->panjang_ikan,
             'jumlah_ikan'=>$this->jumlah_ikan,
+            'berat_ikan'=>$this->berat_ikan,
             'tanggal_tebar'=>$tanggal_tebar_doang,
             'tanggal_panen'=>$tanggal_panen_doang,
-            'tanggal_cuci'=>$tanggal_cuci_doang,
-            'tanggal_pindah'=>$tanggal_pindah_doang,
+            // 'tanggal_cuci'=>$tanggal_cuci_doang,
+            // 'tanggal_pindah'=>$tanggal_pindah_doang,
             'status_panen'=>$this->status_panen,
             'keramba_id'=>$this->keramba_id,
             'kelompok_id'=>$this->kelompok_id,

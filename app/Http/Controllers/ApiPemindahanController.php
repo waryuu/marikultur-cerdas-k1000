@@ -23,8 +23,9 @@ class ApiPemindahanController extends Controller
         $pemindahan->user_id = $request->input('user_id');
     	$pemindahan->panjang_ikan = $request->input('panjang_ikan');
         $pemindahan->jumlah_ikan = $request->input('jumlah_ikan');
-    	$pemindahan->tanggal_pindah = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_pindah'))->format('d-m-Y');
-    	// $pemindahan->tanggal_pindah = $request->input('tanggal_pindah');
+        $pemindahan->berat_ikan = $request->input('berat_ikan');
+    	// $pemindahan->tanggal_pindah = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_pindah'))->format('d-m-Y');
+    	$pemindahan->tanggal_pindah = $request->input('tanggal_pindah');
         $pemindahan->keramba_sebelum = $request->input('keramba_sebelum');
         $pemindahan->keramba_sesudah = $request->input('keramba_sesudah');
         $pemindahan->produksi_id = $request->input('produksi_id');

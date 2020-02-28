@@ -18,6 +18,7 @@ class CreatePemindahanTable extends Migration
             $table->integer('jumlah_ikan')->nullable();
             $table->integer('panjang_ikan')->nullable();
             $table->string('tanggal_pindah')->nullable();
+            $table->string('berat_ikan')->nullable();
             $table->integer('keramba_sebelum')->unsigned();
             $table->foreign('keramba_sebelum')->references('id')->on('keramba');
             $table->integer('keramba_sesudah')->unsigned();

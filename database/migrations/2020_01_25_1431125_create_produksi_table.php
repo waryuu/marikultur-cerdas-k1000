@@ -20,8 +20,9 @@ class CreateProduksiTable extends Migration
             $table->integer('panjang_ikan')->nullable();
             $table->string('tanggal_tebar')->nullable();
             $table->string('tanggal_panen')->nullable();
-            $table->string('tanggal_cuci')->nullable();
-            $table->string('tanggal_pindah')->nullable();
+            $table->string('berat_ikan')->nullable();
+            // $table->string('tanggal_cuci')->nullable();
+            // $table->string('tanggal_pindah')->nullable();
             $table->string('status_panen')->default('Pembesaran');
             $table->integer('keramba_id')->unsigned();
             $table->foreign('keramba_id')->references('id')->on('keramba');

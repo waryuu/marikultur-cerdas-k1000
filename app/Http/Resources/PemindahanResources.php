@@ -21,6 +21,7 @@ class PemindahanResources extends JsonResource
             'panjang_ikan'=>$this->panjang_ikan,
             'jumlah_ikan'=>$this->jumlah_ikan,
             'tanggal_pindah'=>$this->tanggal_pindah,
+            'berat_ikan'=>$this->berat_ikan,
             'keramba_sebelum'=>$this->keramba_sebelum,
             'keramba_sesudah'=>$this->keramba_sesudah,
             'produksi_id'=>$this->produksi_id,

@@ -42,12 +42,13 @@ class ApiProduksiController extends Controller
         $produksi->id = $request->input('id');
         $produksi->user_id = $request->input('user_id');
     	$produksi->nama_ikan = $request->input('nama_ikan');
-    	$produksi->panjang_ikan = $request->input('panjang_ikan');
+        $produksi->panjang_ikan = $request->input('panjang_ikan');
+        $produksi->berat_ikan = $request->input('berat_ikan');
         $produksi->jumlah_ikan = $request->input('jumlah_ikan');
-        $produksi->tanggal_tebar = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_tebar'))->format('d-m-Y');
-        $produksi->tanggal_panen = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_panen'))->format('d-m-Y');
-        // $produksi->tanggal_tebar = $request->input('tanggal_tebar');
-        // $produksi->tanggal_panen = $request->input('tanggal_panen');
+        // $produksi->tanggal_tebar = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_tebar'))->format('d-m-Y');
+        // $produksi->tanggal_panen = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_panen'))->format('d-m-Y');
+        $produksi->tanggal_tebar = $request->input('tanggal_tebar');
+        $produksi->tanggal_panen = $request->input('tanggal_panen');
         $produksi->keramba_id = $request->input('keramba_id');
         $produksi->kelompok_id = $request->input('kelompok_id');
         
@@ -57,7 +58,21 @@ class ApiProduksiController extends Controller
         }
 
     }
+    public function panen(Request $request,$id)
+    {
+    	$berat_ikan = $request->berat_ikan;
+    	$tanggal_panen = $request->tanggal_panen;
+        $status_panen = $request->status_panen;
 
+
+    	$panen = ProduksiModel::find($id);
+    	$panen->berat_ikan = $berat_ikan;
+    	$panen->tanggal_panen = $tanggal_panen;
+        $panen->status_panen = $status_panen;
+    	$panen->save();
+
+    	return new ProduksiResources($panen);
+    }
    
 
    
