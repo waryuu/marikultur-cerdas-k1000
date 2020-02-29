@@ -6,7 +6,7 @@
                 <router-link to="/tebar" class="col-6">
                     <stats-card title="Penebaran Ikan"
                                 type="gradient-orange"
-                                icon="ni ni-chart-pie-35"
+                                icon="fas fa-fish"
                                 class="mb-4 mb-xl-0"
                     >
                     </stats-card>
@@ -14,7 +14,7 @@
                 <router-link to="/cuci" class="col-6">
                     <stats-card title="Pencucian Ikan"
                                 type="gradient-green"
-                                icon="ni ni-money-coins"
+                                icon="fas fa-bath"
                                 class="mb-4 mb-xl-0"
                     >
                     </stats-card>
@@ -24,7 +24,7 @@
                 <router-link to="/pindah" class="col-6">
                     <stats-card title="Pemindahan Ikan"
                                 type="gradient-info"
-                                icon="ni ni-chart-bar-32"
+                                icon="fas fa-luggage-cart"
                                 class="mb-4 mb-xl-0"
                     >
                     </stats-card>
@@ -32,7 +32,7 @@
                 <router-link to="/panen" class="col-6">
                     <stats-card title="Panen Produksi"
                                 type="gradient-red"
-                                icon="ni ni-active-40"
+                                icon="fas fa-calendar-check"
                                 class="mb-4 mb-xl-0"
                     >
                     </stats-card>

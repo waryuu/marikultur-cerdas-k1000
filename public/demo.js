@@ -3415,7 +3415,7 @@ var render = function() {
                     attrs: {
                       title: "Penebaran Ikan",
                       type: "gradient-orange",
-                      icon: "ni ni-chart-pie-35"
+                      icon: "fas fa-fish"
                     }
                   })
                 ],
@@ -3431,7 +3431,7 @@ var render = function() {
                     attrs: {
                       title: "Pencucian Ikan",
                       type: "gradient-green",
-                      icon: "ni ni-money-coins"
+                      icon: "fas fa-bath"
                     }
                   })
                 ],
@@ -3454,7 +3454,7 @@ var render = function() {
                     attrs: {
                       title: "Pemindahan Ikan",
                       type: "gradient-info",
-                      icon: "ni ni-chart-bar-32"
+                      icon: "fas fa-luggage-cart"
                     }
                   })
                 ],
@@ -3470,7 +3470,7 @@ var render = function() {
                     attrs: {
                       title: "Panen Produksi",
                       type: "gradient-red",
-                      icon: "ni ni-active-40"
+                      icon: "fas fa-calendar-check"
                     }
                   })
                 ],
