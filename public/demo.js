@@ -442,6 +442,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         status_panen: '',
         keramba_id: ''
       },
+      cucis: [],
+      cuci: {
+        tanggal_cuci: ''
+      },
+      pindahs: [],
+      pindah: {
+        tanggal_pindah: ''
+      },
       sensorSuhu: {
         id: '',
         suhu_air: '',
@@ -500,7 +508,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.links = response.data.links;
                   console.log(_this.meta);
                 })["catch"](function () {
-                  console.log('Fetch Data Error!');
+                  console.log('Fetch Data Produksi Error!');
                 });
 
               case 2:
@@ -517,34 +525,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return getProduksi;
     }(),
-    showSensor: function showSensor(id) {
-      var _this2 = this;
-
-      this.showModalSensor = true;
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorsuhu/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensordo/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorhumtemp")]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseSuhu, responseDo, responseHumTemp) {
-        _this2.sensorSuhu = responseSuhu.data;
-        _this2.sensorDo = responseDo.data;
-        _this2.sensorHumTemp = responseHumTemp.data;
-      }))["catch"](function (error) {
-        console.log('Fetch Sensor Error!');
-      });
-    },
-    showPakan: function () {
-      var _showPakan = _asyncToGenerator(
+    showSensor: function () {
+      var _showSensor = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
-        var _this3 = this;
+        var _this2 = this;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                this.showModalPakan = true;
+                this.showModalSensor = true;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apipakan/where?keramba=".concat(id)).then(function (response) {
-                  _this3.sensorPakan = response.data;
-                })["catch"](function () {
-                  console.log('Fetch Pakan Error!');
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorsuhu/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensordo/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorhumtemp")]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseSuhu, responseDo, responseHumTemp) {
+                  _this2.sensorSuhu = responseSuhu.data;
+                  _this2.sensorDo = responseDo.data;
+                  _this2.sensorHumTemp = responseHumTemp.data;
+                }))["catch"](function (error) {
+                  console.log('Fetch Sensor Error!');
                 });
 
               case 3:
@@ -555,7 +553,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2, this);
       }));
 
-      function showPakan(_x) {
+      function showSensor(_x) {
+        return _showSensor.apply(this, arguments);
+      }
+
+      return showSensor;
+    }(),
+    showPakan: function () {
+      var _showPakan = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
+        var _this3 = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                this.showModalPakan = true;
+                _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apipakan/where?keramba=".concat(id)).then(function (response) {
+                  _this3.sensorPakan = response.data;
+                })["catch"](function () {
+                  console.log('Fetch Pakan Error!');
+                });
+
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function showPakan(_x2) {
         return _showPakan.apply(this, arguments);
       }
 

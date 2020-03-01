@@ -141,6 +141,14 @@
           status_panen: '',
           keramba_id: ''
         },
+        cucis: [],
+        cuci: {
+            tanggal_cuci: '',
+        },
+        pindahs: [],
+        pindah: {
+            tanggal_pindah: '',
+        },
         sensorSuhu: {
           id: '',
           suhu_air: '',
@@ -191,12 +199,12 @@
                     console.log(this.meta);
                 })
                 .catch(() => {
-                    console.log('Fetch Data Error!');
+                    console.log('Fetch Data Produksi Error!');
                 });
         },
-        showSensor(id){
+        async showSensor(id){
             this.showModalSensor = true;
-            axios.all([
+            await axios.all([
                 axios.get(`apisensorsuhu/where?keramba=${id}`),
                 axios.get(`apisensordo/where?keramba=${id}`),
                 axios.get(`apisensorhumtemp`)
