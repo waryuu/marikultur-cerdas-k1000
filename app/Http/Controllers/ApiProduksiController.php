@@ -21,15 +21,22 @@ class ApiProduksiController extends Controller
      */
     public function index()
     {
-        if(auth('api')->user()->status == 'admin'){
-            $produksi = ProduksiModel::paginate(5);
-        }
-        else{
-            $kelompok = auth('api')->user()->kelompok_id;
-            $produksi = ProduksiModel::where('kelompok_id', $kelompok)->paginate(5);
-        }
+    //     if(auth('api')->user()->status == 'admin'){
+    //         $produksi = ProduksiModel::paginate(5);
+    //     }
+    //     else{
+    //         $kelompok = auth('api')->user()->kelompok_id;
+    //         $produksi = ProduksiModel::where('kelompok_id', $kelompok)->paginate(5);
+    //     }
+ 
+        $produksi = ProduksiModel::find(1)->pencucian()->get();
+        
+        // $produksi = ProduksiModel::with(array('pencucian' => function($query){
+        //     $query->select('id','tanggal_cuci','berat_ikan','user_id','jumlah_ikan','panjang_ikan','produksi_id');
+        // }))->get();
+        // $data = ProduksiModel::with('pencucian:id,berat_ikan,tanggal_cuci,produksi_id')->get();
+        return  ProduksiResources::collection($produksi);
         // $produksi = ProduksiModel::paginate(5);
-        return ProduksiResources::collection($produksi);
     }
 
    

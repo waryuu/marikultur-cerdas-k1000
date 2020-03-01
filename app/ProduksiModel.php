@@ -25,10 +25,10 @@ class ProduksiModel extends Model
     }
     public function pencucian()
     {
-        return $this->hasMany(Pencucian::class);
+        return $this->hasMany(Pencucian::class, 'produksi_id' ,'id')->select(array('id','produksi_id','tanggal_cuci','berat_ikan','panjang_ikan'));
     }
     public function pemindahan()
     {
-        return $this->hasMany(Pemindahan::class);
+        return $this->hasMany(Pemindahan::class, 'produksi_id', 'id');
     }
 }

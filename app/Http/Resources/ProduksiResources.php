@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+
 class ProduksiResources extends JsonResource
 {
     /**
@@ -27,7 +28,7 @@ class ProduksiResources extends JsonResource
             'berat_ikan'=>$this->berat_ikan,
             'tanggal_tebar'=>$tanggal_tebar_doang,
             'tanggal_panen'=>$tanggal_panen_doang,
-            'tanggal_cuci'=>$this->pencucian->tanggal_cuci,
+            'tanggal_cuci'=>$this->tanggal_cuci,
             // 'tanggal_pindah'=>$this->pemindahan->tanggal_pindah,
             'status_panen'=>$this->status_panen,
             'keramba_id'=>$this->keramba_id,
