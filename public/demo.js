@@ -136,6 +136,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -154,6 +165,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         nama_ikan: '',
         jumlah_ikan: '',
         panjang_ikan: '',
+        berat_ikan: '',
         tanggal_tebar: '',
         tanggal_panen: '',
         tanggal_cuci: '',
@@ -174,7 +186,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         jumlah_ikan: '',
         panjang_ikan: '',
         tanggal_cuci: '',
-        keramba_id: '',
+        berat_ikan: '',
         produksi_id: '',
         user_id: ''
       },
@@ -189,7 +201,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.getProduksi();
     this.model.user_id = this.user.id;
-    this.model.keramba_id = this.produksi.keramba_id;
   },
   methods: {
     getProduksi: function () {
@@ -224,50 +235,72 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return getProduksi;
     }(),
-    submitCuci: function submitCuci() {
-      var _this2 = this;
-
-      this.errors = '';
-      this.model2.jumlah_ikan = this.model.jumlah_ikan;
-      this.model2.panjang_ikan = this.model.panjang_ikan;
-      this.model2.tanggal_cuci = this.model.tanggal_cuci;
-      var credentials = this.model;
-      var credentials2 = this.model2;
-      console.log(credentials);
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.all([axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apipencucian/store', credentials), axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("apipencucian/store", credentials)]).then(axios__WEBPACK_IMPORTED_MODULE_2___default.a.spread(function (responseCuci, responseProduksi) {
-        _this2.$router.replace({
-          name: 'beranda'
-        });
-      }))["catch"](function (error) {
-        this.errors = 'Harap isi semua form dengan benar!';
-      });
-    },
-    showCuci: function () {
-      var _showCuci = _asyncToGenerator(
+    submitCuci: function () {
+      var _submitCuci = _asyncToGenerator(
       /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
-        var _this3 = this;
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _this2 = this;
 
+        var credentials;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                this.showModal = true;
-                this.model.produksi_id = id;
-                _context2.next = 4;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apiproduksi/".concat(id)).then(function (response) {
-                  _this3.model = response.data.data;
-                  console.log(response);
-                })["catch"](function () {
-                  _this3.errors = 'Harap isi semua form dengan benar!';
+                this.showModal = false;
+                this.errors = '';
+                credentials = this.model;
+                console.log(credentials);
+                _context2.next = 6;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apipencucian/store', credentials).then(function (response) {
+                  _this2.$router.replace({
+                    name: 'beranda'
+                  });
+                })["catch"](function (error) {
+                  this.errors = 'Harap isi semua form dengan benar!';
                 });
 
-              case 4:
+              case 6:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2, this);
+      }));
+
+      function submitCuci() {
+        return _submitCuci.apply(this, arguments);
+      }
+
+      return submitCuci;
+    }(),
+    showCuci: function () {
+      var _showCuci = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                this.showModal = true;
+                this.model.produksi_id = id;
+                this.model.jumlah_ikan = this.produksis[id - 1].jumlah_ikan;
+                this.model.panjang_ikan = this.produksis[id - 1].panjang_ikan;
+                this.model.berat_ikan = this.produksis[id - 1].berat_ikan;
+                console.log(this.model); // await axios.get(`apiproduksi/${id}`)
+                // .then((response) => {
+                //         this.model = response.data.data;
+                //         console.log(this.model);
+                //     })
+                // .catch(() => {
+                //         this.errors = 'Harap isi semua form dengan benar!';
+                //     })
+
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
       }));
 
       function showCuci(_x) {
@@ -420,6 +453,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'beranda',
@@ -435,6 +471,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         nama_ikan: '',
         jumlah_ikan: '',
         panjang_ikan: '',
+        berat_ikan: '',
         tanggal_tebar: '',
         tanggal_panen: '',
         tanggal_cuci: '',
@@ -2717,6 +2754,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2736,6 +2781,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         nama_ikan: '',
         jumlah_ikan: '',
         panjang_ikan: '',
+        berat_ikan: '',
         tanggal_tebar: '',
         keramba_id: '',
         kelompok_id: '',
@@ -3157,15 +3203,21 @@ var render = function() {
                           { staticClass: "card-text font-weight-bold mt-2" },
                           [
                             _vm._v(
-                              "Ukuran: " +
+                              "\n                            Jumlah: " +
+                                _vm._s(produksi.jumlah_ikan) +
+                                " Ekor\n                            "
+                            ),
+                            _c("br"),
+                            _vm._v(
+                              "\n                            Ukuran: " +
                                 _vm._s(produksi.panjang_ikan) +
                                 " cm\n                            "
                             ),
                             _c("br"),
                             _vm._v(
-                              "\n                            Jumlah: " +
-                                _vm._s(produksi.jumlah_ikan) +
-                                " Ekor\n                            "
+                              "\n                            Berat: " +
+                                _vm._s(produksi.berat_ikan) +
+                                " gram\n                            "
                             ),
                             _c("br"),
                             _vm._v(
@@ -3305,8 +3357,9 @@ var render = function() {
                                     _c("base-input", {
                                       attrs: {
                                         alternative: "",
-                                        label: "Panjang Ikan Terakhir",
-                                        placeholder: "Masukkan Panjang Ikan",
+                                        label: "Panjang Ikan Terakhir (cm)",
+                                        placeholder:
+                                          "Masukkan Panjang Ikan (cm)",
                                         "input-classes":
                                           "form-control-alternative",
                                         type: "number"
@@ -3321,6 +3374,25 @@ var render = function() {
                                           )
                                         },
                                         expression: "model.panjang_ikan"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("base-input", {
+                                      attrs: {
+                                        alternative: "",
+                                        label: "Berat Ikan Terakhir (gram)",
+                                        placeholder:
+                                          "Masukkan Berat Ikan (gram)",
+                                        "input-classes":
+                                          "form-control-alternative",
+                                        type: "number"
+                                      },
+                                      model: {
+                                        value: _vm.model.berat_ikan,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.model, "berat_ikan", $$v)
+                                        },
+                                        expression: "model.berat_ikan"
                                       }
                                     }),
                                     _vm._v(" "),
@@ -3375,6 +3447,11 @@ var render = function() {
                                   attrs: {
                                     type: "primary",
                                     nativeType: "submit"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.submitCuci()
+                                    }
                                   }
                                 },
                                 [_vm._v("Simpan")]
@@ -3547,15 +3624,21 @@ var render = function() {
                 _vm._v(" "),
                 _c("h4", { staticClass: "card-text font-weight-bold mt-2" }, [
                   _vm._v(
-                    "Ukuran: " +
+                    "\n                Jumlah: " +
+                      _vm._s(produksi.jumlah_ikan) +
+                      " Ekor\n                "
+                  ),
+                  _c("br"),
+                  _vm._v(
+                    "\n                Ukuran: " +
                       _vm._s(produksi.panjang_ikan) +
                       " cm\n                "
                   ),
                   _c("br"),
                   _vm._v(
-                    "\n                Jumlah: " +
-                      _vm._s(produksi.jumlah_ikan) +
-                      " Ekor\n                "
+                    "\n                Berat: " +
+                      _vm._s(produksi.berat_ikan) +
+                      " gram\n                "
                   ),
                   _c("br"),
                   _vm._v(
@@ -6665,8 +6748,8 @@ var render = function() {
                             _c("base-input", {
                               attrs: {
                                 alternative: "",
-                                label: "Panjang Ikan",
-                                placeholder: "Masukkan Panjang Ikan",
+                                label: "Ukuran Ikan (cm)",
+                                placeholder: "Masukkan Ukuran Ikan (cm)",
                                 "input-classes": "form-control-alternative",
                                 type: "number"
                               },
@@ -6676,6 +6759,23 @@ var render = function() {
                                   _vm.$set(_vm.model, "panjang_ikan", $$v)
                                 },
                                 expression: "model.panjang_ikan"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("base-input", {
+                              attrs: {
+                                alternative: "",
+                                label: "Berat Ikan (gram)",
+                                placeholder: "Masukkan Berat Ikan (gram)",
+                                "input-classes": "form-control-alternative",
+                                type: "number"
+                              },
+                              model: {
+                                value: _vm.model.berat_ikan,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.model, "berat_ikan", $$v)
+                                },
+                                expression: "model.berat_ikan"
                               }
                             }),
                             _vm._v(" "),

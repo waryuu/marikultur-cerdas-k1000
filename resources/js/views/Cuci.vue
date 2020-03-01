@@ -37,9 +37,12 @@
                         <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card shadow card-body mb-3">
                             <h3 class="card-title">{{produksi.nama_ikan}}</h3>
                             <h4 class="card-subtitle text-muted">Keramba {{produksi.keramba_id}}</h4>
-                            <h4 class="card-text font-weight-bold mt-2">Ukuran: {{produksi.panjang_ikan}} cm
-                                <br>
+                            <h4 class="card-text font-weight-bold mt-2">
                                 Jumlah: {{produksi.jumlah_ikan}} Ekor
+                                <br>
+                                Ukuran: {{produksi.panjang_ikan}} cm
+                                <br>
+                                Berat: {{produksi.berat_ikan}} gram
                                 <br>
                                 Tanggal Tebar: {{produksi.tanggal_tebar}}
                                 <br>
@@ -77,11 +80,19 @@
 
                                             />
                                             <base-input alternative=""
-                                                        label="Panjang Ikan Terakhir"
-                                                        placeholder="Masukkan Panjang Ikan"
+                                                        label="Panjang Ikan Terakhir (cm)"
+                                                        placeholder="Masukkan Panjang Ikan (cm)"
                                                         input-classes="form-control-alternative"
                                                         type="number"
                                                         v-model="model.panjang_ikan"
+
+                                            />
+                                            <base-input alternative=""
+                                                        label="Berat Ikan Terakhir (gram)"
+                                                        placeholder="Masukkan Berat Ikan (gram)"
+                                                        input-classes="form-control-alternative"
+                                                        type="number"
+                                                        v-model="model.berat_ikan"
 
                                             />
                                             <base-input alternative=""
@@ -97,7 +108,7 @@
                                 </template>
                                 <template slot="footer">
                                     <base-button type="secondary" @click="showModal = false">Batal</base-button>
-                                    <base-button type="primary" nativeType="submit">Simpan</base-button>
+                                    <base-button type="primary" @click="submitCuci()" nativeType="submit">Simpan</base-button>
                                 </template>
                             </modal>
                         </div>
@@ -129,6 +140,7 @@
           nama_ikan: '',
           jumlah_ikan: '',
           panjang_ikan: '',
+          berat_ikan: '',
           tanggal_tebar: '',
           tanggal_panen: '',
           tanggal_cuci: '',
@@ -149,7 +161,7 @@
           jumlah_ikan: '',
           panjang_ikan: '',
           tanggal_cuci: '',
-          keramba_id: '',
+          berat_ikan: '',
           produksi_id: '',
           user_id: ''
         },
@@ -164,7 +176,6 @@
     mounted() {
         this.getProduksi();
         this.model.user_id = this.user.id;
-        this.model.keramba_id = this.produksi.keramba_id;
     },
     methods:{
         async getProduksi() {
@@ -177,38 +188,36 @@
                     console.log('Fetch Data Error!');
                 });
         },
-        submitCuci(){
+        async submitCuci(){
+            this.showModal = false;
             this.errors = '';
-            this.model2.jumlah_ikan = this.model.jumlah_ikan ;
-            this.model2.panjang_ikan = this.model.panjang_ikan;
-            this.model2.tanggal_cuci = this.model.tanggal_cuci;
             let credentials = this.model;
-            let credentials2 = this.model2;
             console.log(credentials);
-            axios.all([
-                axios.post('apipencucian/store', credentials),
-                axios.post(`apipencucian/store`, credentials),
-            ])
-            .then(axios.spread((responseCuci, responseProduksi) => {
+            await axios.post('apipencucian/store', credentials)
+                .then((response) => {
                     this.$router.replace({
                         name: 'beranda'
                     })
-            }))
-            .catch(function (error) {
-                    this.errors = 'Harap isi semua form dengan benar!';
-            });
+                })
+                .catch(function (error) {
+                        this.errors = 'Harap isi semua form dengan benar!';
+                });
         },
         async showCuci(id){
             this.showModal = true;
             this.model.produksi_id = id;
-            await axios.get(`apiproduksi/${id}`)
-            .then((response) => {
-                    this.model = response.data.data;
-                    console.log(response);
-                })
-            .catch(() => {
-                    this.errors = 'Harap isi semua form dengan benar!';
-                })
+            this.model.jumlah_ikan = this.produksis[id-1].jumlah_ikan;
+            this.model.panjang_ikan = this.produksis[id-1].panjang_ikan;
+            this.model.berat_ikan = this.produksis[id-1].berat_ikan;
+            console.log(this.model);
+            // await axios.get(`apiproduksi/${id}`)
+            // .then((response) => {
+            //         this.model = response.data.data;
+            //         console.log(this.model);
+            //     })
+            // .catch(() => {
+            //         this.errors = 'Harap isi semua form dengan benar!';
+            //     })
         },
     },
   };

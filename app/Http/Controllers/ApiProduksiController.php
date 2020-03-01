@@ -21,16 +21,16 @@ class ApiProduksiController extends Controller
      */
     public function index()
     {
-    //     if(auth('api')->user()->status == 'admin'){
-    //         $produksi = ProduksiModel::paginate(5);
-    //     }
-    //     else{
-    //         $kelompok = auth('api')->user()->kelompok_id;
-    //         $produksi = ProduksiModel::where('kelompok_id', $kelompok)->paginate(5);
-    //     }
- 
-        $produksi = ProduksiModel::find(1)->pencucian()->get();
-        
+        if(auth('api')->user()->status == 'admin'){
+            $produksi = ProduksiModel::paginate(5);
+        }
+        else{
+            $kelompok = auth('api')->user()->kelompok_id;
+            $produksi = ProduksiModel::where('kelompok_id', $kelompok)->paginate(5);
+        }
+
+        // $produksi = ProduksiModel::find(1)->pencucian()->get();
+
         // $produksi = ProduksiModel::with(array('pencucian' => function($query){
         //     $query->select('id','tanggal_cuci','berat_ikan','user_id','jumlah_ikan','panjang_ikan','produksi_id');
         // }))->get();
@@ -39,9 +39,9 @@ class ApiProduksiController extends Controller
         // $produksi = ProduksiModel::paginate(5);
     }
 
-   
 
-   
+
+
 
     public function store(Request $request)
     {
@@ -58,7 +58,7 @@ class ApiProduksiController extends Controller
         $produksi->tanggal_panen = $request->input('tanggal_panen');
         $produksi->keramba_id = $request->input('keramba_id');
         $produksi->kelompok_id = $request->input('kelompok_id');
-        
+
 
         if($produksi->save()){
             return new ProduksiResources($produksi);
@@ -80,9 +80,9 @@ class ApiProduksiController extends Controller
 
     	return new ProduksiResources($panen);
     }
-   
 
-   
+
+
     public function showproduksibyidkelompok($kelompok_id)
     {
         $produksi = ProduksiModel::where(compact('kelompok_id'))->get();
@@ -103,8 +103,8 @@ class ApiProduksiController extends Controller
         $produksi = ProduksiModel::findOrFail($id);
         return new ProduksiResources($produksi);
     }
-   
-   
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -177,7 +177,7 @@ public function where(Request $request)
                     $all = ProduksiModel::where('kelompok_id',$kelompok_id)->Where('keramba_id', $keramba_id)->Where('user_id', $user_id)->paginate(2);
                 return ProduksiResources::collection($all);
                 }
-       
-   } 
+
+   }
 
 }

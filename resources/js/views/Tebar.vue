@@ -48,11 +48,19 @@
 
                                     />
                                     <base-input alternative=""
-                                                label="Panjang Ikan"
-                                                placeholder="Masukkan Panjang Ikan"
+                                                label="Ukuran Ikan (cm)"
+                                                placeholder="Masukkan Ukuran Ikan (cm)"
                                                 input-classes="form-control-alternative"
                                                 type="number"
                                                 v-model="model.panjang_ikan"
+
+                                    />
+                                    <base-input alternative=""
+                                                label="Berat Ikan (gram)"
+                                                placeholder="Masukkan Berat Ikan (gram)"
+                                                input-classes="form-control-alternative"
+                                                type="number"
+                                                v-model="model.berat_ikan"
 
                                     />
                                     <base-input alternative=""
@@ -110,6 +118,7 @@
             nama_ikan: '',
             jumlah_ikan: '',
             panjang_ikan: '',
+            berat_ikan: '',
             tanggal_tebar: '',
             keramba_id: '',
             kelompok_id: '',

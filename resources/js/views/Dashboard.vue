@@ -50,9 +50,12 @@
             <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card shadow card-body mb-3">
                 <h3 class="card-title">{{produksi.nama_ikan}}</h3>
                 <h4 class="card-subtitle text-muted">Keramba {{produksi.keramba_id}}</h4>
-                <h4 class="card-text font-weight-bold mt-2">Ukuran: {{produksi.panjang_ikan}} cm
-                    <br>
+                <h4 class="card-text font-weight-bold mt-2">
                     Jumlah: {{produksi.jumlah_ikan}} Ekor
+                    <br>
+                    Ukuran: {{produksi.panjang_ikan}} cm
+                    <br>
+                    Berat: {{produksi.berat_ikan}} gram
                     <br>
                     Tanggal Tebar: {{produksi.tanggal_tebar}}
                     <br>
@@ -134,6 +137,7 @@
           nama_ikan: '',
           jumlah_ikan: '',
           panjang_ikan: '',
+          berat_ikan: '',
           tanggal_tebar: '',
           tanggal_panen: '',
           tanggal_cuci: '',
