@@ -5,8 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\KerambaModel as Keramba;
 use App\User as User;
-use App\PencucianModel as Pencucian;
-use App\PemindahanModel as Pemindahan;
+use App\AktivitasModel as Aktivitas;
 use Carbon\Carbon;
 \Carbon\Carbon::setToStringFormat('d-m-Y');
 
@@ -23,12 +22,9 @@ class ProduksiModel extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function pencucian()
+    public function Aktivitas()
     {
-        return $this->hasMany(Pencucian::class, 'produksi_id' ,'id')->select(array('id','produksi_id','tanggal_cuci','berat_ikan','panjang_ikan'));
+        return $this->hasMany(Aktivitas::class, 'produksi_id' ,'id')->select(array('id','produksi_id','tanggal_cuci','berat_ikan','panjang_ikan'));
     }
-    public function pemindahan()
-    {
-        return $this->hasMany(Pemindahan::class, 'produksi_id', 'id');
-    }
+    
 }

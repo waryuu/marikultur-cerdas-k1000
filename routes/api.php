@@ -31,9 +31,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/apikerambaidkelompok/{kelompok_id}','ApiKerambaController@showkerambabyidkelompok');
 Route::get('/apiproduksiidkelompok/{kelompok_id}','ApiProduksiController@showproduksibyidkelompok');
 
-Route::get('/apipencucian/where','ApiPencucianController@where');
-
-Route::get('/apipemindahan/where','ApiPemindahanController@where');
+Route::get('/apiaktivitas/where','ApiAktivitasController@where');
+Route::get('/apiaktivitas','ApiAktivitasController@aktivitasget');
+Route::get('/apiaktivitas/{id}','ApiAktivitasController@showaktivitas');
+Route::post('/apiaktivitas/store','ApiAktivitasController@aktivitasstore');
+Route::put('/apiaktivitas/store','ApiAktivitasController@aktivitasstore');
+Route::delete('/apiaktivitas/delete/{id}','ApiAktivitasController@destroyaktivitas');
 
 Route::get('/apikelompok','ApiKelompokController@index');
 Route::get('/apikelompok/where','ApiKelompokController@where');

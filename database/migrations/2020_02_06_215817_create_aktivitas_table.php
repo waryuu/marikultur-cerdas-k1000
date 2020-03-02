@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePencucianTable extends Migration
+class CreateAktivitasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePencucianTable extends Migration
      */
     public function up()
     {
-        Schema::create('pencucian', function (Blueprint $table) {
+        Schema::create('aktivitas', function (Blueprint $table) {
             $table->Increments('id');
             $table->integer('jumlah_ikan')->nullable();
             $table->integer('panjang_ikan')->nullable();
@@ -23,6 +23,11 @@ class CreatePencucianTable extends Migration
             $table->foreign('produksi_id')->references('id')->on('produksi');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('tanggal_pindah')->nullable();
+            $table->integer('keramba_sebelum')->unsigned();
+            $table->foreign('keramba_sebelum')->references('id')->on('keramba');
+            $table->integer('keramba_sesudah')->unsigned();
+            $table->foreign('keramba_sesudah')->references('id')->on('keramba');
             $table->timestamps();
         });
     }
@@ -34,6 +39,6 @@ class CreatePencucianTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pencucian');
+        Schema::dropIfExists('Aktivitas');
     }
 }
