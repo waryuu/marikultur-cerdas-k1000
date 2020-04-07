@@ -3517,32 +3517,66 @@ var render = function() {
                 "router-link",
                 { staticClass: "col-6", attrs: { to: "/tebar" } },
                 [
-                  _c("stats-card", {
-                    staticClass: "mb-4 mb-xl-0",
-                    attrs: {
-                      title: "Penebaran Ikan",
-                      type: "gradient-orange",
-                      icon: "fas fa-fish"
-                    }
-                  })
-                ],
-                1
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "card shadow card-body align-items-center mb-3"
+                    },
+                    [
+                      _c(
+                        "h5",
+                        {
+                          staticClass:
+                            "card-title text-center text-uppercase text-muted mb-0"
+                        },
+                        [_vm._v("Penebaran")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-orange"
+                        },
+                        [_c("i", { staticClass: "fas fa-fish" })]
+                      )
+                    ]
+                  )
+                ]
               ),
               _vm._v(" "),
               _c(
                 "router-link",
                 { staticClass: "col-6", attrs: { to: "/cuci" } },
                 [
-                  _c("stats-card", {
-                    staticClass: "mb-4 mb-xl-0",
-                    attrs: {
-                      title: "Pencucian Ikan",
-                      type: "gradient-green",
-                      icon: "fas fa-bath"
-                    }
-                  })
-                ],
-                1
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "card shadow card-body align-items-center mb-3"
+                    },
+                    [
+                      _c(
+                        "h5",
+                        {
+                          staticClass:
+                            "card-title text-center text-uppercase text-muted mb-0"
+                        },
+                        [_vm._v("Pencucian")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-green"
+                        },
+                        [_c("i", { staticClass: "fas fa-soap" })]
+                      )
+                    ]
+                  )
+                ]
               )
             ],
             1
@@ -3556,32 +3590,60 @@ var render = function() {
                 "router-link",
                 { staticClass: "col-6", attrs: { to: "/pindah" } },
                 [
-                  _c("stats-card", {
-                    staticClass: "mb-4 mb-xl-0",
-                    attrs: {
-                      title: "Pemindahan Ikan",
-                      type: "gradient-info",
-                      icon: "fas fa-luggage-cart"
-                    }
-                  })
-                ],
-                1
+                  _c(
+                    "div",
+                    { staticClass: "card shadow card-body align-items-center" },
+                    [
+                      _c(
+                        "h5",
+                        {
+                          staticClass:
+                            "card-title text-center text-uppercase text-muted mb-0"
+                        },
+                        [_vm._v("Pemindahan")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-info"
+                        },
+                        [_c("i", { staticClass: "fas fa-retweet" })]
+                      )
+                    ]
+                  )
+                ]
               ),
               _vm._v(" "),
               _c(
                 "router-link",
                 { staticClass: "col-6", attrs: { to: "/panen" } },
                 [
-                  _c("stats-card", {
-                    staticClass: "mb-4 mb-xl-0",
-                    attrs: {
-                      title: "Panen Produksi",
-                      type: "gradient-red",
-                      icon: "fas fa-calendar-check"
-                    }
-                  })
-                ],
-                1
+                  _c(
+                    "div",
+                    { staticClass: "card shadow card-body align-items-center" },
+                    [
+                      _c(
+                        "h5",
+                        {
+                          staticClass:
+                            "card-title text-center text-uppercase text-muted mb-0"
+                        },
+                        [_vm._v("Panen")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-red"
+                        },
+                        [_c("i", { staticClass: "fas fa-clipboard-list" })]
+                      )
+                    ]
+                  )
+                ]
               )
             ],
             1

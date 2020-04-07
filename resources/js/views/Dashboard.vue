@@ -4,38 +4,38 @@
             <!-- Buttons -->
             <div class="row">
                 <router-link to="/tebar" class="col-6">
-                    <stats-card title="Penebaran Ikan"
-                                type="gradient-orange"
-                                icon="fas fa-fish"
-                                class="mb-4 mb-xl-0"
-                    >
-                    </stats-card>
+                    <div class="card shadow card-body align-items-center mb-3">
+                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Penebaran</h5>
+                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-orange">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                    </div>
                 </router-link>
                 <router-link to="/cuci" class="col-6">
-                    <stats-card title="Pencucian Ikan"
-                                type="gradient-green"
-                                icon="fas fa-bath"
-                                class="mb-4 mb-xl-0"
-                    >
-                    </stats-card>
+                    <div class="card shadow card-body align-items-center mb-3">
+                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Pencucian</h5>
+                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-green">
+                            <i class="fas fa-soap"></i>
+                        </div>
+                    </div>
                 </router-link>
             </div>
             <div class="row mt-3">
                 <router-link to="/pindah" class="col-6">
-                    <stats-card title="Pemindahan Ikan"
-                                type="gradient-info"
-                                icon="fas fa-luggage-cart"
-                                class="mb-4 mb-xl-0"
-                    >
-                    </stats-card>
+                    <div class="card shadow card-body align-items-center">
+                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Pemindahan</h5>
+                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-info">
+                            <i class="fas fa-retweet"></i>
+                        </div>
+                    </div>
                 </router-link>
                 <router-link to="/panen" class="col-6">
-                    <stats-card title="Panen Produksi"
-                                type="gradient-red"
-                                icon="fas fa-calendar-check"
-                                class="mb-4 mb-xl-0"
-                    >
-                    </stats-card>
+                   <div class="card shadow card-body align-items-center">
+                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Panen</h5>
+                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-red">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                    </div>
                 </router-link>
             </div>
         </base-header>
