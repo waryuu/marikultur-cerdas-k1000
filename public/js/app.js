@@ -31195,6 +31195,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   routes: [{
     // Default Route untuk user terauthenticated
     path: '/',
+    alias: '/index.php',
     redirect: 'beranda',
     component: _layout_DashboardLayout__WEBPACK_IMPORTED_MODULE_2__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
@@ -31340,6 +31341,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, // Default Route untuk user tidak terauthenticated
   {
     path: '/',
+    alias: '/index.php',
     redirect: 'login',
     component: _layout_AuthLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
@@ -31367,6 +31369,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, // Default Route untuk user yang tidak memiliki kelompok
   {
     path: '/',
+    alias: '/index.php',
     redirect: 'tambahkelompok',
     component: _layout_AuthLayout__WEBPACK_IMPORTED_MODULE_3__["default"],
     beforeEnter: function beforeEnter(to, from, next) {
@@ -31672,8 +31675,8 @@ _store__WEBPACK_IMPORTED_MODULE_0__["default"].subscribe(function (mutation) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\Nelayan-Laravel-Vue\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\Nelayan-Laravel-Vue\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Nelayan-Laravel-Vue\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Nelayan-Laravel-Vue\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
