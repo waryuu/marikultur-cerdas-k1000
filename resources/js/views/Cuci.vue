@@ -183,6 +183,7 @@
                 .then((response) => {
                     this.produksis = response.data.data;
                     this.meta = response.data.meta;
+                    console.log(this.produksis[0].jumlah_ikan);
                 })
                 .catch(() => {
                     console.log('Fetch Data Error!');
@@ -203,12 +204,13 @@
                         this.errors = 'Harap isi semua form dengan benar!';
                 });
         },
-        async showCuci(id){
+        showCuci(id){
             this.showModal = true;
             this.model.produksi_id = id;
-            this.model.jumlah_ikan = this.produksis[id-1].jumlah_ikan;
-            this.model.panjang_ikan = this.produksis[id-1].panjang_ikan;
-            this.model.berat_ikan = this.produksis[id-1].berat_ikan;
+            console.log(this.produksis[id-1]);
+            // this.model.jumlah_ikan = this.produksis[id-1].jumlah_ikan;
+            // this.model.panjang_ikan = this.produksis[id-1].panjang_ikan;
+            // this.model.berat_ikan = this.produksis[id-1].berat_ikan;
             console.log(this.model);
             // await axios.get(`apiproduksi/${id}`)
             // .then((response) => {

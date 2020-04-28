@@ -1,40 +1,58 @@
 <template>
     <div>
-        <base-header type="gradient-primary" class="pb-6 pb-8 pt-5 pt-md-8">
+        <base-header type="gradient-primary" class="pb-6 pb-8 pt-4 pt-md-8">
             <!-- Buttons -->
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="card shadow card-body align-items-center mb-3">
+                        <h3 class="mb-3"><i class="fas fa-map-marker-alt"></i> Kepulauan Seribu</h3>
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="text-uppercase text-muted mb-0">Kelembaban</h5>
+                                <p class="font-weight-bold">88%</p>
+                            </div>
+                            <div class="col">
+                                <h5 class="text-uppercase text-muted mb-0">Temperatur</h5>
+                                <p class="font-weight-bold">35 &#176; C</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <router-link to="/tebar" class="col-6">
                     <div class="card shadow card-body align-items-center mb-3">
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Penebaran</h5>
-                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-orange">
+                        <div class="icon icon-shape text-white rounded-circle mt-0 mb-3 shadow bg-gradient-orange">
                             <i class="fas fa-fish"></i>
                         </div>
+                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Penebaran</h5>
                     </div>
                 </router-link>
                 <router-link to="/cuci" class="col-6">
                     <div class="card shadow card-body align-items-center mb-3">
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Pencucian</h5>
-                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-green">
+                        <div class="icon icon-shape text-white rounded-circle mt-0 mb-3 shadow bg-gradient-green">
                             <i class="fas fa-soap"></i>
                         </div>
+                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Pencucian</h5>
                     </div>
                 </router-link>
             </div>
             <div class="row mt-3">
                 <router-link to="/pindah" class="col-6">
                     <div class="card shadow card-body align-items-center">
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Pemindahan</h5>
-                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-info">
+                        <div class="icon icon-shape text-white rounded-circle mt-0 mb-3 shadow bg-gradient-info">
                             <i class="fas fa-retweet"></i>
                         </div>
+                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Pemindahan</h5>
                     </div>
                 </router-link>
                 <router-link to="/panen" class="col-6">
                    <div class="card shadow card-body align-items-center">
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Panen</h5>
-                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-red">
+                        <div class="icon icon-shape text-white rounded-circle mt-0 mb-3 shadow bg-gradient-red">
                             <i class="fas fa-clipboard-list"></i>
                         </div>
+                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Panen</h5>
                     </div>
                 </router-link>
             </div>
