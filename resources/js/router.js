@@ -12,6 +12,7 @@ export default new Router({
     {
     // Default Route untuk user terauthenticated
       path: '/',
+      alias : '/index.php',
       redirect: 'beranda',
       component: DashboardLayout,
       beforeEnter: (to, from, next) => {
@@ -142,6 +143,7 @@ export default new Router({
     // Default Route untuk user tidak terauthenticated
     {
       path: '/',
+      alias : '/index.php',
       redirect: 'login',
       component: AuthLayout,
       beforeEnter: (to, from, next) => {
@@ -168,6 +170,7 @@ export default new Router({
     // Default Route untuk user yang tidak memiliki kelompok
     {
         path: '/',
+        alias : '/index.php',
         redirect: 'tambahkelompok',
         component: AuthLayout,
         beforeEnter: (to, from, next) => {

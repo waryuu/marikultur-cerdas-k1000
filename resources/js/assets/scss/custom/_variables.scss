@@ -942,7 +942,7 @@ $modal-lg:                          800px !default;
 $modal-md:                          500px !default;
 $modal-sm:                          380px !default;
 
-$modal-title-line-height:           1.1;
+$modal-title-line-height:           1.5;
 
 $modal-content-bg:                  $white !default;
 $modal-content-border-color:        rgba($black, .2) !default;
@@ -955,8 +955,8 @@ $modal-backdrop-bg:           $black !default;
 $modal-backdrop-opacity:      .16 !default;
 $modal-header-border-color:   $gray-200 !default;
 $modal-footer-border-color:   $modal-header-border-color !default;
-$modal-header-border-width:   $modal-content-border-width !default;
-$modal-footer-border-width:   $modal-header-border-width !default;
+$modal-header-border-width:   1px !default;
+$modal-footer-border-width:   1px !default;
 $modal-header-padding:        1.25rem !default;
 
 // Datepicker

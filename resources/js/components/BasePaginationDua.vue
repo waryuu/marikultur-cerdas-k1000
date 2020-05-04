@@ -1,5 +1,5 @@
 <template>
-    <ul class="pagination">
+    <ul class="pagination mb-0">
     <li class="page-item prev-page" :class="{disabled: pagination.current_page === 1}">
         <a class="page-link" href="javascript:void(0)" aria-label="Previous" v-on:click.prevent="changePage(pagination.current_page - 1)">
             <span aria-hidden="true">&#60;</span>

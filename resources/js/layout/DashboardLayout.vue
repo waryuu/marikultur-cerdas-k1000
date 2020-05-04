@@ -2,8 +2,8 @@
   <div class="wrapper" :class="{ 'nav-open': $sidebar.showSidebar }">
     <side-bar
       :background-color="sidebarBackground"
-      short-title="Nelayan"
-      title="Nelayan Cerdas K1000"
+      short-title="Marikultur"
+      title="Marikultur Cerdas K1000"
     >
       <template slot="links">
         <sidebar-item

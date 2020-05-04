@@ -25,8 +25,10 @@ class ApiProduksiController extends Controller
             $produksi = ProduksiModel::paginate(5);
         }
         else{
-            $kelompok = auth('api')->user()->kelompok_id;
-            $produksi = ProduksiModel::where('kelompok_id', $kelompok)->paginate(5);
+            // $kelompok = auth('api')->user()->kelompok_id;
+            // $produksi = ProduksiModel::where('kelompok_id', $kelompok)->paginate(5);
+            $user = auth('api')->user()->id;
+            $produksi = ProduksiModel::where('user_id', $user)->paginate(5);
         }
 
         // $produksi = ProduksiModel::find(1)->pencucian()->get();

@@ -9,12 +9,20 @@
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
                         <h1 class="display-2 text-white">Penebaran</h1>
+                        <p class="text-white mt-0 mb-5">Silahkan isi form berikut untuk melakukan penebaran</p>
                     </div>
                 </div>
             </div>
         </base-header>
 
         <div class="container-fluid mt--7">
+            <div class="row mb-3">
+                <div class="col text-left">
+                        <router-link to="/beranda" class="btn btn-secondary text-uppercase">
+                            Kembali
+                        </router-link>
+                </div>
+            </div>
             <div class="row">
                 <div class="col">
                     <card shadow type="secondary">
@@ -23,15 +31,11 @@
                                 <div class="col-8">
                                     <h3 class="mb-0">Informasi Penebaran</h3>
                                 </div>
-                                <div class="col-4 text-right">
-                                    <router-link to="/beranda" class="btn btn-sm btn-primary">Kembali</router-link>
-                                </div>
                             </div>
                         </div>
                         <template>
                             <form @submit.prevent="submitPenebaran" role="form">
                                 <!-- Data Penebaran -->
-                                <h6 class="heading-small text-muted mb-4">Silahkan Isi Form Berikut</h6>
                                 <div class="pl-lg-4">
                                     <base-input alternative=""
                                                 label="Nama Ikan"
@@ -84,12 +88,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="text-center">
-                                    <base-button nativeType="submit" type="primary" class="my-4">Simpan</base-button>
-                                </div>
-                                <hr class="my-4" />
                             </form>
                         </template>
+                        <div slot="footer" class="text-center">
+                            <base-button @click="submitPenebaran()" nativeType="submit" type="primary" class="text-uppercase">Simpan</base-button>
+                            <router-link to="/beranda" class="btn ml-auto btn-link text-uppercase">Batal</router-link>
+                        </div>
                     </card>
                 </div>
             </div>

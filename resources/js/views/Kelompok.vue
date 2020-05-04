@@ -14,31 +14,86 @@
             </div>
         </base-header>
 
+        <!-- Card -->
         <div class="container-fluid mt--7">
             <div class="row">
                 <div class="col">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
-                                <div class="col-8">
+                                <div class="col-12">
                                     <h3 class="mb-0">Informasi Kelompok</h3>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-primary">Pengaturan</a>
                                 </div>
                             </div>
                         </div>
                         <template>
-
+                            <form @submit.prevent="" role="form">
+                                <!-- Data Diri -->
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <base-input alternative=""
+                                                        label="Nama Kelompok"
+                                                        placeholder="Nama Kelompok"
+                                                        input-classes="form-control-alternative"
+                                                        
+                                            />
+                                        </div>
+                                        <div class="col-12">
+                                            <base-input alternative=""
+                                                        label="Ketua"
+                                                        placeholder="Ketua"
+                                                        input-classes="form-control-alternative"
+                                                        
+                                            />
+                                        </div>
+                                        <div class="col-12">
+                                            <base-input alternative=""
+                                                        label="Bendahara"
+                                                        placeholder="Bendahara"
+                                                        input-classes="form-control-alternative"
+                                                        
+                                            />
+                                        </div>
+                                        <div class="col-12">
+                                            <base-input alternative=""
+                                                        label="Humas"
+                                                        placeholder="Humas"
+                                                        input-classes="form-control-alternative"
+                                                        
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </form>
                         </template>
+                        <div slot="footer" class="text-center">
+                            <base-button @click="" nativeType="submit" type="primary" class="text-uppercase">Ubah</base-button>
+                        </div>
                     </card>
                 </div>
             </div>
         </div>
+        <!-- Card -->
+        <!-- Card Table -->
+        <template>
+            <div>
+                <div class="container-fluid mt-3">
+                    <div class="row">
+                        <div class="col">
+                            <projects-table title="Anggota Kelompok"></projects-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <!-- Card Table -->
     </div>
 </template>
 <script>
   import {mapGetters} from 'vuex'
+  import ProjectsTable from './Tables/ProjectsTable'
   export default {
     name: 'kelompok',
     computed: {
@@ -62,6 +117,9 @@
         }
       }
     },
+    components: {
+      ProjectsTable
+    }
   };
 </script>
 <style></style>
