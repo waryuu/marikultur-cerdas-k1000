@@ -8,7 +8,6 @@
                         <div class="card border-0 align-items-center mt-3 mb-3">
                             <h3 class="card-title text-center text-primary mb-0"><i class="fas fa-map-marker-alt"></i> Kepulauan Seribu</h3>
                         </div>
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Penebaran</h5>
                     </div>
                 </div>
                 <div class="row ml-4 mr-4">
@@ -17,14 +16,12 @@
                             <h3 class="card-title mb-0"><i class="fas fa-temperature-low"></i> Suhu</h3>
                             <h3 class="card-title mb-0"><i class="fas fa-hand-holding-water"></i> Kelembaban</h3>
                         </div>
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Pencucian</h5>
                     </div>
                     <div class="col">
                         <div class="card border-0 mt-3 mb-3">
                             <h3 class="card-title text-right mb-0">30°C</h3>
                             <h3 class="card-title text-right mb-0">20%</h3>
                         </div>
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Pemindahan</h5>
                     </div>
                 </div>
                 <div class="row mt-3 mb-3 ml-2 mr-2">

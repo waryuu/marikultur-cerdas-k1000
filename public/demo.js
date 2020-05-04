@@ -500,9 +500,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'beranda',
@@ -3574,15 +3571,6 @@ var render = function() {
                       ]
                     )
                   ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "h5",
-                  {
-                    staticClass:
-                      "card-title text-center text-uppercase text-muted mb-0"
-                  },
-                  [_vm._v("Penebaran")]
                 )
               ])
             ]),
@@ -3599,16 +3587,7 @@ var render = function() {
                     _c("i", { staticClass: "fas fa-hand-holding-water" }),
                     _vm._v(" Kelembaban")
                   ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "h5",
-                  {
-                    staticClass:
-                      "card-title text-center text-uppercase text-muted mb-0"
-                  },
-                  [_vm._v("Pencucian")]
-                )
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col" }, [
@@ -3620,16 +3599,7 @@ var render = function() {
                   _c("h3", { staticClass: "card-title text-right mb-0" }, [
                     _vm._v("20%")
                   ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "h5",
-                  {
-                    staticClass:
-                      "card-title text-center text-uppercase text-muted mb-0"
-                  },
-                  [_vm._v("Pemindahan")]
-                )
+                ])
               ])
             ]),
             _vm._v(" "),
