@@ -8,53 +8,109 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Pencucian</h1>
+                        <h1 class="display-2 text-white">Aktivitas Produksi</h1>
+                        <p class="text-white mt-0 mb-5">Pilih produksi yang akan dilakukan pencucian atau pemindahan</p>
                     </div>
                 </div>
             </div>
         </base-header>
 
+        <!-- Card Produksi -->
         <div class="container-fluid mt--7">
+            <div class="row mb-3">
+                <div class="col text-left">
+                        <router-link to="/beranda" class="btn btn-secondary text-uppercase">
+                            Kembali
+                        </router-link>
+                </div>
+            </div>
             <div class="row">
                 <div class="col">
-                    <card shadow type="secondary">
+                    <card shadow type="secondary" :noBody="true">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
                                     <h3 class="mb-0">Daftar Produksi</h3>
                                 </div>
-                                <div class="col-4 text-right">
-                                    <router-link to="/beranda" class="btn btn-sm btn-primary">Kembali</router-link>
+                                <div class="col-4 d-flex align-items-center justify-content-end">
+                                   <base-pagination-dua  :pagination="meta"
+                                        @paginate="getProduksi()"
+                                        :offset="1">
+                                    </base-pagination-dua>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <base-pagination-dua  :pagination="meta"
-                                    @paginate="getProduksi()"
-                                    :offset="1">
-                            </base-pagination-dua>
-                        </div>
-                        <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card shadow card-body mb-3">
+                        <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card card-body rounded-0 mb-3">
                             <h3 class="card-title">{{produksi.nama_ikan}}</h3>
                             <h4 class="card-subtitle text-muted">Keramba {{produksi.keramba_id}}</h4>
-                            <h4 class="card-text font-weight-bold mt-2">
-                                Jumlah: {{produksi.jumlah_ikan}} Ekor
-                                <br>
-                                Ukuran: {{produksi.panjang_ikan}} cm
-                                <br>
-                                Berat: {{produksi.berat_ikan}} gram
-                                <br>
-                                Tanggal Tebar: {{produksi.tanggal_tebar}}
-                                <br>
-                                Terakhir Mencuci: {{produksi.tanggal_cuci}}
-                                <br>
-                                Terakhir Pindah: {{produksi.tanggal_pindah}}
-                            </h4>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <h4 class="text-center text-uppercase font-weight-light">
+                                        Jumlah
+                                    </h4>
+                                    <h3 class="text-center">
+                                        {{produksi.jumlah_ikan}} Ekor
+                                    </h3>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-center text-uppercase font-weight-light">
+                                        Ukuran
+                                    </h4>
+                                    <h3 class="text-center">
+                                        {{produksi.panjang_ikan}} cm
+                                    </h3>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-center text-uppercase font-weight-light">
+                                        Berat
+                                    </h4>
+                                    <h3 class="text-center">
+                                        {{produksi.berat_ikan}} Gram
+                                    </h3>
+                                </div>
+
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <h4 class="text-left">
+                                        Tanggal Tebar
+                                    </h4>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-right font-italic">
+                                        {{produksi.tanggal_tebar}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h4 class="text-left">
+                                        Tanggal Mencuci
+                                    </h4>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-right font-italic">
+                                        {{produksi.tanggal_cuci}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h4 class="text-left">
+                                        Tanggal Pindah
+                                    </h4>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-right font-italic">
+                                        {{produksi.tanggal_pindah}}
+                                    </h4>
+                                </div>
+                            </div>
                             <form class="row align-items-center px-3" action="" method="post">
-                                <button @click="showCuci(produksi.id)" type="button" class="col btn btn-primary">Lakukan Pencucian</button>
+                                <button @click="showAktivitas(produksi.id)" type="button" class="col btn btn-primary">Lakukan Aktivitas</button>
                             </form>
                         </div>
-                        <div class="d-flex justify-content-end">
+                        <div slot="footer" class="d-flex justify-content-end">
                             <base-pagination-dua  :pagination="meta"
                                     @paginate="getProduksi()"
                                     :offset="1">
@@ -64,10 +120,10 @@
                         <div>
                             <modal :show.sync="showModal">
                                 <template slot="header">
-                                    <h4 class="modal-title" id="exampleModalLabel">Form Pencucian</h4>
+                                    <h3 class="modal-title font-weight-light" id="exampleModalLabel">Form Aktivitas</h3>
                                 </template>
-                                <template>
-                                    <form @submit.prevent="submitCuci" role="form">
+                                <template slot="body">
+                                    <form @submit.prevent="submitAktivitas" role="form">
                                         <!-- Data Cuci -->
                                         <h6 class="heading-small text-muted mb-4">Silahkan Isi Form Berikut</h6>
                                         <div class="pl-lg-4">
@@ -107,8 +163,8 @@
                                     </form>
                                 </template>
                                 <template slot="footer">
-                                    <base-button type="secondary" @click="showModal = false">Batal</base-button>
-                                    <base-button type="primary" @click="submitCuci()" nativeType="submit">Simpan</base-button>
+                                    <base-button type="primary" @click="submitAktivitas()" nativeType="submit" class="text-uppercase">Simpan</base-button>
+                                    <base-button type="link" @click="showModal = false" class="ml-auto text-uppercase">Batal</base-button>
                                 </template>
                             </modal>
                         </div>
@@ -117,13 +173,15 @@
                 </div>
             </div>
         </div>
+        <!-- End card produksi -->
+        
     </div>
 </template>
 <script>
   import {mapGetters} from 'vuex'
   import axios from 'axios'
   export default {
-    name: 'cuci',
+    name: 'aktivitas',
     computed: {
         ...mapGetters({
             user: 'auth/user'
@@ -189,7 +247,7 @@
                     console.log('Fetch Data Error!');
                 });
         },
-        async submitCuci(){
+        async submitAktivitas(){
             this.showModal = false;
             this.errors = '';
             let credentials = this.model;
@@ -204,7 +262,7 @@
                         this.errors = 'Harap isi semua form dengan benar!';
                 });
         },
-        showCuci(id){
+        showAktivitas(id){
             this.showModal = true;
             this.model.produksi_id = id;
             console.log(this.produksis[id-1]);

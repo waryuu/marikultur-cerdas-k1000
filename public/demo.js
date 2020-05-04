@@ -147,10 +147,68 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'cuci',
+  name: 'aktivitas',
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: 'auth/user'
   })),
@@ -236,8 +294,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return getProduksi;
     }(),
-    submitCuci: function () {
-      var _submitCuci = _asyncToGenerator(
+    submitAktivitas: function () {
+      var _submitAktivitas = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var _this2 = this;
@@ -268,13 +326,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee2, this);
       }));
 
-      function submitCuci() {
-        return _submitCuci.apply(this, arguments);
+      function submitAktivitas() {
+        return _submitAktivitas.apply(this, arguments);
       }
 
-      return submitCuci;
+      return submitAktivitas;
     }(),
-    showCuci: function showCuci(id) {
+    showAktivitas: function showAktivitas(id) {
       this.showModal = true;
       this.model.produksi_id = id;
       console.log(this.produksis[id - 1]); // this.model.jumlah_ikan = this.produksis[id-1].jumlah_ikan;
@@ -314,6 +372,12 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -583,12 +647,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apiproduksi?page=".concat(this.meta.current_page)).then(function (response) {
-                  _this.produksis = response.data.data;
-                  _this.meta = response.data.meta;
-                  _this.links = response.data.links;
-                  console.log(response.data);
-                })["catch"](function () {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apiproduksi?page=".concat(this.meta.current_page)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorhumtemp")]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseProd, responseHumTemp) {
+                  _this.produksis = responseProd.data.data;
+                  _this.sensorHumTemp = responseHumTemp.data;
+                  _this.meta = responseProd.data.meta;
+                  _this.links = responseProd.data.links;
+                }))["catch"](function (error) {
                   console.log('Fetch Data Produksi Error!');
                 });
 
@@ -618,10 +682,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 this.showModalSensor = true;
                 _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorsuhu/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensordo/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorhumtemp")]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseSuhu, responseDo, responseHumTemp) {
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorsuhu/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensordo/where?keramba=".concat(id))]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseSuhu, responseDo) {
                   _this2.sensorSuhu = responseSuhu.data;
                   _this2.sensorDo = responseDo.data;
-                  _this2.sensorHumTemp = responseHumTemp.data;
                 }))["catch"](function (error) {
                   console.log('Fetch Sensor Error!');
                 });
@@ -1026,6 +1089,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_clipboard2__WEBPACK_IMPORTED_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Tables_ProjectsTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tables/ProjectsTable */ "./resources/js/views/Tables/ProjectsTable.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1071,6 +1135,61 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'kelompok',
@@ -1092,6 +1211,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         about: ''
       }
     };
+  },
+  components: {
+    ProjectsTable: _Tables_ProjectsTable__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -1567,6 +1689,86 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2806,6 +3008,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3042,8 +3248,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3157,7 +3361,13 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-lg-7 col-md-10" }, [
                   _c("h1", { staticClass: "display-2 text-white" }, [
-                    _vm._v("Pencucian")
+                    _vm._v("Aktivitas Produksi")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-white mt-0 mb-5" }, [
+                    _vm._v(
+                      "Pilih produksi yang akan dilakukan pencucian atau pemindahan"
+                    )
                   ])
                 ])
               ])
@@ -3167,6 +3377,28 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "container-fluid mt--7" }, [
+        _c("div", { staticClass: "row mb-3" }, [
+          _c(
+            "div",
+            { staticClass: "col text-left" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-secondary text-uppercase",
+                  attrs: { to: "/beranda" }
+                },
+                [
+                  _vm._v(
+                    "\n                        Kembali\n                    "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c(
             "div",
@@ -3174,7 +3406,7 @@ var render = function() {
             [
               _c(
                 "card",
-                { attrs: { shadow: "", type: "secondary" } },
+                { attrs: { shadow: "", type: "secondary", noBody: true } },
                 [
                   _c(
                     "div",
@@ -3193,16 +3425,19 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "col-4 text-right" },
+                          {
+                            staticClass:
+                              "col-4 d-flex align-items-center justify-content-end"
+                          },
                           [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-sm btn-primary",
-                                attrs: { to: "/beranda" }
-                              },
-                              [_vm._v("Kembali")]
-                            )
+                            _c("base-pagination-dua", {
+                              attrs: { pagination: _vm.meta, offset: 1 },
+                              on: {
+                                paginate: function($event) {
+                                  return _vm.getProduksi()
+                                }
+                              }
+                            })
                           ],
                           1
                         )
@@ -3210,28 +3445,12 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "d-flex justify-content-end" },
-                    [
-                      _c("base-pagination-dua", {
-                        attrs: { pagination: _vm.meta, offset: 1 },
-                        on: {
-                          paginate: function($event) {
-                            return _vm.getProduksi()
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
                   _vm._l(_vm.produksis, function(produksi) {
                     return _c(
                       "div",
                       {
                         key: produksi.id,
-                        staticClass: "card shadow card-body mb-3"
+                        staticClass: "card card-body rounded-0 mb-3"
                       },
                       [
                         _c("h3", { staticClass: "card-title" }, [
@@ -3242,47 +3461,148 @@ var render = function() {
                           _vm._v("Keramba " + _vm._s(produksi.keramba_id))
                         ]),
                         _vm._v(" "),
-                        _c(
-                          "h4",
-                          { staticClass: "card-text font-weight-bold mt-2" },
-                          [
-                            _vm._v(
-                              "\n                            Jumlah: " +
-                                _vm._s(produksi.jumlah_ikan) +
-                                " Ekor\n                            "
+                        _c("div", { staticClass: "row mt-3" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-center text-uppercase font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Jumlah\n                                "
+                                )
+                              ]
                             ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                            Ukuran: " +
-                                _vm._s(produksi.panjang_ikan) +
-                                " cm\n                            "
+                            _vm._v(" "),
+                            _c("h3", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(produksi.jumlah_ikan) +
+                                  " Ekor\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-center text-uppercase font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Ukuran\n                                "
+                                )
+                              ]
                             ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                            Berat: " +
-                                _vm._s(produksi.berat_ikan) +
-                                " gram\n                            "
+                            _vm._v(" "),
+                            _c("h3", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(produksi.panjang_ikan) +
+                                  " cm\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-center text-uppercase font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Berat\n                                "
+                                )
+                              ]
                             ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                            Tanggal Tebar: " +
-                                _vm._s(produksi.tanggal_tebar) +
-                                "\n                            "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                            Terakhir Mencuci: " +
-                                _vm._s(produksi.tanggal_cuci) +
-                                "\n                            "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                            Terakhir Pindah: " +
-                                _vm._s(produksi.tanggal_pindah) +
-                                "\n                        "
+                            _vm._v(" "),
+                            _c("h3", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(produksi.berat_ikan) +
+                                  " Gram\n                                "
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mt-3" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c("h4", { staticClass: "text-left" }, [
+                              _vm._v(
+                                "\n                                    Tanggal Tebar\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              { staticClass: "text-right font-italic" },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(produksi.tanggal_tebar) +
+                                    "\n                                "
+                                )
+                              ]
                             )
-                          ]
-                        ),
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c("h4", { staticClass: "text-left" }, [
+                              _vm._v(
+                                "\n                                    Tanggal Mencuci\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              { staticClass: "text-right font-italic" },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(produksi.tanggal_cuci) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mb-3" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c("h4", { staticClass: "text-left" }, [
+                              _vm._v(
+                                "\n                                    Tanggal Pindah\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              { staticClass: "text-right font-italic" },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(produksi.tanggal_pindah) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ])
+                        ]),
                         _vm._v(" "),
                         _c(
                           "form",
@@ -3298,11 +3618,11 @@ var render = function() {
                                 attrs: { type: "button" },
                                 on: {
                                   click: function($event) {
-                                    return _vm.showCuci(produksi.id)
+                                    return _vm.showAktivitas(produksi.id)
                                   }
                                 }
                               },
-                              [_vm._v("Lakukan Pencucian")]
+                              [_vm._v("Lakukan Aktivitas")]
                             )
                           ]
                         )
@@ -3312,7 +3632,11 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "d-flex justify-content-end" },
+                    {
+                      staticClass: "d-flex justify-content-end",
+                      attrs: { slot: "footer" },
+                      slot: "footer"
+                    },
                     [
                       _c("base-pagination-dua", {
                         attrs: { pagination: _vm.meta, offset: 1 },
@@ -3342,16 +3666,16 @@ var render = function() {
                         [
                           _c("template", { slot: "header" }, [
                             _c(
-                              "h4",
+                              "h3",
                               {
-                                staticClass: "modal-title",
+                                staticClass: "modal-title font-weight-light",
                                 attrs: { id: "exampleModalLabel" }
                               },
-                              [_vm._v("Form Pencucian")]
+                              [_vm._v("Form Aktivitas")]
                             )
                           ]),
                           _vm._v(" "),
-                          [
+                          _c("template", { slot: "body" }, [
                             _c(
                               "form",
                               {
@@ -3359,7 +3683,7 @@ var render = function() {
                                 on: {
                                   submit: function($event) {
                                     $event.preventDefault()
-                                    return _vm.submitCuci($event)
+                                    return _vm.submitAktivitas($event)
                                   }
                                 }
                               },
@@ -3466,7 +3790,7 @@ var render = function() {
                                 )
                               ]
                             )
-                          ],
+                          ]),
                           _vm._v(" "),
                           _c(
                             "template",
@@ -3475,7 +3799,25 @@ var render = function() {
                               _c(
                                 "base-button",
                                 {
-                                  attrs: { type: "secondary" },
+                                  staticClass: "text-uppercase",
+                                  attrs: {
+                                    type: "primary",
+                                    nativeType: "submit"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.submitAktivitas()
+                                    }
+                                  }
+                                },
+                                [_vm._v("Simpan")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "base-button",
+                                {
+                                  staticClass: "ml-auto text-uppercase",
+                                  attrs: { type: "link" },
                                   on: {
                                     click: function($event) {
                                       _vm.showModal = false
@@ -3483,22 +3825,6 @@ var render = function() {
                                   }
                                 },
                                 [_vm._v("Batal")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "base-button",
-                                {
-                                  attrs: {
-                                    type: "primary",
-                                    nativeType: "submit"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.submitCuci()
-                                    }
-                                  }
-                                },
-                                [_vm._v("Simpan")]
                               )
                             ],
                             1
@@ -3556,22 +3882,16 @@ var render = function() {
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col" }, [
-                _c(
-                  "div",
-                  { staticClass: "card border-0 align-items-center mt-3 mb-3" },
-                  [
-                    _c(
-                      "h3",
-                      {
-                        staticClass: "card-title text-center text-primary mb-0"
-                      },
-                      [
-                        _c("i", { staticClass: "fas fa-map-marker-alt" }),
-                        _vm._v(" Kepulauan Seribu")
-                      ]
-                    )
-                  ]
-                )
+                _c("div", { staticClass: "align-items-center mt-3 mb-3" }, [
+                  _c(
+                    "h3",
+                    { staticClass: "card-title text-center text-primary mb-0" },
+                    [
+                      _c("i", { staticClass: "fas fa-map-marker-alt" }),
+                      _vm._v(" Kepulauan Seribu")
+                    ]
+                  )
+                ])
               ])
             ]),
             _vm._v(" "),
@@ -3593,11 +3913,11 @@ var render = function() {
               _c("div", { staticClass: "col" }, [
                 _c("div", { staticClass: "card border-0 mt-3 mb-3" }, [
                   _c("h3", { staticClass: "card-title text-right mb-0" }, [
-                    _vm._v("30°C")
+                    _vm._v(_vm._s(_vm.sensorHumTemp.temperature) + "°C")
                   ]),
                   _vm._v(" "),
                   _c("h3", { staticClass: "card-title text-right mb-0" }, [
-                    _vm._v("20%")
+                    _vm._v(_vm._s(_vm.sensorHumTemp.humidity) + "%")
                   ])
                 ])
               ])
@@ -3703,345 +4023,409 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "container-fluid mt--7" },
-        [
+      _c("div", { staticClass: "container-fluid mt--7" }, [
+        _c("div", { staticClass: "row" }, [
           _c(
             "div",
-            { staticClass: "d-flex justify-content-end" },
-            [
-              _c("base-pagination-dua", {
-                attrs: { pagination: _vm.meta, offset: 1 },
-                on: {
-                  paginate: function($event) {
-                    return _vm.getProduksi()
-                  }
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _vm._l(_vm.produksis, function(produksi) {
-            return _c(
-              "div",
-              { key: produksi.id, staticClass: "card shadow card-body mb-3" },
-              [
-                _c("h3", { staticClass: "card-title" }, [
-                  _vm._v(_vm._s(produksi.nama_ikan))
-                ]),
-                _vm._v(" "),
-                _c("h4", { staticClass: "card-subtitle text-muted" }, [
-                  _vm._v("Keramba " + _vm._s(produksi.keramba_id))
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row mt-3" }, [
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "h4",
-                      {
-                        staticClass:
-                          "text-center text-uppercase font-weight-light"
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Jumlah\n                    "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h3", { staticClass: "text-center" }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(produksi.jumlah_ikan) +
-                          " Ekor\n                    "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "h4",
-                      {
-                        staticClass:
-                          "text-center text-uppercase font-weight-light"
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Ukuran\n                    "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h3", { staticClass: "text-center" }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(produksi.panjang_ikan) +
-                          " cm\n                    "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c(
-                      "h4",
-                      {
-                        staticClass:
-                          "text-center text-uppercase font-weight-light"
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Berat\n                    "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h3", { staticClass: "text-center" }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(produksi.berat_ikan) +
-                          " Gram\n                    "
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row mt-3" }, [
-                  _vm._m(0, true),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c("h4", { staticClass: "text-right font-italic" }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(produksi.tanggal_tebar) +
-                          "\n                    "
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }, [
-                  _vm._m(1, true),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c("h4", { staticClass: "text-right font-italic" }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(produksi.tanggal_cuci) +
-                          "\n                    "
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row mb-3" }, [
-                  _vm._m(2, true),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col" }, [
-                    _c("h4", { staticClass: "text-right font-italic" }, [
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(produksi.tanggal_pindah) +
-                          "\n                    "
-                      )
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "form",
-                  {
-                    staticClass: "row align-items-center px-3",
-                    attrs: { action: "", method: "post" }
-                  },
-                  [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "col btn btn-primary",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            return _vm.showSensor(produksi.id)
-                          }
-                        }
-                      },
-                      [_vm._v("Sensor IoT")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "col btn btn-secondary",
-                        attrs: { type: "button" },
-                        on: {
-                          click: function($event) {
-                            return _vm.showPakan(produksi.id)
-                          }
-                        }
-                      },
-                      [_vm._v("Pakan Otomatis")]
-                    )
-                  ]
-                )
-              ]
-            )
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "d-flex justify-content-end" },
-            [
-              _c("base-pagination-dua", {
-                attrs: { pagination: _vm.meta, offset: 1 },
-                on: {
-                  paginate: function($event) {
-                    return _vm.getProduksi()
-                  }
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
+            { staticClass: "col" },
             [
               _c(
-                "modal",
-                {
-                  attrs: { show: _vm.showModalSensor },
-                  on: {
-                    "update:show": function($event) {
-                      _vm.showModalSensor = $event
-                    }
-                  }
-                },
+                "card",
+                { attrs: { shadow: "", type: "secondary", noBody: true } },
                 [
-                  _c("template", { slot: "header" }, [
-                    _c(
-                      "h4",
+                  _c(
+                    "div",
+                    {
+                      staticClass: "bg-white border-0",
+                      attrs: { slot: "header" },
+                      slot: "header"
+                    },
+                    [
+                      _c("div", { staticClass: "row align-items-center" }, [
+                        _c("div", { staticClass: "col-8" }, [
+                          _c("h3", { staticClass: "mb-0" }, [
+                            _vm._v("Daftar Produksi")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "col-4 d-flex align-items-center justify-content-end"
+                          },
+                          [
+                            _c("base-pagination-dua", {
+                              attrs: { pagination: _vm.meta, offset: 1 },
+                              on: {
+                                paginate: function($event) {
+                                  return _vm.getProduksi()
+                                }
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.produksis, function(produksi) {
+                    return _c(
+                      "div",
                       {
-                        staticClass: "modal-title",
-                        attrs: { id: "exampleModalLabel" }
+                        key: produksi.id,
+                        staticClass: "card card-body rounded-0 mb-3"
                       },
-                      [_vm._v("Informasi Sensor")]
+                      [
+                        _c("h3", { staticClass: "card-title" }, [
+                          _vm._v(_vm._s(produksi.nama_ikan))
+                        ]),
+                        _vm._v(" "),
+                        _c("h4", { staticClass: "card-subtitle text-muted" }, [
+                          _vm._v("Keramba " + _vm._s(produksi.keramba_id))
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mt-3" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-center text-uppercase font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Jumlah\n                                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("h3", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(produksi.jumlah_ikan) +
+                                  " Ekor\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-center text-uppercase font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Ukuran\n                                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("h3", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(produksi.panjang_ikan) +
+                                  " cm\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-center text-uppercase font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Berat\n                                "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("h3", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(produksi.berat_ikan) +
+                                  " Gram\n                                "
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mt-3" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              { staticClass: "text-left  font-weight-light" },
+                              [
+                                _vm._v(
+                                  "\n                                    Tanggal Tebar\n                                "
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-right font-italic font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(produksi.tanggal_tebar) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              { staticClass: "text-left font-weight-light" },
+                              [
+                                _vm._v(
+                                  "\n                                    Tanggal Mencuci\n                                "
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-right font-italic font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(produksi.tanggal_cuci) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mb-3" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              { staticClass: "text-left font-weight-light" },
+                              [
+                                _vm._v(
+                                  "\n                                    Tanggal Pindah\n                                "
+                                )
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-right font-italic font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(produksi.tanggal_pindah) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "form",
+                          {
+                            staticClass: "row align-items-center px-3",
+                            attrs: { action: "", method: "post" }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "col btn btn-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.showSensor(produksi.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Sensor IoT")]
+                            )
+                          ]
+                        )
+                      ]
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c("p", { staticClass: "text-muted" }, [
-                      _vm._v("Suhu Air")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "font-weight-bold" }, [
-                      _vm._v(_vm._s(_vm.sensorSuhu.suhu_air) + " ° C")
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c("p", { staticClass: "text-muted" }, [
-                      _vm._v("Oksigen Terlarut")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "font-weight-bold" }, [
-                      _vm._v(_vm._s(_vm.sensorDo.do_air))
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c("p", { staticClass: "text-muted" }, [
-                      _vm._v("Kelembaban")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "font-weight-bold" }, [
-                      _vm._v(_vm._s(_vm.sensorHumTemp.humidity))
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text-muted" }, [
-                      _vm._v("Temperatur Udara")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "font-weight-bold" }, [
-                      _vm._v(_vm._s(_vm.sensorHumTemp.temperature) + " ° C")
-                    ])
-                  ]),
+                  }),
                   _vm._v(" "),
                   _c(
-                    "template",
-                    { slot: "footer" },
+                    "div",
+                    {
+                      staticClass: "d-flex justify-content-end",
+                      attrs: { slot: "footer" },
+                      slot: "footer"
+                    },
+                    [
+                      _c("base-pagination-dua", {
+                        attrs: { pagination: _vm.meta, offset: 1 },
+                        on: {
+                          paginate: function($event) {
+                            return _vm.getProduksi()
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
                     [
                       _c(
-                        "base-button",
+                        "modal",
                         {
-                          attrs: { type: "secondary" },
+                          attrs: { show: _vm.showModalSensor },
                           on: {
-                            click: function($event) {
-                              _vm.showModalSensor = false
+                            "update:show": function($event) {
+                              _vm.showModalSensor = $event
                             }
                           }
                         },
-                        [_vm._v("Kembali")]
+                        [
+                          _c("template", { slot: "header" }, [
+                            _c(
+                              "h3",
+                              {
+                                staticClass: "modal-title font-weight-light",
+                                attrs: { id: "exampleModalLabel" }
+                              },
+                              [_vm._v("Informasi Sensor")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("template", { slot: "body" }, [
+                            _c("p", { staticClass: "text-muted" }, [
+                              _vm._v("Suhu Air")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "font-weight-bold" }, [
+                              _vm._v(_vm._s(_vm.sensorSuhu.suhu_air) + " ° C")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "text-muted" }, [
+                              _vm._v("Oksigen Terlarut")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "font-weight-bold" }, [
+                              _vm._v(_vm._s(_vm.sensorDo.do_air))
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "template",
+                            { slot: "footer" },
+                            [
+                              _c(
+                                "base-button",
+                                {
+                                  staticClass: "text-uppercase",
+                                  attrs: { type: "link" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.showModalSensor = false
+                                    }
+                                  }
+                                },
+                                [_vm._v("Kembali")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        2
                       )
                     ],
                     1
-                  )
-                ],
-                2
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            [
-              _c(
-                "modal",
-                {
-                  attrs: { show: _vm.showModalPakan },
-                  on: {
-                    "update:show": function($event) {
-                      _vm.showModalPakan = $event
-                    }
-                  }
-                },
-                [
-                  _c("template", { slot: "header" }, [
-                    _c(
-                      "h4",
-                      {
-                        staticClass: "modal-title",
-                        attrs: { id: "exampleModalLabel" }
-                      },
-                      [_vm._v("Informasi Pakan Otomatis")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", [
-                    _c("p", { staticClass: "text-muted" }, [_vm._v("Baterai")]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "font-weight-bold" }, [
-                      _vm._v(_vm._s(_vm.sensorPakan.baterai_pakan) + " %")
-                    ])
-                  ]),
+                  ),
                   _vm._v(" "),
                   _c(
-                    "template",
-                    { slot: "footer" },
+                    "div",
                     [
                       _c(
-                        "base-button",
+                        "modal",
                         {
-                          attrs: { type: "secondary" },
+                          attrs: { show: _vm.showModalPakan },
                           on: {
-                            click: function($event) {
-                              _vm.showModalPakan = false
+                            "update:show": function($event) {
+                              _vm.showModalPakan = $event
                             }
                           }
                         },
-                        [_vm._v("Kembali")]
+                        [
+                          _c("template", { slot: "header" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass: "modal-title",
+                                attrs: { id: "exampleModalLabel" }
+                              },
+                              [_vm._v("Informasi Pakan Otomatis")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("template", { slot: "body" }, [
+                            _c("div", [
+                              _c("p", { staticClass: "text-muted" }, [
+                                _vm._v("Baterai")
+                              ]),
+                              _vm._v(" "),
+                              _c("p", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  _vm._s(_vm.sensorPakan.baterai_pakan) + " %"
+                                )
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "template",
+                            { slot: "footer" },
+                            [
+                              _c(
+                                "base-button",
+                                {
+                                  attrs: { type: "secondary" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.showModalPakan = false
+                                    }
+                                  }
+                                },
+                                [_vm._v("Kembali")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        2
                       )
                     ],
                     1
@@ -4052,47 +4436,13 @@ var render = function() {
             ],
             1
           )
-        ],
-        2
-      )
+        ])
+      ])
     ],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col" }, [
-      _c("h4", { staticClass: "text-left" }, [
-        _vm._v("\n                        Tanggal Tebar\n                    ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col" }, [
-      _c("h4", { staticClass: "text-left" }, [
-        _vm._v(
-          "\n                        Tanggal Mencuci\n                    "
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col" }, [
-      _c("h4", { staticClass: "text-left" }, [
-        _vm._v("\n                        Tanggal Pindah\n                    ")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -4413,27 +4763,118 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "row align-items-center" }, [
-                        _c("div", { staticClass: "col-8" }, [
+                        _c("div", { staticClass: "col-12" }, [
                           _c("h3", { staticClass: "mb-0" }, [
                             _vm._v("Informasi Kelompok")
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-4 text-right" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-sm btn-primary",
-                              attrs: { href: "#!" }
-                            },
-                            [_vm._v("Pengaturan")]
-                          )
                         ])
                       ])
                     ]
                   ),
                   _vm._v(" "),
-                  void 0
+                  [
+                    _c(
+                      "form",
+                      {
+                        attrs: { role: "form" },
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                          }
+                        }
+                      },
+                      [
+                        _c("div", { staticClass: "pl-lg-4" }, [
+                          _c("div", { staticClass: "row" }, [
+                            _c(
+                              "div",
+                              { staticClass: "col-12" },
+                              [
+                                _c("base-input", {
+                                  attrs: {
+                                    alternative: "",
+                                    label: "Nama Kelompok",
+                                    placeholder: "Nama Kelompok",
+                                    "input-classes": "form-control-alternative"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-12" },
+                              [
+                                _c("base-input", {
+                                  attrs: {
+                                    alternative: "",
+                                    label: "Ketua",
+                                    placeholder: "Ketua",
+                                    "input-classes": "form-control-alternative"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-12" },
+                              [
+                                _c("base-input", {
+                                  attrs: {
+                                    alternative: "",
+                                    label: "Bendahara",
+                                    placeholder: "Bendahara",
+                                    "input-classes": "form-control-alternative"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-12" },
+                              [
+                                _c("base-input", {
+                                  attrs: {
+                                    alternative: "",
+                                    label: "Humas",
+                                    placeholder: "Humas",
+                                    "input-classes": "form-control-alternative"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ],
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "text-center",
+                      attrs: { slot: "footer" },
+                      slot: "footer"
+                    },
+                    [
+                      _c(
+                        "base-button",
+                        {
+                          staticClass: "text-uppercase",
+                          attrs: { nativeType: "submit", type: "primary" },
+                          on: { click: function($event) {} }
+                        },
+                        [_vm._v("Ubah")]
+                      )
+                    ],
+                    1
+                  )
                 ],
                 2
               )
@@ -4441,9 +4882,26 @@ var render = function() {
             1
           )
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      [
+        _c("div", [
+          _c("div", { staticClass: "container-fluid mt-3" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col" },
+                [
+                  _c("projects-table", { attrs: { title: "Anggota Kelompok" } })
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      ]
     ],
-    1
+    2
   )
 }
 var staticRenderFns = []
@@ -5110,7 +5568,11 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-lg-7 col-md-10" }, [
                   _c("h1", { staticClass: "display-2 text-white" }, [
-                    _vm._v("Panen")
+                    _vm._v("Pemanenan")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-white mt-0 mb-5" }, [
+                    _vm._v("Pilih produksi yang akan dipanen")
                   ])
                 ])
               ])
@@ -5120,6 +5582,28 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "container-fluid mt--7" }, [
+        _c("div", { staticClass: "row mb-3" }, [
+          _c(
+            "div",
+            { staticClass: "col text-left" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-secondary text-uppercase",
+                  attrs: { to: "/beranda" }
+                },
+                [
+                  _vm._v(
+                    "\n                        Kembali\n                    "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c(
             "div",
@@ -5127,7 +5611,7 @@ var render = function() {
             [
               _c(
                 "card",
-                { attrs: { shadow: "", type: "secondary" } },
+                { attrs: { shadow: "", type: "secondary", noBody: true } },
                 [
                   _c(
                     "div",
@@ -5146,16 +5630,19 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "col-4 text-right" },
+                          {
+                            staticClass:
+                              "col-4 d-flex align-items-center justify-content-end"
+                          },
                           [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-sm btn-primary",
-                                attrs: { to: "/beranda" }
-                              },
-                              [_vm._v("Kembali")]
-                            )
+                            _c("base-pagination-dua", {
+                              attrs: { pagination: _vm.meta, offset: 1 },
+                              on: {
+                                paginate: function($event) {
+                                  return _vm.getProduksi()
+                                }
+                              }
+                            })
                           ],
                           1
                         )
@@ -5163,28 +5650,12 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "d-flex justify-content-end" },
-                    [
-                      _c("base-pagination-dua", {
-                        attrs: { pagination: _vm.meta, offset: 1 },
-                        on: {
-                          paginate: function($event) {
-                            return _vm.getProduksi()
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
                   _vm._l(_vm.produksis, function(produksi) {
                     return _c(
                       "div",
                       {
                         key: produksi.id,
-                        staticClass: "card shadow card-body mb-3"
+                        staticClass: "card card-body rounded-0 mb-3"
                       },
                       [
                         _c("h3", { staticClass: "card-title" }, [
@@ -5195,41 +5666,148 @@ var render = function() {
                           _vm._v("Keramba " + _vm._s(produksi.keramba_id))
                         ]),
                         _vm._v(" "),
-                        _c(
-                          "h4",
-                          { staticClass: "card-text font-weight-bold mt-2" },
-                          [
-                            _vm._v(
-                              "Ukuran: " +
-                                _vm._s(produksi.panjang_ikan) +
-                                " cm\n                            "
+                        _c("div", { staticClass: "row mt-3" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-center text-uppercase font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Jumlah\n                                "
+                                )
+                              ]
                             ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                            Jumlah: " +
-                                _vm._s(produksi.jumlah_ikan) +
-                                " Ekor\n                            "
+                            _vm._v(" "),
+                            _c("h3", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(produksi.jumlah_ikan) +
+                                  " Ekor\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-center text-uppercase font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Ukuran\n                                "
+                                )
+                              ]
                             ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                            Tanggal Tebar: " +
-                                _vm._s(produksi.tanggal_tebar) +
-                                "\n                            "
+                            _vm._v(" "),
+                            _c("h3", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(produksi.panjang_ikan) +
+                                  " cm\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              {
+                                staticClass:
+                                  "text-center text-uppercase font-weight-light"
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Berat\n                                "
+                                )
+                              ]
                             ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                            Terakhir Mencuci: " +
-                                _vm._s(produksi.tanggal_cuci) +
-                                "\n                            "
-                            ),
-                            _c("br"),
-                            _vm._v(
-                              "\n                            Terakhir Pindah: " +
-                                _vm._s(produksi.tanggal_pindah) +
-                                "\n                        "
+                            _vm._v(" "),
+                            _c("h3", { staticClass: "text-center" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(produksi.berat_ikan) +
+                                  " Gram\n                                "
+                              )
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mt-3" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c("h4", { staticClass: "text-left" }, [
+                              _vm._v(
+                                "\n                                    Tanggal Tebar\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              { staticClass: "text-right font-italic" },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(produksi.tanggal_tebar) +
+                                    "\n                                "
+                                )
+                              ]
                             )
-                          ]
-                        ),
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c("h4", { staticClass: "text-left" }, [
+                              _vm._v(
+                                "\n                                    Tanggal Mencuci\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              { staticClass: "text-right font-italic" },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(produksi.tanggal_cuci) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row mb-3" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c("h4", { staticClass: "text-left" }, [
+                              _vm._v(
+                                "\n                                    Tanggal Pindah\n                                "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col" }, [
+                            _c(
+                              "h4",
+                              { staticClass: "text-right font-italic" },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(produksi.tanggal_pindah) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          ])
+                        ]),
                         _vm._v(" "),
                         _c(
                           "form",
@@ -5259,7 +5837,11 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "d-flex justify-content-end" },
+                    {
+                      staticClass: "d-flex justify-content-end",
+                      attrs: { slot: "footer" },
+                      slot: "footer"
+                    },
                     [
                       _c("base-pagination-dua", {
                         attrs: { pagination: _vm.meta, offset: 1 },
@@ -5269,6 +5851,103 @@ var render = function() {
                           }
                         }
                       })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    [
+                      _c(
+                        "modal",
+                        {
+                          attrs: {
+                            show: _vm.showModal,
+                            gradient: "danger",
+                            type: "danger"
+                          },
+                          on: {
+                            "update:show": function($event) {
+                              _vm.showModal = $event
+                            }
+                          }
+                        },
+                        [
+                          _c("template", { slot: "header" }, [
+                            _c(
+                              "h3",
+                              {
+                                staticClass: "modal-title font-weight-light",
+                                attrs: { id: "exampleModalLabel" }
+                              },
+                              [_vm._v("Lakukan Panen")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("template", { slot: "body" }, [
+                            _c(
+                              "form",
+                              {
+                                attrs: { role: "form" },
+                                on: {
+                                  submit: function($event) {
+                                    $event.preventDefault()
+                                  }
+                                }
+                              },
+                              [
+                                _c("h2", { staticClass: "text-white mb-4" }, [
+                                  _vm._v(
+                                    "Apakah Anda yakin ingin melakukan panen?"
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("p", [
+                                  _vm._v(
+                                    "Jika sudah dipanen proses produksi selesai dan tidak dapat dikembalikan"
+                                  )
+                                ])
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "template",
+                            { slot: "footer" },
+                            [
+                              _c(
+                                "base-button",
+                                {
+                                  staticClass: "text-uppercase",
+                                  attrs: {
+                                    type: "secondary",
+                                    nativeType: "submit"
+                                  },
+                                  on: { click: function($event) {} }
+                                },
+                                [_vm._v("Panen")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "base-button",
+                                {
+                                  staticClass:
+                                    "text-white text-uppercase ml-auto",
+                                  attrs: { type: "link" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.showModal = false
+                                    }
+                                  }
+                                },
+                                [_vm._v("Batal")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        2
+                      )
                     ],
                     1
                   )
@@ -6310,18 +6989,7 @@ var render = function() {
                 },
                 [_vm._v("\n          " + _vm._s(_vm.title) + "\n        ")]
               )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col text-right" },
-              [
-                _c("base-button", { attrs: { type: "primary", size: "sm" } }, [
-                  _vm._v("See all")
-                ])
-              ],
-              1
-            )
+            ])
           ])
         ]
       ),
@@ -6859,6 +7527,12 @@ var render = function() {
                 _c("div", { staticClass: "col-lg-7 col-md-10" }, [
                   _c("h1", { staticClass: "display-2 text-white" }, [
                     _vm._v("Penebaran")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-white mt-0 mb-5" }, [
+                    _vm._v(
+                      "Silahkan isi form berikut untuk melakukan penebaran"
+                    )
                   ])
                 ])
               ])
@@ -6868,6 +7542,28 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "container-fluid mt--7" }, [
+        _c("div", { staticClass: "row mb-3" }, [
+          _c(
+            "div",
+            { staticClass: "col text-left" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-secondary text-uppercase",
+                  attrs: { to: "/beranda" }
+                },
+                [
+                  _vm._v(
+                    "\n                        Kembali\n                    "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c(
             "div",
@@ -6890,23 +7586,7 @@ var render = function() {
                           _c("h3", { staticClass: "mb-0" }, [
                             _vm._v("Informasi Penebaran")
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-4 text-right" },
-                          [
-                            _c(
-                              "router-link",
-                              {
-                                staticClass: "btn btn-sm btn-primary",
-                                attrs: { to: "/beranda" }
-                              },
-                              [_vm._v("Kembali")]
-                            )
-                          ],
-                          1
-                        )
+                        ])
                       ])
                     ]
                   ),
@@ -6924,12 +7604,6 @@ var render = function() {
                         }
                       },
                       [
-                        _c(
-                          "h6",
-                          { staticClass: "heading-small text-muted mb-4" },
-                          [_vm._v("Silahkan Isi Form Berikut")]
-                        ),
-                        _vm._v(" "),
                         _c(
                           "div",
                           { staticClass: "pl-lg-4" },
@@ -7083,28 +7757,44 @@ var render = function() {
                               )
                             ])
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "text-center" },
-                          [
-                            _c(
-                              "base-button",
-                              {
-                                staticClass: "my-4",
-                                attrs: { nativeType: "submit", type: "primary" }
-                              },
-                              [_vm._v("Simpan")]
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("hr", { staticClass: "my-4" })
+                        ])
                       ]
                     )
-                  ]
+                  ],
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "text-center",
+                      attrs: { slot: "footer" },
+                      slot: "footer"
+                    },
+                    [
+                      _c(
+                        "base-button",
+                        {
+                          staticClass: "text-uppercase",
+                          attrs: { nativeType: "submit", type: "primary" },
+                          on: {
+                            click: function($event) {
+                              return _vm.submitPenebaran()
+                            }
+                          }
+                        },
+                        [_vm._v("Simpan")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn ml-auto btn-link text-uppercase",
+                          attrs: { to: "/beranda" }
+                        },
+                        [_vm._v("Batal")]
+                      )
+                    ],
+                    1
+                  )
                 ],
                 2
               )
@@ -7160,12 +7850,12 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-lg-7 col-md-10" }, [
                   _c("h1", { staticClass: "display-2 text-white" }, [
-                    _vm._v("Halo " + _vm._s(_vm.user.name))
+                    _vm._v("Profil")
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "text-white mt-0 mb-5" }, [
                     _vm._v(
-                      "Ini adalah halaman profil. Anda dapat mengubah data diri Anda disini"
+                      "Silahkan isi form berikut untuk mengubah data diri Anda"
                     )
                   ])
                 ])

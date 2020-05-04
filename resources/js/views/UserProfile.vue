@@ -8,8 +8,8 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Halo {{ user.name }}</h1>
-                        <p class="text-white mt-0 mb-5">Ini adalah halaman profil. Anda dapat mengubah data diri Anda disini</p>
+                        <h1 class="display-2 text-white">Profil</h1>
+                        <p class="text-white mt-0 mb-5">Silahkan isi form berikut untuk mengubah data diri Anda</p>
                     </div>
                 </div>
             </div>
@@ -17,8 +17,6 @@
 
         <div class="container-fluid mt--7">
             <div class="row">
-
-
                 <div class="col">
                     <card shadow type="secondary">
                         <div slot="header" class="bg-white border-0">

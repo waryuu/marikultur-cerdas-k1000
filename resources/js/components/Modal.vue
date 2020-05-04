@@ -9,7 +9,7 @@
          :aria-hidden="!show">
 
       <div class="modal-dialog modal-dialog-centered"
-           :class="[{'modal-notice': type === 'notice'}, modalClasses]">
+           :class="[{'modal-notice': type === 'notice'}, {'modal-danger': type === 'danger'}, modalClasses]">
         <div class="modal-content" :class="[gradient ? `bg-gradient-${gradient}` : '',modalContentClasses]">
 
           <div class="modal-header" :class="[headerClasses]" v-if="$slots.header">
@@ -26,8 +26,8 @@
             </slot>
           </div>
 
-          <div class="modal-body" :class="bodyClasses">
-            <slot></slot>
+          <div class="modal-body" :class="bodyClasses" v-if="$slots.body">
+            <slot name="body"></slot>
           </div>
 
           <div class="modal-footer" :class="footerClasses" v-if="$slots.footer">
@@ -57,7 +57,7 @@ export default {
       type: String,
       default: "",
       validator(value) {
-        let acceptedValues = ["", "notice", "mini"];
+        let acceptedValues = ["", "notice", "mini", "danger"];
         return acceptedValues.indexOf(value) !== -1;
       },
       description: 'Modal type (notice|mini|"") '
