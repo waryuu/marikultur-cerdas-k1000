@@ -78,7 +78,7 @@
     props: {
       logo: {
         type: String,
-        default: 'img/brand/logo-nelayan.png',
+        default: 'img/brand/logo-marikultur.png',
         description: 'Sidebar app logo'
       },
       autoClose: {

@@ -3933,7 +3933,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: {
     logo: {
       type: String,
-      "default": 'img/brand/logo-nelayan.png',
+      "default": 'img/brand/logo-marikultur.png',
       description: 'Sidebar app logo'
     },
     autoClose: {
@@ -11471,7 +11471,7 @@ var render = function() {
                           [
                             _c("router-link", { attrs: { to: "/" } }, [
                               _c("img", {
-                                attrs: { src: "img/brand/logo-nelayan.png" }
+                                attrs: { src: "img/brand/logo-marikultur.png" }
                               })
                             ])
                           ],
@@ -11581,7 +11581,11 @@ var render = function() {
               attrs: { slot: "brand", to: "/" },
               slot: "brand"
             },
-            [_c("img", { attrs: { src: "img/brand/logo-nelayan-putih.png" } })]
+            [
+              _c("img", {
+                attrs: { src: "img/brand/logo-marikultur-putih.png" }
+              })
+            ]
           )
         ],
         1
@@ -11775,8 +11779,8 @@ var render = function() {
         {
           attrs: {
             "background-color": _vm.sidebarBackground,
-            "short-title": "Nelayan",
-            title: "Nelayan Cerdas K1000"
+            "short-title": "Marikultur",
+            title: "Marikultur Cerdas K1000"
           }
         },
         [

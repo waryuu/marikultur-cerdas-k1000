@@ -1,42 +1,55 @@
 <template>
     <div>
-        <base-header type="gradient-primary" class="pb-6 pb-8 pt-5 pt-md-8">
+        <base-header type="gradient-primary" class="mb-8 pt-5 pb-5 pt-md-8">
             <!-- Buttons -->
-            <div class="row">
-                <router-link to="/tebar" class="col-6">
-                    <div class="card shadow card-body align-items-center mb-3">
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Penebaran</h5>
-                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-orange">
-                            <i class="fas fa-fish"></i>
+            <div class="card">
+                <div class="row">
+                    <div class="col">
+                        <div class="card border-0 align-items-center mt-3 mb-3">
+                            <h3 class="card-title text-center text-primary mb-0"><i class="fas fa-map-marker-alt"></i> Kepulauan Seribu</h3>
                         </div>
                     </div>
-                </router-link>
-                <router-link to="/cuci" class="col-6">
-                    <div class="card shadow card-body align-items-center mb-3">
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Pencucian</h5>
-                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-green">
-                            <i class="fas fa-soap"></i>
+                </div>
+                <div class="row ml-4 mr-4">
+                    <div class="col">
+                        <div class="card border-0 mt-3 mb-3">
+                            <h3 class="card-title mb-0"><i class="fas fa-temperature-low"></i> Suhu</h3>
+                            <h3 class="card-title mb-0"><i class="fas fa-hand-holding-water"></i> Kelembaban</h3>
                         </div>
                     </div>
-                </router-link>
-            </div>
-            <div class="row mt-3">
-                <router-link to="/pindah" class="col-6">
-                    <div class="card shadow card-body align-items-center">
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Pemindahan</h5>
-                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-info">
-                            <i class="fas fa-retweet"></i>
+                    <div class="col">
+                        <div class="card border-0 mt-3 mb-3">
+                            <h3 class="card-title text-right mb-0">30°C</h3>
+                            <h3 class="card-title text-right mb-0">20%</h3>
                         </div>
                     </div>
-                </router-link>
-                <router-link to="/panen" class="col-6">
-                   <div class="card shadow card-body align-items-center">
-                        <h5 class="card-title text-center text-uppercase text-muted mb-0">Panen</h5>
-                        <div class="icon icon-shape text-white rounded-circle mt-3 shadow bg-gradient-red">
-                            <i class="fas fa-clipboard-list"></i>
+                </div>
+                <div class="row mt-3 mb-3 ml-2 mr-2">
+                    <router-link to="/tebar" class="col">
+                        <div class="card border-0 align-items-center">
+                            <div class="icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-red">
+                                <i class="fas fa-fish"></i>
+                            </div>
+                            <h4 class="card-title text-center font-weight-light mb-0">Penebaran</h4>
                         </div>
-                    </div>
-                </router-link>
+                    </router-link>
+                    <router-link to="/cuci" class="col">
+                        <div class="card border-0 align-items-center">
+                            <div class="icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-red">
+                                <i class="fas fa-user-edit"></i>
+                            </div>
+                            <h4 class="card-title text-center font-weight-light mb-0">Aktivitas</h4>
+                        </div>
+                    </router-link>
+                    <router-link to="/panen" class="col">
+                        <div class="card border-0 align-items-center">
+                            <div class="icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-red">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <h4 class="card-title text-center font-weight-light mb-0">Panen</h4>
+                        </div>
+                    </router-link>
+                </div>
             </div>
         </base-header>
         <!-- Card stats -->
@@ -50,19 +63,69 @@
             <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card shadow card-body mb-3">
                 <h3 class="card-title">{{produksi.nama_ikan}}</h3>
                 <h4 class="card-subtitle text-muted">Keramba {{produksi.keramba_id}}</h4>
-                <h4 class="card-text font-weight-bold mt-2">
-                    Jumlah: {{produksi.jumlah_ikan}} Ekor
-                    <br>
-                    Ukuran: {{produksi.panjang_ikan}} cm
-                    <br>
-                    Berat: {{produksi.berat_ikan}} gram
-                    <br>
-                    Tanggal Tebar: {{produksi.tanggal_tebar}}
-                    <br>
-                    Terakhir Mencuci: {{produksi.tanggal_cuci}}
-                    <br>
-                    Terakhir Pindah: {{produksi.tanggal_pindah}}
-                </h4>
+                <div class="row mt-3">
+                    <div class="col">
+                        <h4 class="text-center text-uppercase font-weight-light">
+                            Jumlah
+                        </h4>
+                        <h3 class="text-center">
+                            {{produksi.jumlah_ikan}} Ekor
+                        </h3>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-center text-uppercase font-weight-light">
+                            Ukuran
+                        </h4>
+                        <h3 class="text-center">
+                            {{produksi.panjang_ikan}} cm
+                        </h3>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-center text-uppercase font-weight-light">
+                            Berat
+                        </h4>
+                        <h3 class="text-center">
+                            {{produksi.berat_ikan}} Gram
+                        </h3>
+                    </div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <h4 class="text-left">
+                            Tanggal Tebar
+                        </h4>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-right font-italic">
+                            {{produksi.tanggal_tebar}}
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h4 class="text-left">
+                            Tanggal Mencuci
+                        </h4>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-right font-italic">
+                            {{produksi.tanggal_cuci}}
+                        </h4>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <h4 class="text-left">
+                            Tanggal Pindah
+                        </h4>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-right font-italic">
+                            {{produksi.tanggal_pindah}}
+                        </h4>
+                    </div>
+                </div>
                 <form class="row align-items-center px-3" action="" method="post">
                     <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Sensor IoT</button>
                     <button @click="showPakan(produksi.id)" type="button" class="col btn btn-secondary">Pakan Otomatis</button>
@@ -200,7 +263,7 @@
                     this.produksis = response.data.data;
                     this.meta = response.data.meta;
                     this.links = response.data.links;
-                    console.log(this.meta);
+                    console.log(response.data);
                 })
                 .catch(() => {
                     console.log('Fetch Data Produksi Error!');
