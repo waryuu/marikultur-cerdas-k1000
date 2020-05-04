@@ -217,6 +217,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apiproduksi?page=".concat(this.meta.current_page)).then(function (response) {
                   _this.produksis = response.data.data;
                   _this.meta = response.data.meta;
+                  console.log(_this.produksis[0].jumlah_ikan);
                 })["catch"](function () {
                   console.log('Fetch Data Error!');
                 });
@@ -273,42 +274,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return submitCuci;
     }(),
-    showCuci: function () {
-      var _showCuci = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                this.showModal = true;
-                this.model.produksi_id = id;
-                this.model.jumlah_ikan = this.produksis[id - 1].jumlah_ikan;
-                this.model.panjang_ikan = this.produksis[id - 1].panjang_ikan;
-                this.model.berat_ikan = this.produksis[id - 1].berat_ikan;
-                console.log(this.model); // await axios.get(`apiproduksi/${id}`)
-                // .then((response) => {
-                //         this.model = response.data.data;
-                //         console.log(this.model);
-                //     })
-                // .catch(() => {
-                //         this.errors = 'Harap isi semua form dengan benar!';
-                //     })
+    showCuci: function showCuci(id) {
+      this.showModal = true;
+      this.model.produksi_id = id;
+      console.log(this.produksis[id - 1]); // this.model.jumlah_ikan = this.produksis[id-1].jumlah_ikan;
+      // this.model.panjang_ikan = this.produksis[id-1].panjang_ikan;
+      // this.model.berat_ikan = this.produksis[id-1].berat_ikan;
 
-              case 6:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-
-      function showCuci(_x) {
-        return _showCuci.apply(this, arguments);
-      }
-
-      return showCuci;
-    }()
+      console.log(this.model); // await axios.get(`apiproduksi/${id}`)
+      // .then((response) => {
+      //         this.model = response.data.data;
+      //         console.log(this.model);
+      //     })
+      // .catch(() => {
+      //         this.errors = 'Harap isi semua form dengan benar!';
+      //     })
+    }
   }
 });
 
@@ -333,6 +314,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -3590,6 +3574,15 @@ var render = function() {
                       ]
                     )
                   ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    staticClass:
+                      "card-title text-center text-uppercase text-muted mb-0"
+                  },
+                  [_vm._v("Penebaran")]
                 )
               ])
             ]),
@@ -3606,7 +3599,16 @@ var render = function() {
                     _c("i", { staticClass: "fas fa-hand-holding-water" }),
                     _vm._v(" Kelembaban")
                   ])
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    staticClass:
+                      "card-title text-center text-uppercase text-muted mb-0"
+                  },
+                  [_vm._v("Pencucian")]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col" }, [
@@ -3618,7 +3620,16 @@ var render = function() {
                   _c("h3", { staticClass: "card-title text-right mb-0" }, [
                     _vm._v("20%")
                   ])
-                ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    staticClass:
+                      "card-title text-center text-uppercase text-muted mb-0"
+                  },
+                  [_vm._v("Pemindahan")]
+                )
               ])
             ]),
             _vm._v(" "),
