@@ -11628,7 +11628,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "container mt--8 pb-5" },
+        { staticClass: "container mt--8 pb-3" },
         [
           _c(
             "slide-y-up-transition",
@@ -11686,7 +11686,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "header-body text-center mb-7" }, [
+      _c("div", { staticClass: "header-body text-center mb-5" }, [
         _c("div", { staticClass: "row justify-content-center" }, [
           _c("div", { staticClass: "col-lg-5 col-md-6" }, [
             _c("h1", { staticClass: "text-white" }, [

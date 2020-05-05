@@ -82,7 +82,7 @@
                 <div class="container-fluid mt-3">
                     <div class="row">
                         <div class="col">
-                            <projects-table title="Anggota Kelompok"></projects-table>
+                            <anggota-table title="Anggota Kelompok"></anggota-table>
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
 </template>
 <script>
   import {mapGetters} from 'vuex'
-  import ProjectsTable from './Tables/ProjectsTable'
+  import AnggotaTable from './Tables/AnggotaTable'
   export default {
     name: 'kelompok',
     computed: {
@@ -118,7 +118,7 @@
       }
     },
     components: {
-      ProjectsTable
+      AnggotaTable
     }
   };
 </script>

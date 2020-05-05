@@ -90,9 +90,9 @@
                                 </div>
                             </form>
                         </template>
-                        <div slot="footer" class="text-center">
-                            <base-button @click="submitPenebaran()" nativeType="submit" type="primary" class="text-uppercase">Simpan</base-button>
-                            <router-link to="/beranda" class="btn ml-auto btn-link text-uppercase">Batal</router-link>
+                        <div slot="footer" class="text-center d-flex">
+                            <router-link to="/beranda" class="btn btn-link text-uppercase">Batal</router-link>
+                            <base-button @click="submitPenebaran()" nativeType="submit" type="primary" class="text-uppercase ml-auto">Simpan</base-button>
                         </div>
                     </card>
                 </div>

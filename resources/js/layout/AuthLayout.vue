@@ -57,7 +57,7 @@
         <!-- Header -->
         <div class="header bg-primary py-7 py-lg-8">
             <div class="container">
-                <div class="header-body text-center mb-7">
+                <div class="header-body text-center mb-5">
                     <div class="row justify-content-center">
                         <div class="col-lg-5 col-md-6">
                             <h1 class="text-white">Selamat Datang!</h1>
@@ -74,7 +74,7 @@
             </div>
         </div>
         <!-- Page content -->
-        <div class="container mt--8 pb-5">
+        <div class="container mt--8 pb-3">
             <slide-y-up-transition mode="out-in" origin="center top">
                 <router-view></router-view>
             </slide-y-up-transition>

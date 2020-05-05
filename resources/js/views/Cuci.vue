@@ -163,8 +163,8 @@
                                     </form>
                                 </template>
                                 <template slot="footer">
-                                    <base-button type="primary" @click="submitAktivitas()" nativeType="submit" class="text-uppercase">Simpan</base-button>
-                                    <base-button type="link" @click="showModal = false" class="ml-auto text-uppercase">Batal</base-button>
+                                    <base-button type="link" @click="showModal = false" class="text-uppercase">Batal</base-button>
+                                    <base-button type="primary" @click="submitAktivitas()" nativeType="submit" class="text-uppercase ml-auto">Simpan</base-button>
                                 </template>
                             </modal>
                         </div>
