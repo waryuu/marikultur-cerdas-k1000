@@ -16,11 +16,14 @@ class CreateProduksiTable extends Migration
         Schema::create('produksi', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('nama_ikan')->nullable();
-            $table->integer('jumlah_ikan')->nullable();
-            $table->integer('panjang_ikan')->nullable();
+            $table->integer('jumlah_ikan_awal')->nullable();
+            $table->integer('panjang_ikan_awal')->nullable();
             $table->string('tanggal_tebar')->nullable();
             $table->string('tanggal_panen')->nullable();
-            $table->string('berat_ikan')->nullable();
+            $table->string('berat_ikan_awal')->nullable();
+            $table->string('berat_ikan_akhir')->nullable();
+            $table->integer('jumlah_ikan_akhir')->nullable();
+            $table->integer('panjang_ikan_akhir')->nullable();
             // $table->string('tanggal_cuci')->nullable();
             // $table->string('tanggal_pindah')->nullable();
             $table->string('status_panen')->default('Pembesaran');
