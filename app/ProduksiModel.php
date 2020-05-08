@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\KerambaModel as Keramba;
 use App\User as User;
 use App\AktivitasModel as Aktivitas;
@@ -24,7 +25,8 @@ class ProduksiModel extends Model
     }
     public function Aktivitas()
     {
-        return $this->hasMany(Aktivitas::class, 'produksi_id' ,'id')->select(array('id','produksi_id','tanggal_cuci','berat_ikan','panjang_ikan'));
+        return $this->hasMany(Aktivitas::class, 'produksi_id', 'id')->select(array('id','produksi_id','jumlah_ikan','tanggal_cuci','berat_ikan','panjang_ikan','tanggal_pindah','keramba_sebelum','keramba_sesudah'));
     }
     
 }
+// return $this->hasMany(Aktivitas::class, 'produksi_id' ,'id')->select(array('id','produksi_id','jumlah_ikan','tanggal_cuci','berat_ikan','panjang_ikan','tanggal_pindah','keramba_sebelum','keramba_sesudah'));

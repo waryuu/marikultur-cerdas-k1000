@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use DB;
 use App\ProduksiModel;
+use App\AktivitasModel;
 use App\Http\Resources\ProduksiResources;
 use App\PencucianModel;
 use App\Http\Resources\PencucianResources;
 use App\PemindahanModel;
 use App\Http\Resources\PemindahanResources;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ApiProduksiController extends Controller
 {
@@ -40,6 +43,23 @@ class ApiProduksiController extends Controller
         return  ProduksiResources::collection($produksi);
         // $produksi = ProduksiModel::paginate(5);
     }
+
+ 
+    public function getallproduksi()
+    {
+        $produksi = DB::table('produksi')
+            ->join('aktivitas', 'produksi_id', '=', 'produksi.id')
+            ->select('produksi.*', 'aktivitas.jumlah_ikan','aktivitas.panjang_ikan','aktivitas.berat_ikan','aktivitas.tanggal_cuci',
+            'aktivitas.tanggal_pindah','aktivitas.keramba_sebelum','aktivitas.keramba_sesudah')
+            ->get();
+
+        return ProduksiResources::collection($produksi);
+
+      
+        // $produksi = ProduksiModel::with('Aktivitas')->find(1);
+        // return  new ProduksiResources($produksi);
+    }
+
 
     public function store(Request $request)
     {
@@ -84,8 +104,6 @@ class ApiProduksiController extends Controller
 
     	return new ProduksiResources($panen);
     }
-
-
 
     public function showproduksibyidkelompok($kelompok_id)
     {

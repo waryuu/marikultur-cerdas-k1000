@@ -60,6 +60,7 @@ Route::put('/apikeramba/store','ApiKerambaController@store');
 Route::delete('/apikeramba/delete/{id}','ApiKerambaController@destroy');
 
 Route::get('/apiproduksi','ApiProduksiController@index');
+Route::get('/apiproduksiall','ApiProduksiController@getallproduksi');
 Route::get('/apiproduksi/where','ApiProduksiController@where');
 Route::get('/apiproduksi/{id}','ApiProduksiController@show');
 Route::post('/apiproduksi/store','ApiProduksiController@store');
