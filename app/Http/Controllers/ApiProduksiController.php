@@ -51,13 +51,15 @@ class ApiProduksiController extends Controller
             ->join('aktivitas', 'produksi_id', '=', 'produksi.id')
             ->select('produksi.*', 'aktivitas.jumlah_ikan','aktivitas.panjang_ikan','aktivitas.berat_ikan','aktivitas.tanggal_cuci',
             'aktivitas.tanggal_pindah','aktivitas.keramba_sebelum','aktivitas.keramba_sesudah')
+            ->groupBy('produksi.id')
+            ->orderBy('aktivitas.created_at')
             ->get();
 
-        return ProduksiResources::collection($produksi);
+        return  ProduksiResources::collection($produksi);
 
       
         // $produksi = ProduksiModel::with('Aktivitas')->find(1);
-        // return  new ProduksiResources($produksi);
+        // return  NEW ProduksiResources($produksi);
     }
 
 
