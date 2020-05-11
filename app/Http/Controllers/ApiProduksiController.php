@@ -48,19 +48,25 @@ class ApiProduksiController extends Controller
     public function getallproduksi()
     {
         $produksi = DB::table('produksi')
-            ->join('aktivitas', 'produksi_id', '=', 'produksi.id')
+            ->leftjoin('aktivitas', 'produksi_id', '=', 'produksi.id')
             ->select('produksi.*', 'aktivitas.jumlah_ikan','aktivitas.panjang_ikan','aktivitas.berat_ikan','aktivitas.tanggal_cuci',
             'aktivitas.tanggal_pindah','aktivitas.keramba_sebelum','aktivitas.keramba_sesudah')
             ->groupBy('produksi.id')
-            ->orderBy('aktivitas.created_at')
+            ->whereRaw('aktivitas.id IN (select MAX(aktivitas.id) FROM aktivitas GROUP BY aktivitas.produksi_id)')
+            ->orWhereNull('produksi_id')
             ->get();
 
         return  ProduksiResources::collection($produksi);
 
-      
+        // ,DB::raw("SELECT MAX(id)
+        //     FROM volumes
+        //     GROUP BY journal_id)")
+
+        // , DB::raw('MAX(aktivitas.id) as aktivitas_id')
         // $produksi = ProduksiModel::with('Aktivitas')->find(1);
         // return  NEW ProduksiResources($produksi);
     }
+    
 
 
     public function store(Request $request)
