@@ -21,6 +21,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function(){
     Route::put('update/profile','ApiProfileController@updateProfile');
     Route::get('me','ApiMeController');
     Route::get('user','ApiUserController@index');
+    Route::get('user/{idKelompok}','ApiUserController@byIdKelompok');
 });
 
 

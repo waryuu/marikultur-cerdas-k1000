@@ -14,4 +14,9 @@ class ApiUserController extends Controller
             $user = User::paginate(5);
             return UserResources::collection($user);   
     }
+    public function byIdKelompok($idKelompok)
+    {
+            $user = User::where('kelompok_id', $idKelompok)->paginate(5);
+            return UserResources::collection($user);
+    }
 }

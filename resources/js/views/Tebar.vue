@@ -48,7 +48,7 @@
                                                 placeholder="Masukkan Jumlah Ikan"
                                                 input-classes="form-control-alternative"
                                                 type="number"
-                                                v-model="model.jumlah_ikan"
+                                                v-model="model.jumlah_ikan_awal"
 
                                     />
                                     <base-input alternative=""
@@ -56,7 +56,7 @@
                                                 placeholder="Masukkan Ukuran Ikan (cm)"
                                                 input-classes="form-control-alternative"
                                                 type="number"
-                                                v-model="model.panjang_ikan"
+                                                v-model="model.panjang_ikan_awal"
 
                                     />
                                     <base-input alternative=""
@@ -64,7 +64,7 @@
                                                 placeholder="Masukkan Berat Ikan (gram)"
                                                 input-classes="form-control-alternative"
                                                 type="number"
-                                                v-model="model.berat_ikan"
+                                                v-model="model.berat_ikan_awal"
 
                                     />
                                     <base-input alternative=""
@@ -120,9 +120,9 @@
         },
         model: {
             nama_ikan: '',
-            jumlah_ikan: '',
-            panjang_ikan: '',
-            berat_ikan: '',
+            jumlah_ikan_awal: '',
+            panjang_ikan_awal: '',
+            berat_ikan_awal: '',
             tanggal_tebar: '',
             keramba_id: '',
             kelompok_id: '',

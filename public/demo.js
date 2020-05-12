@@ -221,9 +221,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       produksi: {
         id: '',
         nama_ikan: '',
-        jumlah_ikan: '',
-        panjang_ikan: '',
-        berat_ikan: '',
+        jumlah_ikan_awal: '',
+        panjang_ikan_awal: '',
+        berat_ikan_awal: '',
         tanggal_tebar: '',
         tanggal_panen: '',
         tanggal_cuci: '',
@@ -577,9 +577,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       produksi: {
         id: '',
         nama_ikan: '',
-        jumlah_ikan: '',
-        panjang_ikan: '',
-        berat_ikan: '',
+        jumlah_ikan_awal: '',
+        panjang_ikan_awal: '',
+        berat_ikan_awal: '',
         tanggal_tebar: '',
         tanggal_panen: '',
         tanggal_cuci: '',
@@ -652,6 +652,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.sensorHumTemp = responseHumTemp.data;
                   _this.meta = responseProd.data.meta;
                   _this.links = responseProd.data.links;
+                  console.log(responseProd.data.data);
                 }))["catch"](function (error) {
                   console.log('Fetch Data Produksi Error!');
                 });
@@ -1088,8 +1089,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_clipboard2__WEBPACK_IMPORTED_
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var _Tables_AnggotaTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tables/AnggotaTable */ "./resources/js/views/Tables/AnggotaTable.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Tables_AnggotaTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Tables/AnggotaTable */ "./resources/js/views/Tables/AnggotaTable.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1189,31 +1200,65 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'kelompok',
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     authenticated: 'auth/authenticated',
     user: 'auth/user'
   })),
   data: function data() {
     return {
-      model: {
-        username: '',
-        email: '',
-        firstName: '',
-        lastName: '',
-        address: '',
-        city: '',
-        country: '',
-        zipCode: '',
-        about: ''
+      kel: {
+        nama_kelompok: '',
+        ketua_kelompok: '',
+        bendahara_kelompok: '',
+        humas_kelompok: ''
       }
     };
   },
+  mounted: function mounted() {
+    this.getData();
+  },
+  methods: {
+    getData: function () {
+      var _getData = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apikelompok/".concat(this.user.kelompok_id)).then(function (response) {
+                  _this.kel = response.data.data;
+                  console.log(_this.kel);
+                })["catch"](function () {
+                  console.log('Fetch Data Error!');
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getData() {
+        return _getData.apply(this, arguments);
+      }
+
+      return getData;
+    }()
+  },
   components: {
-    AnggotaTable: _Tables_AnggotaTable__WEBPACK_IMPORTED_MODULE_1__["default"]
+    AnggotaTable: _Tables_AnggotaTable__WEBPACK_IMPORTED_MODULE_3__["default"]
   }
 });
 
@@ -1850,8 +1895,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       produksi: {
         id: '',
         nama_ikan: '',
-        jumlah_ikan: '',
-        panjang_ikan: '',
+        jumlah_ikan_awal: '',
+        panjang_ikan_awal: '',
+        berat_ikan_awal: '',
         tanggal_tebar: '',
         tanggal_panen: '',
         tanggal_cuci: '',
@@ -2550,6 +2596,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2627,84 +2683,69 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'anggota-table',
   props: {
     type: {
       type: String
     },
-    title: String
+    title: String,
+    id_kelompok: {
+      type: Number
+    }
   },
   data: function data() {
     return {
-      tableData: [{
-        img: 'img/theme/bootstrap.jpg',
-        title: 'Argon Design System',
-        budget: '$2500 USD',
-        status: 'pending',
-        statusType: 'warning',
-        completion: 60
-      }, {
-        img: 'img/theme/angular.jpg',
-        title: 'Angular Now UI Kit PRO',
-        budget: '$1800 USD',
-        status: 'completed',
-        statusType: 'success',
-        completion: 100
-      }, {
-        img: 'img/theme/sketch.jpg',
-        title: 'Black Dashboard',
-        budget: '$3150 USD',
-        status: 'delayed',
-        statusType: 'danger',
-        completion: 72
-      }, {
-        img: 'img/theme/react.jpg',
-        title: 'React Material Dashboard',
-        budget: '$4400 USD',
-        status: 'on schedule',
-        statusType: 'info',
-        completion: 90
-      }, {
-        img: 'img/theme/vue.jpg',
-        title: 'Vue Paper UI Kit PRO',
-        budget: '$2200 USD',
-        status: 'completed',
-        statusType: 'success',
-        completion: 100
-      }]
+      tableData: [],
+      meta: {
+        current_page: 1,
+        from: 1,
+        last_page: '',
+        path: '',
+        per_page: '',
+        to: '',
+        total: ''
+      }
     };
+  },
+  mounted: function mounted() {
+    this.getData();
+  },
+  methods: {
+    getData: function () {
+      var _getData = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var _this = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("auth/user/".concat(this.id_kelompok, "?page=").concat(this.meta.current_page)).then(function (response) {
+                  _this.tableData = response.data.data;
+                  _this.meta = response.data.meta;
+                  console.log(_this.tableData);
+                })["catch"](function () {
+                  console.log('Fetch Data Tabel Error!');
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getData() {
+        return _getData.apply(this, arguments);
+      }
+
+      return getData;
+    }()
   }
 });
 
@@ -3198,9 +3239,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       model: {
         nama_ikan: '',
-        jumlah_ikan: '',
-        panjang_ikan: '',
-        berat_ikan: '',
+        jumlah_ikan_awal: '',
+        panjang_ikan_awal: '',
+        berat_ikan_awal: '',
         tanggal_tebar: '',
         keramba_id: '',
         kelompok_id: '',
@@ -3648,7 +3689,7 @@ var render = function() {
                             _c("h3", { staticClass: "text-center" }, [
                               _vm._v(
                                 "\n                                    " +
-                                  _vm._s(produksi.jumlah_ikan) +
+                                  _vm._s(produksi.jumlah_ikan_awal) +
                                   " Ekor\n                                "
                               )
                             ])
@@ -3671,7 +3712,7 @@ var render = function() {
                             _c("h3", { staticClass: "text-center" }, [
                               _vm._v(
                                 "\n                                    " +
-                                  _vm._s(produksi.panjang_ikan) +
+                                  _vm._s(produksi.panjang_ikan_awal) +
                                   " cm\n                                "
                               )
                             ])
@@ -3694,7 +3735,7 @@ var render = function() {
                             _c("h3", { staticClass: "text-center" }, [
                               _vm._v(
                                 "\n                                    " +
-                                  _vm._s(produksi.berat_ikan) +
+                                  _vm._s(produksi.berat_ikan_awal) +
                                   " Gram\n                                "
                               )
                             ])
@@ -4273,7 +4314,7 @@ var render = function() {
                             _c("h3", { staticClass: "text-center" }, [
                               _vm._v(
                                 "\n                                    " +
-                                  _vm._s(produksi.jumlah_ikan) +
+                                  _vm._s(produksi.jumlah_ikan_awal) +
                                   " Ekor\n                                "
                               )
                             ])
@@ -4296,7 +4337,7 @@ var render = function() {
                             _c("h3", { staticClass: "text-center" }, [
                               _vm._v(
                                 "\n                                    " +
-                                  _vm._s(produksi.panjang_ikan) +
+                                  _vm._s(produksi.panjang_ikan_awal) +
                                   " cm\n                                "
                               )
                             ])
@@ -4319,7 +4360,7 @@ var render = function() {
                             _c("h3", { staticClass: "text-center" }, [
                               _vm._v(
                                 "\n                                    " +
-                                  _vm._s(produksi.berat_ikan) +
+                                  _vm._s(produksi.berat_ikan_awal) +
                                   " Gram\n                                "
                               )
                             ])
@@ -4965,6 +5006,13 @@ var render = function() {
                                     label: "Nama Kelompok",
                                     placeholder: "Nama Kelompok",
                                     "input-classes": "form-control-alternative"
+                                  },
+                                  model: {
+                                    value: _vm.kel.nama_kelompok,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.kel, "nama_kelompok", $$v)
+                                    },
+                                    expression: "kel.nama_kelompok"
                                   }
                                 })
                               ],
@@ -4981,6 +5029,13 @@ var render = function() {
                                     label: "Ketua",
                                     placeholder: "Ketua",
                                     "input-classes": "form-control-alternative"
+                                  },
+                                  model: {
+                                    value: _vm.kel.ketua_kelompok,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.kel, "ketua_kelompok", $$v)
+                                    },
+                                    expression: "kel.ketua_kelompok"
                                   }
                                 })
                               ],
@@ -4997,6 +5052,17 @@ var render = function() {
                                     label: "Bendahara",
                                     placeholder: "Bendahara",
                                     "input-classes": "form-control-alternative"
+                                  },
+                                  model: {
+                                    value: _vm.kel.bendahara_kelompok,
+                                    callback: function($$v) {
+                                      _vm.$set(
+                                        _vm.kel,
+                                        "bendahara_kelompok",
+                                        $$v
+                                      )
+                                    },
+                                    expression: "kel.bendahara_kelompok"
                                   }
                                 })
                               ],
@@ -5013,6 +5079,13 @@ var render = function() {
                                     label: "Humas",
                                     placeholder: "Humas",
                                     "input-classes": "form-control-alternative"
+                                  },
+                                  model: {
+                                    value: _vm.kel.humas_kelompok,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.kel, "humas_kelompok", $$v)
+                                    },
+                                    expression: "kel.humas_kelompok"
                                   }
                                 })
                               ],
@@ -5060,7 +5133,14 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "col" },
-                [_c("anggota-table", { attrs: { title: "Anggota Kelompok" } })],
+                [
+                  _c("anggota-table", {
+                    attrs: {
+                      title: "Anggota Kelompok",
+                      id_kelompok: _vm.user.kelompok_id
+                    }
+                  })
+                ],
                 1
               )
             ])
@@ -5851,7 +5931,7 @@ var render = function() {
                             _c("h3", { staticClass: "text-center" }, [
                               _vm._v(
                                 "\n                                    " +
-                                  _vm._s(produksi.jumlah_ikan) +
+                                  _vm._s(produksi.jumlah_ikan_awal) +
                                   " Ekor\n                                "
                               )
                             ])
@@ -5874,7 +5954,7 @@ var render = function() {
                             _c("h3", { staticClass: "text-center" }, [
                               _vm._v(
                                 "\n                                    " +
-                                  _vm._s(produksi.panjang_ikan) +
+                                  _vm._s(produksi.panjang_ikan_awal) +
                                   " cm\n                                "
                               )
                             ])
@@ -5897,7 +5977,7 @@ var render = function() {
                             _c("h3", { staticClass: "text-center" }, [
                               _vm._v(
                                 "\n                                    " +
-                                  _vm._s(produksi.berat_ikan) +
+                                  _vm._s(produksi.berat_ikan_awal) +
                                   " Gram\n                                "
                               )
                             ])
@@ -7184,25 +7264,9 @@ var render = function() {
                     return [
                       _c("th", { attrs: { scope: "row" } }, [
                         _c("div", { staticClass: "media align-items-center" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "avatar rounded-circle mr-3",
-                              attrs: { href: "#" }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  alt: "Image placeholder",
-                                  src: row.img
-                                }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
                           _c("div", { staticClass: "media-body" }, [
                             _c("span", { staticClass: "name mb-0 text-sm" }, [
-                              _vm._v(_vm._s(row.title))
+                              _vm._v(_vm._s(row.name))
                             ])
                           ])
                         ])
@@ -7210,7 +7274,7 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", { staticClass: "budget" }, [
                         _vm._v(
-                          "\n          " + _vm._s(row.budget) + "\n        "
+                          "\n          " + _vm._s(row.email) + "\n        "
                         )
                       ]),
                       _vm._v(" "),
@@ -7219,13 +7283,8 @@ var render = function() {
                         [
                           _c(
                             "badge",
-                            {
-                              staticClass: "badge-dot mr-4",
-                              attrs: { type: row.statusType }
-                            },
+                            { staticClass: "badge-dot mr-4 text-capitalize" },
                             [
-                              _c("i", { class: "bg-" + row.statusType }),
-                              _vm._v(" "),
                               _c("span", { staticClass: "status" }, [
                                 _vm._v(_vm._s(row.status))
                               ])
@@ -7234,117 +7293,6 @@ var render = function() {
                         ],
                         1
                       ),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("div", { staticClass: "avatar-group" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "avatar avatar-sm rounded-circle",
-                              attrs: {
-                                href: "#",
-                                "data-toggle": "tooltip",
-                                "data-original-title": "Ryan Tompson"
-                              }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  alt: "Image placeholder",
-                                  src: "img/theme/team-1-800x800.jpg"
-                                }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "avatar avatar-sm rounded-circle",
-                              attrs: {
-                                href: "#",
-                                "data-toggle": "tooltip",
-                                "data-original-title": "Romina Hadid"
-                              }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  alt: "Image placeholder",
-                                  src: "img/theme/team-2-800x800.jpg"
-                                }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "avatar avatar-sm rounded-circle",
-                              attrs: {
-                                href: "#",
-                                "data-toggle": "tooltip",
-                                "data-original-title": "Alexander Smith"
-                              }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  alt: "Image placeholder",
-                                  src: "img/theme/team-3-800x800.jpg"
-                                }
-                              })
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "avatar avatar-sm rounded-circle",
-                              attrs: {
-                                href: "#",
-                                "data-toggle": "tooltip",
-                                "data-original-title": "Jessica Doe"
-                              }
-                            },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  alt: "Image placeholder",
-                                  src: "img/theme/team-4-800x800.jpg"
-                                }
-                              })
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "div",
-                          { staticClass: "d-flex align-items-center" },
-                          [
-                            _c("span", { staticClass: "completion mr-2" }, [
-                              _vm._v(_vm._s(row.completion) + "%")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              [
-                                _c("base-progress", {
-                                  staticClass: "pt-0",
-                                  attrs: {
-                                    type: row.statusType,
-                                    "show-percentage": false,
-                                    value: row.completion
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          ]
-                        )
-                      ]),
                       _vm._v(" "),
                       _c(
                         "td",
@@ -7415,15 +7363,11 @@ var render = function() {
             },
             [
               _c("template", { slot: "columns" }, [
-                _c("th", [_vm._v("Project")]),
+                _c("th", [_vm._v("Nama")]),
                 _vm._v(" "),
-                _c("th", [_vm._v("Budget")]),
+                _c("th", [_vm._v("Email")]),
                 _vm._v(" "),
                 _c("th", [_vm._v("Status")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Users")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Completion")]),
                 _vm._v(" "),
                 _c("th")
               ])
@@ -7440,7 +7384,16 @@ var render = function() {
           staticClass: "card-footer d-flex justify-content-end",
           class: _vm.type === "dark" ? "bg-transparent" : ""
         },
-        [_c("base-pagination", { attrs: { total: 30 } })],
+        [
+          _c("base-pagination-dua", {
+            attrs: { pagination: _vm.meta, offset: 1 },
+            on: {
+              paginate: function($event) {
+                return _vm.getData()
+              }
+            }
+          })
+        ],
         1
       )
     ]
@@ -8136,11 +8089,11 @@ var render = function() {
                                 type: "number"
                               },
                               model: {
-                                value: _vm.model.jumlah_ikan,
+                                value: _vm.model.jumlah_ikan_awal,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.model, "jumlah_ikan", $$v)
+                                  _vm.$set(_vm.model, "jumlah_ikan_awal", $$v)
                                 },
-                                expression: "model.jumlah_ikan"
+                                expression: "model.jumlah_ikan_awal"
                               }
                             }),
                             _vm._v(" "),
@@ -8153,11 +8106,11 @@ var render = function() {
                                 type: "number"
                               },
                               model: {
-                                value: _vm.model.panjang_ikan,
+                                value: _vm.model.panjang_ikan_awal,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.model, "panjang_ikan", $$v)
+                                  _vm.$set(_vm.model, "panjang_ikan_awal", $$v)
                                 },
-                                expression: "model.panjang_ikan"
+                                expression: "model.panjang_ikan_awal"
                               }
                             }),
                             _vm._v(" "),
@@ -8170,11 +8123,11 @@ var render = function() {
                                 type: "number"
                               },
                               model: {
-                                value: _vm.model.berat_ikan,
+                                value: _vm.model.berat_ikan_awal,
                                 callback: function($$v) {
-                                  _vm.$set(_vm.model, "berat_ikan", $$v)
+                                  _vm.$set(_vm.model, "berat_ikan_awal", $$v)
                                 },
-                                expression: "model.berat_ikan"
+                                expression: "model.berat_ikan_awal"
                               }
                             }),
                             _vm._v(" "),

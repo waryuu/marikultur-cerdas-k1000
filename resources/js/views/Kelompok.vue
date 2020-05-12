@@ -36,6 +36,7 @@
                                                         label="Nama Kelompok"
                                                         placeholder="Nama Kelompok"
                                                         input-classes="form-control-alternative"
+                                                        v-model="kel.nama_kelompok"
                                                         
                                             />
                                         </div>
@@ -44,7 +45,7 @@
                                                         label="Ketua"
                                                         placeholder="Ketua"
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="kel.ketua_kelompok"
                                             />
                                         </div>
                                         <div class="col-12">
@@ -52,7 +53,7 @@
                                                         label="Bendahara"
                                                         placeholder="Bendahara"
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="kel.bendahara_kelompok"
                                             />
                                         </div>
                                         <div class="col-12">
@@ -60,7 +61,7 @@
                                                         label="Humas"
                                                         placeholder="Humas"
                                                         input-classes="form-control-alternative"
-                                                        
+                                                        v-model="kel.humas_kelompok"
                                             />
                                         </div>
                                     </div>
@@ -82,7 +83,7 @@
                 <div class="container-fluid mt-3">
                     <div class="row">
                         <div class="col">
-                            <anggota-table title="Anggota Kelompok"></anggota-table>
+                            <anggota-table title="Anggota Kelompok" :id_kelompok="user.kelompok_id"></anggota-table>
                         </div>
                     </div>
                 </div>
@@ -93,6 +94,7 @@
 </template>
 <script>
   import {mapGetters} from 'vuex'
+  import axios from 'axios'
   import AnggotaTable from './Tables/AnggotaTable'
   export default {
     name: 'kelompok',
@@ -104,18 +106,28 @@
     },
     data() {
       return {
-        model: {
-          username: '',
-          email: '',
-          firstName: '',
-          lastName: '',
-          address: '',
-          city: '',
-          country: '',
-          zipCode: '',
-          about: '',
-        }
+        kel: {
+          nama_kelompok: '',
+          ketua_kelompok: '',
+          bendahara_kelompok: '',
+          humas_kelompok: '',
+        },
       }
+    },
+    mounted() {
+        this.getData();
+    },
+    methods:{
+        async getData() {
+            await axios.get(`apikelompok/${this.user.kelompok_id}`)
+                .then((response) => {
+                this.kel = response.data.data;
+                console.log(this.kel);
+                })
+                .catch(() => {
+                    console.log('Fetch Data Error!');
+                });
+        },
     },
     components: {
       AnggotaTable
