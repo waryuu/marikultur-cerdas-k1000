@@ -44,8 +44,8 @@ Route::get('/apisubproduksi','ApiSubproduksiController@subproduksiget');
 Route::get('/apisubproduksi/{id}','ApiSubproduksiController@showsubproduksi');
 Route::post('/apisubproduksi/store','ApiSubproduksiController@subproduksistore');
 Route::put('/apisubproduksi/store','ApiSubproduksiController@subproduksistore');
-Route::put('/apisubproduksi/panen/{id}','ApiSubproduksiController@subproduksipanen');
 Route::delete('/apisubproduksi/delete/{id}','ApiSubproduksiController@destroysubproduksi');
+Route::put('/apisubproduksi/panen/{id}','ApiSubproduksiController@subproduksipanen');
 
 Route::get('/apikelompok','ApiKelompokController@index');
 Route::get('/apikelompok/where','ApiKelompokController@where');
