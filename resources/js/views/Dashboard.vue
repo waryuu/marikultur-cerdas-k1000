@@ -79,7 +79,7 @@
                                         Jumlah
                                     </h4>
                                     <h3 class="text-center">
-                                        {{produksi.jumlah_ikan}} Ekor
+                                        {{produksi.jumlah_ikan_awal}} Ekor
                                     </h3>
                                 </div>
                                 <div class="col">
@@ -87,7 +87,7 @@
                                         Ukuran
                                     </h4>
                                     <h3 class="text-center">
-                                        {{produksi.panjang_ikan}} cm
+                                        {{produksi.panjang_ikan_awal}} cm
                                     </h3>
                                 </div>
                                 <div class="col">
@@ -95,7 +95,7 @@
                                         Berat
                                     </h4>
                                     <h3 class="text-center">
-                                        {{produksi.berat_ikan}} Gram
+                                        {{produksi.berat_ikan_awal}} Gram
                                     </h3>
                                 </div>
 
@@ -204,9 +204,9 @@
         produksi: {
           id: '',
           nama_ikan: '',
-          jumlah_ikan: '',
-          panjang_ikan: '',
-          berat_ikan: '',
+          jumlah_ikan_awal: '',
+          panjang_ikan_awal: '',
+          berat_ikan_awal: '',
           tanggal_tebar: '',
           tanggal_panen: '',
           tanggal_cuci: '',
@@ -273,6 +273,7 @@
                 this.sensorHumTemp = responseHumTemp.data;
                 this.meta = responseProd.data.meta;
                 this.links = responseProd.data.links;
+                console.log(responseProd.data.data);
             }))
             .catch(function (error) {
                 console.log('Fetch Data Produksi Error!');
