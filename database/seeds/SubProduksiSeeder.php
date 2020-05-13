@@ -21,6 +21,8 @@ class SubProduksiSeeder extends Seeder
             'berat_ikan'=> '1',
             'produksi_id'=>'1',
             'user_id'=>'1',
+            'tanggal_panen'=>'2020-12-20',
+            'status_panen'=>'panen',
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -60,6 +62,8 @@ class SubProduksiSeeder extends Seeder
             'berat_ikan'=> '4',
             'produksi_id'=>'4',
             'user_id'=>'1',
+            'tanggal_panen'=>'2020-12-20',
+            'status_panen'=>'panen',
             'created_at' => now(),
             'updated_at' => now()
         ]);

@@ -28,6 +28,8 @@ class CreateSubproduksiTable extends Migration
             $table->foreign('keramba_sebelum')->references('id')->on('keramba');
             $table->integer('keramba_sesudah')->unsigned();
             $table->foreign('keramba_sesudah')->references('id')->on('keramba');
+            $table->string('tanggal_panen')->nullable();
+            $table->string('status_panen')->default('Pembesaran');
             $table->timestamps();
         });
     }
