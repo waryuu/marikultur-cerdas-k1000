@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AktivitasSeeder extends Seeder
+class SubProduksiSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class AktivitasSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '13',
             'jumlah_ikan' => '700',
             'tanggal_cuci' => '2020-01-21',
@@ -24,7 +24,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '14',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-10-21',
@@ -37,7 +37,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '14',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-10-21',
@@ -50,7 +50,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '12',
             'jumlah_ikan' => '700',
             'tanggal_cuci' => '2020-08-21',
@@ -63,7 +63,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '14',
             'jumlah_ikan' => '900',
             'tanggal_cuci' => '2020-07-21',
@@ -76,7 +76,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '17',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-11-21',
@@ -89,7 +89,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '14',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-09-21',
@@ -102,7 +102,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '14',
             'jumlah_ikan' => '700',
             'tanggal_cuci' => '2020-12-21',
@@ -115,7 +115,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '12',
             'jumlah_ikan' => '700',
             'tanggal_cuci' => '2020-10-21',
@@ -128,7 +128,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '13',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-10-21',
@@ -141,7 +141,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '12',
             'jumlah_ikan' => '700',
             'tanggal_cuci' => '2020-05-21',
@@ -154,7 +154,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '14',
             'jumlah_ikan' => '500',
             'tanggal_cuci' => '2020-11-21',
@@ -167,7 +167,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '15',
             'jumlah_ikan' => '900',
             'tanggal_cuci' => '2020-01-22',
@@ -180,7 +180,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '17',
             'jumlah_ikan' => '900',
             'tanggal_cuci' => '2020-12-21',
@@ -193,7 +193,7 @@ class AktivitasSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        DB::table('aktivitas')->insert([
+        DB::table('subproduksi')->insert([
             'panjang_ikan' => '14',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-11-21',

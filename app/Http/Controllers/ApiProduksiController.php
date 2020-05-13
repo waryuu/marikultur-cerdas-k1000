@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 use App\ProduksiModel;
-use App\AktivitasModel;
+use App\SubproduksiModel;
 use App\Http\Resources\ProduksiResources;
 use App\PencucianModel;
 use App\Http\Resources\PencucianResources;
@@ -48,11 +48,11 @@ class ApiProduksiController extends Controller
     public function getallproduksi()
     {
         $produksi = DB::table('produksi')
-            ->leftjoin('aktivitas', 'produksi_id', '=', 'produksi.id')
-            ->select('produksi.*', 'aktivitas.jumlah_ikan','aktivitas.panjang_ikan','aktivitas.berat_ikan','aktivitas.tanggal_cuci',
-            'aktivitas.tanggal_pindah','aktivitas.keramba_sebelum','aktivitas.keramba_sesudah')
+            ->leftjoin('subproduksi', 'produksi_id', '=', 'produksi.id')
+            ->select('produksi.*', 'subproduksi.jumlah_ikan','subproduksi.panjang_ikan','subproduksi.berat_ikan','subproduksi.tanggal_cuci',
+            'subproduksi.tanggal_pindah','subproduksi.keramba_sebelum','subproduksi.keramba_sesudah')
             ->groupBy('produksi.id')
-            ->whereRaw('aktivitas.id IN (select MAX(aktivitas.id) FROM aktivitas GROUP BY aktivitas.produksi_id)')
+            ->whereRaw('subproduksi.id IN (select MAX(subproduksi.id) FROM subproduksi GROUP BY subproduksi.produksi_id)')
             ->orWhereNull('produksi_id')
             ->get();
 
@@ -62,8 +62,8 @@ class ApiProduksiController extends Controller
         //     FROM volumes
         //     GROUP BY journal_id)")
 
-        // , DB::raw('MAX(aktivitas.id) as aktivitas_id')
-        // $produksi = ProduksiModel::with('Aktivitas')->find(1);
+        // , DB::raw('MAX(subproduksi.id) as subproduksi_id')
+        // $produksi = ProduksiModel::with('subproduksi')->find(1);
         // return  NEW ProduksiResources($produksi);
     }
     

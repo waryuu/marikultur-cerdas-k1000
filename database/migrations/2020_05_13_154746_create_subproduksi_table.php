@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAktivitasTable extends Migration
+class CreateSubproduksiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAktivitasTable extends Migration
      */
     public function up()
     {
-        Schema::create('aktivitas', function (Blueprint $table) {
+        Schema::create('subproduksi', function (Blueprint $table) {
             $table->Increments('id');
             $table->integer('jumlah_ikan')->nullable();
             $table->integer('panjang_ikan')->nullable();
@@ -39,6 +39,6 @@ class CreateAktivitasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Aktivitas');
+        Schema::dropIfExists('subproduksi');
     }
 }

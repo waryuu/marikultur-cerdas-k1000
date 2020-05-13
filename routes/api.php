@@ -38,6 +38,14 @@ Route::post('/apiaktivitas/store','ApiAktivitasController@aktivitasstore');
 Route::put('/apiaktivitas/store','ApiAktivitasController@aktivitasstore');
 Route::delete('/apiaktivitas/delete/{id}','ApiAktivitasController@destroyaktivitas');
 
+Route::get('/apisubproduksi/where','ApiSubproduksiController@where');
+Route::get('/apisubproduksi','ApiSubproduksiController@subproduksiget');
+Route::get('/apisubproduksi/{id}','ApiSubproduksiController@showsubproduksi');
+Route::post('/apisubproduksi/store','ApiSubproduksiController@subproduksistore');
+Route::put('/apisubproduksi/store','ApiSubproduksiController@subproduksistore');
+Route::put('/apisubproduksi/panen/{id}','ApiSubproduksiController@subproduksipanen');
+Route::delete('/apisubproduksi/delete/{id}','ApiSubproduksiController@destroysubproduksi');
+
 Route::get('/apikelompok','ApiKelompokController@index');
 Route::get('/apikelompok/where','ApiKelompokController@where');
 Route::get('/apikelompok/{id}','ApiKelompokController@show');

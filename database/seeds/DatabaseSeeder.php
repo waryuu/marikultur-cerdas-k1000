@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SensorHumTempSeeder::class);
         $this->call(SensorWaveSeeder::class);
         $this->call(SensorWindSeeder::class);
+        $this->call(SubProduksiSeeder::class);
 
     }
 }
