@@ -24,13 +24,17 @@ class CreateSubproduksiTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('tanggal_pindah')->nullable();
-            $table->integer('keramba_sebelum')->unsigned();
+            $table->integer('keramba_sebelum')->unsigned()->nullable();
             $table->foreign('keramba_sebelum')->references('id')->on('keramba');
-            $table->integer('keramba_sesudah')->unsigned();
+            $table->integer('keramba_sesudah')->unsigned()->nullable();
             $table->foreign('keramba_sesudah')->references('id')->on('keramba');
-            $table->string('tanggal_panen')->nullable();
             $table->string('status_panen')->default('Pembesaran');
+            $table->string('tanggal_panen')->nullable();
+            $table->string('berat_ikan_akhir')->nullable();
+            $table->integer('jumlah_ikan_akhir')->nullable();
+            $table->integer('panjang_ikan_akhir')->nullable();
             $table->timestamps();
+        
         });
     }
 

@@ -67,22 +67,49 @@ class ApiProduksiController extends Controller
         // return  NEW ProduksiResources($produksi);
     }
     
+    public function create(Request $request)
+    {
+        $produksi = ProduksiModel::create([
+            'user_id' => $request->input('user_id'),
+            'nama_ikan' => $request->input('nama_ikan'),
+            'panjang_ikan' => $request->input('panjang_ikan'),
+            'berat_ikan' => $request->input('berat_ikan'),
+            'jumlah_ikan' => $request->input('jumlah_ikan'),
+            'tanggal_tebar' => $request->input('tanggal_tebar'),
+            'keramba_id' => $request->input('keramba_id'),
+            'kelompok_id' => $request->input('kelompok_id')
+        ]);
 
+        // Now you have a Family object so we can use that for the contact model
 
+        $subproduksi = SubproduksiModel::create([
+            'user_id' => $request->input('user_id'),
+            'panjang_ikan' => $request->input('panjang_ikan'),
+            'berat_ikan' => $request->input('berat_ikan'),
+            'jumlah_ikan' => $request->input('jumlah_ikan'),
+            'produksi_id' => $produksi->id,
+            'keramba_sesudah' => $request->input('keramba_id'),
+
+        ]);
+        return new ProduksiResources($produksi);
+        return new SubproduksiResources($subproduksi);
+    }
+    
+   
     public function store(Request $request)
     {
         $produksi = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->id) : new ProduksiModel;
         $produksi->id = $request->input('id');
         $produksi->user_id = $request->input('user_id');
     	$produksi->nama_ikan = $request->input('nama_ikan');
-        $produksi->panjang_ikan_awal = $request->input('panjang_ikan_awal');
-        $produksi->berat_ikan_awal = $request->input('berat_ikan_awal');
-        $produksi->jumlah_ikan_awal = $request->input('jumlah_ikan_awal');
+        $produksi->panjang_ikan = $request->input('panjang_ikan');
+        $produksi->berat_ikan = $request->input('berat_ikan');
+        $produksi->jumlah_ikan = $request->input('jumlah_ikan');
         // $produksi->tanggal_tebar = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_tebar'))->format('d-m-Y');
         // $produksi->tanggal_panen = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_panen'))->format('d-m-Y');
         $produksi->tanggal_tebar = $request->input('tanggal_tebar');
-        $produksi->tanggal_panen = $request->input('tanggal_panen');
-        $produksi->status_panen = 'Pembesaran';
+        // $produksi->tanggal_panen = $request->input('tanggal_panen');
+        // $produksi->status_panen = 'Pembesaran';
         $produksi->keramba_id = $request->input('keramba_id');
         $produksi->kelompok_id = $request->input('kelompok_id');
 
@@ -92,26 +119,26 @@ class ApiProduksiController extends Controller
         }
 
     }
-    public function panen(Request $request,$id)
-    {
-        $berat_ikan_akhir = $request->berat_ikan_akhir;
-        $jumlah_ikan_akhir = $request->jumlah_ikan_akhir;
-        $panjang_ikan_akhir = $request->panjang_ikan_akhir; 
-        $tanggal_panen = $request->tanggal_panen;
-        $status_panen = $request->status_panen;
+    // public function panen(Request $request,$id)
+    // {
+    //     $berat_ikan_akhir = $request->berat_ikan_akhir;
+    //     $jumlah_ikan_akhir = $request->jumlah_ikan_akhir;
+    //     $panjang_ikan_akhir = $request->panjang_ikan_akhir; 
+    //     $tanggal_panen = $request->tanggal_panen;
+    //     $status_panen = $request->status_panen;
 
 
-        $panen = ProduksiModel::find($id);
+    //     $panen = ProduksiModel::find($id);
         
-        $panen->berat_ikan_akhir = $berat_ikan_akhir;
-        $panen->jumlah_ikan_akhir = $jumlah_ikan_akhir;
-        $panen->panjang_ikan_akhir = $panjang_ikan_akhir;
-    	$panen->tanggal_panen = $tanggal_panen;
-        $panen->status_panen = 'Panen';
-    	$panen->save();
+    //     $panen->berat_ikan_akhir = $berat_ikan_akhir;
+    //     $panen->jumlah_ikan_akhir = $jumlah_ikan_akhir;
+    //     $panen->panjang_ikan_akhir = $panjang_ikan_akhir;
+    // 	$panen->tanggal_panen = $tanggal_panen;
+    //     $panen->status_panen = 'Panen';
+    // 	$panen->save();
 
-    	return new ProduksiResources($panen);
-    }
+    // 	return new ProduksiResources($panen);
+    // }
 
     public function showproduksibyidkelompok($kelompok_id)
     {
@@ -133,8 +160,6 @@ class ApiProduksiController extends Controller
         $produksi = ProduksiModel::findOrFail($id);
         return new ProduksiResources($produksi);
     }
-
-
 
     /**
      * Show the form for editing the specified resource.

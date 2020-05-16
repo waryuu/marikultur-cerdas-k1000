@@ -27,6 +27,9 @@ class SubproduksiResources extends JsonResource
             'produksi_id'=>$this->produksi_id,
             'tanggal_panen'=>$this->tanggal_panen,
             'status_panen'=>$this->status_panen,
+            'panjang_ikan_akhir'=>$this->panjang_ikan_akhir,
+            'jumlah_ikan_akhir'=>$this->jumlah_ikan_akhir,
+            'berat_ikan_akhir'=>$this->berat_ikan_akhir,
             'user_id'=>$this->user_id
         ];
     }

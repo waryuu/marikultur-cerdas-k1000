@@ -14,6 +14,7 @@ class ApiSubproduksiController extends Controller
         $subproduksi = SubproduksiModel::paginate(15);
         return SubproduksiResources::collection($subproduksi);
     }
+    
     public function subproduksistore(Request $request)
     {
         $subproduksi = $request ->isMethod('put') ? SubproduksiModel::findOrFail($request->id) : new SubproduksiModel;
@@ -30,9 +31,7 @@ class ApiSubproduksiController extends Controller
         // $subproduksi->keramba_id = $request->input('keramba_id');
         $subproduksi->produksi_id = $request->input('produksi_id');
         $subproduksi->status_panen = 'Pembesaran';
-        $subproduksi->tanggal_panen = $request->input('tanggal_panen');
-        
-
+            
         if($subproduksi->save()){
             return new SubproduksiResources($subproduksi);
         }
@@ -40,18 +39,18 @@ class ApiSubproduksiController extends Controller
     }
     public function subproduksipanen(Request $request,$id)
     {
-        $berat_ikan = $request->berat_ikan;
-        $jumlah_ikan = $request->jumlah_ikan;
-        $panjang_ikan = $request->panjang_ikan; 
+        $berat_ikan_akhir = $request->berat_ikan_akhir;
+        $jumlah_ikan_akhir = $request->jumlah_ikan_akhir;
+        $panjang_ikan_akhir = $request->panjang_ikan_akhir; 
         $tanggal_panen = $request->tanggal_panen;
         $status_panen = $request->status_panen;
 
 
         $panen = SubproduksiModel::find($id);
         
-        $panen->berat_ikan = $berat_ikan;
-        $panen->jumlah_ikan = $jumlah_ikan;
-        $panen->panjang_ikan = $panjang_ikan;
+        $panen->berat_ikan_akhir = $berat_ikan_akhir;
+        $panen->jumlah_ikan_akhir = $jumlah_ikan_akhir;
+        $panen->panjang_ikan_akhir = $panjang_ikan_akhir;
     	$panen->tanggal_panen = $tanggal_panen;
         $panen->status_panen = 'Panen';
     	$panen->save();

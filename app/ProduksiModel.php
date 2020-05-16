@@ -13,7 +13,7 @@ use Carbon\Carbon;
 class ProduksiModel extends Model
 {
     protected $table = 'produksi';
-    protected $fillable = array('nama_ikan','jumlah_ikan_awal','jumlah_ikan_akhir','panjang_ikan_awal','panjang_ikan_akhir','tanggal_tebar','tanggal_panen','berat_ikan_awal','berat_ikan_akhir','status_panen','user_id','keramba_id','kelompok_id');
+    protected $fillable = array('nama_ikan','jumlah_ikan','panjang_ikan','tanggal_tebar','berat_ikan','status_panen','user_id','keramba_id','kelompok_id');
 
     public function keramba()
     {
