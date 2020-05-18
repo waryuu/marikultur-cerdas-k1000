@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongTo;
 use App\KerambaModel as Keramba;
 use App\User as User;
 use App\subproduksiModel as Subproduksi;

@@ -3,6 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\KerambaModel as Keramba;
+use App\User as User;
+use App\ProduksiModel as Produksi;
+use App\SubproduksiLogModel as SubproduksiLog;
 
 class SubproduksiModel extends Model
 {
@@ -12,5 +18,9 @@ class SubproduksiModel extends Model
     public function produksi()
     {
         return $this->belongsTo(Produksi::class,'produksi_id','id');
+    }
+    public function Subproduksi()
+    {
+        return $this->hasMany(SubproduksiLog::class, 'subproduksi_id', 'id');
     }
 }

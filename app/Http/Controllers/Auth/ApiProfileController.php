@@ -22,6 +22,7 @@ class ApiProfileController extends Controller
         {
             $validator = Validator::make($request->all(), [
                 'name' => 'nullable|string|max:255',
+                'username' => 'nullable|string|min:3|max:255|unique:users',
                 'status' => 'nullable|string|max:6',
                 'kelompok_id' => 'nullable|integer',
                 'email' => 'nullable|string|email|max:255|unique:users',
@@ -36,6 +37,7 @@ class ApiProfileController extends Controller
                 'id'=>$id],[
                 'name' => $request->get('name'),
                 'status' => $request->get('status'),
+                'username' => $request->get('username'),
                 'kelompok_id' => $request->get('kelompok_id'),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
@@ -72,6 +74,7 @@ class ApiProfileController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'nullable|string|max:255',
             'status' => 'nullable|string|max:6',
+            'username' => 'nullable|string|min:3|max:255|unique:users',
             'kelompok_id' => 'nullable|integer',
             'email' => 'nullable|string|email|max:255|unique:users,email,'.$user->id,
             'password' => 'nullable|string|min:6|confirmed',

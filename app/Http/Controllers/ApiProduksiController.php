@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\ProduksiModel;
 use App\SubproduksiModel;
 use App\Http\Resources\ProduksiResources;
@@ -69,6 +69,8 @@ class ApiProduksiController extends Controller
     
     public function create(Request $request)
     {
+        try{DB::beginTransaction();
+
         $produksi = ProduksiModel::create([
             'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
@@ -91,8 +93,16 @@ class ApiProduksiController extends Controller
             'keramba_sesudah' => $request->input('keramba_id'),
 
         ]);
+        DB::commit();
         return new ProduksiResources($produksi);
         return new SubproduksiResources($subproduksi);
+        }
+        catch(\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'message'=> $e->getMessage()
+            ], 500);
+        }
     }
     
    
@@ -119,6 +129,8 @@ class ApiProduksiController extends Controller
         }
 
     }
+    
+
     // public function panen(Request $request,$id)
     // {
     //     $berat_ikan_akhir = $request->berat_ikan_akhir;

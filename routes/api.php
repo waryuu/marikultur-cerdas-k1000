@@ -40,12 +40,20 @@ Route::put('/apiaktivitas/store','ApiAktivitasController@aktivitasstore');
 Route::delete('/apiaktivitas/delete/{id}','ApiAktivitasController@destroyaktivitas');
 
 Route::get('/apisubproduksi/where','ApiSubproduksiController@where');
-Route::get('/apisubproduksi','ApiSubproduksiController@subproduksiget');
+Route::get('/apisubproduksi','ApiSubproduksiController@get');
 Route::get('/apisubproduksi/{id}','ApiSubproduksiController@showsubproduksi');
-Route::post('/apisubproduksi/store','ApiSubproduksiController@subproduksistore');
-Route::put('/apisubproduksi/store','ApiSubproduksiController@subproduksistore');
-Route::delete('/apisubproduksi/delete/{id}','ApiSubproduksiController@destroysubproduksi');
-Route::put('/apisubproduksi/panen/{id}','ApiSubproduksiController@subproduksipanen');
+Route::post('/apisubproduksi/store','ApiSubproduksiController@store');
+Route::put('/apisubproduksi/store','ApiSubproduksiController@store');
+Route::delete('/apisubproduksi/delete/{id}','ApiSubproduksiController@destroy');
+Route::put('/apisubproduksi/panen/{id}','ApiSubproduksiController@panen');
+
+Route::get('/apisubproduksilog/where','ApiSubproduksiLogController@where');
+Route::get('/apisubproduksilog','ApiSubproduksiLogController@subproduksilogget');
+Route::get('/apisubproduksilog/{id}','ApiSubproduksiLogController@showsubproduksilog');
+Route::post('/apisubproduksilog/store','ApiSubproduksiLogController@subproduksilogstore');
+Route::put('/apisubproduksilog/store','ApiSubproduksiLogController@subproduksilogstore');
+Route::delete('/apisubproduksilog/delete/{id}','ApiSubproduksiLogController@destroysubproduksilog');
+Route::put('/apisubproduksilog/panen/{id}','ApiSubproduksiLogController@subproduksilogpanen');
 
 Route::get('/apikelompok','ApiKelompokController@index');
 Route::get('/apikelompok/where','ApiKelompokController@where');

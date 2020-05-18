@@ -3,20 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SUbproduksiModel;
+use Illuminate\Support\Facades\DB;
+use App\SubproduksiModel;
+use App\SubproduksiLogModel;
 use App\Http\Requests;
 use App\Http\Resources\SubproduksiResources;
+use App\Http\Resources\SubproduksiLogResources;
 
 class ApiSubproduksiController extends Controller
 {
-    public function subproduksiget()
+    public function get()
     {
         $subproduksi = SubproduksiModel::paginate(15);
         return SubproduksiResources::collection($subproduksi);
     }
     
-    public function subproduksistore(Request $request)
+    public function store(Request $request)
     {
+        try{DB::beginTransaction();
+
         $subproduksi = $request ->isMethod('put') ? SubproduksiModel::findOrFail($request->id) : new SubproduksiModel;
         $subproduksi->id = $request->input('id');
         $subproduksi->user_id = $request->input('user_id');
@@ -28,16 +33,69 @@ class ApiSubproduksiController extends Controller
         $subproduksi->keramba_sesudah = $request->input('keramba_sesudah');
         $subproduksi->tanggal_cuci = $request->input('tanggal_cuci');
         // $subproduksi->tanggal_cuci = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_cuci'))->format('d-m-Y');
-        // $subproduksi->keramba_id = $request->input('keramba_id');
         $subproduksi->produksi_id = $request->input('produksi_id');
         $subproduksi->status_panen = 'Pembesaran';
-            
-        if($subproduksi->save()){
+
+        $subproduksilog = SubproduksiLogModel::create([
+            'user_id' => $request->input('user_id'),
+            'panjang_ikan' => $request->input('panjang_ikan'),
+            'berat_ikan' => $request->input('berat_ikan'),
+            'jumlah_ikan' => $request->input('jumlah_ikan'),
+            'tanggal_pindah' => $request->input('tanggal_pindah'),
+            'tanggal_cuci' => $request->input('tanggal_cuci'),
+            'keramba_sebelum' => $request->input('keramba_sebelum'),
+            'keramba_sesudah' => $request->input('keramba_sesudah'),
+            'subproduksi_id' => $subproduksi->id,
+        ]);
+            DB::commit();
             return new SubproduksiResources($subproduksi);
         }
+            catch(\Exception $e) {
+                DB::rollback();
+                return response()->json([
+                    'message'=> $e->getMessage()
+                ], 500);
+            }
 
     }
-    public function subproduksipanen(Request $request,$id)
+    
+    //  public function subproduksiupdate(Request $request)
+    // {
+    //     $panjang_ikan = $request->panjang_ikan;
+    //     $jumlah_ikan = $request->jumlah_ikan;
+    //     $berat_ikan = $request->berat_ikan; 
+    //     $tanggal_pindah = $request->tanggal_pindah;
+    //     $tanggal_cuci = $request->tanggal_cuci;
+    //     $keramba_sebelum = $request->keramba_sebelum;
+    //     $keramba_sesudah = $request->keramba_sesudah;
+
+    //     $subproduksi = SubproduksiModel::find($id);
+        
+    //     $subproduksi->panjang_ikan = $panjang_ikan;
+    //     $subproduksi->jumlah_ikan = $jumlah_ikan;
+    //     $subproduksi->berat_ikan = $berat_ikan;
+    // 	$subproduksi->tanggal_pindah = $tanggal_pindah;
+    //     $subproduksi->tanggal_cuci = $tanggal_cuci;
+    //     $subproduksi->keramba_sebelum = $keramba_sebelum;
+    //     $subproduksi->keramba_sesudah = $keramba_sesudah;
+    //     $subproduksi->save();
+        
+    //     $subproduksilog = SubproduksiLog::create([
+    //         'user_id' => $request->input('user_id'),
+    //         'panjang_ikan' => $request->input('panjang_ikan'),
+    //         'berat_ikan' => $request->input('berat_ikan'),
+    //         'jumlah_ikan' => $request->input('jumlah_ikan'),
+    //         'tanggal_pindah' => $request->input('tanggal_pindah'),
+    //         'tanggal_cuci' => $request->input('tanggal_cuci'),
+    //         'keramba_sebelum' => $request->input('keramba_sebelum'),
+    //         'keramba_sesudah' => $request->input('keramba_sesudah'),
+    //         'subproduksi_id' => $subproduksi->id,
+    //     ]);
+
+    // 	return new SubproduksiResources($subproduksi);
+    // }
+
+    public function panen(Request $request,$id)
     {
         $berat_ikan_akhir = $request->berat_ikan_akhir;
         $jumlah_ikan_akhir = $request->jumlah_ikan_akhir;
@@ -84,7 +142,7 @@ class ApiSubproduksiController extends Controller
         // return subproduksiResources::collection($produksi);
          
     }
-    public function destroysubproduksi($id)
+    public function destroy($id)
 {
     $subproduksi = SubproduksiModel::findOrFail($id);
     if($subproduksi->delete()){
