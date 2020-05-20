@@ -12,6 +12,7 @@ class SubProduksiSeeder extends Seeder
     public function run()
     {
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Cantang',
             'panjang_ikan' => '13',
             'jumlah_ikan' => '700',
             'tanggal_cuci' => '2020-01-21',
@@ -30,6 +31,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Macan',
             'panjang_ikan' => '14',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-10-21',
@@ -43,6 +45,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Cantang',
             'panjang_ikan' => '14',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-10-21',
@@ -56,6 +59,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Macan',
             'panjang_ikan' => '12',
             'jumlah_ikan' => '700',
             'tanggal_cuci' => '2020-08-21',
@@ -71,6 +75,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Bebek',
             'panjang_ikan' => '14',
             'jumlah_ikan' => '900',
             'tanggal_cuci' => '2020-07-21',
@@ -89,6 +94,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Bebek',
             'panjang_ikan' => '17',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-11-21',
@@ -102,6 +108,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Cantang',
             'panjang_ikan' => '14',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-09-21',
@@ -115,6 +122,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Manik',
             'panjang_ikan' => '14',
             'jumlah_ikan' => '700',
             'tanggal_cuci' => '2020-12-21',
@@ -128,6 +136,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Macan',
             'panjang_ikan' => '12',
             'jumlah_ikan' => '700',
             'tanggal_cuci' => '2020-10-21',
@@ -141,6 +150,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Cantang',
             'panjang_ikan' => '13',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-10-21',
@@ -154,6 +164,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Bebek',
             'panjang_ikan' => '12',
             'jumlah_ikan' => '700',
             'tanggal_cuci' => '2020-05-21',
@@ -167,6 +178,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Macan',
             'panjang_ikan' => '14',
             'jumlah_ikan' => '500',
             'tanggal_cuci' => '2020-11-21',
@@ -180,6 +192,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Cantang',
             'panjang_ikan' => '15',
             'jumlah_ikan' => '900',
             'tanggal_cuci' => '2020-01-22',
@@ -193,6 +206,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Bebek',
             'panjang_ikan' => '17',
             'jumlah_ikan' => '900',
             'tanggal_cuci' => '2020-12-21',
@@ -206,6 +220,7 @@ class SubProduksiSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('subproduksi')->insert([
+            'nama_ikan' => 'Kerapu Cantang',
             'panjang_ikan' => '14',
             'jumlah_ikan' => '800',
             'tanggal_cuci' => '2020-11-21',

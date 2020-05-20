@@ -86,6 +86,7 @@ class ApiProduksiController extends Controller
 
         $subproduksi = SubproduksiModel::create([
             'user_id' => $request->input('user_id'),
+            'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
             'berat_ikan' => $request->input('berat_ikan'),
             'jumlah_ikan' => $request->input('jumlah_ikan'),

@@ -15,6 +15,7 @@ class CreateSubproduksiTable extends Migration
     {
         Schema::create('subproduksi', function (Blueprint $table) {
             $table->Increments('id');
+            $table->string('nama_ikan')->nullable();
             $table->integer('jumlah_ikan')->nullable();
             $table->integer('panjang_ikan')->nullable();
             $table->string('tanggal_cuci')->nullable();

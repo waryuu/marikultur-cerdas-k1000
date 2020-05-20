@@ -15,6 +15,7 @@ class CreateSubproduksilogTable extends Migration
     {
         Schema::create('subproduksilog', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nama_ikan')->nullable();
             $table->integer('jumlah_ikan')->nullable();
             $table->integer('panjang_ikan')->nullable();
             $table->string('tanggal_cuci')->nullable();

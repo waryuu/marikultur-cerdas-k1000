@@ -43,7 +43,7 @@ Route::get('/apisubproduksi/where','ApiSubproduksiController@where');
 Route::get('/apisubproduksi','ApiSubproduksiController@get');
 Route::get('/apisubproduksi/{id}','ApiSubproduksiController@showsubproduksi');
 Route::post('/apisubproduksi/store','ApiSubproduksiController@store');
-Route::put('/apisubproduksi/store','ApiSubproduksiController@store');
+Route::post('/apisubproduksi/update','ApiSubproduksiController@update');
 Route::delete('/apisubproduksi/delete/{id}','ApiSubproduksiController@destroy');
 Route::put('/apisubproduksi/panen/{id}','ApiSubproduksiController@panen');
 

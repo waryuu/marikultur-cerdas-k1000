@@ -12,6 +12,7 @@ class SubproduksiLogSeeder extends Seeder
     public function run()
     {
         DB::table('subproduksilog')->insert([
+            'nama_ikan' => 'Kerapu Macan',
             "panjang_ikan"=> '15',
             "jumlah_ikan"=> '700',
             "berat_ikan"=> '2',
@@ -25,6 +26,7 @@ class SubproduksiLogSeeder extends Seeder
             'updated_at' => now()
             ]);
         DB::table('subproduksilog')->insert([
+            'nama_ikan' => 'Kerapu Macan',
             "panjang_ikan"=> 17,
             "jumlah_ikan"=> 500,
             "berat_ikan"=> "2",

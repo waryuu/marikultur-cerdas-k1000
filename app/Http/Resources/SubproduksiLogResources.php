@@ -17,6 +17,7 @@ class SubproduksiLogResources extends JsonResource
         $tanggal_pencucian_doang = substr($this->tanggal_cuci,0,10);
         return [
             'id'=> $this->id,
+            'nama_ikan'=>$this->nama_ikan,
             'panjang_ikan'=>$this->panjang_ikan,
             'jumlah_ikan'=>$this->jumlah_ikan,
             'berat_ikan'=>$this->berat_ikan,

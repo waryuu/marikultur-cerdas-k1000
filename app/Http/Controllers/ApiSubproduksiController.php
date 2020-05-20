@@ -18,13 +18,14 @@ class ApiSubproduksiController extends Controller
         return SubproduksiResources::collection($subproduksi);
     }
     
-    public function store(Request $request)
+    public function update(Request $request)
     {
         try{DB::beginTransaction();
 
         $subproduksi = $request ->isMethod('put') ? SubproduksiModel::findOrFail($request->id) : new SubproduksiModel;
         $subproduksi->id = $request->input('id');
         $subproduksi->user_id = $request->input('user_id');
+        $subproduksi->nama_ikan = $request->input('nama_ikan');
     	$subproduksi->panjang_ikan = $request->input('panjang_ikan');
         $subproduksi->jumlah_ikan = $request->input('jumlah_ikan');
         $subproduksi->berat_ikan = $request->input('berat_ikan');
@@ -38,6 +39,7 @@ class ApiSubproduksiController extends Controller
 
         $subproduksilog = SubproduksiLogModel::create([
             'user_id' => $request->input('user_id'),
+            'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
             'berat_ikan' => $request->input('berat_ikan'),
             'jumlah_ikan' => $request->input('jumlah_ikan'),
@@ -48,7 +50,9 @@ class ApiSubproduksiController extends Controller
             'subproduksi_id' => $subproduksi->id,
         ]);
             DB::commit();
+           
             return new SubproduksiResources($subproduksi);
+            
         }
             catch(\Exception $e) {
                 DB::rollback();
@@ -58,6 +62,53 @@ class ApiSubproduksiController extends Controller
             }
 
     }
+    public function store(Request $request)
+    {
+        try{DB::beginTransaction();
+
+        $subproduksi = SubproduksiModel::create([
+            'user_id' => $request->input('user_id'),
+            'nama_ikan' => $request->input('nama_ikan'),
+            'panjang_ikan' => $request->input('panjang_ikan'),
+            'berat_ikan' => $request->input('berat_ikan'),
+            'jumlah_ikan' => $request->input('jumlah_ikan'),
+            'tanggal_pindah' => $request->input('tanggal_pindah'),
+            'tanggal_cuci' => $request->input('tanggal_cuci'),
+            'keramba_sebelum' => $request->input('keramba_sebelum'),
+            'keramba_sesudah' => $request->input('keramba_sesudah'),
+            'produksi_id' => $request->input('produksi_id'),
+            'status_panen' => "Pembesaran",
+        ]);
+
+        // Now you have a Family object so we can use that for the contact model
+
+        $subproduksilog = SubproduksiLogModel::create([
+            'user_id' => $request->input('user_id'),
+            'nama_ikan' => $request->input('nama_ikan'),
+            'panjang_ikan' => $request->input('panjang_ikan'),
+            'berat_ikan' => $request->input('berat_ikan'),
+            'jumlah_ikan' => $request->input('jumlah_ikan'),
+            'tanggal_pindah' => $request->input('tanggal_pindah'),
+            'tanggal_cuci' => $request->input('tanggal_cuci'),
+            'keramba_sebelum' => $request->input('keramba_sebelum'),
+            'keramba_sesudah' => $request->input('keramba_sesudah'),
+            'subproduksi_id' => $subproduksi->id,
+            
+
+        ]);
+        DB::commit();
+        return new SubproduksiResources($subproduksi);
+        return new SubproduksiLogResources($subproduksilog);
+        }
+        catch(\Exception $e) {
+            DB::rollback();
+            return response()->json([
+                'message'=> $e->getMessage()
+            ], 500);
+        }
+    }
+
+  
     
     //  public function subproduksiupdate(Request $request)
     // {

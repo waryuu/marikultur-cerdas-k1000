@@ -11,7 +11,7 @@ use App\subproduksiModel as Subproduksi;
 class SubproduksiLogModel extends Model
 {
     protected $table = 'subproduksilog';
-    protected $fillable = array('jumlah_ikan','panjang_ikan','berat_ikan','tanggal_cuci','tanggal_pindah','keramba_sebelum','keramba_sesudah',
+    protected $fillable = array('nama_ikan','jumlah_ikan','panjang_ikan','berat_ikan','tanggal_cuci','tanggal_pindah','keramba_sebelum','keramba_sesudah',
     'user_id','subproduksi_id',);
     public function subproduksi()
     {
