@@ -7,7 +7,7 @@
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
-                    <div class="col-lg-7 col-md-10">
+                    <div class="col-lg-12 col-md-10">
                         <h1 class="display-2 text-white">Aktivitas Produksi</h1>
                         <p class="text-white mt-0 mb-5">Pilih produksi yang akan dilakukan pencucian atau pemindahan</p>
                     </div>
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card card-body rounded-0 mb-3">
+                        <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card card-body rounded-0">
                             <h3 class="card-title">{{produksi.nama_ikan}}</h3>
                             <h4 class="card-subtitle text-muted">Keramba {{produksi.keramba_id}}</h4>
                             <div class="row mt-3">

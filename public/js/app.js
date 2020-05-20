@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"vendors~demo":"vendors~demo","demo":"demo"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"demo":"demo"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -3385,6 +3385,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "card",
   props: {
@@ -3933,7 +3934,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: {
     logo: {
       type: String,
-      "default": 'img/brand/logo-marikultur.png',
+      "default": '/img/brand/logo-marikultur.png',
       description: 'Sidebar app logo'
     },
     autoClose: {
@@ -10124,7 +10125,7 @@ var render = function() {
         "li",
         {
           staticClass: "page-item prev-page",
-          class: { disabled: _vm.pagination.current_page === 1 }
+          class: _vm.pagination.current_page === 1 ? "disabled" : "active"
         },
         [
           _c(
@@ -10139,7 +10140,7 @@ var render = function() {
                 }
               }
             },
-            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("<")])]
+            [_vm._m(0)]
           )
         ]
       ),
@@ -10149,7 +10150,7 @@ var render = function() {
           "li",
           {
             staticClass: "page-item",
-            class: { active: page == _vm.pagination.current_page }
+            class: page == _vm.pagination.current_page ? "disabled" : "active"
           },
           [
             _c(
@@ -10174,9 +10175,10 @@ var render = function() {
         "li",
         {
           staticClass: "page-item next-page",
-          class: {
-            disabled: _vm.pagination.current_page === _vm.pagination.last_page
-          }
+          class:
+            _vm.pagination.current_page === _vm.pagination.last_page
+              ? "disabled"
+              : "active"
         },
         [
           _c(
@@ -10191,7 +10193,7 @@ var render = function() {
                 }
               }
             },
-            [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v(">")])]
+            [_vm._m(1)]
           )
         ]
       )
@@ -10199,7 +10201,30 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", {
+        staticClass: "fa fa-angle-left",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "aria-hidden": "true" } }, [
+      _c("i", {
+        staticClass: "fa fa-angle-right",
+        attrs: { "aria-hidden": "true" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -10566,7 +10591,7 @@ var render = function() {
         ? _c(
             "div",
             { staticClass: "card-body", class: _vm.bodyClasses },
-            [_vm._t("default")],
+            [_vm._t("body")],
             2
           )
         : _vm._e(),
@@ -10993,7 +11018,7 @@ var render = function() {
                               _c("img", {
                                 attrs: {
                                   alt: "Image placeholder",
-                                  src: "img/theme/fisher2.png"
+                                  src: "/img/theme/logo-user.png"
                                 }
                               })
                             ]
@@ -11988,7 +12013,7 @@ var render = function() {
                           _c("img", {
                             attrs: {
                               alt: "Image placeholder",
-                              src: "img/theme/fisher2.png"
+                              src: "/img/theme/logo-user.png"
                             }
                           })
                         ]
@@ -31225,61 +31250,55 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/js/views/Dashboard.vue"));
+        return __webpack_require__.e(/*! import() | demo */ "demo").then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/js/views/Dashboard.vue"));
       }
     }, {
       path: '/tebar',
       name: 'tebar',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
       }
     }, {
       path: '/cuci',
       name: 'cuci',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Cuci.vue */ "./resources/js/views/Cuci.vue"));
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/Cuci.vue */ "./resources/js/views/Cuci.vue"));
       }
     }, {
       path: '/pindah',
       name: 'pindah',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Pindah.vue */ "./resources/js/views/Pindah.vue"));
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/Pindah.vue */ "./resources/js/views/Pindah.vue"));
       }
     }, {
       path: '/panen',
       name: 'panen',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Panen.vue */ "./resources/js/views/Panen.vue"));
+        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/Panen.vue */ "./resources/js/views/Panen.vue"));
       }
     }, {
       path: '/produksi',
       name: 'produksi',
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Produksi.vue */ "./resources/js/views/Produksi.vue"));
+        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/Produksi.vue */ "./resources/js/views/Produksi.vue"));
+      }
+    }, {
+      path: '/produksi/:id',
+      name: 'produksidetail',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/ProduksiDetail.vue */ "./resources/js/views/ProduksiDetail.vue"));
       }
     }, {
       path: '/keramba',
       name: 'keramba',
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
+        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
       }
     }, {
       path: '/profil',
       name: 'profil',
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/UserProfile.vue */ "./resources/js/views/UserProfile.vue"));
+        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./views/UserProfile.vue */ "./resources/js/views/UserProfile.vue"));
       }
     }, {
       path: '/sensor',
@@ -31294,7 +31313,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Sensor.vue */ "./resources/js/views/Sensor.vue"));
+        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./views/Sensor.vue */ "./resources/js/views/Sensor.vue"));
       }
     }, {
       path: '/pakan',
@@ -31309,7 +31328,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
       }
     }, {
       path: '/kelompok',
@@ -31324,25 +31343,25 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Kelompok.vue */ "./resources/js/views/Kelompok.vue"));
+        return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./views/Kelompok.vue */ "./resources/js/views/Kelompok.vue"));
       }
     }, {
       path: '/icons',
       name: 'icons',
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Icons.vue */ "./resources/js/views/Icons.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./views/Icons.vue */ "./resources/js/views/Icons.vue"));
       }
     }, {
       path: '/maps',
       name: 'maps',
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Maps.vue */ "./resources/js/views/Maps.vue"));
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/Maps.vue */ "./resources/js/views/Maps.vue"));
       }
     }, {
       path: '/tables',
       name: 'tables',
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Tables.vue */ "./resources/js/views/Tables.vue"));
+        return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./views/Tables.vue */ "./resources/js/views/Tables.vue"));
       }
     }]
   }, // Default Route untuk user tidak terauthenticated
@@ -31364,13 +31383,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/login',
       name: 'login',
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Login.vue */ "./resources/js/views/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/Login.vue */ "./resources/js/views/Login.vue"));
       }
     }, {
       path: '/register',
       name: 'register',
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Register.vue */ "./resources/js/views/Register.vue"));
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/Register.vue */ "./resources/js/views/Register.vue"));
       }
     }]
   }, // Default Route untuk user yang tidak memiliki kelompok
@@ -31396,7 +31415,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/tambahkelompok',
       name: 'tambahkelompok',
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e("vendors~demo"), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/TambahKelompok.vue */ "./resources/js/views/TambahKelompok.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./views/TambahKelompok.vue */ "./resources/js/views/TambahKelompok.vue"));
       }
     }]
   }]

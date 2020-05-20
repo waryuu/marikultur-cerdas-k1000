@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                         </div>
-                        <template>
+                        <template slot="body">
                             <form @submit.prevent="submitInfoUser" role="form">
                                 <!-- Data Diri -->
                                 <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>

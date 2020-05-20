@@ -8,7 +8,7 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Pembesaran</h1>
+                        <h1 class="display-2 text-white">Detail Produksi</h1>
                     </div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
         <div class="container-fluid mt--7">
             <div class="row mb-3">
                 <div class="col text-left">
-                        <router-link to="/beranda" class="btn btn-secondary text-uppercase">
+                        <router-link to="/produksi" class="btn btn-secondary text-uppercase">
                             Kembali
                         </router-link>
                 </div>
@@ -29,7 +29,7 @@
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Daftar Produksi</h3>
+                                    <h3 class="mb-0">Detail Produksi {{ $route.params.id }}</h3>
                                 </div>
                                 <div class="col-4 d-flex align-items-center justify-content-end">
                                    <base-pagination-dua  :pagination="meta"
@@ -44,28 +44,29 @@
                                 <div class="col">
                                     <h3 class="card-title text-left mb-0">
                                         {{produksi.nama_ikan}}
+                                        Kerapu Cantang
                                     </h3>
                                 </div>
                                 <div class="col">
                                     <h3 class="card-title text-right text-muted font-weight-light mb-0">
-                                        Produksi {{produksi.id}}
+                                        Produksi {{$route.params.id}}.{{produksi.id}}
                                     </h3>
                                 </div>
                             </div>
-                            <!-- <div class="row mt-3 mb-2">
+                            <div class="row mt-3 mb-2">
                                 <div class="col">
                                     <h3 class="card-subtitle text-left text-muted">
-                                        Keramba {{produksi.keramba_id}}
+                                        Keramba {{produksi.keramba_sesudah}}
                                     </h3>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="row mt-2">
                                 <div class="col">
                                     <h4 class="text-center text-uppercase font-weight-light">
                                         Jumlah
                                     </h4>
                                     <h3 class="text-center">
-                                        {{produksi.jumlah_ikan_awal}} Ekor
+                                        {{produksi.jumlah_ikan}} Ekor
                                     </h3>
                                 </div>
                                 <div class="col">
@@ -73,7 +74,7 @@
                                         Ukuran
                                     </h4>
                                     <h3 class="text-center">
-                                        {{produksi.panjang_ikan_awal}} cm
+                                        {{produksi.panjang_ikan}} cm
                                     </h3>
                                 </div>
                                 <div class="col">
@@ -81,24 +82,11 @@
                                         Berat
                                     </h4>
                                     <h3 class="text-center">
-                                        {{produksi.berat_ikan_awal}} Gram
+                                        {{produksi.berat_ikan}} Gram
                                     </h3>
                                 </div>
-
                             </div>
-                            <div class="row mt-3 mb-3">
-                                <div class="col">
-                                    <h4 class="text-left font-weight-light">
-                                        Tanggal Tebar
-                                    </h4>
-                                </div>
-                                <div class="col">
-                                    <h4 class="text-right font-italic font-weight-light">
-                                        {{produksi.tanggal_tebar}}
-                                    </h4>
-                                </div>
-                            </div>
-                            <!-- <div class="row">
+                            <div class="row mt-3">
                                 <div class="col">
                                     <h4 class="text-left font-weight-light">
                                         Tanggal Mencuci
@@ -109,8 +97,8 @@
                                         {{produksi.tanggal_cuci}}
                                     </h4>
                                 </div>
-                            </div> -->
-                            <!-- <div class="row mb-3">
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col">
                                     <h4 class="text-left font-weight-light">
                                         Tanggal Pindah
@@ -121,13 +109,26 @@
                                         {{produksi.tanggal_pindah}}
                                     </h4>
                                 </div>
-                            </div> -->
-                            <router-link :to="{ name: 'produksidetail', params: { id: produksi.id }}" class="btn btn-primary">
-                                <span>Detail Produksi</span>
-                            </router-link>
+                            </div>
                             <!-- <form class="row align-items-center px-3 mt-3" action="" method="post">
-                                <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Sensor IoT</button>
+                                <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Detail Produksi</button>
                             </form> -->
+                            <div>
+                                <form class="row align-items-center px-3" action="" method="post">
+                                    <button @click="showSensor(produksi.keramba_sesudah)" type="button" class="col btn btn-secondary">Sensor IoT</button>
+                                </form>
+                                <div class="row mt-3 px-3">
+                                            <router-link to="/beranda" class="col-4 btn btn-primary">
+                                                Ubah
+                                            </router-link>
+                                            <router-link to="/beranda" class="col btn btn-primary">
+                                                Pindah
+                                            </router-link>
+                                            <router-link to="/beranda" class="col btn btn-primary">
+                                                Panen
+                                            </router-link>
+                                </div>
+                            </div>
                         </div>
                         <div slot="footer" class="d-flex justify-content-end">
                             <base-pagination-dua  :pagination="meta"
@@ -182,7 +183,7 @@
 <script>
   import axios from 'axios'
   export default {
-    name: 'produksi',
+    name: 'produksidetail',
     data() {
       return {
         errors: '',
@@ -201,7 +202,7 @@
           tanggal_cuci: '',
           tanggal_pindah: '',
           status_panen: '',
-          keramba_id: ''
+          keramba_sesudah: ''
         },
         cucis: [],
         cuci: {
@@ -254,7 +255,7 @@
     methods:{
         async getProduksi() {
             await axios.all([
-                axios.get(`apiproduksi?page=${this.meta.current_page}`),
+                axios.get(`apisubproduksi/where?produksi=${this.$route.params.id}`),
                 axios.get(`apisensorhumtemp`)
             ])
             .then(axios.spread((responseProd, responseHumTemp) => {

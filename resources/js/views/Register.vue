@@ -19,7 +19,7 @@
                     <form @submit.prevent="submit" role="form" >
                         <base-input class="input-group-alternative mb-3"
                                     :required="true"
-                                    placeholder="Nama"
+                                    placeholder="Nama Lengkap"
                                     addon-left-icon="ni ni-hat-3"
                                     v-model="model.name">
                         </base-input>
@@ -37,6 +37,13 @@
 
                         <base-input class="input-group-alternative mb-3"
                                     :required="true"
+                                    placeholder="Username"
+                                    addon-left-icon="ni ni-badge"
+                                    v-model="model.username">
+                        </base-input>
+
+                        <base-input class="input-group-alternative mb-3"
+                                    :required="false"
                                     placeholder="Alamat Email"
                                     addon-left-icon="ni ni-email-83"
                                     v-model="model.email">
@@ -93,6 +100,7 @@
         errors: '',
         model: {
           name: '',
+          username: '',
           email: '',
           status: '',
           kelompok_id: '',

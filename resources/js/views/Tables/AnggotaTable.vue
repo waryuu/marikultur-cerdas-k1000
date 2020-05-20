@@ -23,6 +23,7 @@
                   :data="tableData">
         <template slot="columns">
           <th>Nama</th>
+          <th>Username</th>
           <th>Email</th>
           <th>Status</th>
           <th></th>
@@ -36,6 +37,9 @@
               </div>
             </div>
           </th>
+          <td class="budget">
+            {{row.username}}
+          </td>
           <td class="budget">
             {{row.email}}
           </td>

@@ -40,49 +40,42 @@ export default new Router({
         {
             path: '/tebar',
             name: 'tebar',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "demo" */ './views/Tebar.vue')
+            component: () => import('./views/Tebar.vue')
         },
         {
             path: '/cuci',
             name: 'cuci',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "demo" */ './views/Cuci.vue')
+            component: () => import('./views/Cuci.vue')
         },
         {
             path: '/pindah',
             name: 'pindah',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "demo" */ './views/Pindah.vue')
+            component: () => import('./views/Pindah.vue')
         },
         {
             path: '/panen',
             name: 'panen',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "demo" */ './views/Panen.vue')
+            component: () => import('./views/Panen.vue')
         },
         {
             path: '/produksi',
             name: 'produksi',
-            component: () => import(/* webpackChunkName: "demo" */ './views/Produksi.vue')
+            component: () => import('./views/Produksi.vue')
+        },
+        {
+            path: '/produksi/:id',
+            name: 'produksidetail',
+            component: () => import('./views/ProduksiDetail.vue')
         },
         {
             path: '/keramba',
             name: 'keramba',
-            component: () => import(/* webpackChunkName: "demo" */ './views/Keramba.vue')
+            component: () => import('./views/Keramba.vue')
         },
         {
             path: '/profil',
             name: 'profil',
-            component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
+            component: () => import('./views/UserProfile.vue')
         },
         {
             path: '/sensor',
@@ -95,7 +88,7 @@ export default new Router({
                 }
                 next()
             },
-            component: () => import(/* webpackChunkName: "demo" */ './views/Sensor.vue')
+            component: () => import('./views/Sensor.vue')
         },
         {
             path: '/pakan',
@@ -108,7 +101,7 @@ export default new Router({
                 }
                 next()
             },
-            component: () => import(/* webpackChunkName: "demo" */ './views/Pakan.vue')
+            component: () => import('./views/Pakan.vue')
         },
         {
             path: '/kelompok',
@@ -121,22 +114,22 @@ export default new Router({
                 }
                 next()
             },
-            component: () => import(/* webpackChunkName: "demo" */ './views/Kelompok.vue')
+            component: () => import('./views/Kelompok.vue')
         },
         {
           path: '/icons',
           name: 'icons',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Icons.vue')
+          component: () => import('./views/Icons.vue')
         },
         {
           path: '/maps',
           name: 'maps',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Maps.vue')
+          component: () => import('./views/Maps.vue')
         },
         {
           path: '/tables',
           name: 'tables',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
+          component: () => import('./views/Tables.vue')
         }
       ]
     },
@@ -158,12 +151,12 @@ export default new Router({
         {
           path: '/login',
           name: 'login',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Login.vue')
+          component: () => import('./views/Login.vue')
         },
         {
           path: '/register',
           name: 'register',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Register.vue')
+          component: () => import('./views/Register.vue')
         }
       ]
     },
@@ -190,7 +183,7 @@ export default new Router({
         {
             path: '/tambahkelompok',
             name: 'tambahkelompok',
-            component: () => import(/* webpackChunkName: "demo" */ './views/TambahKelompok.vue')
+            component: () => import('./views/TambahKelompok.vue')
         }
         ]
     }

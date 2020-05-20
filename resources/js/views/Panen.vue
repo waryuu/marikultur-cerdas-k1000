@@ -7,9 +7,9 @@
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
-                    <div class="col-lg-7 col-md-10">
+                    <div class="col-lg-12 col-md-10">
                         <h1 class="display-2 text-white">Pemanenan</h1>
-                        <p class="text-white mt-0 mb-5">Pilih produksi yang akan dipanen</p>
+                        <p class="text-white mt-0 mb-5">Daftar produksi yang telah dipanen</p>
                     </div>
                 </div>
             </div>
@@ -40,9 +40,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card card-body rounded-0 mb-3">
+                        <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card card-body rounded-0">
                             <h3 class="card-title">{{produksi.nama_ikan}}</h3>
-                            <h4 class="card-subtitle text-muted">Keramba {{produksi.keramba_id}}</h4>
+                            <h3 class="card-subtitle text-muted">Keramba {{produksi.keramba_id}}</h3>
                             <div class="row mt-3">
                                 <div class="col">
                                     <h4 class="text-center text-uppercase font-weight-light">
@@ -72,17 +72,29 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
-                                    <h4 class="text-left">
+                                    <h4 class="text-left font-weight-light">
                                         Tanggal Tebar
                                     </h4>
                                 </div>
                                 <div class="col">
-                                    <h4 class="text-right font-italic">
+                                    <h4 class="text-right font-weight-light font-italic">
                                         {{produksi.tanggal_tebar}}
                                     </h4>
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col">
+                                    <h4 class="text-left font-weight-light">
+                                        Tanggal Panen
+                                    </h4>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-right font-weight-light font-italic">
+                                        {{produksi.tanggal_tebar}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <!-- <div class="row">
                                 <div class="col">
                                     <h4 class="text-left">
                                         Tanggal Mencuci
@@ -93,8 +105,8 @@
                                         {{produksi.tanggal_cuci}}
                                     </h4>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
+                            </div> -->
+                            <!-- <div class="row mb-3">
                                 <div class="col">
                                     <h4 class="text-left">
                                         Tanggal Pindah
@@ -105,10 +117,10 @@
                                         {{produksi.tanggal_pindah}}
                                     </h4>
                                 </div>
-                            </div>
-                            <form class="row align-items-center px-3" action="" method="post">
+                            </div> -->
+                            <!-- <form class="row align-items-center px-3" action="" method="post">
                                 <button @click="showPanen(produksi.id)" type="button" class="col btn btn-primary">Lakukan Panen</button>
-                            </form>
+                            </form> -->
                         </div>
                         <div slot="footer" class="d-flex justify-content-end">
                             <base-pagination-dua  :pagination="meta"

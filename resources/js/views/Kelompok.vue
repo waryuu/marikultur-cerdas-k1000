@@ -26,49 +26,50 @@
                                 </div>
                             </div>
                         </div>
-                        <template>
-                            <form @submit.prevent="" role="form">
-                                <!-- Data Diri -->
-                                <div class="pl-lg-4">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <base-input alternative=""
-                                                        label="Nama Kelompok"
-                                                        placeholder="Nama Kelompok"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="kel.nama_kelompok"
-                                                        
-                                            />
-                                        </div>
-                                        <div class="col-12">
-                                            <base-input alternative=""
-                                                        label="Ketua"
-                                                        placeholder="Ketua"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="kel.ketua_kelompok"
-                                            />
-                                        </div>
-                                        <div class="col-12">
-                                            <base-input alternative=""
-                                                        label="Bendahara"
-                                                        placeholder="Bendahara"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="kel.bendahara_kelompok"
-                                            />
-                                        </div>
-                                        <div class="col-12">
-                                            <base-input alternative=""
-                                                        label="Humas"
-                                                        placeholder="Humas"
-                                                        input-classes="form-control-alternative"
-                                                        v-model="kel.humas_kelompok"
-                                            />
+                        <div slot="body">
+                            <template>
+                                <form @submit.prevent="" role="form">
+                                    <!-- Data Diri -->
+                                    <div class="pl-lg-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <base-input alternative=""
+                                                            label="Nama Kelompok"
+                                                            placeholder="Nama Kelompok"
+                                                            input-classes="form-control-alternative"
+                                                            v-model="kel.nama_kelompok"
+                                                            
+                                                />
+                                            </div>
+                                            <div class="col-12">
+                                                <base-input alternative=""
+                                                            label="Ketua"
+                                                            placeholder="Ketua"
+                                                            input-classes="form-control-alternative"
+                                                            v-model="kel.ketua_kelompok"
+                                                />
+                                            </div>
+                                            <div class="col-12">
+                                                <base-input alternative=""
+                                                            label="Bendahara"
+                                                            placeholder="Bendahara"
+                                                            input-classes="form-control-alternative"
+                                                            v-model="kel.bendahara_kelompok"
+                                                />
+                                            </div>
+                                            <div class="col-12">
+                                                <base-input alternative=""
+                                                            label="Humas"
+                                                            placeholder="Humas"
+                                                            input-classes="form-control-alternative"
+                                                            v-model="kel.humas_kelompok"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                
-                            </form>
-                        </template>
+                                </form>
+                            </template>
+                        </div>
                         <div slot="footer" class="text-center">
                             <base-button @click="" nativeType="submit" type="primary" class="text-uppercase">Ubah</base-button>
                         </div>

@@ -16,7 +16,7 @@
                         <a slot="title" class="nav-link" href="#" role="button">
                             <div class="media align-items-center">
                               <span class="avatar avatar-sm rounded-circle">
-                                <img alt="Image placeholder" src="img/theme/fisher2.png">
+                                <img alt="Image placeholder" src="/img/theme/logo-user.png">
                               </span>
                             </div>
                         </a>
@@ -78,7 +78,7 @@
     props: {
       logo: {
         type: String,
-        default: 'img/brand/logo-marikultur.png',
+        default: '/img/brand/logo-marikultur.png',
         description: 'Sidebar app logo'
       },
       autoClose: {

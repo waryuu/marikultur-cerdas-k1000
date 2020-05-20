@@ -16,12 +16,12 @@
                     <div class="card-body px-lg-5 py-lg-5">
                         <form @submit.prevent="submit" role="form">
                             <base-input class="input-group-alternative mb-3"
-                                        name="email"
-                                        id="email"
-                                        placeholder="Alamat Email"
+                                        name="username"
+                                        id="username"
+                                        placeholder="Username"
                                         type="text"
-                                        addon-left-icon="ni ni-email-83"
-                                        v-model="model.email">
+                                        addon-left-icon="ni ni-badge"
+                                        v-model="model.username">
                             </base-input>
 
                             <base-input class="input-group-alternative"
@@ -62,7 +62,7 @@
       return {
         errors: '',
         model: {
-          email: '',
+          username: '',
           password: ''
         }
       }
