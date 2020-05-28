@@ -20,7 +20,7 @@ class ApiSubproduksiLogController extends Controller
     {
         $subproduksilog = $request ->isMethod('put') ? SubproduksiLogModel::findOrFail($request->id) : new SubproduksiLogModel;
         $subproduksilog->id = $request->input('id');
-        $subproduksilog->user_id = $request->input('user_id');
+        // $subproduksilog->user_id = $request->input('user_id');
         $subproduksilog->nama_ikan = $request->input('nama_ikan');
     	$subproduksilog->panjang_ikan = $request->input('panjang_ikan');
         $subproduksilog->jumlah_ikan = $request->input('jumlah_ikan');

@@ -22,8 +22,8 @@ class CreateSubproduksiTable extends Migration
             $table->string('berat_ikan')->nullable();
             $table->integer('produksi_id')->unsigned();
             $table->foreign('produksi_id')->references('id')->on('produksi');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users');
             $table->string('tanggal_pindah')->nullable();
             $table->integer('keramba_sebelum')->unsigned()->nullable();
             $table->foreign('keramba_sebelum')->references('id')->on('keramba');

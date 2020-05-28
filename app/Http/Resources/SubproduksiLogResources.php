@@ -26,7 +26,7 @@ class SubproduksiLogResources extends JsonResource
             'keramba_sebelum'=>$this->keramba_sebelum,
             'keramba_sesudah'=>$this->keramba_sesudah,    
             'subproduksi_id'=>$this->subproduksi_id,
-            'user_id'=>$this->user_id
+            // 'user_id'=>$this->user_id
         ];
     }
     public function with($request){

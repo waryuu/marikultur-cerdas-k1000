@@ -24,7 +24,7 @@ class ApiSubproduksiController extends Controller
 
         $subproduksi = $request ->isMethod('put') ? SubproduksiModel::findOrFail($request->id) : new SubproduksiModel;
         $subproduksi->id = $request->input('id');
-        $subproduksi->user_id = $request->input('user_id');
+        // $subproduksi->user_id = $request->input('user_id');
         $subproduksi->nama_ikan = $request->input('nama_ikan');
     	$subproduksi->panjang_ikan = $request->input('panjang_ikan');
         $subproduksi->jumlah_ikan = $request->input('jumlah_ikan');
@@ -38,7 +38,7 @@ class ApiSubproduksiController extends Controller
         $subproduksi->status_panen = 'Pembesaran';
 
         $subproduksilog = SubproduksiLogModel::create([
-            'user_id' => $request->input('user_id'),
+            // 'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
             'berat_ikan' => $request->input('berat_ikan'),
@@ -67,7 +67,7 @@ class ApiSubproduksiController extends Controller
         try{DB::beginTransaction();
 
         $subproduksi = SubproduksiModel::create([
-            'user_id' => $request->input('user_id'),
+            // 'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
             'berat_ikan' => $request->input('berat_ikan'),
@@ -83,7 +83,7 @@ class ApiSubproduksiController extends Controller
         // Now you have a Family object so we can use that for the contact model
 
         $subproduksilog = SubproduksiLogModel::create([
-            'user_id' => $request->input('user_id'),
+            // 'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
             'berat_ikan' => $request->input('berat_ikan'),

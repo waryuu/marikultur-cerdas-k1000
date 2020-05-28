@@ -21,7 +21,7 @@ class SubproduksiLogSeeder extends Seeder
             "keramba_sebelum"=> '3',
             "keramba_sesudah"=> '4',
             "subproduksi_id"=> '2',
-            "user_id"=> 1,
+            // "user_id"=> 1,
             'created_at' => now(),
             'updated_at' => now()
             ]);
@@ -35,7 +35,7 @@ class SubproduksiLogSeeder extends Seeder
             "keramba_sebelum"=> 4,
             "keramba_sesudah"=> 5,
             "subproduksi_id"=> 2,
-            "user_id"=> 1,
+            // "user_id"=> 1,
             'created_at' => now(),
             'updated_at' => now()
             ]);

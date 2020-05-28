@@ -27,8 +27,8 @@ class CreateSubproduksilogTable extends Migration
             $table->foreign('keramba_sesudah')->references('id')->on('keramba');
             $table->integer('subproduksi_id')->unsigned();
             $table->foreign('subproduksi_id')->references('id')->on('subproduksi');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
