@@ -31256,43 +31256,55 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/tebar',
       name: 'tebar',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
       }
     }, {
       path: '/cuci',
       name: 'cuci',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/Cuci.vue */ "./resources/js/views/Cuci.vue"));
+        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/Cuci.vue */ "./resources/js/views/Cuci.vue"));
       }
     }, {
-      path: '/pindah',
-      name: 'pindah',
+      path: '/riwayat',
+      name: 'riwayat',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/Pindah.vue */ "./resources/js/views/Pindah.vue"));
-      }
-    }, {
-      path: '/panen',
-      name: 'panen',
-      component: function component() {
-        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/Panen.vue */ "./resources/js/views/Panen.vue"));
+        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/Riwayat.vue */ "./resources/js/views/Riwayat.vue"));
       }
     }, {
       path: '/produksi',
       name: 'produksi',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/Produksi.vue */ "./resources/js/views/Produksi.vue"));
+        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/Produksi.vue */ "./resources/js/views/Produksi.vue"));
       }
     }, {
       path: '/produksi/:id',
-      name: 'produksidetail',
+      name: 'produksi-detail',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/ProduksiDetail.vue */ "./resources/js/views/ProduksiDetail.vue"));
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/ProduksiDetail.vue */ "./resources/js/views/ProduksiDetail.vue"));
+      }
+    }, {
+      path: '/produksi/ubah/:id',
+      name: 'ubah',
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(19)]).then(__webpack_require__.bind(null, /*! ./views/UbahProduksi.vue */ "./resources/js/views/UbahProduksi.vue"));
+      }
+    }, {
+      path: '/produksi/pindah/:id',
+      name: 'pindah',
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(20)]).then(__webpack_require__.bind(null, /*! ./views/Pindah.vue */ "./resources/js/views/Pindah.vue"));
+      }
+    }, {
+      path: '/produksi/panen/:id',
+      name: 'panen',
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(18), __webpack_require__.e(11)]).then(__webpack_require__.bind(null, /*! ./views/Panen.vue */ "./resources/js/views/Panen.vue"));
       }
     }, {
       path: '/keramba',
       name: 'keramba',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
       }
     }, {
       path: '/profil',
@@ -31313,7 +31325,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./views/Sensor.vue */ "./resources/js/views/Sensor.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./views/Sensor.vue */ "./resources/js/views/Sensor.vue"));
       }
     }, {
       path: '/pakan',
@@ -31328,7 +31340,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
+        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
       }
     }, {
       path: '/kelompok',
@@ -31349,13 +31361,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/icons',
       name: 'icons',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./views/Icons.vue */ "./resources/js/views/Icons.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./views/Icons.vue */ "./resources/js/views/Icons.vue"));
       }
     }, {
       path: '/maps',
       name: 'maps',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/Maps.vue */ "./resources/js/views/Maps.vue"));
+        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/Maps.vue */ "./resources/js/views/Maps.vue"));
       }
     }, {
       path: '/tables',
@@ -31383,13 +31395,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/login',
       name: 'login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/Login.vue */ "./resources/js/views/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./views/Login.vue */ "./resources/js/views/Login.vue"));
       }
     }, {
       path: '/register',
       name: 'register',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/Register.vue */ "./resources/js/views/Register.vue"));
+        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./views/Register.vue */ "./resources/js/views/Register.vue"));
       }
     }]
   }, // Default Route untuk user yang tidak memiliki kelompok
@@ -31415,7 +31427,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/tambahkelompok',
       name: 'tambahkelompok',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./views/TambahKelompok.vue */ "./resources/js/views/TambahKelompok.vue"));
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/TambahKelompok.vue */ "./resources/js/views/TambahKelompok.vue"));
       }
     }]
   }]

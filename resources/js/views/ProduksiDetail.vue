@@ -16,11 +16,24 @@
 
         <!-- Card Produksi -->
         <div class="container-fluid mt--7">
-            <div class="row mb-3">
+            <!-- <div class="row mb-3">
                 <div class="col text-left">
                         <router-link to="/produksi" class="btn btn-secondary text-uppercase">
                             Kembali
                         </router-link>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col">
+                    <form class="form-inline mr-3 d-none d-flex ml-auto">
+                        <div class="form-group mb-0">
+                            <base-input placeholder="Cari"
+                                        class="input-group-alternative"
+                                        alternative=""
+                                        addon-right-icon="fas fa-search">
+                            </base-input>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="row">
@@ -34,7 +47,7 @@
                                 <div class="col-4 d-flex align-items-center justify-content-end">
                                    <base-pagination-dua  :pagination="meta"
                                         @paginate="getProduksi()"
-                                        :offset="1">
+                                        :offset="0">
                                     </base-pagination-dua>
                                 </div>
                             </div>
@@ -44,7 +57,6 @@
                                 <div class="col">
                                     <h3 class="card-title text-left mb-0">
                                         {{produksi.nama_ikan}}
-                                        Kerapu Cantang
                                     </h3>
                                 </div>
                                 <div class="col">
@@ -118,13 +130,13 @@
                                     <button @click="showSensor(produksi.keramba_sesudah)" type="button" class="col btn btn-secondary">Sensor IoT</button>
                                 </form>
                                 <div class="row mt-3 px-3">
-                                            <router-link to="/beranda" class="col-4 btn btn-primary">
+                                            <router-link :to="{ name: 'ubah', params: { id: produksi.id }}" class="col btn btn-primary">
                                                 Ubah
                                             </router-link>
-                                            <router-link to="/beranda" class="col btn btn-primary">
+                                            <router-link :to="{ name: 'pindah', params: { id: produksi.id }}" class="col btn btn-primary">
                                                 Pindah
                                             </router-link>
-                                            <router-link to="/beranda" class="col btn btn-primary">
+                                            <router-link :to="{ name: 'panen', params: { id: produksi.id }}" class="col btn btn-primary">
                                                 Panen
                                             </router-link>
                                 </div>
@@ -133,7 +145,7 @@
                         <div slot="footer" class="d-flex justify-content-end">
                             <base-pagination-dua  :pagination="meta"
                                     @paginate="getProduksi()"
-                                    :offset="1">
+                                    :offset="0">
                             </base-pagination-dua>
                         </div>
                         <!-- Modal Sensor -->
@@ -183,7 +195,7 @@
 <script>
   import axios from 'axios'
   export default {
-    name: 'produksidetail',
+    name: 'produksi-detail',
     data() {
       return {
         errors: '',

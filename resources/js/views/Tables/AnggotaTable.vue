@@ -125,4 +125,10 @@
   }
 </script>
 <style>
+  .table thead th {
+      font-size: 0.8rem;
+  }
+  .table td, .table th {
+      font-size: 0.9rem;
+  }
 </style>

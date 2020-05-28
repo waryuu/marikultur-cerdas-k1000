@@ -8,8 +8,8 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Panen Produksi</h1>
-                        <p class="text-white mt-0 mb-5">Silahkan isi form berikut untuk melakukan panen</p>
+                        <h1 class="display-2 text-white">Ubah Produksi</h1>
+                        <p class="text-white mt-0 mb-5">Silahkan isi form berikut untuk melakukan perubahan</p>
                     </div>
                 </div>
             </div>
@@ -62,35 +62,43 @@
                                         </div> -->
                                         
                                         <base-input alternative=""
-                                                    label="Jumlah Ikan Yang Akan Dipanen"
+                                                    label="Jumlah Ikan"
                                                     placeholder="Masukkan Jumlah Ikan"
                                                     input-classes="form-control-alternative"
                                                     type="number"
-                                                    v-model="model.jumlah_ikan_akhir"
+                                                    v-model="model.jumlah_ikan"
 
                                         />
                                         <base-input alternative=""
-                                                    label="Ukuran Ikan Terakhir (cm)"
+                                                    label="Ukuran Ikan (cm)"
                                                     placeholder="Masukkan Ukuran Ikan (cm)"
                                                     input-classes="form-control-alternative"
                                                     type="number"
-                                                    v-model="model.panjang_ikan_akhir"
+                                                    v-model="model.panjang_ikan"
 
                                         />
                                         <base-input alternative=""
-                                                    label="Berat Ikan Terakhir (gram)"
+                                                    label="Berat Ikan (gram)"
                                                     placeholder="Masukkan Berat Ikan (gram)"
                                                     input-classes="form-control-alternative"
                                                     type="number"
-                                                    v-model="model.berat_ikan_akhir"
+                                                    v-model="model.berat_ikan"
 
                                         />
                                         <base-input alternative=""
-                                                    label="Tanggal Panen"
-                                                    placeholder="Masukkan Tanggal Panen"
+                                                    label="Tanggal Cuci"
+                                                    placeholder="Masukkan Tanggal Cuci"
                                                     input-classes="form-control-alternative"
                                                     type="date"
-                                                    v-model="model.tanggal_panen"
+                                                    v-model="model.tanggal_cuci"
+
+                                        />
+                                        <base-input alternative=""
+                                                    label="Tanggal Pindah"
+                                                    placeholder="Masukkan Tanggal Pindah"
+                                                    input-classes="form-control-alternative"
+                                                    type="date"
+                                                    v-model="model.tanggal_pindah"
 
                                         />
                                     </div>
@@ -111,7 +119,7 @@
                                     <div>
                                         <div class="row mb-3">
                                             <div class="col-lg-12">
-                                                <div class="form-control-label">Lokasi Terakhir</div>
+                                                <div class="form-control-label">Lokasi Saat Ini</div>
                                                 <div class="round">
                                                     <multiselect @input="opt => model.keramba_sesudah = opt.id" 
                                                                 v-model="keramba"
@@ -135,7 +143,7 @@
                         <div slot="footer" class="text-center d-flex">
                             <!-- <router-link to="/produksi" class="btn btn-link text-uppercase">Batal</router-link> -->
                             <a @click="$router.go(-1)" class="btn btn-link text-uppercase text-primary">Batal</a>
-                            <base-button @click="submitProduksi()" nativeType="submit" type="primary" class="text-uppercase ml-auto">Panen</base-button>
+                            <base-button @click="submitProduksi()" nativeType="submit" type="primary" class="text-uppercase ml-auto">Simpan</base-button>
                         </div>
                     </card>
                 </div>
@@ -148,7 +156,7 @@
   import axios from 'axios'
   import Multiselect from 'vue-multiselect'
   export default {
-    name: 'panen',
+    name: 'ubah',
     computed: {
         ...mapGetters({
             user: 'auth/user',
@@ -171,12 +179,12 @@
             nama_ikan: ''
         },
         model: {
-            jumlah_ikan_akhir: '',
-            panjang_ikan_akhir: '',
-            berat_ikan_akhir: '',
-            tanggal_panen: '',
+            jumlah_ikan: '',
+            panjang_ikan: '',
+            berat_ikan: '',
+            tanggal_cuci: '',
+            tanggal_pindah: '',
             keramba_sesudah: '',
-            status_panen: '',
             kelompok_id: '',
             user_id: ''
         }
@@ -205,7 +213,6 @@
         },
         async submitProduksi(){
             this.errors = '';
-            this.model.status_panen = 'Panen';
             let credentials = this.model;
             console.log(credentials);
             await axios.put('apisubproduksi/update', credentials)

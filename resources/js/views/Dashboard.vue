@@ -3,7 +3,7 @@
         <base-header type="gradient-primary" class="mb-8 pt-4 pb-4 pt-md-8">
             <!-- Buttons -->
             <div class="card">
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col">
                         <div class="align-items-center mt-3 mb-3">
                             <h3 class="text-center text-primary mb-0"><i class="fas fa-map-marker-alt"></i> Kepulauan Seribu</h3>
@@ -17,18 +17,24 @@
                             <h4 class="mb-0 font-weight-light">Cerah Berawan</h4>
                         </div>
                     </div>
-                </div>
-                <div class="row ml-4 mr-4">
+                </div> -->
+                <!-- <div class="row ml-4 mr-4">
                     <div class="col-8">
                         <div class="mt-3 mb-3">
-                            <h3 class="mb-0 font-weight-light"><i class="fas fa-temperature-low"></i> Suhu</h3>
-                            <h3 class="mb-0 font-weight-light"><i class="fas fa-hand-holding-water"></i> Kelembaban</h3>
+                            <h3 class="mb-0 font-weight-light"><i class="fas fa-temperature-low"></i>Suhu</h3>
                         </div>
                     </div>
                     <div class="col">
                         <div class="mt-3 mb-3">
                             <h3 class="text-right font-weight-light mb-0">{{sensorHumTemp.temperature}}&#176;C</h3>
                             <h3 class="text-right font-weight-light mb-0">{{sensorHumTemp.humidity}}%</h3>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row ml-3">
+                    <div class="col">
+                        <div class="mt-3">
+                            <h2 class="mb-0">Menu Utama</h2>
                         </div>
                     </div>
                 </div>
@@ -38,7 +44,7 @@
                             <div class="icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary">
                                 <i class="fas fa-fish"></i>
                             </div>
-                            <h4 class="card-title text-center font-weight-light mb-0">Penebaran</h4>
+                            <h3 class="card-title text-center font-weight-light mb-0">Penebaran</h3>
                         </div>
                     </router-link>
                     <router-link to="/produksi" class="col">
@@ -46,17 +52,29 @@
                             <div class="icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary">
                                 <i class="fas fa-user-edit"></i>
                             </div>
-                            <h4 class="card-title text-center font-weight-light mb-0">Pembesaran</h4>
+                            <h3 class="card-title text-center font-weight-light mb-0">Produksi</h3>
                         </div>
                     </router-link>
-                    <router-link to="/panen" class="col">
+                    <router-link to="/riwayat" class="col">
                         <div class="card border-0 align-items-center">
                             <div class="icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary">
                                 <i class="fas fa-clipboard-list"></i>
                             </div>
-                            <h4 class="card-title text-center font-weight-light mb-0">Panen</h4>
+                            <h3 class="card-title text-center font-weight-light mb-0">Riwayat</h3>
                         </div>
                     </router-link>
+                </div>
+            </div>
+            <div class="row mt-3 ml-1 mr-1">
+                <div class="col card border-0 mr-1 bg-gradient-green">
+                    <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">13</h3></div>
+                    <div class="row ml-1 mr-1"><h3 class="card-title mb-0 text-white">Produksi</h3></div>
+                    <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">Menunggu Dicuci</h4></div>
+                </div>
+                <div class="col card border-0 ml-1 bg-gradient-green">
+                    <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">1</h3></div>
+                    <div class="row ml-1 mr-1"><h3 class="card-title mb-0 text-white">Produksi</h3></div>
+                    <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">Siap Dipanen</h4></div>
                 </div>
             </div>
         </base-header>
@@ -196,4 +214,11 @@
     }
   }
 </script>
-<style></style>
+<style>
+  .table thead th {
+      font-size: 0.8rem;
+  }
+  .table td, .table th {
+      font-size: 0.9rem;
+  }
+</style>

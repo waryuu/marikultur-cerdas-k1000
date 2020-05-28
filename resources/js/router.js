@@ -48,14 +48,9 @@ export default new Router({
             component: () => import('./views/Cuci.vue')
         },
         {
-            path: '/pindah',
-            name: 'pindah',
-            component: () => import('./views/Pindah.vue')
-        },
-        {
-            path: '/panen',
-            name: 'panen',
-            component: () => import('./views/Panen.vue')
+            path: '/riwayat',
+            name: 'riwayat',
+            component: () => import('./views/Riwayat.vue')
         },
         {
             path: '/produksi',
@@ -64,8 +59,23 @@ export default new Router({
         },
         {
             path: '/produksi/:id',
-            name: 'produksidetail',
+            name: 'produksi-detail',
             component: () => import('./views/ProduksiDetail.vue')
+        },
+        {
+            path: '/produksi/ubah/:id',
+            name: 'ubah',
+            component: () => import('./views/UbahProduksi.vue')
+        },
+        {
+            path: '/produksi/pindah/:id',
+            name: 'pindah',
+            component: () => import('./views/Pindah.vue')
+        },
+        {
+            path: '/produksi/panen/:id',
+            name: 'panen',
+            component: () => import('./views/Panen.vue')
         },
         {
             path: '/keramba',

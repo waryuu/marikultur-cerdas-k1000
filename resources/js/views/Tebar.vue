@@ -16,13 +16,13 @@
         </base-header>
 
         <div class="container-fluid mt--7">
-            <div class="row mb-3">
+            <!-- <div class="row mb-3">
                 <div class="col text-left">
                         <router-link to="/beranda" class="btn btn-secondary text-uppercase">
                             Kembali
                         </router-link>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col">
                     <card shadow type="secondary">
@@ -45,16 +45,22 @@
                                                     v-model="model.nama_ikan"
                                         /> -->
                                         <div>
-                                            <div class="row">
+                                            <div class="row mb-3">
                                                 <div class="col-lg-12">
                                                     <div class="form-control-label">Nama Ikan</div>
-                                                    <select v-model="model.nama_ikan" class="input-group-alternative mb-3 form-control">
-                                                        <option disabled value="">Pilih Jenis Ikan</option>
-                                                        <option v-for="ikan in ikans" v-bind:value="ikan.nama_ikan">{{ ikan.nama_ikan }}</option>
-                                                    </select>
+                                                    <div class="round">
+                                                        <multiselect v-model="model.nama_ikan" 
+                                                                    :options="ikans" :searchable="true" 
+                                                                    :close-on-select="true" 
+                                                                    :show-labels="false" 
+                                                                    :allow-empty="false" 
+                                                                    placeholder="Nama Ikan">
+                                                        </multiselect>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <base-input alternative=""
                                                     label="Jumlah Ikan"
                                                     placeholder="Masukkan Jumlah Ikan"
@@ -89,7 +95,7 @@
                                         />
                                     </div>
                                     <!-- Keramba -->
-                                    <div class="pl-lg-4">
+                                    <!-- <div class="pl-lg-4">
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="form-control-label">Lokasi Tebar</div>
@@ -97,6 +103,29 @@
                                                     <option disabled value="">Pilih Lokasi Tebar</option>
                                                     <option v-for="keramba in kerambas" v-bind:value="keramba.id">{{ keramba.nama_keramba }}</option>
                                                 </select>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <multiselect v-model="model.keramba_id" deselect-label="Anda memilih opsi ini" track-by="id" :selected="id" key="id" label="nama_keramba" placeholder="Select one" :options="kerambas" :searchable="true" :allow-empty="false">
+                                    </multiselect> -->
+                                    <div>
+                                        <div class="row mb-3">
+                                            <div class="col-lg-12">
+                                                <div class="form-control-label">Lokasi Tebar</div>
+                                                <div class="round">
+                                                    <multiselect @input="opt => model.keramba_id = opt.id" 
+                                                                v-model="keramba"
+                                                                :value="keramba"
+                                                                :close-on-select="true" 
+                                                                track-by="id"
+                                                                label="nama_keramba"
+                                                                placeholder="Pilih Lokasi Keramba"
+                                                                :options="kerambas"
+                                                                :searchable="true"
+                                                                :allow-empty="false"
+                                                                :show-labels="false">
+                                                    </multiselect>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -116,6 +145,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import axios from 'axios'
+  import Multiselect from 'vue-multiselect'
   export default {
     name: 'tebar',
     computed: {
@@ -123,21 +153,18 @@
             user: 'auth/user',
         })
     },
+    components: {
+        Multiselect
+    },
     data() {
       return {
         errors: '',
         kerambas: [],
         keramba: {
-            id: '',
-            nama_keramba: ''
         },
         ikans: [
-            {
-                nama_ikan: 'Kerapu Cantang'
-            },
-            {
-                nama_ikan: 'Kerapu Macan'
-            },
+            'Kerapu Cantang',
+            'Kerapu Macan'
         ],
         ikan: {
             nama_ikan: ''
@@ -190,4 +217,11 @@
     }
   };
 </script>
-<style></style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style>
+  .round .multiselect__tags{
+      border-radius: 1.5rem;
+      box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+      border: 0px;
+  }
+</style>

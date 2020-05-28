@@ -8,19 +8,35 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Pembesaran</h1>
+                        <h1 class="display-2 text-white">Produksi</h1>
                     </div>
                 </div>
+            </div>
+            <div class="container-fluid d-flex align-items-center">
+                
             </div>
         </base-header>
 
         <!-- Card Produksi -->
         <div class="container-fluid mt--7">
-            <div class="row mb-3">
+            <!-- <div class="row mb-3">
                 <div class="col text-left">
                         <router-link to="/beranda" class="btn btn-secondary text-uppercase">
                             Kembali
                         </router-link>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col">
+                    <form class="form-inline mr-3 d-none d-flex ml-auto">
+                        <div class="form-group mb-0">
+                            <base-input placeholder="Cari"
+                                        class="input-group-alternative"
+                                        alternative=""
+                                        addon-right-icon="fas fa-search">
+                            </base-input>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="row">
@@ -34,7 +50,7 @@
                                 <div class="col-4 d-flex align-items-center justify-content-end">
                                    <base-pagination-dua  :pagination="meta"
                                         @paginate="getProduksi()"
-                                        :offset="1">
+                                        :offset="0">
                                     </base-pagination-dua>
                                 </div>
                             </div>
@@ -122,7 +138,7 @@
                                     </h4>
                                 </div>
                             </div> -->
-                            <router-link :to="{ name: 'produksidetail', params: { id: produksi.id }}" class="btn btn-primary">
+                            <router-link :to="{ name: 'produksi-detail', params: { id: produksi.id }}" class="btn btn-primary">
                                 <span>Detail Produksi</span>
                             </router-link>
                             <!-- <form class="row align-items-center px-3 mt-3" action="" method="post">
@@ -132,7 +148,7 @@
                         <div slot="footer" class="d-flex justify-content-end">
                             <base-pagination-dua  :pagination="meta"
                                     @paginate="getProduksi()"
-                                    :offset="1">
+                                    :offset="0">
                             </base-pagination-dua>
                         </div>
                         <!-- Modal Sensor -->
