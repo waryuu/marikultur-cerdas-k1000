@@ -22,20 +22,28 @@ class ApiSubproduksiController extends Controller
     {
         try{DB::beginTransaction();
 
-        $subproduksi = $request ->isMethod('put') ? SubproduksiModel::findOrFail($request->id) : new SubproduksiModel;
-        $subproduksi->id = $request->input('id');
-        // $subproduksi->user_id = $request->input('user_id');
-        $subproduksi->nama_ikan = $request->input('nama_ikan');
-    	$subproduksi->panjang_ikan = $request->input('panjang_ikan');
-        $subproduksi->jumlah_ikan = $request->input('jumlah_ikan');
-        $subproduksi->berat_ikan = $request->input('berat_ikan');
-        $subproduksi->tanggal_pindah = $request->input('tanggal_pindah');
-        $subproduksi->keramba_sebelum = $request->input('keramba_sebelum');
-        $subproduksi->keramba_sesudah = $request->input('keramba_sesudah');
-        $subproduksi->tanggal_cuci = $request->input('tanggal_cuci');
-        // $subproduksi->tanggal_cuci = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_cuci'))->format('d-m-Y');
-        $subproduksi->produksi_id = $request->input('produksi_id');
-        $subproduksi->status_panen = 'Pembesaran';
+            $nama_ikan = $request->nama_ikan;
+            $id = $request->id;
+            $panjang_ikan = $request->panjang_ikan;
+                $jumlah_ikan = $request->jumlah_ikan;
+                $berat_ikan = $request->berat_ikan; 
+                $tanggal_pindah = $request->tanggal_pindah;
+                $tanggal_cuci = $request->tanggal_cuci;
+                $keramba_sebelum = $request->keramba_sebelum;
+                $keramba_sesudah = $request->keramba_sesudah;
+            $produksi_id = $request->produksi_id;
+        
+                $subproduksi = SubproduksiModel::find($id);
+                
+                $subproduksi->nama_ikan = $nama_ikan;
+                $subproduksi->panjang_ikan = $panjang_ikan;
+                $subproduksi->jumlah_ikan = $jumlah_ikan;
+                $subproduksi->berat_ikan = $berat_ikan;
+            	$subproduksi->tanggal_pindah = $tanggal_pindah;
+                $subproduksi->tanggal_cuci = $tanggal_cuci;
+                $subproduksi->keramba_sebelum = $keramba_sebelum;
+                $subproduksi->keramba_sesudah = $keramba_sesudah;
+                $subproduksi->save();
 
         $subproduksilog = SubproduksiLogModel::create([
             // 'user_id' => $request->input('user_id'),
@@ -60,6 +68,20 @@ class ApiSubproduksiController extends Controller
                     'message'=> $e->getMessage()
                 ], 500);
             }
+            // $subproduksi = $request ->isMethod('put') ? SubproduksiModel::findOrFail($request->id) : new SubproduksiModel;
+            // $subproduksi->id = $request->input('id');
+            // // $subproduksi->user_id = $request->input('user_id');
+            // $subproduksi->nama_ikan = $request->input('nama_ikan');
+            // $subproduksi->panjang_ikan = $request->input('panjang_ikan');
+            // $subproduksi->jumlah_ikan = $request->input('jumlah_ikan');
+            // $subproduksi->berat_ikan = $request->input('berat_ikan');
+            // $subproduksi->tanggal_pindah = $request->input('tanggal_pindah');
+            // $subproduksi->keramba_sebelum = $request->input('keramba_sebelum');
+            // $subproduksi->keramba_sesudah = $request->input('keramba_sesudah');
+            // $subproduksi->tanggal_cuci = $request->input('tanggal_cuci');
+            // // $subproduksi->tanggal_cuci = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_cuci'))->format('d-m-Y');
+            // $subproduksi->produksi_id = $request->input('produksi_id');
+            // $subproduksi->status_panen = 'Pembesaran';
 
     }
     public function store(Request $request)
