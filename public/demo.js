@@ -437,7 +437,7 @@ var render = function() {
           _c("div", { staticClass: "row mt-3 ml-1 mr-1" }, [
             _c(
               "div",
-              { staticClass: "col card border-0 mr-1 bg-gradient-green" },
+              { staticClass: "col card border-0 mr-1 bg-gradient-info" },
               [
                 _c("div", { staticClass: "row ml-1 mr-1 mt-2" }, [
                   _c("h3", { staticClass: "card-title mb-0 text-white" }, [
@@ -466,7 +466,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "col card border-0 ml-1 bg-gradient-green" },
+              { staticClass: "col card border-0 ml-1 bg-gradient-info" },
               [
                 _c("div", { staticClass: "row ml-1 mr-1 mt-2" }, [
                   _c("h3", { staticClass: "card-title mb-0 text-white" }, [

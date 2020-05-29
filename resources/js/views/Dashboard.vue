@@ -66,12 +66,12 @@
                 </div>
             </div>
             <div class="row mt-3 ml-1 mr-1">
-                <div class="col card border-0 mr-1 bg-gradient-green">
+                <div class="col card border-0 mr-1 bg-gradient-info">
                     <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">13</h3></div>
                     <div class="row ml-1 mr-1"><h3 class="card-title mb-0 text-white">Produksi</h3></div>
                     <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">Menunggu Dicuci</h4></div>
                 </div>
-                <div class="col card border-0 ml-1 bg-gradient-green">
+                <div class="col card border-0 ml-1 bg-gradient-info">
                     <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">1</h3></div>
                     <div class="row ml-1 mr-1"><h3 class="card-title mb-0 text-white">Produksi</h3></div>
                     <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">Siap Dipanen</h4></div>

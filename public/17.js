@@ -1,23 +1,16 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[17],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UserProfile.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/UserProfile.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Riwayat.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Riwayat.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -125,87 +118,267 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'user-profile',
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
-    authenticated: 'auth/authenticated',
-    user: 'auth/user'
-  })),
+  name: 'riwayat',
   data: function data() {
     return {
-      kelompoks: [],
-      kelompok: {
-        id: '',
-        nama_kelompok: ''
+      kegiatan: '',
+      panen: '',
+      errors: '',
+      offset: 4,
+      meta: {
+        current_page: 1,
+        from: 1,
+        last_page: '',
+        path: '',
+        per_page: '',
+        to: '',
+        total: ''
       },
-      model: {
-        name: '',
-        email: '',
-        kelompok_id: ''
-      },
-      form: {
-        password: '',
-        password_confirmation: ''
+      links: {
+        first: '',
+        last: '',
+        prev: '',
+        next: ''
       }
     };
   },
-  created: function created() {
-    this.fetchKelompok();
-    this.model.name = this.user.name;
-    this.model.email = this.user.email;
-    this.model.kelompok_id = this.user.kelompok_id;
+  mounted: function mounted() {
+    this.showKegiatan();
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
-    updateProfile: 'auth/updateProfile'
-  }), {
-    fetchKelompok: function fetchKelompok() {
-      var _this = this;
-
-      fetch('api/apikelompok').then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this.kelompoks = res.data;
-      });
+  methods: {
+    showKegiatan: function showKegiatan() {
+      this.kegiatan = true;
+      this.panen = false;
     },
-    submitInfoUser: function submitInfoUser() {
-      var _this2 = this;
-
-      this.errors = '';
-      this.updateProfile(this.model).then(function () {
-        _this2.$router.replace({
-          name: 'profil'
-        });
-      })["catch"](function () {
-        _this2.errors = 'Harap isi semua form dengan benar!';
-      });
-    },
-    submitPassword: function submitPassword() {
-      var _this3 = this;
-
-      this.errors = '';
-      this.updateProfile(this.form).then(function () {
-        _this3.$router.replace({
-          name: 'profil'
-        });
-      })["catch"](function () {
-        _this3.errors = 'Harap isi semua form dengan benar!';
-      });
-    },
-    consolee: function consolee() {
-      console.log(this.model);
-      console.log(this.form);
+    showPanen: function showPanen() {
+      this.kegiatan = false;
+      this.panen = true;
     }
-  })
+  }
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UserProfile.vue?vue&type=template&id=19ecac0f&":
-/*!*********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/UserProfile.vue?vue&type=template&id=19ecac0f& ***!
-  \*********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Riwayat.vue?vue&type=template&id=dfc62b88&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Riwayat.vue?vue&type=template&id=dfc62b88& ***!
+  \*****************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -238,17 +411,46 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-lg-7 col-md-10" }, [
                   _c("h1", { staticClass: "display-2 text-white" }, [
-                    _vm._v("Profil")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-white mt-0 mb-5" }, [
-                    _vm._v(
-                      "Silahkan isi form berikut untuk mengubah data diri Anda"
-                    )
+                    _vm._v("Riwayat")
                   ])
                 ])
               ])
             ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "row mt-3 mb-3 ml-1 mr-1" },
+            [
+              _c(
+                "base-button",
+                {
+                  staticClass: "col text-uppercase",
+                  attrs: { type: "secondary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.showKegiatan()
+                    }
+                  }
+                },
+                [_vm._v("Kegiatan")]
+              ),
+              _vm._v(" "),
+              _c(
+                "base-button",
+                {
+                  staticClass: "col text-uppercase",
+                  attrs: { type: "secondary" },
+                  on: {
+                    click: function($event) {
+                      return _vm.showPanen()
+                    }
+                  }
+                },
+                [_vm._v("Panen")]
+              )
+            ],
+            1
           )
         ]
       ),
@@ -259,280 +461,703 @@ var render = function() {
             "div",
             { staticClass: "col" },
             [
-              _c(
-                "card",
-                { attrs: { shadow: "", type: "secondary" } },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "bg-white border-0",
-                      attrs: { slot: "header" },
-                      slot: "header"
-                    },
+              _vm.kegiatan
+                ? _c(
+                    "card",
+                    { attrs: { shadow: "", type: "secondary", noBody: true } },
                     [
-                      _c("div", { staticClass: "row align-items-center" }, [
-                        _c("div", { staticClass: "col-12" }, [
-                          _c("h3", { staticClass: "mb-0" }, [
-                            _vm._v("Profil Saya")
-                          ])
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("template", { slot: "body" }, [
-                    _c(
-                      "form",
-                      {
-                        attrs: { role: "form" },
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.submitInfoUser($event)
-                          }
-                        }
-                      },
-                      [
-                        _c(
-                          "h6",
-                          { staticClass: "heading-small text-muted mb-4" },
-                          [_vm._v("Informasi Pengguna")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "pl-lg-4" }, [
-                          _c("div", { staticClass: "row" }, [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "bg-white border-0",
+                          attrs: { slot: "header" },
+                          slot: "header"
+                        },
+                        [
+                          _c("div", { staticClass: "row align-items-center" }, [
+                            _c("div", { staticClass: "col-8" }, [
+                              _c("h3", { staticClass: "mb-0" }, [
+                                _vm._v("Riwayat Kegiatan")
+                              ])
+                            ]),
+                            _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "col-lg-6" },
+                              {
+                                staticClass:
+                                  "col-4 d-flex align-items-center justify-content-end"
+                              },
                               [
-                                _c("base-input", {
-                                  attrs: {
-                                    alternative: "",
-                                    label: "Alamat Email",
-                                    placeholder: "jesse@example.com",
-                                    "input-classes": "form-control-alternative"
-                                  },
-                                  model: {
-                                    value: _vm.model.email,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.model, "email", $$v)
-                                    },
-                                    expression: "model.email"
-                                  }
+                                _c("base-pagination-dua", {
+                                  attrs: { pagination: _vm.meta, offset: 0 },
+                                  on: { paginate: function($event) {} }
                                 })
                               ],
                               1
+                            )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card card-body rounded-0" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary"
+                              },
+                              [_c("i", { staticClass: "fas fa-fish" })]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-5" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h3",
+                                { staticClass: "card-title text-left mb-0" },
+                                [_vm._v("Penebaran")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h4",
+                                {
+                                  staticClass:
+                                    "text-left text-muted font-weight-light mb-0"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                      Kerapu Cantang\n                                    "
+                                  )
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col mr-2" }, [
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c("h3", { staticClass: "text-right mb-0" }, [
+                                  _vm._v(
+                                    "\n                                        500 Ikan\n                                    "
+                                  )
+                                ])
+                              ]
                             ),
                             _vm._v(" "),
                             _c(
                               "div",
-                              { staticClass: "col-lg-6" },
+                              { staticClass: "row d-flex justify-content-end" },
                               [
-                                _c("base-input", {
-                                  attrs: {
-                                    alternative: "",
-                                    label: "Nama",
-                                    placeholder: "Nama",
-                                    "input-classes": "form-control-alternative"
+                                _c(
+                                  "h4",
+                                  {
+                                    staticClass:
+                                      "text-right text-muted font-weight-light mb-0"
                                   },
-                                  model: {
-                                    value: _vm.model.name,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.model, "name", $$v)
-                                    },
-                                    expression: "model.name"
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "h6",
-                          { staticClass: "heading-small text-muted mb-4" },
-                          [_vm._v("Informasi Kelompok")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "pl-lg-4" }, [
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-lg-12" }, [
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.model.kelompok_id,
-                                      expression: "model.kelompok_id"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "input-group-alternative mb-3 form-control",
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.model,
-                                        "kelompok_id",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "option",
-                                    { attrs: { disabled: "", value: "" } },
-                                    [_vm._v("Pilih Kelompok Anda")]
-                                  ),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.kelompoks, function(kelompok) {
-                                    return _c(
-                                      "option",
-                                      { domProps: { value: kelompok.id } },
-                                      [_vm._v(_vm._s(kelompok.nama_kelompok))]
+                                  [
+                                    _vm._v(
+                                      "\n                                        22/01/2020\n                                    "
                                     )
-                                  })
-                                ],
-                                2
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "text-center" },
-                          [
-                            _c(
-                              "base-button",
-                              {
-                                staticClass: "my-4",
-                                attrs: { nativeType: "submit", type: "primary" }
-                              },
-                              [_vm._v("Ubah")]
+                                  ]
+                                )
+                              ]
                             )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c("hr", { staticClass: "my-4" })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "form",
-                      {
-                        attrs: { role: "form" },
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.submitPassword($event)
-                          }
-                        }
-                      },
-                      [
-                        _c(
-                          "h6",
-                          { staticClass: "heading-small text-muted mb-4" },
-                          [_vm._v("Ubah Kata Sandi")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "pl-lg-4" }, [
-                          _c("div", { staticClass: "row" }, [
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card card-body rounded-0" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-3" }, [
                             _c(
                               "div",
-                              { staticClass: "col-md-12" },
-                              [
-                                _c("base-input", {
-                                  attrs: {
-                                    alternative: "",
-                                    label: "Kata Sandi Baru",
-                                    placeholder: "Masukkan Kata Sandi",
-                                    "input-classes": "form-control-alternative",
-                                    type: "password"
-                                  },
-                                  model: {
-                                    value: _vm.form.password,
-                                    callback: function($$v) {
-                                      _vm.$set(_vm.form, "password", $$v)
-                                    },
-                                    expression: "form.password"
-                                  }
-                                })
-                              ],
-                              1
+                              {
+                                staticClass:
+                                  "icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary"
+                              },
+                              [_c("i", { staticClass: "fa fa-user-edit" })]
                             )
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-5" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h3",
+                                { staticClass: "card-title text-left mb-0" },
+                                [_vm._v("Cuci & Pindah")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h4",
+                                {
+                                  staticClass:
+                                    "text-left text-muted font-weight-light mb-0"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                      Kerapu Cantang\n                                    "
+                                  )
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col mr-2" }, [
                             _c(
                               "div",
-                              { staticClass: "col-lg-12" },
+                              { staticClass: "row d-flex justify-content-end" },
                               [
-                                _c("base-input", {
-                                  attrs: {
-                                    alternative: "",
-                                    label: "Konfirmasi Kata Sandi",
-                                    placeholder: "Masukkan Kata Sandi",
-                                    "input-classes": "form-control-alternative",
-                                    type: "password"
+                                _c("h3", { staticClass: "text-right mb-0" }, [
+                                  _vm._v(
+                                    "\n                                        300 Ikan\n                                    "
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c(
+                                  "h4",
+                                  {
+                                    staticClass:
+                                      "text-right text-muted font-weight-light mb-0"
                                   },
-                                  model: {
-                                    value: _vm.form.password_confirmation,
-                                    callback: function($$v) {
-                                      _vm.$set(
-                                        _vm.form,
-                                        "password_confirmation",
-                                        $$v
-                                      )
-                                    },
-                                    expression: "form.password_confirmation"
-                                  }
+                                  [
+                                    _vm._v(
+                                      "\n                                        22/01/2020\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card card-body rounded-0" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary"
+                              },
+                              [_c("i", { staticClass: "fa fa-user-edit" })]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-5" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h3",
+                                { staticClass: "card-title text-left mb-0" },
+                                [_vm._v("Ubah")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h4",
+                                {
+                                  staticClass:
+                                    "text-left text-muted font-weight-light mb-0"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                      Kerapu Cantang\n                                    "
+                                  )
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col mr-2" }, [
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c("h3", { staticClass: "text-right mb-0" }, [
+                                  _vm._v(
+                                    "\n                                        300 Ikan\n                                    "
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c(
+                                  "h4",
+                                  {
+                                    staticClass:
+                                      "text-right text-muted font-weight-light mb-0"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        22/01/2020\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card card-body rounded-0" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary"
+                              },
+                              [_c("i", { staticClass: "fa fa-user-edit" })]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-5" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h3",
+                                { staticClass: "card-title text-left mb-0" },
+                                [_vm._v("Panen")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h4",
+                                {
+                                  staticClass:
+                                    "text-left text-muted font-weight-light mb-0"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                      Kerapu Cantang\n                                    "
+                                  )
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col mr-2" }, [
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c("h3", { staticClass: "text-right mb-0" }, [
+                                  _vm._v(
+                                    "\n                                        200 Ikan\n                                    "
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c(
+                                  "h4",
+                                  {
+                                    staticClass:
+                                      "text-right text-muted font-weight-light mb-0"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        22/01/2020\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "d-flex justify-content-end",
+                          attrs: { slot: "footer" },
+                          slot: "footer"
+                        },
+                        [
+                          _c("base-pagination-dua", {
+                            attrs: { pagination: _vm.meta, offset: 0 },
+                            on: { paginate: function($event) {} }
+                          })
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.panen
+                ? _c(
+                    "card",
+                    { attrs: { shadow: "", type: "secondary", noBody: true } },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "bg-white border-0",
+                          attrs: { slot: "header" },
+                          slot: "header"
+                        },
+                        [
+                          _c("div", { staticClass: "row align-items-center" }, [
+                            _c("div", { staticClass: "col-8" }, [
+                              _c("h3", { staticClass: "mb-0" }, [
+                                _vm._v("Riwayat Panen")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "col-4 d-flex align-items-center justify-content-end"
+                              },
+                              [
+                                _c("base-pagination-dua", {
+                                  attrs: { pagination: _vm.meta, offset: 0 },
+                                  on: { paginate: function($event) {} }
                                 })
                               ],
                               1
                             )
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "text-center" },
-                          [
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card card-body rounded-0" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-3" }, [
                             _c(
-                              "base-button",
+                              "div",
                               {
-                                staticClass: "my-4",
-                                attrs: { nativeType: "submit", type: "primary" }
+                                staticClass:
+                                  "icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary"
                               },
-                              [_vm._v("Ubah")]
+                              [_c("i", { staticClass: "fas fa-fish" })]
                             )
-                          ],
-                          1
-                        )
-                      ]
-                    )
-                  ])
-                ],
-                2
-              )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-5" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h3",
+                                { staticClass: "card-title text-left mb-0" },
+                                [_vm._v("Penebaran")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h4",
+                                {
+                                  staticClass:
+                                    "text-left text-muted font-weight-light mb-0"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                      Kerapu Cantang\n                                    "
+                                  )
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col mr-2" }, [
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c("h3", { staticClass: "text-right mb-0" }, [
+                                  _vm._v(
+                                    "\n                                        500 Ikan\n                                    "
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c(
+                                  "h4",
+                                  {
+                                    staticClass:
+                                      "text-right text-muted font-weight-light mb-0"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        22/01/2020\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card card-body rounded-0" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary"
+                              },
+                              [_c("i", { staticClass: "fa fa-user-edit" })]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-5" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h3",
+                                { staticClass: "card-title text-left mb-0" },
+                                [_vm._v("Cuci & Pindah")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h4",
+                                {
+                                  staticClass:
+                                    "text-left text-muted font-weight-light mb-0"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                      Kerapu Cantang\n                                    "
+                                  )
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col mr-2" }, [
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c("h3", { staticClass: "text-right mb-0" }, [
+                                  _vm._v(
+                                    "\n                                        300 Ikan\n                                    "
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c(
+                                  "h4",
+                                  {
+                                    staticClass:
+                                      "text-right text-muted font-weight-light mb-0"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        22/01/2020\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card card-body rounded-0" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary"
+                              },
+                              [_c("i", { staticClass: "fa fa-user-edit" })]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-5" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h3",
+                                { staticClass: "card-title text-left mb-0" },
+                                [_vm._v("Ubah")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h4",
+                                {
+                                  staticClass:
+                                    "text-left text-muted font-weight-light mb-0"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                      Kerapu Cantang\n                                    "
+                                  )
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col mr-2" }, [
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c("h3", { staticClass: "text-right mb-0" }, [
+                                  _vm._v(
+                                    "\n                                        300 Ikan\n                                    "
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c(
+                                  "h4",
+                                  {
+                                    staticClass:
+                                      "text-right text-muted font-weight-light mb-0"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        22/01/2020\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card card-body rounded-0" }, [
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col-3" }, [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary"
+                              },
+                              [_c("i", { staticClass: "fa fa-user-edit" })]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-5" }, [
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h3",
+                                { staticClass: "card-title text-left mb-0" },
+                                [_vm._v("Panen")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "row" }, [
+                              _c(
+                                "h4",
+                                {
+                                  staticClass:
+                                    "text-left text-muted font-weight-light mb-0"
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                      Kerapu Cantang\n                                    "
+                                  )
+                                ]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col mr-2" }, [
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c("h3", { staticClass: "text-right mb-0" }, [
+                                  _vm._v(
+                                    "\n                                        200 Ikan\n                                    "
+                                  )
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "row d-flex justify-content-end" },
+                              [
+                                _c(
+                                  "h4",
+                                  {
+                                    staticClass:
+                                      "text-right text-muted font-weight-light mb-0"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                        22/01/2020\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "d-flex justify-content-end",
+                          attrs: { slot: "footer" },
+                          slot: "footer"
+                        },
+                        [
+                          _c("base-pagination-dua", {
+                            attrs: { pagination: _vm.meta, offset: 0 },
+                            on: { paginate: function($event) {} }
+                          })
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                : _vm._e()
             ],
             1
           )
@@ -549,17 +1174,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/views/UserProfile.vue":
-/*!********************************************!*\
-  !*** ./resources/js/views/UserProfile.vue ***!
-  \********************************************/
+/***/ "./resources/js/views/Riwayat.vue":
+/*!****************************************!*\
+  !*** ./resources/js/views/Riwayat.vue ***!
+  \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UserProfile_vue_vue_type_template_id_19ecac0f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserProfile.vue?vue&type=template&id=19ecac0f& */ "./resources/js/views/UserProfile.vue?vue&type=template&id=19ecac0f&");
-/* harmony import */ var _UserProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserProfile.vue?vue&type=script&lang=js& */ "./resources/js/views/UserProfile.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Riwayat_vue_vue_type_template_id_dfc62b88___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Riwayat.vue?vue&type=template&id=dfc62b88& */ "./resources/js/views/Riwayat.vue?vue&type=template&id=dfc62b88&");
+/* harmony import */ var _Riwayat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Riwayat.vue?vue&type=script&lang=js& */ "./resources/js/views/Riwayat.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -569,9 +1194,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _UserProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _UserProfile_vue_vue_type_template_id_19ecac0f___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _UserProfile_vue_vue_type_template_id_19ecac0f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Riwayat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Riwayat_vue_vue_type_template_id_dfc62b88___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Riwayat_vue_vue_type_template_id_dfc62b88___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -581,38 +1206,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/UserProfile.vue"
+component.options.__file = "resources/js/views/Riwayat.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/UserProfile.vue?vue&type=script&lang=js&":
-/*!*********************************************************************!*\
-  !*** ./resources/js/views/UserProfile.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************/
+/***/ "./resources/js/views/Riwayat.vue?vue&type=script&lang=js&":
+/*!*****************************************************************!*\
+  !*** ./resources/js/views/Riwayat.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./UserProfile.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UserProfile.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserProfile_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Riwayat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Riwayat.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Riwayat.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Riwayat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/UserProfile.vue?vue&type=template&id=19ecac0f&":
-/*!***************************************************************************!*\
-  !*** ./resources/js/views/UserProfile.vue?vue&type=template&id=19ecac0f& ***!
-  \***************************************************************************/
+/***/ "./resources/js/views/Riwayat.vue?vue&type=template&id=dfc62b88&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/views/Riwayat.vue?vue&type=template&id=dfc62b88& ***!
+  \***********************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserProfile_vue_vue_type_template_id_19ecac0f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./UserProfile.vue?vue&type=template&id=19ecac0f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UserProfile.vue?vue&type=template&id=19ecac0f&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserProfile_vue_vue_type_template_id_19ecac0f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Riwayat_vue_vue_type_template_id_dfc62b88___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Riwayat.vue?vue&type=template&id=dfc62b88& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Riwayat.vue?vue&type=template&id=dfc62b88&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Riwayat_vue_vue_type_template_id_dfc62b88___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserProfile_vue_vue_type_template_id_19ecac0f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Riwayat_vue_vue_type_template_id_dfc62b88___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

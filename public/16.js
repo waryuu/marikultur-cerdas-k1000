@@ -1,25 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[16],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/TambahKelompok.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/TambahKelompok.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Register.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Register.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -95,89 +85,99 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'tambahkelompok',
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
-    user: 'auth/user'
-  })),
+  name: 'register',
   data: function data() {
     return {
       errors: '',
       model: {
-        nama_kelompok: '',
-        ketua_kelompok: '',
-        bendahara_kelompok: '',
-        humas_kelompok: ''
-      },
-      form: {
         name: '',
+        username: '',
         email: '',
-        kelompok_id: ''
+        status: '',
+        kelompok_id: '',
+        password: '',
+        password_confirmation: ''
+      },
+      kelompoks: [],
+      kelompok: {
+        id: '',
+        nama_kelompok: ''
       }
     };
   },
   created: function created() {
-    this.model.ketua_kelompok = this.user.name;
-    this.form.name = this.user.name;
-    this.form.email = this.user.email;
+    this.fetchKelompok();
   },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])({
-    updateProfile: 'auth/updateProfile'
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
+    Register: 'auth/Register'
   }), {
-    addKelompok: function () {
-      var _addKelompok = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _this = this;
+    submit: function submit() {
+      var _this = this;
 
-        var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this.errors = '';
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apikelompok/store', this.model);
+      this.errors = '';
 
-              case 3:
-                response = _context.sent;
-                this.form.kelompok_id = response.data.kelompok.id;
-                this.updateProfile(this.form).then(function () {
-                  _this.$router.replace({
-                    name: 'beranda'
-                  });
-                })["catch"](function () {
-                  _this.errors = 'Harap isi semua form dengan benar!';
-                });
-                console.log(this.id_user);
-                console.log(this.form);
-                console.log(response.data.kelompok.id);
-
-              case 9:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function addKelompok() {
-        return _addKelompok.apply(this, arguments);
+      if (this.model.status === 'ketua') {
+        this.Register(this.model).then(function () {
+          _this.$router.replace({
+            name: 'kelompok'
+          });
+        })["catch"](function () {
+          _this.errors = 'Harap isi semua form dengan benar!';
+        });
+      } else {
+        this.Register(this.model).then(function () {
+          _this.$router.replace({
+            name: 'beranda'
+          });
+        })["catch"](function () {
+          _this.errors = 'Silahkan isi semua form dengan benar!';
+        });
       }
+    },
+    fetchKelompok: function fetchKelompok() {
+      var _this2 = this;
 
-      return addKelompok;
-    }()
+      fetch('api/apikelompok').then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this2.kelompoks = res.data;
+      });
+    }
   })
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/TambahKelompok.vue?vue&type=template&id=4f53e084&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/TambahKelompok.vue?vue&type=template&id=4f53e084& ***!
-  \************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Register.vue?vue&type=template&id=3563ad7c&":
+/*!******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Register.vue?vue&type=template&id=3563ad7c& ***!
+  \******************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -242,7 +242,7 @@ var render = function() {
               on: {
                 submit: function($event) {
                   $event.preventDefault()
-                  return _vm.addKelompok($event)
+                  return _vm.submit($event)
                 }
               }
             },
@@ -251,82 +251,212 @@ var render = function() {
                 staticClass: "input-group-alternative mb-3",
                 attrs: {
                   required: true,
-                  placeholder: "Nama Kelompok",
+                  placeholder: "Nama Lengkap",
                   "addon-left-icon": "ni ni-hat-3"
                 },
                 model: {
-                  value: _vm.model.nama_kelompok,
+                  value: _vm.model.name,
                   callback: function($$v) {
-                    _vm.$set(_vm.model, "nama_kelompok", $$v)
+                    _vm.$set(_vm.model, "name", $$v)
                   },
-                  expression: "model.nama_kelompok"
-                }
-              }),
-              _vm._v(" "),
-              _c("base-input", {
-                staticClass: "input-group-alternative mb-3",
-                attrs: {
-                  required: true,
-                  disabled: true,
-                  placeholder: "Ketua Kelompok",
-                  "addon-left-icon": "ni ni-hat-3"
-                },
-                model: {
-                  value: _vm.model.ketua_kelompok,
-                  callback: function($$v) {
-                    _vm.$set(_vm.model, "ketua_kelompok", $$v)
-                  },
-                  expression: "model.ketua_kelompok"
-                }
-              }),
-              _vm._v(" "),
-              _c("base-input", {
-                staticClass: "input-group-alternative mb-3",
-                attrs: {
-                  required: true,
-                  placeholder: "Bendahara Kelompok",
-                  "addon-left-icon": "ni ni-hat-3"
-                },
-                model: {
-                  value: _vm.model.bendahara_kelompok,
-                  callback: function($$v) {
-                    _vm.$set(_vm.model, "bendahara_kelompok", $$v)
-                  },
-                  expression: "model.bendahara_kelompok"
-                }
-              }),
-              _vm._v(" "),
-              _c("base-input", {
-                staticClass: "input-group-alternative mb-3",
-                attrs: {
-                  required: true,
-                  placeholder: "Humas Kelompok",
-                  "addon-left-icon": "ni ni-hat-3"
-                },
-                model: {
-                  value: _vm.model.humas_kelompok,
-                  callback: function($$v) {
-                    _vm.$set(_vm.model, "humas_kelompok", $$v)
-                  },
-                  expression: "model.humas_kelompok"
+                  expression: "model.name"
                 }
               }),
               _vm._v(" "),
               _c(
-                "div",
-                { staticClass: "text-center" },
-                [
-                  _c(
-                    "base-button",
+                "select",
+                {
+                  directives: [
                     {
-                      staticClass: "my-4",
-                      attrs: { nativeType: "submit", type: "primary" }
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.model.status,
+                      expression: "model.status"
+                    }
+                  ],
+                  staticClass: "input-group-alternative mb-3 form-control",
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.model,
+                        "status",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { disabled: "", value: "" } }, [
+                    _vm._v("Pilih Jabatan Anda")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "ketua" } }, [
+                    _vm._v("Ketua Kelompok")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "user" } }, [
+                    _vm._v("Anggota")
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _vm.model.status === "user"
+                ? _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.model.kelompok_id,
+                          expression: "model.kelompok_id"
+                        }
+                      ],
+                      staticClass: "input-group-alternative mb-3 form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.model,
+                            "kelompok_id",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
                     },
-                    [_vm._v("Tambah")]
+                    [
+                      _c("option", { attrs: { disabled: "", value: "" } }, [
+                        _vm._v("Pilih Kelompok Anda")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.kelompoks, function(kelompok) {
+                        return _c(
+                          "option",
+                          { domProps: { value: kelompok.id } },
+                          [_vm._v(_vm._s(kelompok.nama_kelompok))]
+                        )
+                      })
+                    ],
+                    2
                   )
-                ],
-                1
-              )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("base-input", {
+                staticClass: "input-group-alternative mb-3",
+                attrs: {
+                  required: true,
+                  placeholder: "Username",
+                  "addon-left-icon": "ni ni-badge"
+                },
+                model: {
+                  value: _vm.model.username,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model, "username", $$v)
+                  },
+                  expression: "model.username"
+                }
+              }),
+              _vm._v(" "),
+              _c("base-input", {
+                staticClass: "input-group-alternative mb-3",
+                attrs: {
+                  required: false,
+                  placeholder: "Alamat Email",
+                  "addon-left-icon": "ni ni-email-83"
+                },
+                model: {
+                  value: _vm.model.email,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model, "email", $$v)
+                  },
+                  expression: "model.email"
+                }
+              }),
+              _vm._v(" "),
+              _c("base-input", {
+                staticClass: "input-group-alternative",
+                attrs: {
+                  required: true,
+                  placeholder: "Sandi",
+                  type: "password",
+                  "addon-left-icon": "ni ni-lock-circle-open"
+                },
+                model: {
+                  value: _vm.model.password,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model, "password", $$v)
+                  },
+                  expression: "model.password"
+                }
+              }),
+              _vm._v(" "),
+              _c("base-input", {
+                staticClass: "input-group-alternative",
+                attrs: {
+                  required: true,
+                  placeholder: "Konfirmasi Sandi",
+                  type: "password",
+                  "addon-left-icon": "ni ni-lock-circle-open"
+                },
+                model: {
+                  value: _vm.model.password_confirmation,
+                  callback: function($$v) {
+                    _vm.$set(_vm.model, "password_confirmation", $$v)
+                  },
+                  expression: "model.password_confirmation"
+                }
+              }),
+              _vm._v(" "),
+              _vm.model.status === "ketua"
+                ? _c(
+                    "div",
+                    { staticClass: "text-center" },
+                    [
+                      _c(
+                        "base-button",
+                        {
+                          staticClass: "my-4",
+                          attrs: { nativeType: "submit", type: "primary" }
+                        },
+                        [_vm._v("Selanjutnya")]
+                      )
+                    ],
+                    1
+                  )
+                : _c(
+                    "div",
+                    { staticClass: "text-center" },
+                    [
+                      _c(
+                        "base-button",
+                        {
+                          staticClass: "my-4",
+                          attrs: { nativeType: "submit", type: "primary" }
+                        },
+                        [_vm._v("Buat Akun")]
+                      )
+                    ],
+                    1
+                  )
             ],
             1
           )
@@ -357,8 +487,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center" }, [
-      _c("h4", [_vm._v("Masukkan Data Kelompok Anda")])
+    return _c("div", { staticClass: "text-center text-muted" }, [
+      _c("h4", [_vm._v("Silahkan isi form berikut")])
     ])
   },
   function() {
@@ -378,17 +508,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/views/TambahKelompok.vue":
-/*!***********************************************!*\
-  !*** ./resources/js/views/TambahKelompok.vue ***!
-  \***********************************************/
+/***/ "./resources/js/views/Register.vue":
+/*!*****************************************!*\
+  !*** ./resources/js/views/Register.vue ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TambahKelompok_vue_vue_type_template_id_4f53e084___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TambahKelompok.vue?vue&type=template&id=4f53e084& */ "./resources/js/views/TambahKelompok.vue?vue&type=template&id=4f53e084&");
-/* harmony import */ var _TambahKelompok_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TambahKelompok.vue?vue&type=script&lang=js& */ "./resources/js/views/TambahKelompok.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Register_vue_vue_type_template_id_3563ad7c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Register.vue?vue&type=template&id=3563ad7c& */ "./resources/js/views/Register.vue?vue&type=template&id=3563ad7c&");
+/* harmony import */ var _Register_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Register.vue?vue&type=script&lang=js& */ "./resources/js/views/Register.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -398,9 +528,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _TambahKelompok_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _TambahKelompok_vue_vue_type_template_id_4f53e084___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _TambahKelompok_vue_vue_type_template_id_4f53e084___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Register_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Register_vue_vue_type_template_id_3563ad7c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Register_vue_vue_type_template_id_3563ad7c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -410,38 +540,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/TambahKelompok.vue"
+component.options.__file = "resources/js/views/Register.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/TambahKelompok.vue?vue&type=script&lang=js&":
-/*!************************************************************************!*\
-  !*** ./resources/js/views/TambahKelompok.vue?vue&type=script&lang=js& ***!
-  \************************************************************************/
+/***/ "./resources/js/views/Register.vue?vue&type=script&lang=js&":
+/*!******************************************************************!*\
+  !*** ./resources/js/views/Register.vue?vue&type=script&lang=js& ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TambahKelompok_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TambahKelompok.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/TambahKelompok.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TambahKelompok_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Register_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Register.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Register.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Register_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/TambahKelompok.vue?vue&type=template&id=4f53e084&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/views/TambahKelompok.vue?vue&type=template&id=4f53e084& ***!
-  \******************************************************************************/
+/***/ "./resources/js/views/Register.vue?vue&type=template&id=3563ad7c&":
+/*!************************************************************************!*\
+  !*** ./resources/js/views/Register.vue?vue&type=template&id=3563ad7c& ***!
+  \************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TambahKelompok_vue_vue_type_template_id_4f53e084___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TambahKelompok.vue?vue&type=template&id=4f53e084& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/TambahKelompok.vue?vue&type=template&id=4f53e084&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TambahKelompok_vue_vue_type_template_id_4f53e084___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Register_vue_vue_type_template_id_3563ad7c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Register.vue?vue&type=template&id=3563ad7c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Register.vue?vue&type=template&id=3563ad7c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Register_vue_vue_type_template_id_3563ad7c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TambahKelompok_vue_vue_type_template_id_4f53e084___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Register_vue_vue_type_template_id_3563ad7c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

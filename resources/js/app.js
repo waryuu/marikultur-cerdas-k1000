@@ -25,7 +25,7 @@ import store from './store'
 
 require('./store/localsubs')
 
-axios.defaults.baseURL = 'http://dev.localhost/api'
+axios.defaults.baseURL = standardUrl + '/api'
 Vue.config.productionTip = false
 
 store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {

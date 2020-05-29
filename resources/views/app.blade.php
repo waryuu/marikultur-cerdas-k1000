@@ -34,8 +34,9 @@
         <!-- Argon JS -->
         <script>
             var flagsUrl = '{{ asset('service-worker.js') }}';
+            var standardUrl = '{{ url('/') }}';
         </script>
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="{{ asset('js/service.js') }}"></script>
     </body>
 </html>
