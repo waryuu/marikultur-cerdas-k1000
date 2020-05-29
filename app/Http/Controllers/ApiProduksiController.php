@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\ProduksiModel;
+use Response;
 use App\SubproduksiModel;
 use App\SubproduksiLogModel;
 use App\Http\Resources\ProduksiResources;
@@ -44,6 +45,13 @@ class ApiProduksiController extends Controller
         return  ProduksiResources::collection($produksi);
         // $produksi = ProduksiModel::paginate(5);
     }
+    public function wheretotalproduksi(Request $request)
+        {
+        $user_id = $request->query('user');
+            
+        $produksi = ProduksiModel::where('user_id',$user_id)->count();
+        return Response::json($produksi);
+        }
 
  
     public function getallproduksi()
@@ -86,7 +94,7 @@ class ApiProduksiController extends Controller
         // Now you have a Family object so we can use that for the contact model
 
         $subproduksi = SubproduksiModel::create([
-            // 'user_id' => $request->input('user_id'),
+            'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
             'berat_ikan' => $request->input('berat_ikan'),

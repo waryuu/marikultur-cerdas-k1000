@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\SubproduksiModel;
+use Response;
 use App\SubproduksiLogModel;
 use App\Http\Requests;
 use App\Http\Resources\SubproduksiResources;
@@ -28,16 +29,23 @@ class ApiSubproduksiController extends Controller
         }
         // $produksi = subproduksiModel::where('produksi_id',$produksi_id)->paginate(2);
         // return subproduksiResources::collection($produksi);
-        public function wherepanen(Request $request)
+    public function wherepanen(Request $request)
         {
-            $produksi_id = $request->query('produksi');
-            $status_panen = $request->query('status');
+        $produksi_id = $request->query('produksi');
+        $status_panen = $request->query('status');
             
-            $produksi = SubproduksiModel::where('produksi_id',$produksi_id)->where('status_panen','Panen')->paginate(5);
-            return SubproduksiResources::collection($produksi);
+        $produksi = SubproduksiModel::where('produksi_id',$produksi_id)->where('status_panen','Panen')->paginate(5);
+        return SubproduksiResources::collection($produksi);
             
-            }
+        }
     
+    public function wheretotalikan(Request $request)
+    {
+    $user_id = $request->query('user');
+    $user = SubproduksiModel::where('user_id',$user_id)->sum('jumlah_ikan');
+    return Response::json($user);
+            
+    }
     public function update(Request $request)
     {
         try{DB::beginTransaction();
@@ -51,6 +59,7 @@ class ApiSubproduksiController extends Controller
                 $tanggal_cuci = $request->tanggal_cuci;
                 $keramba_sebelum = $request->keramba_sebelum;
                 $keramba_sesudah = $request->keramba_sesudah;
+                $user_id = $request->user_id;
             $produksi_id = $request->produksi_id;
         
                 $subproduksi = SubproduksiModel::find($id);
@@ -63,6 +72,7 @@ class ApiSubproduksiController extends Controller
                 $subproduksi->tanggal_cuci = $tanggal_cuci;
                 $subproduksi->keramba_sebelum = $keramba_sebelum;
                 $subproduksi->keramba_sesudah = $keramba_sesudah;
+                $subproduksi->user_id = $user_id;
                 $subproduksi->save();
 
         $subproduksilog = SubproduksiLogModel::create([
@@ -110,7 +120,7 @@ class ApiSubproduksiController extends Controller
         try{DB::beginTransaction();
 
         $subproduksi = SubproduksiModel::create([
-            // 'user_id' => $request->input('user_id'),
+            'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
             'berat_ikan' => $request->input('berat_ikan'),
