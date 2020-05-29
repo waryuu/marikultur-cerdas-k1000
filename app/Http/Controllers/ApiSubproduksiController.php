@@ -56,7 +56,7 @@ class ApiSubproduksiController extends Controller
             'keramba_sebelum' => $request->input('keramba_sebelum'),
             'keramba_sesudah' => $request->input('keramba_sesudah'),
             'subproduksi_id' => $subproduksi->id,
-            'kegiatan' => 'Pemindahan'
+            'kegiatan' => 'Pengubahan'
         ]);
             DB::commit();
            
