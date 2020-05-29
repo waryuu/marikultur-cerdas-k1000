@@ -166,10 +166,10 @@ class ApiProduksiController extends Controller
     // 	return new ProduksiResources($panen);
     // }
 
-    public function panen(Request $request,$id)
+    public function panen(Request $request)
     {
+        $id = $request->id;
         $status_panen = $request->status_panen;
-
 
         $panen = ProduksiModel::find($id);
         

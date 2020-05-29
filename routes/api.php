@@ -83,7 +83,7 @@ Route::post('/apiproduksi/create','ApiProduksiController@create');
 Route::get('/apiproduksi/{id}','ApiProduksiController@show');
 Route::post('/apiproduksi/store','ApiProduksiController@store');
 Route::put('/apiproduksi/store','ApiProduksiController@store');
-Route::put('/apiproduksi/panen/{id}','ApiProduksiController@panen');
+Route::put('/apiproduksi/panen','ApiProduksiController@panen');
 Route::delete('/apiproduksi/delete/{id}','ApiProduksiController@destroy');
 
 Route::get('/apisensordo','ApiSensorDoController@index');
