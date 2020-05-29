@@ -17,6 +17,26 @@ class ApiSubproduksiController extends Controller
         $subproduksi = SubproduksiModel::paginate(15);
         return SubproduksiResources::collection($subproduksi);
     }
+    public function wherepembesaran(Request $request)
+    {
+        $produksi_id = $request->query('produksi');
+        $status_panen = $request->query('status');
+        
+        $produksi = SubproduksiModel::where('produksi_id',$produksi_id)->where('status_panen','Pembesaran')->paginate(5);
+        return SubproduksiResources::collection($produksi);
+        
+        }
+        // $produksi = subproduksiModel::where('produksi_id',$produksi_id)->paginate(2);
+        // return subproduksiResources::collection($produksi);
+        public function wherepanen(Request $request)
+        {
+            $produksi_id = $request->query('produksi');
+            $status_panen = $request->query('status');
+            
+            $produksi = SubproduksiModel::where('produksi_id',$produksi_id)->where('status_panen','Panen')->paginate(5);
+            return SubproduksiResources::collection($produksi);
+            
+            }
     
     public function update(Request $request)
     {

@@ -40,6 +40,8 @@ Route::put('/apiaktivitas/store','ApiAktivitasController@aktivitasstore');
 Route::delete('/apiaktivitas/delete/{id}','ApiAktivitasController@destroyaktivitas');
 
 Route::get('/apisubproduksi/where','ApiSubproduksiController@where');
+Route::get('/apisubproduksi/wherepembesaran','ApiSubproduksiController@wherepembesaran');
+Route::get('/apisubproduksi/wherepanen','ApiSubproduksiController@wherepanen');
 Route::get('/apisubproduksi','ApiSubproduksiController@get');
 Route::get('/apisubproduksi/{id}','ApiSubproduksiController@showsubproduksi');
 Route::post('/apisubproduksi/store','ApiSubproduksiController@store');
