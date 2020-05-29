@@ -166,6 +166,18 @@ class ApiProduksiController extends Controller
     // 	return new ProduksiResources($panen);
     // }
 
+    public function panen(Request $request,$id)
+    {
+        $status_panen = $request->status_panen;
+
+
+        $panen = ProduksiModel::find($id);
+        
+        $panen->status_panen = 'Panen';
+        $panen->save();
+
+    	return new ProduksiResources($panen);
+    }
     public function showproduksibyidkelompok($kelompok_id)
     {
         $produksi = ProduksiModel::where(compact('kelompok_id'))->get();

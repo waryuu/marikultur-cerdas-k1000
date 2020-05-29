@@ -33,7 +33,7 @@ class ProduksiResources extends JsonResource
             // 'tanggal_panen'=>$tanggal_panen_doang,
             // 'tanggal_cuci'=>$this->tanggal_cuci,
             // 'tanggal_pindah'=>$this->pemindahan->tanggal_pindah,
-            // 'status_panen'=>$this->status_panen,
+            'status_panen'=>$this->status_panen,
             'keramba_id'=>$this->keramba_id,
             'kelompok_id'=>$this->kelompok_id,
             'user_id'=>$this->user_id,

@@ -14,6 +14,7 @@ class ProduksiSeeder extends Seeder
             'berat_ikan' => '10',
             'kelompok_id'=>'1',
             'keramba_id'=> '1',
+            'status_panen'=>'Panen',
             'user_id'=>'1',
             'created_at' => now(),
             'updated_at' => now()
@@ -48,6 +49,7 @@ class ProduksiSeeder extends Seeder
             'jumlah_ikan' => '400',
             'tanggal_tebar' => '2020-02-22',
             'berat_ikan' => '10',
+            'status_panen'=>'Panen',
             'keramba_id'=> '4',
             'user_id'=>'1',
             'kelompok_id'=>'1',
@@ -65,6 +67,7 @@ class ProduksiSeeder extends Seeder
             'jumlah_ikan' => '900',
             'tanggal_tebar' => '2020-03-20',
             'berat_ikan' => '10',
+            'status_panen'=>'Panen',
             'keramba_id'=> '5',
             'user_id'=>'1',
             'kelompok_id'=>'1',
