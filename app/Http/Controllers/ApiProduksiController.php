@@ -7,6 +7,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\ProduksiModel;
 use App\SubproduksiModel;
+use App\SubproduksiLogModel;
 use App\Http\Resources\ProduksiResources;
 use App\PencucianModel;
 use App\Http\Resources\PencucianResources;
@@ -85,18 +86,30 @@ class ApiProduksiController extends Controller
         // Now you have a Family object so we can use that for the contact model
 
         $subproduksi = SubproduksiModel::create([
-            'user_id' => $request->input('user_id'),
+            // 'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
             'berat_ikan' => $request->input('berat_ikan'),
             'jumlah_ikan' => $request->input('jumlah_ikan'),
             'produksi_id' => $produksi->id,
             'keramba_sesudah' => $request->input('keramba_id'),
+            ]);
+
+        $subproduksilog = SubproduksiLogModel::create([
+            'nama_ikan' => $request->input('nama_ikan'),
+            'panjang_ikan' => $request->input('panjang_ikan'),
+            'berat_ikan' => $request->input('berat_ikan'),
+            'jumlah_ikan' => $request->input('jumlah_ikan'),
+            'keramba_sesudah' => $request->input('keramba_id'),
+            'kegiatan' => 'Penebaran',
+            'subproduksi_id' => $subproduksi->id,
+           
 
         ]);
         DB::commit();
         return new ProduksiResources($produksi);
         return new SubproduksiResources($subproduksi);
+        return new SubproduksiLogResources($subproduksilog);
         }
         catch(\Exception $e) {
             DB::rollback();
@@ -107,29 +120,29 @@ class ApiProduksiController extends Controller
     }
     
    
-    public function store(Request $request)
-    {
-        $produksi = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->id) : new ProduksiModel;
-        $produksi->id = $request->input('id');
-        $produksi->user_id = $request->input('user_id');
-    	$produksi->nama_ikan = $request->input('nama_ikan');
-        $produksi->panjang_ikan = $request->input('panjang_ikan');
-        $produksi->berat_ikan = $request->input('berat_ikan');
-        $produksi->jumlah_ikan = $request->input('jumlah_ikan');
-        // $produksi->tanggal_tebar = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_tebar'))->format('d-m-Y');
-        // $produksi->tanggal_panen = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_panen'))->format('d-m-Y');
-        $produksi->tanggal_tebar = $request->input('tanggal_tebar');
-        // $produksi->tanggal_panen = $request->input('tanggal_panen');
-        // $produksi->status_panen = 'Pembesaran';
-        $produksi->keramba_id = $request->input('keramba_id');
-        $produksi->kelompok_id = $request->input('kelompok_id');
+    // public function store(Request $request)
+    // {
+    //     $produksi = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->id) : new ProduksiModel;
+    //     $produksi->id = $request->input('id');
+    //     $produksi->user_id = $request->input('user_id');
+    // 	$produksi->nama_ikan = $request->input('nama_ikan');
+    //     $produksi->panjang_ikan = $request->input('panjang_ikan');
+    //     $produksi->berat_ikan = $request->input('berat_ikan');
+    //     $produksi->jumlah_ikan = $request->input('jumlah_ikan');
+    //     // $produksi->tanggal_tebar = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_tebar'))->format('d-m-Y');
+    //     // $produksi->tanggal_panen = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_panen'))->format('d-m-Y');
+    //     $produksi->tanggal_tebar = $request->input('tanggal_tebar');
+    //     // $produksi->tanggal_panen = $request->input('tanggal_panen');
+    //     // $produksi->status_panen = 'Pembesaran';
+    //     $produksi->keramba_id = $request->input('keramba_id');
+    //     $produksi->kelompok_id = $request->input('kelompok_id');
 
 
-        if($produksi->save()){
-            return new ProduksiResources($produksi);
-        }
+    //     if($produksi->save()){
+    //         return new ProduksiResources($produksi);
+    //     }
 
-    }
+    // }
     
 
     // public function panen(Request $request,$id)

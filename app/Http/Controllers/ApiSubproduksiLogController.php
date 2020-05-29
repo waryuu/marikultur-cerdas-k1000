@@ -29,6 +29,7 @@ class ApiSubproduksiLogController extends Controller
         $subproduksilog->keramba_sebelum = $request->input('keramba_sebelum');
         $subproduksilog->keramba_sesudah = $request->input('keramba_sesudah');
         $subproduksilog->tanggal_cuci = $request->input('tanggal_cuci');
+        $subproduksilog->kegiatan = $request->input('kegiatan');
         $subproduksilog->produksi_id = $request->input('subproduksi_id');
             
         if($subproduksilog->save()){

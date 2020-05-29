@@ -56,6 +56,7 @@ class ApiSubproduksiController extends Controller
             'keramba_sebelum' => $request->input('keramba_sebelum'),
             'keramba_sesudah' => $request->input('keramba_sesudah'),
             'subproduksi_id' => $subproduksi->id,
+            'kegiatan' => 'Pemindahan'
         ]);
             DB::commit();
            
@@ -115,6 +116,7 @@ class ApiSubproduksiController extends Controller
             'keramba_sebelum' => $request->input('keramba_sebelum'),
             'keramba_sesudah' => $request->input('keramba_sesudah'),
             'subproduksi_id' => $subproduksi->id,
+            'kegiatan' => 'Pemindahan'
             
 
         ]);
@@ -184,7 +186,7 @@ class ApiSubproduksiController extends Controller
         $panen->panjang_ikan_akhir = $panjang_ikan_akhir;
     	$panen->tanggal_panen = $tanggal_panen;
         $panen->status_panen = 'Panen';
-    	$panen->save();
+        $panen->save();
 
     	return new SubproduksiResources($panen);
     }

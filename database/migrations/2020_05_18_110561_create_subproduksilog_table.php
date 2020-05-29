@@ -21,6 +21,7 @@ class CreateSubproduksilogTable extends Migration
             $table->string('tanggal_cuci')->nullable();
             $table->string('berat_ikan')->nullable();
             $table->string('tanggal_pindah')->nullable();
+            $table->string('kegiatan')->nullable();
             $table->integer('keramba_sebelum')->unsigned()->nullable();
             $table->foreign('keramba_sebelum')->references('id')->on('keramba');
             $table->integer('keramba_sesudah')->unsigned()->nullable();

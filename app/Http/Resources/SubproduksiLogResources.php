@@ -24,7 +24,8 @@ class SubproduksiLogResources extends JsonResource
             'tanggal_cuci'=>$tanggal_pencucian_doang,
             'tanggal_pindah'=>$this->tanggal_pindah,
             'keramba_sebelum'=>$this->keramba_sebelum,
-            'keramba_sesudah'=>$this->keramba_sesudah,    
+            'keramba_sesudah'=>$this->keramba_sesudah, 
+            'kegiatan'=>$this->kegiatan,    
             'subproduksi_id'=>$this->subproduksi_id,
             // 'user_id'=>$this->user_id
         ];
