@@ -41,14 +41,15 @@ Route::delete('/apiaktivitas/delete/{id}','ApiAktivitasController@destroyaktivit
 
 Route::get('/apisubproduksi/where','ApiSubproduksiController@where');
 Route::get('/apisubproduksi/wherepembesaran','ApiSubproduksiController@wherepembesaran');
+
 Route::get('/apisubproduksi/wherepanen','ApiSubproduksiController@wherepanen');
 Route::get('/apisubproduksi/wheretotalikan','ApiSubproduksiController@wheretotalikan');
 Route::get('/apisubproduksi','ApiSubproduksiController@get');
 Route::get('/apisubproduksi/{id}','ApiSubproduksiController@showsubproduksi');
-Route::post('/apisubproduksi/store','ApiSubproduksiController@store');
-Route::put('/apisubproduksi/update','ApiSubproduksiController@update');
+Route::post('/apisubproduksi/store','ApiSubproduksiController@pindahsubproduksi');
+Route::put('/apisubproduksi/update','ApiSubproduksiController@updatesubproduksi');
 Route::delete('/apisubproduksi/delete/{id}','ApiSubproduksiController@destroy');
-Route::put('/apisubproduksi/panen/{id}','ApiSubproduksiController@panen');
+Route::put('/apisubproduksi/panen','ApiSubproduksiController@panen');
 
 Route::get('/apisubproduksilog/where','ApiSubproduksiLogController@where');
 Route::get('/apisubproduksilog','ApiSubproduksiLogController@subproduksilogget');
@@ -82,6 +83,8 @@ Route::delete('/apikeramba/delete/{id}','ApiKerambaController@destroy');
 Route::get('/apiproduksi','ApiProduksiController@index');
 Route::get('/apiproduksiall','ApiProduksiController@getallproduksi');
 Route::get('/apiproduksi/where','ApiProduksiController@where');
+Route::get('/apiproduksi/wherepembesaran','ApiProduksiController@whereproduksipembesaran');
+Route::get('/apiproduksi/wherepanen','ApiProduksiController@whereproduksipanen');
 Route::get('/apiproduksi/wheretotalproduksi','ApiProduksiController@wheretotalproduksi');
 Route::post('/apiproduksi/create','ApiProduksiController@create');
 Route::get('/apiproduksi/{id}','ApiProduksiController@show');

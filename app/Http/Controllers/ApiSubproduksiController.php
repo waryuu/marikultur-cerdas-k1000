@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\SubproduksiModel;
 use Response;
+use App\ProduksiModel;
 use App\SubproduksiLogModel;
 use App\Http\Requests;
 use App\Http\Resources\SubproduksiResources;
@@ -46,7 +47,7 @@ class ApiSubproduksiController extends Controller
     return Response::json($user);
             
     }
-    public function update(Request $request)
+    public function updatesubproduksi(Request $request)
     {
         try{DB::beginTransaction();
 
@@ -115,9 +116,12 @@ class ApiSubproduksiController extends Controller
             // $subproduksi->status_panen = 'Pembesaran';
 
     }
-    public function store(Request $request)
+    public function pindahsubproduksi(Request $request)
     {
         try{DB::beginTransaction();
+
+        $id = $request->produksi_id;
+        $produksi = ProduksiModel::find($id)->increment('jumlah_subproduksi');
 
         $subproduksi = SubproduksiModel::create([
             'user_id' => $request->input('user_id'),
@@ -200,13 +204,15 @@ class ApiSubproduksiController extends Controller
     // 	return new SubproduksiResources($subproduksi);
     // }
 
-    public function panen(Request $request,$id)
+    public function panen(Request $request)
     {
+        $id = $request->id;
         $berat_ikan_akhir = $request->berat_ikan_akhir;
         $jumlah_ikan_akhir = $request->jumlah_ikan_akhir;
         $panjang_ikan_akhir = $request->panjang_ikan_akhir; 
         $tanggal_panen = $request->tanggal_panen;
         $status_panen = $request->status_panen;
+        $produksi_id = $request->produksi_id;
 
 
         $panen = SubproduksiModel::find($id);
@@ -217,6 +223,8 @@ class ApiSubproduksiController extends Controller
     	$panen->tanggal_panen = $tanggal_panen;
         $panen->status_panen = 'Panen';
         $panen->save();
+        $id = $request->produksi_id;
+        $produksi = ProduksiModel::find($id)->decrement('jumlah_subproduksi');
 
     	return new SubproduksiResources($panen);
     }

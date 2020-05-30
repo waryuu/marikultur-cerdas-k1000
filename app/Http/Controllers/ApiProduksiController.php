@@ -48,10 +48,22 @@ class ApiProduksiController extends Controller
     public function wheretotalproduksi(Request $request)
         {
         $user_id = $request->query('user');
-            
         $produksi = ProduksiModel::where('user_id',$user_id)->count();
         return Response::json($produksi);
         }
+    public function whereproduksipembesaran(Request $request)
+    {
+    $user_id = $request->query('user');
+    $produksi = ProduksiModel::where('user_id',$user_id)->where('jumlah_subproduksi', '!=' , 0)->get();
+    return  ProduksiResources::collection($produksi);
+    }
+
+    public function whereproduksipanen(Request $request)
+    {
+    $user_id = $request->query('user');
+    $produksi = ProduksiModel::where('user_id',$user_id)->where('jumlah_subproduksi', '=' , 0)->get();
+    return  ProduksiResources::collection($produksi);
+    }
 
  
     public function getallproduksi()
@@ -80,6 +92,7 @@ class ApiProduksiController extends Controller
     {
         try{DB::beginTransaction();
 
+
         $produksi = ProduksiModel::create([
             'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
@@ -88,7 +101,8 @@ class ApiProduksiController extends Controller
             'jumlah_ikan' => $request->input('jumlah_ikan'),
             'tanggal_tebar' => $request->input('tanggal_tebar'),
             'keramba_id' => $request->input('keramba_id'),
-            'kelompok_id' => $request->input('kelompok_id')
+            'kelompok_id' => $request->input('kelompok_id'),
+            'jumlah_subproduksi' => '1'
         ]);
 
         // Now you have a Family object so we can use that for the contact model
