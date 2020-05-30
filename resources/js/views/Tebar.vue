@@ -44,19 +44,24 @@
                                                     input-classes="form-control-alternative"
                                                     v-model="model.nama_ikan"
                                         /> -->
-                                        <div>
-                                            <div class="row mb-3">
-                                                <div class="col-lg-12">
-                                                    <div class="form-control-label">Nama Ikan</div>
-                                                    <div class="round">
-                                                        <multiselect v-model="model.nama_ikan" 
-                                                                    :options="ikans" :searchable="true" 
-                                                                    :close-on-select="true" 
-                                                                    :show-labels="false" 
-                                                                    :allow-empty="false" 
-                                                                    placeholder="Nama Ikan">
-                                                        </multiselect>
-                                                    </div>
+                                        <base-alert v-if="errors.length" class="px-lg-5" type="warning" dismissible>
+                                            <span class="alert-inner--text"><strong>Perhatian!</strong> {{ errors }}</span>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </base-alert>
+                                        <div class="row mb-3">
+                                            <div class="col-lg-12">
+                                                <div class="form-control-label">Nama Ikan</div>
+                                                <div class="round">
+                                                    <multiselect v-model="model.nama_ikan" 
+                                                                :options="ikans" 
+                                                                :searchable="true" 
+                                                                :close-on-select="true" 
+                                                                :show-labels="false" 
+                                                                :allow-empty="false" 
+                                                                placeholder="Nama Ikan">
+                                                    </multiselect>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,7 +98,7 @@
                                                     v-model="model.tanggal_tebar"
 
                                         />
-                                    </div>
+                                    
                                     <!-- Keramba -->
                                     <!-- <div class="pl-lg-4">
                                         <div class="row">
@@ -108,7 +113,6 @@
                                     </div> -->
                                     <!-- <multiselect v-model="model.keramba_id" deselect-label="Anda memilih opsi ini" track-by="id" :selected="id" key="id" label="nama_keramba" placeholder="Select one" :options="kerambas" :searchable="true" :allow-empty="false">
                                     </multiselect> -->
-                                    <div>
                                         <div class="row mb-3">
                                             <div class="col-lg-12">
                                                 <div class="form-control-label">Lokasi Tebar</div>
@@ -116,9 +120,9 @@
                                                     <multiselect @input="opt => model.keramba_id = opt.id" 
                                                                 v-model="keramba"
                                                                 :value="keramba"
-                                                                :close-on-select="true" 
                                                                 track-by="id"
                                                                 label="nama_keramba"
+                                                                :close-on-select="true" 
                                                                 placeholder="Pilih Lokasi Keramba"
                                                                 :options="kerambas"
                                                                 :searchable="true"
@@ -160,8 +164,7 @@
       return {
         errors: '',
         kerambas: [],
-        keramba: {
-        },
+        keramba: '',
         ikans: [
             'Kerapu Cantang',
             'Kerapu Macan'
@@ -185,6 +188,7 @@
         this.getKeramba();
         this.model.kelompok_id = this.user.kelompok_id;
         this.model.user_id = this.user.id;
+        console.log(this.keramba);
     },
     methods:{
         async getKeramba(){
@@ -211,9 +215,6 @@
                     this.errors = 'Harap isi semua form dengan benar!';
                 })
         },
-        consolee(){
-            console.log(this.model);
-        }
     }
   };
 </script>

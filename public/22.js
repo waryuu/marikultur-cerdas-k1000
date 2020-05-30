@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[22],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tebar.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************!*\
@@ -172,10 +172,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -191,7 +187,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       errors: '',
       kerambas: [],
-      keramba: '',
+      keramba: {},
       ikans: ['Kerapu Cantang', 'Kerapu Macan'],
       ikan: {
         nama_ikan: ''
@@ -212,7 +208,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.getKeramba();
     this.model.kelompok_id = this.user.kelompok_id;
     this.model.user_id = this.user.id;
-    console.log(this.keramba);
   },
   methods: {
     getKeramba: function () {
@@ -284,7 +279,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       return submitPenebaran;
-    }()
+    }(),
+    consolee: function consolee() {
+      console.log(this.model);
+    }
   }
 });
 
@@ -436,86 +434,44 @@ var render = function() {
                             "div",
                             { staticClass: "pl-lg-4" },
                             [
-                              _vm.errors.length
-                                ? _c(
-                                    "base-alert",
-                                    {
-                                      staticClass: "px-lg-5",
-                                      attrs: {
-                                        type: "warning",
-                                        dismissible: ""
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        { staticClass: "alert-inner--text" },
-                                        [
-                                          _c("strong", [_vm._v("Perhatian!")]),
-                                          _vm._v(" " + _vm._s(_vm.errors))
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass: "close",
+                              _c("div", [
+                                _c("div", { staticClass: "row mb-3" }, [
+                                  _c("div", { staticClass: "col-lg-12" }, [
+                                    _c(
+                                      "div",
+                                      { staticClass: "form-control-label" },
+                                      [_vm._v("Nama Ikan")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "round" },
+                                      [
+                                        _c("multiselect", {
                                           attrs: {
-                                            type: "button",
-                                            "data-dismiss": "alert",
-                                            "aria-label": "Close"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "span",
-                                            {
-                                              attrs: { "aria-hidden": "true" }
-                                            },
-                                            [_vm._v("×")]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "row mb-3" }, [
-                                _c("div", { staticClass: "col-lg-12" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "form-control-label" },
-                                    [_vm._v("Nama Ikan")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "round" },
-                                    [
-                                      _c("multiselect", {
-                                        attrs: {
-                                          options: _vm.ikans,
-                                          searchable: true,
-                                          "close-on-select": true,
-                                          "show-labels": false,
-                                          "allow-empty": false,
-                                          placeholder: "Nama Ikan"
-                                        },
-                                        model: {
-                                          value: _vm.model.nama_ikan,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.model,
-                                              "nama_ikan",
-                                              $$v
-                                            )
+                                            options: _vm.ikans,
+                                            searchable: true,
+                                            "close-on-select": true,
+                                            "show-labels": false,
+                                            "allow-empty": false,
+                                            placeholder: "Nama Ikan"
                                           },
-                                          expression: "model.nama_ikan"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
+                                          model: {
+                                            value: _vm.model.nama_ikan,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.model,
+                                                "nama_ikan",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "model.nama_ikan"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  ])
                                 ])
                               ]),
                               _vm._v(" "),
@@ -585,54 +541,55 @@ var render = function() {
                                   },
                                   expression: "model.tanggal_tebar"
                                 }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "row mb-3" }, [
-                                _c("div", { staticClass: "col-lg-12" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "form-control-label" },
-                                    [_vm._v("Lokasi Tebar")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "round" },
-                                    [
-                                      _c("multiselect", {
-                                        attrs: {
-                                          value: _vm.keramba,
-                                          "track-by": "id",
-                                          label: "nama_keramba",
-                                          "close-on-select": true,
-                                          placeholder: "Pilih Lokasi Keramba",
-                                          options: _vm.kerambas,
-                                          searchable: true,
-                                          "allow-empty": false,
-                                          "show-labels": false
-                                        },
-                                        on: {
-                                          input: function(opt) {
-                                            return (_vm.model.keramba_id =
-                                              opt.id)
-                                          }
-                                        },
-                                        model: {
-                                          value: _vm.keramba,
-                                          callback: function($$v) {
-                                            _vm.keramba = $$v
-                                          },
-                                          expression: "keramba"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ])
-                              ])
+                              })
                             ],
                             1
-                          )
+                          ),
+                          _vm._v(" "),
+                          _c("div", [
+                            _c("div", { staticClass: "row mb-3" }, [
+                              _c("div", { staticClass: "col-lg-12" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "form-control-label" },
+                                  [_vm._v("Lokasi Tebar")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "round" },
+                                  [
+                                    _c("multiselect", {
+                                      attrs: {
+                                        value: _vm.keramba,
+                                        "close-on-select": true,
+                                        "track-by": "id",
+                                        label: "nama_keramba",
+                                        placeholder: "Pilih Lokasi Keramba",
+                                        options: _vm.kerambas,
+                                        searchable: true,
+                                        "allow-empty": false,
+                                        "show-labels": false
+                                      },
+                                      on: {
+                                        input: function(opt) {
+                                          return (_vm.model.keramba_id = opt.id)
+                                        }
+                                      },
+                                      model: {
+                                        value: _vm.keramba,
+                                        callback: function($$v) {
+                                          _vm.keramba = $$v
+                                        },
+                                        expression: "keramba"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ])
+                            ])
+                          ])
                         ]
                       )
                     ]

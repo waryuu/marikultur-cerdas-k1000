@@ -60,7 +60,14 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                                        
+                                        <base-alert v-if="errors.length" class="px-lg-5" type="warning" dismissible>
+                                            <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                                            <span class="alert-inner--text"><strong>Perhatian!</strong> {{ errors }}</span>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </base-alert>
+
                                         <base-input alternative=""
                                                     label="Jumlah Ikan Yang Akan Dipanen"
                                                     placeholder="Masukkan Jumlah Ikan"
@@ -108,39 +115,37 @@
                                     </div> -->
                                     <!-- <multiselect v-model="model.keramba_id" deselect-label="Anda memilih opsi ini" track-by="id" :selected="id" key="id" label="nama_keramba" placeholder="Select one" :options="kerambas" :searchable="true" :allow-empty="false">
                                     </multiselect> -->
-                                    <div>
-                                        <div class="row mb-3">
-                                            <div class="col-lg-12">
-                                                <div class="form-control-label">Lokasi Terakhir</div>
-                                                <div class="round">
-                                                    <multiselect @input="opt => model.keramba_sesudah = opt.id" 
-                                                                v-model="keramba"
-                                                                :value="keramba"
-                                                                :close-on-select="true" 
-                                                                track-by="id"
-                                                                label="nama_keramba"
-                                                                placeholder="Pilih Lokasi Keramba"
-                                                                :options="kerambas"
-                                                                :searchable="true"
-                                                                :allow-empty="false"
-                                                                :show-labels="false">
-                                                    </multiselect>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </form>
                             </template>
                         </div>
                         <div slot="footer" class="text-center d-flex">
                             <!-- <router-link to="/produksi" class="btn btn-link text-uppercase">Batal</router-link> -->
                             <a @click="$router.go(-1)" class="btn btn-link text-uppercase text-primary">Batal</a>
-                            <base-button @click="submitProduksi()" nativeType="submit" type="primary" class="text-uppercase ml-auto">Panen</base-button>
+                            <base-button @click="showPanen()" nativeType="submit" type="primary" class="text-uppercase ml-auto">Panen</base-button>
                         </div>
                     </card>
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div>
+            <modal :show.sync="showModal" gradient="danger" type="danger">
+                <template slot="header">
+                    <h3 class="modal-title font-weight-light" id="exampleModalLabel">Lakukan Panen</h3>
+                </template>
+                <template slot="body">
+                    <form @submit.prevent="submitProduksi()" role="form">
+                        <h2 class="text-white mb-4">Apakah Anda yakin ingin melakukan panen?</h2>
+                        <p>Jika sudah dipanen proses produksi selesai dan tidak dapat dikembalikan</p>
+                    </form>
+                </template>
+                <template slot="footer">
+                    <base-button type="secondary" @click="submitProduksi()" nativeType="submit" class="text-uppercase">Panen</base-button>
+                    <base-button type="link" @click="showModal = false" class="text-white text-uppercase ml-auto">Batal</base-button>
+                </template>
+            </modal>
+        </div>
+        <!-- End Modal -->
     </div>
 </template>
 <script>
@@ -160,6 +165,7 @@
     data() {
       return {
         errors: '',
+        showModal: false,
         kerambas: [],
         keramba: {
         },
@@ -170,22 +176,32 @@
         ikan: {
             nama_ikan: ''
         },
+        getModel:{
+            id: '',
+            jumlah_ikan: '',
+            jumlah_ikan_akhir: '',
+            panjang_ikan: '',
+            panjang_ikan_akhir: '',
+            berat_ikan: '',
+            berat_ikan_akhir: '',
+            tanggal_panen: '',
+            status_panen: '',
+            kelompok_id: '',
+            user_id: ''
+        },
         model: {
+            id: '',
             jumlah_ikan_akhir: '',
             panjang_ikan_akhir: '',
             berat_ikan_akhir: '',
             tanggal_panen: '',
-            keramba_sesudah: '',
             status_panen: '',
-            kelompok_id: '',
-            user_id: ''
+            produksi_id: '',
         }
       }
     },
     created() {
         this.getProduksi();
-        this.model.kelompok_id = this.user.kelompok_id;
-        this.model.user_id = this.user.id;
     },
     methods:{
         async getProduksi() {
@@ -195,9 +211,13 @@
                 axios.get(`apikeramba/where?kelompok=${id}`)
             ])
             .then(axios.spread((responseProd, responseKeramba) => {
-                this.model = responseProd.data.data;
+                this.getModel = responseProd.data.data;
+                this.model.id = this.getModel.id;
+                this.model.jumlah_ikan_akhir = this.getModel.jumlah_ikan;
+                this.model.panjang_ikan_akhir = this.getModel.panjang_ikan;
+                this.model.berat_ikan_akhir = this.getModel.berat_ikan;
+                this.model.produksi_id = this.getModel.produksi_id;
                 this.kerambas = responseKeramba.data;
-                console.log(responseProd.data.data);
             }))
             .catch(function (error) {
                 console.log('Fetch Data Produksi Error!');
@@ -205,10 +225,10 @@
         },
         async submitProduksi(){
             this.errors = '';
-            this.model.status_panen = 'Panen';
+            this.model.status_panen = "Panen";
             let credentials = this.model;
             console.log(credentials);
-            await axios.put('apisubproduksi/update', credentials)
+            await axios.put('apisubproduksi/panen', credentials)
             .then(() =>{
                     this.$router.replace({
                         name: 'beranda'
@@ -218,9 +238,14 @@
                     this.errors = 'Harap isi semua form dengan benar!';
                 })
         },
-        consolee(){
-            console.log(this.model);
-        }
+        showPanen(){
+            if (!this.model.jumlah_ikan_akhir || !this.model.panjang_ikan_akhir || !this.model.berat_ikan_akhir || !this.model.tanggal_panen) {
+                this.errors = 'Harap isi semua form dengan benar!';
+            }
+            else{
+                this.showModal = true;
+            }
+        },
     }
   };
 </script>
@@ -231,4 +256,7 @@
       box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
       border: 0px;
   }
+  .alert{
+        border-radius: .25rem;
+    }
 </style>
