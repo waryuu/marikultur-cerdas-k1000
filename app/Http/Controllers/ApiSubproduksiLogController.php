@@ -13,7 +13,7 @@ class ApiSubproduksiLogController extends Controller
 {
     public function subproduksilogget()
     {
-        $subproduksilog = SubproduksiLogModel::paginate(15);
+        $subproduksilog = SubproduksiLogModel::paginate(5);
         return SubproduksiLogResources::collection($subproduksilog);
     }
     

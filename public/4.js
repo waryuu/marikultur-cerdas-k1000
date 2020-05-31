@@ -173,6 +173,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -187,28 +192,39 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       errors: '',
+      showModal: false,
       kerambas: [],
       keramba: {},
       ikans: ['Kerapu Cantang', 'Kerapu Macan'],
       ikan: {
         nama_ikan: ''
       },
+      getModel: {
+        id: '',
+        jumlah_ikan: '',
+        jumlah_ikan_akhir: '',
+        panjang_ikan: '',
+        panjang_ikan_akhir: '',
+        berat_ikan: '',
+        berat_ikan_akhir: '',
+        tanggal_panen: '',
+        status_panen: '',
+        kelompok_id: '',
+        user_id: ''
+      },
       model: {
+        id: '',
         jumlah_ikan_akhir: '',
         panjang_ikan_akhir: '',
         berat_ikan_akhir: '',
         tanggal_panen: '',
-        keramba_sesudah: '',
         status_panen: '',
-        kelompok_id: '',
-        user_id: ''
+        produksi_id: ''
       }
     };
   },
   created: function created() {
     this.getProduksi();
-    this.model.kelompok_id = this.user.kelompok_id;
-    this.model.user_id = this.user.id;
   },
   methods: {
     getProduksi: function () {
@@ -225,9 +241,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 id = this.user.kelompok_id;
                 _context.next = 3;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.all([axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apisubproduksi/".concat(this.$route.params.id)), axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apikeramba/where?kelompok=".concat(id))]).then(axios__WEBPACK_IMPORTED_MODULE_2___default.a.spread(function (responseProd, responseKeramba) {
-                  _this.model = responseProd.data.data;
+                  _this.getModel = responseProd.data.data;
+                  _this.model.id = _this.getModel.id;
+                  _this.model.jumlah_ikan_akhir = _this.getModel.jumlah_ikan;
+                  _this.model.panjang_ikan_akhir = _this.getModel.panjang_ikan;
+                  _this.model.berat_ikan_akhir = _this.getModel.berat_ikan;
+                  _this.model.produksi_id = _this.getModel.produksi_id;
                   _this.kerambas = responseKeramba.data;
-                  console.log(responseProd.data.data);
                 }))["catch"](function (error) {
                   console.log('Fetch Data Produksi Error!');
                 });
@@ -258,11 +278,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 this.errors = '';
-                this.model.status_panen = 'Panen';
+                this.model.status_panen = "Panen";
                 credentials = this.model;
                 console.log(credentials);
                 _context2.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put('apisubproduksi/update', credentials).then(function () {
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put('apisubproduksi/panen', credentials).then(function () {
                   _this2.$router.replace({
                     name: 'beranda'
                   });
@@ -284,8 +304,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return submitProduksi;
     }(),
-    consolee: function consolee() {
-      console.log(this.model);
+    showPanen: function showPanen() {
+      if (!this.model.jumlah_ikan_akhir || !this.model.panjang_ikan_akhir || !this.model.berat_ikan_akhir || !this.model.tanggal_panen) {
+        this.errors = 'Harap isi semua form dengan benar!';
+      } else {
+        this.showModal = true;
+      }
     }
   }
 });
@@ -304,7 +328,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.round .multiselect__tags{\n    border-radius: 1.5rem;\n    box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);\n    border: 0px;\n}\n", ""]);
+exports.push([module.i, "\n.round .multiselect__tags{\n    border-radius: 1.5rem;\n    box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);\n    border: 0px;\n}\n.alert{\n      border-radius: .25rem;\n}\n", ""]);
 
 // exports
 
@@ -436,6 +460,61 @@ var render = function() {
                             "div",
                             { staticClass: "pl-lg-4" },
                             [
+                              _vm.errors.length
+                                ? _c(
+                                    "base-alert",
+                                    {
+                                      staticClass: "px-lg-5",
+                                      attrs: {
+                                        type: "warning",
+                                        dismissible: ""
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "span",
+                                        { staticClass: "alert-inner--icon" },
+                                        [
+                                          _c("i", {
+                                            staticClass:
+                                              "fas fa-exclamation-triangle"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "alert-inner--text" },
+                                        [
+                                          _c("strong", [_vm._v("Perhatian!")]),
+                                          _vm._v(" " + _vm._s(_vm.errors))
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass: "close",
+                                          attrs: {
+                                            type: "button",
+                                            "data-dismiss": "alert",
+                                            "aria-label": "Close"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "span",
+                                            {
+                                              attrs: { "aria-hidden": "true" }
+                                            },
+                                            [_vm._v("×")]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
                               _c("base-input", {
                                 attrs: {
                                   alternative: "",
@@ -513,53 +592,7 @@ var render = function() {
                               })
                             ],
                             1
-                          ),
-                          _vm._v(" "),
-                          _c("div", [
-                            _c("div", { staticClass: "row mb-3" }, [
-                              _c("div", { staticClass: "col-lg-12" }, [
-                                _c(
-                                  "div",
-                                  { staticClass: "form-control-label" },
-                                  [_vm._v("Lokasi Terakhir")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "round" },
-                                  [
-                                    _c("multiselect", {
-                                      attrs: {
-                                        value: _vm.keramba,
-                                        "close-on-select": true,
-                                        "track-by": "id",
-                                        label: "nama_keramba",
-                                        placeholder: "Pilih Lokasi Keramba",
-                                        options: _vm.kerambas,
-                                        searchable: true,
-                                        "allow-empty": false,
-                                        "show-labels": false
-                                      },
-                                      on: {
-                                        input: function(opt) {
-                                          return (_vm.model.keramba_sesudah =
-                                            opt.id)
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.keramba,
-                                        callback: function($$v) {
-                                          _vm.keramba = $$v
-                                        },
-                                        expression: "keramba"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ])
-                            ])
-                          ])
+                          )
                         ]
                       )
                     ]
@@ -595,7 +628,7 @@ var render = function() {
                         attrs: { nativeType: "submit", type: "primary" },
                         on: {
                           click: function($event) {
-                            return _vm.submitProduksi()
+                            return _vm.showPanen()
                           }
                         }
                       },
@@ -609,7 +642,103 @@ var render = function() {
             1
           )
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        [
+          _c(
+            "modal",
+            {
+              attrs: {
+                show: _vm.showModal,
+                gradient: "danger",
+                type: "danger"
+              },
+              on: {
+                "update:show": function($event) {
+                  _vm.showModal = $event
+                }
+              }
+            },
+            [
+              _c("template", { slot: "header" }, [
+                _c(
+                  "h3",
+                  {
+                    staticClass: "modal-title font-weight-light",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v("Lakukan Panen")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("template", { slot: "body" }, [
+                _c(
+                  "form",
+                  {
+                    attrs: { role: "form" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.submitProduksi()
+                      }
+                    }
+                  },
+                  [
+                    _c("h2", { staticClass: "text-white mb-4" }, [
+                      _vm._v("Apakah Anda yakin ingin melakukan panen?")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "Jika sudah dipanen proses produksi selesai dan tidak dapat dikembalikan"
+                      )
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "template",
+                { slot: "footer" },
+                [
+                  _c(
+                    "base-button",
+                    {
+                      staticClass: "text-uppercase",
+                      attrs: { type: "secondary", nativeType: "submit" },
+                      on: {
+                        click: function($event) {
+                          return _vm.submitProduksi()
+                        }
+                      }
+                    },
+                    [_vm._v("Panen")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "base-button",
+                    {
+                      staticClass: "text-white text-uppercase ml-auto",
+                      attrs: { type: "link" },
+                      on: {
+                        click: function($event) {
+                          _vm.showModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Batal")]
+                  )
+                ],
+                1
+              )
+            ],
+            2
+          )
+        ],
+        1
+      )
     ],
     1
   )

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[6],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[21],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Pindah.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************!*\
@@ -181,12 +181,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -202,7 +196,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       errors: '',
       kerambas: [],
-      keramba: '',
+      keramba: {},
       ikans: ['Kerapu Cantang', 'Kerapu Macan'],
       ikan: {
         nama_ikan: ''
@@ -242,6 +236,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   _this.model = responseProd.data.data;
                   _this.model.keramba_sebelum = _this.model.keramba_sesudah;
                   _this.kerambas = responseKeramba.data;
+                  console.log(responseProd.data.data);
                 }))["catch"](function (error) {
                   console.log('Fetch Data Produksi Error!');
                 });
@@ -274,7 +269,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 this.errors = '';
                 this.model.id = '';
                 credentials = this.model;
-                _context2.next = 5;
+                console.log(credentials);
+                _context2.next = 6;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apisubproduksi/store', credentials).then(function () {
                   _this2.$router.replace({
                     name: 'beranda'
@@ -283,7 +279,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   _this2.errors = 'Harap isi semua form dengan benar!';
                 });
 
-              case 5:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -296,7 +292,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       return submitProduksi;
-    }()
+    }(),
+    consolee: function consolee() {
+      console.log(this.model);
+    }
   }
 });
 
@@ -314,7 +313,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.round .multiselect__tags{\n    border-radius: 1.5rem;\n    box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);\n    border: 0px;\n}\n.alert{\n      border-radius: .25rem;\n}\n", ""]);
+exports.push([module.i, "\n.round .multiselect__tags{\n    border-radius: 1.5rem;\n    box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);\n    border: 0px;\n}\n", ""]);
 
 // exports
 
@@ -448,61 +447,6 @@ var render = function() {
                             "div",
                             { staticClass: "pl-lg-4" },
                             [
-                              _vm.errors.length
-                                ? _c(
-                                    "base-alert",
-                                    {
-                                      staticClass: "px-lg-5",
-                                      attrs: {
-                                        type: "warning",
-                                        dismissible: ""
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "span",
-                                        { staticClass: "alert-inner--icon" },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "fas fa-exclamation-triangle"
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "span",
-                                        { staticClass: "alert-inner--text" },
-                                        [
-                                          _c("strong", [_vm._v("Perhatian!")]),
-                                          _vm._v(" " + _vm._s(_vm.errors))
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass: "close",
-                                          attrs: {
-                                            type: "button",
-                                            "data-dismiss": "alert",
-                                            "aria-label": "Close"
-                                          }
-                                        },
-                                        [
-                                          _c(
-                                            "span",
-                                            {
-                                              attrs: { "aria-hidden": "true" }
-                                            },
-                                            [_vm._v("×")]
-                                          )
-                                        ]
-                                      )
-                                    ]
-                                  )
-                                : _vm._e(),
-                              _vm._v(" "),
                               _c("base-input", {
                                 attrs: {
                                   alternative: "",
@@ -586,54 +530,56 @@ var render = function() {
                                   },
                                   expression: "model.tanggal_pindah"
                                 }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "row mb-3" }, [
-                                _c("div", { staticClass: "col-lg-12" }, [
-                                  _c(
-                                    "div",
-                                    { staticClass: "form-control-label" },
-                                    [_vm._v("Lokasi Setelah Pindah")]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "div",
-                                    { staticClass: "round" },
-                                    [
-                                      _c("multiselect", {
-                                        attrs: {
-                                          value: _vm.keramba,
-                                          "close-on-select": true,
-                                          "track-by": "id",
-                                          label: "nama_keramba",
-                                          placeholder: "Pilih Lokasi Keramba",
-                                          options: _vm.kerambas,
-                                          searchable: true,
-                                          "allow-empty": false,
-                                          "show-labels": false
-                                        },
-                                        on: {
-                                          input: function(opt) {
-                                            return (_vm.model.keramba_sesudah =
-                                              opt.id)
-                                          }
-                                        },
-                                        model: {
-                                          value: _vm.keramba,
-                                          callback: function($$v) {
-                                            _vm.keramba = $$v
-                                          },
-                                          expression: "keramba"
-                                        }
-                                      })
-                                    ],
-                                    1
-                                  )
-                                ])
-                              ])
+                              })
                             ],
                             1
-                          )
+                          ),
+                          _vm._v(" "),
+                          _c("div", [
+                            _c("div", { staticClass: "row mb-3" }, [
+                              _c("div", { staticClass: "col-lg-12" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "form-control-label" },
+                                  [_vm._v("Lokasi Setelah Pindah")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "round" },
+                                  [
+                                    _c("multiselect", {
+                                      attrs: {
+                                        value: _vm.keramba,
+                                        "close-on-select": true,
+                                        "track-by": "id",
+                                        label: "nama_keramba",
+                                        placeholder: "Pilih Lokasi Keramba",
+                                        options: _vm.kerambas,
+                                        searchable: true,
+                                        "allow-empty": false,
+                                        "show-labels": false
+                                      },
+                                      on: {
+                                        input: function(opt) {
+                                          return (_vm.model.keramba_sesudah =
+                                            opt.id)
+                                        }
+                                      },
+                                      model: {
+                                        value: _vm.keramba,
+                                        callback: function($$v) {
+                                          _vm.keramba = $$v
+                                        },
+                                        expression: "keramba"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ])
+                            ])
+                          ])
                         ]
                       )
                     ]

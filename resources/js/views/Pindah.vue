@@ -60,7 +60,14 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                                        
+                                        <base-alert v-if="errors.length" class="px-lg-5" type="warning" dismissible>
+                                            <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                                            <span class="alert-inner--text"><strong>Perhatian!</strong> {{ errors }}</span>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </base-alert>
+
                                         <base-input alternative=""
                                                     label="Jumlah Ikan Yang Akan Dipindah"
                                                     placeholder="Masukkan Jumlah Ikan"
@@ -101,7 +108,7 @@
                                                     v-model="model.tanggal_pindah"
 
                                         />
-                                    </div>
+                                    
                                     <!-- Keramba -->
                                     <!-- <div class="pl-lg-4">
                                         <div class="row">
@@ -116,7 +123,6 @@
                                     </div> -->
                                     <!-- <multiselect v-model="model.keramba_id" deselect-label="Anda memilih opsi ini" track-by="id" :selected="id" key="id" label="nama_keramba" placeholder="Select one" :options="kerambas" :searchable="true" :allow-empty="false">
                                     </multiselect> -->
-                                    <div>
                                         <div class="row mb-3">
                                             <div class="col-lg-12">
                                                 <div class="form-control-label">Lokasi Setelah Pindah</div>
@@ -169,8 +175,7 @@
       return {
         errors: '',
         kerambas: [],
-        keramba: {
-        },
+        keramba: '',
         ikans: [
             'Kerapu Cantang',
             'Kerapu Macan'
@@ -206,7 +211,6 @@
                 this.model = responseProd.data.data;
                 this.model.keramba_sebelum = this.model.keramba_sesudah;
                 this.kerambas = responseKeramba.data;
-                console.log(responseProd.data.data);
             }))
             .catch(function (error) {
                 console.log('Fetch Data Produksi Error!');
@@ -216,7 +220,6 @@
             this.errors = '';
             this.model.id = '';
             let credentials = this.model;
-            console.log(credentials);
             await axios.post('apisubproduksi/store', credentials)
             .then(() =>{
                     this.$router.replace({
@@ -226,9 +229,6 @@
             .catch(() => {
                     this.errors = 'Harap isi semua form dengan benar!';
                 })
-        },
-        consolee(){
-            console.log(this.model);
         }
     }
   };
@@ -240,4 +240,7 @@
       box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
       border: 0px;
   }
+  .alert{
+        border-radius: .25rem;
+    }
 </style>
