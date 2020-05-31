@@ -48,8 +48,10 @@ class ApiProduksiController extends Controller
     public function wheretotalproduksi(Request $request)
         {
         $user_id = $request->query('user');
-        $produksi = ProduksiModel::where('user_id',$user_id)->count();
-        return Response::json($produksi);
+        $produksibulanini = ProduksiModel::where('user_id',$user_id)->whereMonth('created_at', Carbon::now()->month)
+        ->whereYear('created_at', Carbon::now()->year)->count();
+        $produksitahunini = ProduksiModel::where('user_id',$user_id)->whereYear('created_at', Carbon::now()->year)->count();
+        return response()->json(compact('produksibulanini','produksitahunini'),201);
         }
 
         
