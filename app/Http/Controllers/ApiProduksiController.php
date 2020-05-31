@@ -51,17 +51,19 @@ class ApiProduksiController extends Controller
         $produksi = ProduksiModel::where('user_id',$user_id)->count();
         return Response::json($produksi);
         }
+
+        
     public function whereproduksipembesaran(Request $request)
     {
     $user_id = $request->query('user');
-    $produksi = ProduksiModel::where('user_id',$user_id)->where('jumlah_subproduksi', '!=' , 0)->get();
+    $produksi = ProduksiModel::where('user_id',$user_id)->where('jumlah_subproduksi', '!=' , 0)->paginate(5);
     return  ProduksiResources::collection($produksi);
     }
 
     public function whereproduksipanen(Request $request)
     {
     $user_id = $request->query('user');
-    $produksi = ProduksiModel::where('user_id',$user_id)->where('jumlah_subproduksi', '=' , 0)->get();
+    $produksi = ProduksiModel::where('user_id',$user_id)->where('jumlah_subproduksi', '=' , 0)->paginate(5);
     return  ProduksiResources::collection($produksi);
     }
 

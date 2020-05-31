@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\SubproduksiModel;
 use Response;
+use Illuminate\Support\Facades\Validator;
 use App\ProduksiModel;
 use App\SubproduksiLogModel;
 use App\Http\Requests;
@@ -43,12 +44,36 @@ class ApiSubproduksiController extends Controller
     public function wheretotalikan(Request $request)
     {
     $user_id = $request->query('user');
-    $user = SubproduksiModel::where('user_id',$user_id)->sum('jumlah_ikan');
-    return Response::json($user);
-            
+    $user = SubproduksiModel::groupBy('nama_ikan')->where('user_id',$user_id)->select('nama_ikan', DB::raw('sum(jumlah_ikan) as total_ikan'))->get();
+    $total = SubproduksiModel::where('user_id',$user_id)->sum('jumlah_ikan');
+    return response()->json(compact('user','total'),201);
+
+    // $user = SubproduksiModel::where('user_id',$user_id)->sum('jumlah_ikan');
+    // return Response::json($user);
+
+    // $user = SubproduksiModel::groupBy('nama_ikan')->where('user_id',$user_id)
+    // ->select('count(jumlah_ikan) as total, group_id')
+    // ->get();
     }
+
     public function updatesubproduksi(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+                    'nama_ikan' => 'required|string',
+                    'panjang_ikan' => 'required|integer',
+                    'jumlah_ikan' => 'required|integer',
+                    'berat_ikan' => 'required|string',
+                    'tanggal_pindah' => 'required|string',
+                    'tanggal_cuci' => 'required|string',
+                    'keramba_sebelum' => 'required|integer',
+                    'keramba_sesudah' => 'required|integer',
+                    'produksi_id'=> 'required|integer',
+                    'user_id'=> 'required|integer',
+                ]);
+    
+                if($validator->fails()){
+                    return response()->json($validator->errors()->toJson(), 400);
+            }
         try{DB::beginTransaction();
 
             $nama_ikan = $request->nama_ikan;
@@ -118,6 +143,22 @@ class ApiSubproduksiController extends Controller
     }
     public function pindahsubproduksi(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'nama_ikan' => 'required|string',
+            'panjang_ikan' => 'required|integer',
+            'jumlah_ikan' => 'required|integer',
+            'berat_ikan' => 'required|string',
+            'tanggal_pindah' => 'required|string',
+            'tanggal_cuci' => 'required|string',
+            'keramba_sebelum' => 'required|integer',
+            'keramba_sesudah' => 'required|integer',
+            'produksi_id'=> 'required|integer',
+            'user_id'=> 'required|integer',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+         }
         try{DB::beginTransaction();
 
         $id = $request->produksi_id;

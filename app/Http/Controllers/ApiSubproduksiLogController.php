@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SubproduksiModel;
 use App\SubproduksiLogModel;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Resources\SubproduksiResources;
 use App\Http\Resources\SubproduksiLogResources;
@@ -16,8 +17,36 @@ class ApiSubproduksiLogController extends Controller
         return SubproduksiLogResources::collection($subproduksilog);
     }
     
+    public function getsubproduksilogbyuser(Request $request)
+    {
+
+        $user_id = $request->query('user');
+        $subproduksilog = SubproduksiModel::join('subproduksilog', 'subproduksi_id', '=', 'subproduksi.id')
+            ->select('subproduksilog.*', 'subproduksi.user_id')
+            ->groupBy('subproduksilog.id')
+            ->where('user_id',$user_id)
+            ->paginate(5);
+
+        return  SubproduksiLogResources::collection($subproduksilog);
+
+        // ,DB::raw("SELECT MAX(id)
+        //     FROM volumes
+        //     GROUP BY journal_id)")
+
+        // , DB::raw('MAX(subproduksi.id) as subproduksi_id')
+        // $produksi = ProduksiModel::with('subproduksi')->find(1);
+        // return  NEW ProduksiResources($produksi);
+    }
+
     public function subproduksilogstore(Request $request)
     {
+
+       
+
+        if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+        }
+
         $subproduksilog = $request ->isMethod('put') ? SubproduksiLogModel::findOrFail($request->id) : new SubproduksiLogModel;
         $subproduksilog->id = $request->input('id');
         // $subproduksilog->user_id = $request->input('user_id');

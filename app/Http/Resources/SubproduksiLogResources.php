@@ -15,6 +15,7 @@ class SubproduksiLogResources extends JsonResource
     public function toArray($request)
     {
         $tanggal_pencucian_doang = substr($this->tanggal_cuci,0,10);
+        $created_at_doang = substr($this->created_at,0,10);
         return [
             'id'=> $this->id,
             'nama_ikan'=>$this->nama_ikan,
@@ -27,7 +28,8 @@ class SubproduksiLogResources extends JsonResource
             'keramba_sesudah'=>$this->keramba_sesudah, 
             'kegiatan'=>$this->kegiatan,    
             'subproduksi_id'=>$this->subproduksi_id,
-            // 'user_id'=>$this->user_id
+            'created_at'=>$created_at_doang,
+            'user_id'=>$this->user_id
         ];
     }
     public function with($request){
