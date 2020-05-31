@@ -28,7 +28,6 @@ class ApiSubproduksiLogController extends Controller
             ->paginate(5);
 
         return  SubproduksiLogResources::collection($subproduksilog);
-
         // ,DB::raw("SELECT MAX(id)
         //     FROM volumes
         //     GROUP BY journal_id)")
