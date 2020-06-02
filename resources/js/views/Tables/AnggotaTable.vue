@@ -49,7 +49,7 @@
             </badge>
           </td>
 
-          <td class="text-right">
+          <!-- <td class="text-right">
             <base-dropdown class="dropdown"
                            position="right">
               <a slot="title" class="btn btn-sm btn-icon-only text-light" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +62,7 @@
                 <a class="dropdown-item" href="#">Something else here</a>
               </template>
             </base-dropdown>
-          </td>
+          </td> -->
 
         </template>
 

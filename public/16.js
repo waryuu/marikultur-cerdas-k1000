@@ -499,7 +499,7 @@ var render = function() {
                       },
                       [
                         _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col" }, [
+                          _c("div", { staticClass: "col-7" }, [
                             _c(
                               "h3",
                               { staticClass: "card-title text-left mb-0" },

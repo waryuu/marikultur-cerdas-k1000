@@ -43,6 +43,11 @@ export default new Router({
             component: () => import('./views/Tebar.vue')
         },
         {
+            path: '/debug',
+            name: 'debug',
+            component: () => import('./views/DashboardBackup.vue')
+        },
+        {
             path: '/cuci',
             name: 'cuci',
             component: () => import('./views/Cuci.vue')

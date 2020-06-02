@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"demo":"demo"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"21":"demo"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -31256,13 +31256,19 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: function component() {
-        return __webpack_require__.e(/*! import() | demo */ "demo").then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/js/views/Dashboard.vue"));
+        return Promise.all(/*! import() | demo */[__webpack_require__.e(24), __webpack_require__.e(22), __webpack_require__.e(21)]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/js/views/Dashboard.vue"));
       }
     }, {
       path: '/tebar',
       name: 'tebar',
       component: function component() {
         return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
+      }
+    }, {
+      path: '/debug',
+      name: 'debug',
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(24), __webpack_require__.e(22), __webpack_require__.e(23)]).then(__webpack_require__.bind(null, /*! ./views/DashboardBackup.vue */ "./resources/js/views/DashboardBackup.vue"));
       }
     }, {
       path: '/cuci',

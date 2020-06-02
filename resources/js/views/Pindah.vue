@@ -193,7 +193,7 @@
             keramba_sesudah: '',
             keramba_sebelum: '',
             kelompok_id: '',
-            user_id: ''
+            user_id: '',
         }
       }
     },
@@ -227,7 +227,7 @@
             }
             else{
                 let credentials = this.model;
-                await axios.post('apisubproduksi/store', credentials)
+                await axios.post(`apisubproduksi/store?subproduksi_yang_dipindah=${this.$route.params.id}`, credentials)
                 .then(() =>{
                         this.$router.replace({
                             name: 'produksi'

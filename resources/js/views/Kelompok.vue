@@ -9,6 +9,7 @@
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
                         <h1 class="display-2 text-white">Kelompok</h1>
+                        <p class="text-white mt-0 mb-5">Silahkan isi form berikut untuk mengubah data kelompok Anda</p>
                     </div>
                 </div>
             </div>

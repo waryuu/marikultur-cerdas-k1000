@@ -289,7 +289,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 6:
                 credentials = this.model;
                 _context2.next = 9;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apisubproduksi/store', credentials).then(function () {
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("apisubproduksi/store?subproduksi_yang_dipindah=".concat(this.$route.params.id), credentials).then(function () {
                   _this2.$router.replace({
                     name: 'produksi'
                   });

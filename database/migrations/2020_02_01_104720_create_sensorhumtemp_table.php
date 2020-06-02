@@ -17,8 +17,8 @@ class CreateSensorhumtempTable extends Migration
             $table->Increments('id');
             $table->string('time');
             $table->date('date');
-            $table->string('humidity');
-            $table->string('temperature');
+            $table->integer('humidity');
+            $table->integer('temperature');
             $table->timestamps();
         });
     }

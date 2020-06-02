@@ -122,6 +122,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 
 
@@ -437,6 +438,12 @@ var render = function() {
                 _c("div", { staticClass: "col-lg-7 col-md-10" }, [
                   _c("h1", { staticClass: "display-2 text-white" }, [
                     _vm._v("Kelompok")
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-white mt-0 mb-5" }, [
+                    _vm._v(
+                      "Silahkan isi form berikut untuk mengubah data kelompok Anda"
+                    )
                   ])
                 ])
               ])
@@ -753,69 +760,6 @@ var render = function() {
                                 _vm._v(_vm._s(row.status))
                               ])
                             ]
-                          )
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "td",
-                        { staticClass: "text-right" },
-                        [
-                          _c(
-                            "base-dropdown",
-                            {
-                              staticClass: "dropdown",
-                              attrs: { position: "right" }
-                            },
-                            [
-                              _c(
-                                "a",
-                                {
-                                  staticClass:
-                                    "btn btn-sm btn-icon-only text-light",
-                                  attrs: {
-                                    slot: "title",
-                                    role: "button",
-                                    "data-toggle": "dropdown",
-                                    "aria-haspopup": "true",
-                                    "aria-expanded": "false"
-                                  },
-                                  slot: "title"
-                                },
-                                [_c("i", { staticClass: "fas fa-ellipsis-v" })]
-                              ),
-                              _vm._v(" "),
-                              [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "#" }
-                                  },
-                                  [_vm._v("Action")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "#" }
-                                  },
-                                  [_vm._v("Another action")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "#" }
-                                  },
-                                  [_vm._v("Something else here")]
-                                )
-                              ]
-                            ],
-                            2
                           )
                         ],
                         1

@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["demo"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[21],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Dashboard.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************!*\
@@ -14,6 +14,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _js_components_Charts_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/js/components/Charts/config */ "./resources/js/components/Charts/config.js");
+/* harmony import */ var _js_components_Charts_LineChart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/js/components/Charts/LineChart */ "./resources/js/components/Charts/LineChart.js");
+/* harmony import */ var _js_components_Charts_BarChart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/js/components/Charts/BarChart */ "./resources/js/components/Charts/BarChart.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -198,10 +201,82 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'beranda',
+  components: {
+    LineChart: _js_components_Charts_LineChart__WEBPACK_IMPORTED_MODULE_4__["default"],
+    BarChart: _js_components_Charts_BarChart__WEBPACK_IMPORTED_MODULE_5__["default"]
+  },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapGetters"])({
     authenticated: 'auth/authenticated',
     user: 'auth/user'
@@ -212,15 +287,28 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       totalProd: '',
       totalIkans: [],
       totalIkan: '',
+      sensorHumTemps: '',
       sensorHumTemp: {
         id: '',
+        time: '',
+        date: '',
         humidity: '',
         temperature: ''
+      },
+      bigLineChart: {
+        allData: [[0, 20, 10, 30, 15, 40, 20, 60, 60], [0, 20, 5, 25, 10, 30, 15, 40, 40]],
+        activeIndex: 0,
+        chartData: {
+          datasets: [],
+          labels: []
+        },
+        extraOptions: _js_components_Charts_config__WEBPACK_IMPORTED_MODULE_3__["blueChartOptions"]
       }
     };
   },
   mounted: function mounted() {
     this.getSummary();
+    this.getSensorHumTemp();
   },
   methods: {
     getSensorHumTemp: function () {
@@ -235,7 +323,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 _context.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorhumtemp").then(function (response) {
-                  _this.sensorHumTemp = response.data;
+                  _this.sensorHumTemps = response.data;
+                  console.log(_this.sensorHumTemps);
+
+                  _this.initBigChart(0); // console.log(this.sensorHumTemps);
+
                 })["catch"](function () {
                   console.log('Fetch Data Error!');
                 });
@@ -287,7 +379,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       return getSummary;
-    }()
+    }(),
+    initBigChart: function initBigChart(index) {
+      if (index === 0) {
+        var chartData = {
+          datasets: [{
+            label: 'Suhu (°C)',
+            data: this.sensorHumTemps.sensor_tem
+          }],
+          labels: this.sensorHumTemps.time
+        }; // console.log(this.sensorHumTemps.sensor_tem);
+
+        this.bigLineChart.chartData = chartData;
+        this.bigLineChart.activeIndex = index;
+      }
+
+      if (index === 1) {
+        var _chartData = {
+          datasets: [{
+            label: 'Kelembaban (%)',
+            data: this.sensorHumTemps.sensor_hum
+          }],
+          labels: this.sensorHumTemps.time
+        };
+        this.bigLineChart.chartData = _chartData;
+        this.bigLineChart.activeIndex = index;
+      }
+    }
   }
 });
 
@@ -508,6 +626,128 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "container-fluid mt--7" }, [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col" },
+            [
+              _c(
+                "card",
+                {
+                  staticClass: "shadow",
+                  attrs: { "header-classes": "bg-transparent", noBody: true }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "row align-items-center",
+                      attrs: { slot: "header" },
+                      slot: "header"
+                    },
+                    [
+                      _c("div", { staticClass: "col" }, [
+                        _vm.bigLineChart.activeIndex === 0
+                          ? _c("h5", { staticClass: "h3 mb-0" }, [
+                              _vm._v("Sensor Suhu")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.bigLineChart.activeIndex === 1
+                          ? _c("h5", { staticClass: "h3 mb-0" }, [
+                              _vm._v("Sensor Kelembaban")
+                            ])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col" }, [
+                        _c(
+                          "ul",
+                          { staticClass: "nav nav-pills justify-content-end" },
+                          [
+                            _c("li", { staticClass: "nav-item mr-2 mr-md-0" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link py-2 px-3",
+                                  class: {
+                                    active: _vm.bigLineChart.activeIndex === 0
+                                  },
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.initBigChart(0)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    { staticClass: "d-none d-md-block" },
+                                    [_vm._v("Suhu")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "d-md-none" }, [
+                                    _vm._v("SH")
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("li", { staticClass: "nav-item" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-link py-2 px-3",
+                                  class: {
+                                    active: _vm.bigLineChart.activeIndex === 1
+                                  },
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.initBigChart(1)
+                                    }
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "span",
+                                    { staticClass: "d-none d-md-block" },
+                                    [_vm._v("Kelembaban")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "d-md-none" }, [
+                                    _vm._v("KB")
+                                  ])
+                                ]
+                              )
+                            ])
+                          ]
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("line-chart", {
+                    ref: "bigChart",
+                    attrs: {
+                      height: 350,
+                      "chart-data": _vm.bigLineChart.chartData,
+                      "extra-options": _vm.bigLineChart.extraOptions
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-fluid mt-3" }, [
         _c("div", { staticClass: "row" }, [
           _c(
             "div",

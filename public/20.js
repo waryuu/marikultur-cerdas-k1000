@@ -125,6 +125,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -142,8 +150,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       model: {
         name: '',
-        email: '',
-        kelompok_id: ''
+        username: '',
+        email: ''
       },
       form: {
         password: '',
@@ -154,6 +162,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.fetchKelompok();
     this.model.name = this.user.name;
+    this.model.username = this.user.username;
     this.model.email = this.user.email;
     this.model.kelompok_id = this.user.kelompok_id;
   },
@@ -332,6 +341,29 @@ var render = function() {
                                 _c("base-input", {
                                   attrs: {
                                     alternative: "",
+                                    label: "Username",
+                                    placeholder: "username",
+                                    "input-classes": "form-control-alternative"
+                                  },
+                                  model: {
+                                    value: _vm.model.username,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.model, "username", $$v)
+                                    },
+                                    expression: "model.username"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "col-lg-6" },
+                              [
+                                _c("base-input", {
+                                  attrs: {
+                                    alternative: "",
                                     label: "Nama",
                                     placeholder: "Nama",
                                     "input-classes": "form-control-alternative"
@@ -347,72 +379,6 @@ var render = function() {
                               ],
                               1
                             )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "h6",
-                          { staticClass: "heading-small text-muted mb-4" },
-                          [_vm._v("Informasi Kelompok")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "pl-lg-4" }, [
-                          _c("div", { staticClass: "row" }, [
-                            _c("div", { staticClass: "col-lg-12" }, [
-                              _c(
-                                "select",
-                                {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.model.kelompok_id,
-                                      expression: "model.kelompok_id"
-                                    }
-                                  ],
-                                  staticClass:
-                                    "input-group-alternative mb-3 form-control",
-                                  on: {
-                                    change: function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.$set(
-                                        _vm.model,
-                                        "kelompok_id",
-                                        $event.target.multiple
-                                          ? $$selectedVal
-                                          : $$selectedVal[0]
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _c(
-                                    "option",
-                                    { attrs: { disabled: "", value: "" } },
-                                    [_vm._v("Pilih Kelompok Anda")]
-                                  ),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.kelompoks, function(kelompok) {
-                                    return _c(
-                                      "option",
-                                      { domProps: { value: kelompok.id } },
-                                      [_vm._v(_vm._s(kelompok.nama_kelompok))]
-                                    )
-                                  })
-                                ],
-                                2
-                              )
-                            ])
                           ])
                         ]),
                         _vm._v(" "),

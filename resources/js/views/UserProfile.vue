@@ -42,6 +42,14 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <base-input alternative=""
+                                                        label="Username"
+                                                        placeholder="username"
+                                                        input-classes="form-control-alternative"
+                                                        v-model="model.username"
+                                            />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <base-input alternative=""
                                                         label="Nama"
                                                         placeholder="Nama"
                                                         input-classes="form-control-alternative"
@@ -51,7 +59,7 @@
                                     </div>
                                 </div>
                                 <!-- Kelompok -->
-                                <h6 class="heading-small text-muted mb-4">Informasi Kelompok</h6>
+                                <!-- <h6 class="heading-small text-muted mb-4">Informasi Kelompok</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -61,7 +69,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                  <div class="text-center">
                                     <base-button nativeType="submit" type="primary" class="my-4">Ubah</base-button>
                                 </div>
@@ -125,8 +133,8 @@
         },
         model: {
             name: '',
+            username: '',
             email: '',
-            kelompok_id: '',
         },
         form: {
             password: '',
@@ -137,6 +145,7 @@
     created() {
         this.fetchKelompok();
         this.model.name = this.user.name;
+        this.model.username = this.user.username;
         this.model.email = this.user.email;
         this.model.kelompok_id = this.user.kelompok_id;
     },

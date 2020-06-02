@@ -54,7 +54,7 @@
                         </div>
                         <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card card-body rounded-0">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-7">
                                     <h3 class="card-title text-left mb-0">
                                         {{produksi.nama_ikan}}
                                     </h3>

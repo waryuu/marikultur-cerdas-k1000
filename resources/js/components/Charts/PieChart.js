@@ -1,5 +1,5 @@
 import { Pie, mixins } from 'vue-chartjs';
-import globalOptionsMixin from "../../components/Charts/globalOptionsMixin";
+import globalOptionsMixin from "@/js/components/Charts/globalOptionsMixin";
 
 export default {
   name: 'pie-chart',

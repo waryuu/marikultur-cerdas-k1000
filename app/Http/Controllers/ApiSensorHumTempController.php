@@ -21,8 +21,12 @@ class ApiSensorHumTempController extends Controller
             return SensorHumTemp::collection($sensor_humtemp);
         }
         else{
-            $sensor_humtemp = SensorHumTemp::latest('id')->first();
-            return response()->json($sensor_humtemp);
+            $sensor_hum = SensorHumTemp::latest()->take(5)->get()->pluck('humidity');
+            $sensor_tem = SensorHumTemp::latest()->take(5)->get()->pluck('temperature');
+            $time = SensorHumTemp::latest()->take(5)->get()->pluck('time');
+            // $array = array_merge($sensor_hum->toArray(), $sensor_tem->toArray(), $time->toArray());
+            // return response()->json($sensor_hum);
+            return response()->json(['sensor_hum' => $sensor_hum, 'sensor_tem' => $sensor_tem, 'time' => $time]);
         }
     }
 
