@@ -8,6 +8,8 @@ use App\SubproduksiModel;
 use Response;
 use Illuminate\Support\Facades\Validator;
 use App\ProduksiModel;
+use App\SensorDoModel;
+use App\SensorSuhuModel;
 use App\SubproduksiLogModel;
 use App\Http\Requests;
 use App\Http\Resources\SubproduksiResources;
@@ -20,6 +22,20 @@ class ApiSubproduksiController extends Controller
         $subproduksi = SubproduksiModel::paginate(15);
         return SubproduksiResources::collection($subproduksi);
     }
+    public function where(Request $request)
+    {
+        $produksi_id = $request->query('produksi');
+        
+        // $produksi = SubproduksiModel::where('produksi_id',$produksi_id)->paginate(5);
+        // return SubproduksiResources::collection($produksi);
+        $produksi = SubproduksiModel::join('sensor_do', 'sensor_do.keramba_id', '=', 'subproduksi.keramba_sesudah')
+            ->join('sensor_suhu', 'sensor_suhu.keramba_id', '=', 'subproduksi.keramba_sesudah')
+            ->select('subproduksi.*', 'sensor_suhu.suhu_air', 'sensor_do.do_air')
+            ->groupBy('subproduksi.id')
+            ->where('produksi_id',$produksi_id)
+            ->paginate(5);
+            return SubproduksiResources::collection($produksi);
+        }
     public function wherepembesaran(Request $request)
     {
         $produksi_id = $request->query('produksi');
@@ -44,8 +60,9 @@ class ApiSubproduksiController extends Controller
     public function wheretotalikan(Request $request)
     {
     $user_id = $request->query('user');
-    $user = SubproduksiModel::groupBy('nama_ikan')->where('user_id',$user_id)->select('nama_ikan', DB::raw('sum(jumlah_ikan) as total_ikan'))->get();
-    $total = SubproduksiModel::where('user_id',$user_id)->sum('jumlah_ikan');
+    $user = SubproduksiModel::groupBy('nama_ikan')->where('user_id',$user_id)->where('status_panen','Pembesaran')
+    ->select('nama_ikan', DB::raw('sum(jumlah_ikan) as total_ikan'))->get();
+    $total = SubproduksiModel::where('user_id',$user_id)->where('status_panen','Pembesaran')->sum('jumlah_ikan');
     return response()->json(compact('user','total'),201);
 
     // $user = SubproduksiModel::where('user_id',$user_id)->sum('jumlah_ikan');
@@ -275,27 +292,27 @@ class ApiSubproduksiController extends Controller
         $subproduksi = SubproduksiModel::findOrFail($id);
         return new SubproduksiResources($subproduksi);
     }
-    public function where(Request $request)
-    {
-        $produksi_id = $request->query('produksi');
-        $user_id = $request->query('user');
+    // public function where(Request $request)
+    // {
+    //     $produksi_id = $request->query('produksi');
+    //     $user_id = $request->query('user');
         
-        if(is_null($produksi_id)){
-        $produksi = SubproduksiModel::Where('user_id', $user_id)->paginate(5);
-        return SubproduksiResources::collection($produksi);
-        }
-        if(is_null($user_id)){
-        $user = SubproduksiModel::where('produksi_id',$produksi_id)->paginate(5);
-        return SubproduksiResources::collection($user);
-        }
-        else{
-        $all = SubproduksiModel::where('produksi_id',$produksi_id)->Where('user_id', $user_id)->paginate(5);
-        return SubproduksiResources::collection($all);
-        }
-        // $produksi = subproduksiModel::where('produksi_id',$produksi_id)->paginate(2);
-        // return subproduksiResources::collection($produksi);
+    //     if(is_null($produksi_id)){
+    //     $produksi = SubproduksiModel::Where('user_id', $user_id)->paginate(5);
+    //     return SubproduksiResources::collection($produksi);
+    //     }
+    //     if(is_null($user_id)){
+    //     $user = SubproduksiModel::where('produksi_id',$produksi_id)->paginate(5);
+    //     return SubproduksiResources::collection($user);
+    //     }
+    //     else{
+    //     $all = SubproduksiModel::where('produksi_id',$produksi_id)->Where('user_id', $user_id)->paginate(5);
+    //     return SubproduksiResources::collection($all);
+    //     }
+    //     // $produksi = subproduksiModel::where('produksi_id',$produksi_id)->paginate(2);
+    //     // return subproduksiResources::collection($produksi);
          
-    }
+    // }
     public function destroy($id)
 {
     $subproduksi = SubproduksiModel::findOrFail($id);

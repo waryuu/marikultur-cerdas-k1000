@@ -31,6 +31,8 @@ class SubproduksiResources extends JsonResource
             'panjang_ikan_akhir'=>$this->panjang_ikan_akhir,
             'jumlah_ikan_akhir'=>$this->jumlah_ikan_akhir,
             'berat_ikan_akhir'=>$this->berat_ikan_akhir,
+            'suhu_air'=>$this->suhu_air,
+            'do_air'=>$this->do_air,
             'user_id'=>$this->user_id
         ];
     }
