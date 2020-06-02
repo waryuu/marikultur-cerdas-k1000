@@ -210,9 +210,11 @@ class ApiSubproduksiController extends Controller
             'keramba_sesudah' => $request->input('keramba_sesudah'),
             'subproduksi_id' => $subproduksi->id,
             'kegiatan' => 'Pemindahan'
-            
-
         ]);
+
+        $id = $request->subproduksi_yang_dipindah;
+        $subproduksi_decent = SubproduksiModel::find($id)->decrement('jumlah_ikan', $subproduksi->jumlah_ikan);
+
         DB::commit();
         return new SubproduksiResources($subproduksi);
         return new SubproduksiLogResources($subproduksilog);

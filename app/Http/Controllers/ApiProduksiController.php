@@ -54,21 +54,30 @@ class ApiProduksiController extends Controller
         return response()->json(compact('produksibulanini','produksitahunini'),201);
         }
 
-        
     public function whereproduksipembesaran(Request $request)
-    {
-    $user_id = $request->query('user');
-    $produksi = ProduksiModel::where('user_id',$user_id)->where('jumlah_subproduksi', '!=' , 0)->paginate(5);
-    return  ProduksiResources::collection($produksi);
-    }
-
+        {
+        $user_id = $request->query('user');
+    
+        $produksi = ProduksiModel::leftjoin('subproduksi', 'subproduksi.produksi_id', '=', 'produksi.id')
+        ->select('produksi.*', DB::raw('sum(subproduksi.jumlah_ikan) as jumlah_terkini'))
+        ->groupBy('produksi.id')
+        ->where('produksi.user_id',$user_id)->where('produksi.jumlah_subproduksi', '!=' , 0)
+        ->where('subproduksi.status_panen','Pembesaran')
+        ->paginate(5);
+        return  ProduksiResources::collection($produksi);
+        }
     public function whereproduksipanen(Request $request)
-    {
-    $user_id = $request->query('user');
-    $produksi = ProduksiModel::where('user_id',$user_id)->where('jumlah_subproduksi', '=' , 0)->paginate(5);
-    return  ProduksiResources::collection($produksi);
-    }
-
+        {
+        $user_id = $request->query('user');
+    
+        $produksi = ProduksiModel::leftjoin('subproduksi', 'subproduksi.produksi_id', '=', 'produksi.id')
+        ->select('produksi.*', DB::raw('sum(subproduksi.jumlah_ikan) as jumlah_terkini'))
+        ->groupBy('produksi.id')
+        ->where('produksi.user_id',$user_id)->where('produksi.jumlah_subproduksi', '=' , 0)
+        ->where('subproduksi.status_panen','Panen')
+        ->paginate(5);
+        return  ProduksiResources::collection($produksi);
+        }
  
     public function getallproduksi()
     {

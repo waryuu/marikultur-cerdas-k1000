@@ -70,7 +70,10 @@ class SubProduksiSeeder extends Seeder
             'produksi_id'=>'4',
             'user_id'=>'1',
             'tanggal_panen'=>'2020-12-20',
-            'status_panen'=>'panen',
+            'panjang_ikan_akhir' => '15',
+            'jumlah_ikan_akhir' => '200',
+            'berat_ikan_akhir' => '20',
+            'status_panen'=>'Panen',
             'created_at' => now(),
             'updated_at' => now()
         ]);
