@@ -17,6 +17,8 @@
           </td>
         </slot>
       </tr>
+      <slot name="object">
+      </slot>
     </tbody>
   </table>
 </template>

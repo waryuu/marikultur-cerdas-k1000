@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[7],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UbahProduksi.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/UbahProduksi.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tebar.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Tebar.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -176,22 +176,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'ubah',
+  name: 'tebar',
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapGetters"])({
     user: 'auth/user'
   })),
@@ -208,25 +197,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         nama_ikan: ''
       },
       model: {
+        nama_ikan: '',
         jumlah_ikan: '',
         panjang_ikan: '',
         berat_ikan: '',
-        tanggal_cuci: '',
-        tanggal_pindah: '',
-        keramba_sesudah: '',
+        tanggal_tebar: '',
+        keramba_id: '',
         kelompok_id: '',
         user_id: ''
       }
     };
   },
   created: function created() {
-    this.getProduksi();
+    this.getKeramba();
     this.model.kelompok_id = this.user.kelompok_id;
     this.model.user_id = this.user.id;
+    console.log(this.keramba);
   },
   methods: {
-    getProduksi: function () {
-      var _getProduksi = _asyncToGenerator(
+    getKeramba: function () {
+      var _getKeramba = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var _this = this;
@@ -238,11 +228,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               case 0:
                 id = this.user.kelompok_id;
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.all([axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apisubproduksi/".concat(this.$route.params.id)), axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apikeramba/where?kelompok=".concat(id))]).then(axios__WEBPACK_IMPORTED_MODULE_2___default.a.spread(function (responseProd, responseKeramba) {
-                  _this.model = responseProd.data.data;
-                  _this.kerambas = responseKeramba.data;
-                }))["catch"](function (error) {
-                  console.log('Fetch Data Produksi Error!');
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apikeramba/where?kelompok=".concat(id)).then(function (response) {
+                  _this.kerambas = response.data;
+                })["catch"](function () {
+                  console.log('Fetch Data Error!');
                 });
 
               case 3:
@@ -253,14 +242,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee, this);
       }));
 
-      function getProduksi() {
-        return _getProduksi.apply(this, arguments);
+      function getKeramba() {
+        return _getKeramba.apply(this, arguments);
       }
 
-      return getProduksi;
+      return getKeramba;
     }(),
-    submitProduksi: function () {
-      var _submitProduksi = _asyncToGenerator(
+    submitPenebaran: function () {
+      var _submitPenebaran = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var _this2 = this;
@@ -271,20 +260,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 this.errors = '';
-
-                if (!(!this.model.jumlah_ikan || !this.model.panjang_ikan || !this.model.berat_ikan || !this.model.tanggal_cuci || !this.model.tanggal_pindah || !this.model.keramba_sesudah || !this.keramba)) {
-                  _context2.next = 5;
-                  break;
-                }
-
-                this.errors = 'Harap isi semua form dengan benar!';
-                _context2.next = 8;
-                break;
-
-              case 5:
                 credentials = this.model;
-                _context2.next = 8;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put('apisubproduksi/update', credentials).then(function () {
+                console.log(credentials);
+                _context2.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('apiproduksi/create', credentials).then(function () {
                   _this2.$router.replace({
                     name: 'beranda'
                   });
@@ -292,7 +271,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   _this2.errors = 'Harap isi semua form dengan benar!';
                 });
 
-              case 8:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -300,21 +279,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee2, this);
       }));
 
-      function submitProduksi() {
-        return _submitProduksi.apply(this, arguments);
+      function submitPenebaran() {
+        return _submitPenebaran.apply(this, arguments);
       }
 
-      return submitProduksi;
+      return submitPenebaran;
     }()
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UbahProduksi.vue?vue&type=style&index=1&lang=css&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/UbahProduksi.vue?vue&type=style&index=1&lang=css& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tebar.vue?vue&type=style&index=1&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Tebar.vue?vue&type=style&index=1&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -323,22 +302,22 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.round .multiselect__tags{\n    border-radius: 1.5rem;\n    box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);\n    border: 0px;\n}\n.alert{\n      border-radius: .25rem;\n}\n", ""]);
+exports.push([module.i, "\n.round .multiselect__tags{\n    border-radius: 1.5rem;\n    box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);\n    border: 0px;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UbahProduksi.vue?vue&type=style&index=1&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/UbahProduksi.vue?vue&type=style&index=1&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tebar.vue?vue&type=style&index=1&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Tebar.vue?vue&type=style&index=1&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./UbahProduksi.vue?vue&type=style&index=1&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UbahProduksi.vue?vue&type=style&index=1&lang=css&");
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Tebar.vue?vue&type=style&index=1&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tebar.vue?vue&type=style&index=1&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -360,10 +339,10 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UbahProduksi.vue?vue&type=template&id=20ba2014&":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/UbahProduksi.vue?vue&type=template&id=20ba2014& ***!
-  \**********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tebar.vue?vue&type=template&id=df413d1a&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Tebar.vue?vue&type=template&id=df413d1a& ***!
+  \***************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -396,12 +375,12 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-lg-7 col-md-10" }, [
                   _c("h1", { staticClass: "display-2 text-white" }, [
-                    _vm._v("Ubah Produksi")
+                    _vm._v("Penebaran")
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "text-white mt-0 mb-5" }, [
                     _vm._v(
-                      "Silahkan isi form berikut untuk melakukan perubahan"
+                      "Silahkan isi form berikut untuk melakukan penebaran"
                     )
                   ])
                 ])
@@ -429,7 +408,7 @@ var render = function() {
                     _c("div", { staticClass: "row align-items-center" }, [
                       _c("div", { staticClass: "col-8" }, [
                         _c("h3", { staticClass: "mb-0" }, [
-                          _vm._v("Informasi Produksi")
+                          _vm._v("Informasi Penebaran")
                         ])
                       ])
                     ])
@@ -448,7 +427,7 @@ var render = function() {
                           on: {
                             submit: function($event) {
                               $event.preventDefault()
-                              return _vm.submitProduksi($event)
+                              return _vm.submitPenebaran($event)
                             }
                           }
                         },
@@ -468,17 +447,6 @@ var render = function() {
                                       }
                                     },
                                     [
-                                      _c(
-                                        "span",
-                                        { staticClass: "alert-inner--icon" },
-                                        [
-                                          _c("i", {
-                                            staticClass:
-                                              "fas fa-exclamation-triangle"
-                                          })
-                                        ]
-                                      ),
-                                      _vm._v(" "),
                                       _c(
                                         "span",
                                         { staticClass: "alert-inner--text" },
@@ -511,6 +479,45 @@ var render = function() {
                                     ]
                                   )
                                 : _vm._e(),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "row mb-3" }, [
+                                _c("div", { staticClass: "col-lg-12" }, [
+                                  _c(
+                                    "div",
+                                    { staticClass: "form-control-label" },
+                                    [_vm._v("Nama Ikan")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "round" },
+                                    [
+                                      _c("multiselect", {
+                                        attrs: {
+                                          options: _vm.ikans,
+                                          searchable: true,
+                                          "close-on-select": true,
+                                          "show-labels": false,
+                                          "allow-empty": false,
+                                          placeholder: "Nama Ikan"
+                                        },
+                                        model: {
+                                          value: _vm.model.nama_ikan,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.model,
+                                              "nama_ikan",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "model.nama_ikan"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ])
+                              ]),
                               _vm._v(" "),
                               _c("base-input", {
                                 attrs: {
@@ -566,34 +573,17 @@ var render = function() {
                               _c("base-input", {
                                 attrs: {
                                   alternative: "",
-                                  label: "Tanggal Cuci",
-                                  placeholder: "Masukkan Tanggal Cuci",
+                                  label: "Tanggal Tebar",
+                                  placeholder: "Masukkan Tanggal Tebar",
                                   "input-classes": "form-control-alternative",
                                   type: "date"
                                 },
                                 model: {
-                                  value: _vm.model.tanggal_cuci,
+                                  value: _vm.model.tanggal_tebar,
                                   callback: function($$v) {
-                                    _vm.$set(_vm.model, "tanggal_cuci", $$v)
+                                    _vm.$set(_vm.model, "tanggal_tebar", $$v)
                                   },
-                                  expression: "model.tanggal_cuci"
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("base-input", {
-                                attrs: {
-                                  alternative: "",
-                                  label: "Tanggal Pindah",
-                                  placeholder: "Masukkan Tanggal Pindah",
-                                  "input-classes": "form-control-alternative",
-                                  type: "date"
-                                },
-                                model: {
-                                  value: _vm.model.tanggal_pindah,
-                                  callback: function($$v) {
-                                    _vm.$set(_vm.model, "tanggal_pindah", $$v)
-                                  },
-                                  expression: "model.tanggal_pindah"
+                                  expression: "model.tanggal_tebar"
                                 }
                               }),
                               _vm._v(" "),
@@ -602,7 +592,7 @@ var render = function() {
                                   _c(
                                     "div",
                                     { staticClass: "form-control-label" },
-                                    [_vm._v("Lokasi Saat Ini")]
+                                    [_vm._v("Lokasi Tebar")]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -612,9 +602,9 @@ var render = function() {
                                       _c("multiselect", {
                                         attrs: {
                                           value: _vm.keramba,
-                                          "close-on-select": true,
                                           "track-by": "id",
                                           label: "nama_keramba",
+                                          "close-on-select": true,
                                           placeholder: "Pilih Lokasi Keramba",
                                           options: _vm.kerambas,
                                           searchable: true,
@@ -623,7 +613,7 @@ var render = function() {
                                         },
                                         on: {
                                           input: function(opt) {
-                                            return (_vm.model.keramba_sesudah =
+                                            return (_vm.model.keramba_id =
                                               opt.id)
                                           }
                                         },
@@ -659,14 +649,10 @@ var render = function() {
                   },
                   [
                     _c(
-                      "a",
+                      "router-link",
                       {
-                        staticClass: "btn btn-link text-uppercase text-primary",
-                        on: {
-                          click: function($event) {
-                            return _vm.$router.go(-1)
-                          }
-                        }
+                        staticClass: "btn btn-link text-uppercase",
+                        attrs: { to: "/beranda" }
                       },
                       [_vm._v("Batal")]
                     ),
@@ -678,7 +664,7 @@ var render = function() {
                         attrs: { nativeType: "submit", type: "primary" },
                         on: {
                           click: function($event) {
-                            return _vm.submitProduksi()
+                            return _vm.submitPenebaran()
                           }
                         }
                       },
@@ -704,19 +690,19 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/views/UbahProduksi.vue":
-/*!*********************************************!*\
-  !*** ./resources/js/views/UbahProduksi.vue ***!
-  \*********************************************/
+/***/ "./resources/js/views/Tebar.vue":
+/*!**************************************!*\
+  !*** ./resources/js/views/Tebar.vue ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UbahProduksi_vue_vue_type_template_id_20ba2014___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UbahProduksi.vue?vue&type=template&id=20ba2014& */ "./resources/js/views/UbahProduksi.vue?vue&type=template&id=20ba2014&");
-/* harmony import */ var _UbahProduksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UbahProduksi.vue?vue&type=script&lang=js& */ "./resources/js/views/UbahProduksi.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Tebar_vue_vue_type_template_id_df413d1a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Tebar.vue?vue&type=template&id=df413d1a& */ "./resources/js/views/Tebar.vue?vue&type=template&id=df413d1a&");
+/* harmony import */ var _Tebar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tebar.vue?vue&type=script&lang=js& */ "./resources/js/views/Tebar.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var vue_multiselect_dist_vue_multiselect_min_css_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css& */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.css?vue&type=style&index=0&lang=css&");
-/* harmony import */ var _UbahProduksi_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./UbahProduksi.vue?vue&type=style&index=1&lang=css& */ "./resources/js/views/UbahProduksi.vue?vue&type=style&index=1&lang=css&");
+/* harmony import */ var _Tebar_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Tebar.vue?vue&type=style&index=1&lang=css& */ "./resources/js/views/Tebar.vue?vue&type=style&index=1&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -728,9 +714,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__["default"])(
-  _UbahProduksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _UbahProduksi_vue_vue_type_template_id_20ba2014___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _UbahProduksi_vue_vue_type_template_id_20ba2014___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Tebar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Tebar_vue_vue_type_template_id_df413d1a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Tebar_vue_vue_type_template_id_df413d1a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -740,54 +726,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/UbahProduksi.vue"
+component.options.__file = "resources/js/views/Tebar.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/UbahProduksi.vue?vue&type=script&lang=js&":
-/*!**********************************************************************!*\
-  !*** ./resources/js/views/UbahProduksi.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************/
+/***/ "./resources/js/views/Tebar.vue?vue&type=script&lang=js&":
+/*!***************************************************************!*\
+  !*** ./resources/js/views/Tebar.vue?vue&type=script&lang=js& ***!
+  \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./UbahProduksi.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UbahProduksi.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Tebar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tebar.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/UbahProduksi.vue?vue&type=style&index=1&lang=css&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/views/UbahProduksi.vue?vue&type=style&index=1&lang=css& ***!
-  \******************************************************************************/
+/***/ "./resources/js/views/Tebar.vue?vue&type=style&index=1&lang=css&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/views/Tebar.vue?vue&type=style&index=1&lang=css& ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./UbahProduksi.vue?vue&type=style&index=1&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UbahProduksi.vue?vue&type=style&index=1&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./Tebar.vue?vue&type=style&index=1&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tebar.vue?vue&type=style&index=1&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_style_index_1_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ "./resources/js/views/UbahProduksi.vue?vue&type=template&id=20ba2014&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/views/UbahProduksi.vue?vue&type=template&id=20ba2014& ***!
-  \****************************************************************************/
+/***/ "./resources/js/views/Tebar.vue?vue&type=template&id=df413d1a&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/views/Tebar.vue?vue&type=template&id=df413d1a& ***!
+  \*********************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_template_id_20ba2014___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./UbahProduksi.vue?vue&type=template&id=20ba2014& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/UbahProduksi.vue?vue&type=template&id=20ba2014&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_template_id_20ba2014___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_template_id_df413d1a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Tebar.vue?vue&type=template&id=df413d1a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Tebar.vue?vue&type=template&id=df413d1a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_template_id_df413d1a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UbahProduksi_vue_vue_type_template_id_20ba2014___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tebar_vue_vue_type_template_id_df413d1a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

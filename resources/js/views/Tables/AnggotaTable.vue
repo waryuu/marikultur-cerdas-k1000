@@ -115,7 +115,6 @@
               .then((response) => {
               this.tableData = response.data.data;
               this.meta = response.data.meta;
-              console.log(this.tableData);
               })
               .catch(() => {
                   console.log('Fetch Data Tabel Error!');

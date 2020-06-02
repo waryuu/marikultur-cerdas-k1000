@@ -3292,6 +3292,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'base-table',
   props: {
@@ -10511,29 +10513,33 @@ var render = function() {
       _c(
         "tbody",
         { class: _vm.tbodyClasses },
-        _vm._l(_vm.data, function(item, index) {
-          return _c(
-            "tr",
-            { key: index },
-            [
-              _vm._t(
-                "default",
-                _vm._l(_vm.colsWithValue(item), function(column, index) {
-                  return _c("td", { key: index }, [
-                    _vm._v(
-                      "\n          " +
-                        _vm._s(_vm.itemValue(item, column)) +
-                        "\n        "
-                    )
-                  ])
-                }),
-                { row: item, index: index }
-              )
-            ],
-            2
-          )
-        }),
-        0
+        [
+          _vm._l(_vm.data, function(item, index) {
+            return _c(
+              "tr",
+              { key: index },
+              [
+                _vm._t(
+                  "default",
+                  _vm._l(_vm.colsWithValue(item), function(column, index) {
+                    return _c("td", { key: index }, [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(_vm.itemValue(item, column)) +
+                          "\n        "
+                      )
+                    ])
+                  }),
+                  { row: item, index: index }
+                )
+              ],
+              2
+            )
+          }),
+          _vm._v(" "),
+          _vm._t("object")
+        ],
+        2
       )
     ]
   )
@@ -31256,43 +31262,43 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/tebar',
       name: 'tebar',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
       }
     }, {
       path: '/cuci',
       name: 'cuci',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./views/Cuci.vue */ "./resources/js/views/Cuci.vue"));
+        return __webpack_require__.e(/*! import() */ 9).then(__webpack_require__.bind(null, /*! ./views/Cuci.vue */ "./resources/js/views/Cuci.vue"));
       }
     }, {
       path: '/riwayat',
       name: 'riwayat',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./views/Riwayat.vue */ "./resources/js/views/Riwayat.vue"));
+        return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./views/Riwayat.vue */ "./resources/js/views/Riwayat.vue"));
       }
     }, {
       path: '/produksi',
       name: 'produksi',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./views/Produksi.vue */ "./resources/js/views/Produksi.vue"));
+        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./views/Produksi.vue */ "./resources/js/views/Produksi.vue"));
       }
     }, {
       path: '/produksi/:id',
       name: 'produksi-detail',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 15).then(__webpack_require__.bind(null, /*! ./views/ProduksiDetail.vue */ "./resources/js/views/ProduksiDetail.vue"));
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/ProduksiDetail.vue */ "./resources/js/views/ProduksiDetail.vue"));
       }
     }, {
       path: '/produksi/ubah/:id',
       name: 'ubah',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(7)]).then(__webpack_require__.bind(null, /*! ./views/UbahProduksi.vue */ "./resources/js/views/UbahProduksi.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/UbahProduksi.vue */ "./resources/js/views/UbahProduksi.vue"));
       }
     }, {
       path: '/produksi/pindah/:id',
       name: 'pindah',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(6)]).then(__webpack_require__.bind(null, /*! ./views/Pindah.vue */ "./resources/js/views/Pindah.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./views/Pindah.vue */ "./resources/js/views/Pindah.vue"));
       }
     }, {
       path: '/produksi/panen/:id',
@@ -31304,7 +31310,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/keramba',
       name: 'keramba',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 10).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
+        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
       }
     }, {
       path: '/profil',
@@ -31340,7 +31346,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
+        return __webpack_require__.e(/*! import() */ 14).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
       }
     }, {
       path: '/kelompok',
@@ -31361,13 +31367,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/icons',
       name: 'icons',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/Icons.vue */ "./resources/js/views/Icons.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(10)]).then(__webpack_require__.bind(null, /*! ./views/Icons.vue */ "./resources/js/views/Icons.vue"));
       }
     }, {
       path: '/maps',
       name: 'maps',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/Maps.vue */ "./resources/js/views/Maps.vue"));
+        return __webpack_require__.e(/*! import() */ 13).then(__webpack_require__.bind(null, /*! ./views/Maps.vue */ "./resources/js/views/Maps.vue"));
       }
     }, {
       path: '/tables',
@@ -31395,13 +31401,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/login',
       name: 'login',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 11).then(__webpack_require__.bind(null, /*! ./views/Login.vue */ "./resources/js/views/Login.vue"));
+        return __webpack_require__.e(/*! import() */ 12).then(__webpack_require__.bind(null, /*! ./views/Login.vue */ "./resources/js/views/Login.vue"));
       }
     }, {
       path: '/register',
       name: 'register',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/Register.vue */ "./resources/js/views/Register.vue"));
+        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./views/Register.vue */ "./resources/js/views/Register.vue"));
       }
     }]
   }, // Default Route untuk user yang tidak memiliki kelompok

@@ -278,19 +278,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context2.prev = _context2.next) {
               case 0:
                 this.errors = '';
+                this.showModal = false;
                 this.model.status_panen = "Panen";
                 credentials = this.model;
                 console.log(credentials);
-                _context2.next = 6;
+                _context2.next = 7;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.put('apisubproduksi/panen', credentials).then(function () {
                   _this2.$router.replace({
-                    name: 'beranda'
+                    name: 'produksi'
                   });
                 })["catch"](function () {
                   _this2.errors = 'Harap isi semua form dengan benar!';
                 });
 
-              case 6:
+              case 7:
               case "end":
                 return _context2.stop();
             }

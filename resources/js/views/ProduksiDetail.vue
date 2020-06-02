@@ -8,7 +8,7 @@
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Detail Produksi</h1>
+                        <h1 class="display-2 text-white">Detail</h1>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         </router-link>
                 </div>
             </div> -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col">
                     <form class="form-inline mr-3 d-none d-flex ml-auto">
                         <div class="form-group mb-0">
@@ -35,14 +35,14 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col">
                     <card shadow type="secondary" :noBody="true">
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Detail Produksi {{ $route.params.id }}</h3>
+                                    <h3 class="mb-0">Detail produksi</h3>
                                 </div>
                                 <div class="col-4 d-flex align-items-center justify-content-end">
                                    <base-pagination-dua  :pagination="meta"
@@ -60,9 +60,9 @@
                                     </h3>
                                 </div>
                                 <div class="col">
-                                    <h3 class="card-title text-right text-muted font-weight-light mb-0">
-                                        Produksi {{$route.params.id}}.{{produksi.id}}
-                                    </h3>
+                                    <h5 class="card-title text-right text-muted font-weight-light mb-0">
+                                        ID-{{$route.params.id}}.{{produksi.id}}
+                                    </h5>
                                 </div>
                             </div>
                             <div class="row mt-3 mb-2">
@@ -110,7 +110,7 @@
                                     </h4>
                                 </div>
                             </div>
-                            <div class="row mb-3">
+                            <div class="row">
                                 <div class="col">
                                     <h4 class="text-left font-weight-light">
                                         Tanggal Pindah
@@ -122,25 +122,63 @@
                                     </h4>
                                 </div>
                             </div>
-                            <!-- <form class="row align-items-center px-3 mt-3" action="" method="post">
-                                <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Detail Produksi</button>
-                            </form> -->
-                            <div>
-                                <form class="row align-items-center px-3" action="" method="post">
-                                    <button @click="showSensor(produksi.keramba_sesudah)" type="button" class="col btn btn-secondary">Sensor IoT</button>
-                                </form>
-                                <div class="row mt-3 px-3">
-                                            <router-link :to="{ name: 'ubah', params: { id: produksi.id }}" class="col btn btn-primary">
-                                                Ubah
-                                            </router-link>
-                                            <router-link :to="{ name: 'pindah', params: { id: produksi.id }}" class="col btn btn-primary">
-                                                Pindah
-                                            </router-link>
-                                            <router-link :to="{ name: 'panen', params: { id: produksi.id }}" class="col btn btn-primary">
-                                                Panen
-                                            </router-link>
+                            <!-- Pembesaran -->
+                            <div v-if="produksi.status_panen === 'Pembesaran'">
+                                <div class="row mb-3 mt-2 ml-1 mr-1">
+                                    <div v-if="produksi.suhu_air != null && produksi.suhu_air.length" class="col card border-0 mr-1 bg-info" style="border-radius:0.25rem">
+                                        <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">Suhu Air</h3></div>
+                                        <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">{{produksi.suhu_air}} &#176; C</h4></div>
+                                    </div>
+                                    <div v-if="produksi.do_air != null && produksi.do_air.length" class="col card border-0 ml-1 bg-info" style="border-radius:0.25rem">
+                                        <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">Oksigen</h3></div>
+                                        <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">{{produksi.do_air}} %</h4></div>
+                                    </div>
+                                </div>
+                                <!-- <form class="row align-items-center px-3 mt-3" action="" method="post">
+                                    <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Detail Produksi</button>
+                                </form> -->
+                                <div>
+                                    <!-- <form class="row align-items-center px-3" action="" method="post">
+                                        <button @click="showSensor(produksi.keramba_sesudah)" type="button" class="col btn btn-secondary">Sensor IoT</button>
+                                    </form> -->
+                                    <div class="row mt-3 px-3">
+                                                <router-link :to="{ name: 'ubah', params: { id: produksi.id }}" class="col btn btn-primary">
+                                                    Ubah
+                                                </router-link>
+                                                <router-link :to="{ name: 'pindah', params: { id: produksi.id }}" class="col btn btn-primary">
+                                                    Pindah
+                                                </router-link>
+                                                <router-link :to="{ name: 'panen', params: { id: produksi.id }}" class="col btn btn-primary">
+                                                    Panen
+                                                </router-link>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- End Pembesaran -->
+                            <!-- Panen -->
+                            <div v-else>
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <h4 class="text-left font-weight-light">
+                                            Tanggal Panen
+                                        </h4>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="text-right font-italic font-weight-light">
+                                            {{produksi.tanggal_panen}}
+                                        </h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <base-alert type="warning">
+                                            <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                                            <span class="alert-inner--text"><strong>Subproduksi sudah dipanen!</strong></span>
+                                        </base-alert>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Panen -->
                         </div>
                         <div slot="footer" class="d-flex justify-content-end">
                             <base-pagination-dua  :pagination="meta"
@@ -149,7 +187,7 @@
                             </base-pagination-dua>
                         </div>
                         <!-- Modal Sensor -->
-                        <div>
+                        <!-- <div>
                             <modal :show.sync="showModalSensor">
                                 <template slot="header">
                                     <h3 class="modal-title font-weight-light" id="exampleModalLabel">Informasi Sensor</h3>
@@ -164,26 +202,8 @@
                                     <base-button type="link" @click="showModalSensor = false" class="text-uppercase">Kembali</base-button>
                                 </template>
                             </modal>
-                        </div>
+                        </div> -->
                         <!-- End Modal Sensor -->
-                        <!-- Modal Pakan -->
-                        <div>
-                            <modal :show.sync="showModalPakan">
-                                <template slot="header">
-                                    <h4 class="modal-title" id="exampleModalLabel">Informasi Pakan Otomatis</h4>
-                                </template>
-                                <template slot="body">
-                                    <div>
-                                            <p class="text-muted">Baterai</p>
-                                            <p class="font-weight-bold">{{sensorPakan.baterai_pakan}} &#37;</p>
-                                    </div>
-                                </template>
-                                <template slot="footer">
-                                    <base-button type="secondary" @click="showModalPakan = false">Kembali</base-button>
-                                </template>
-                            </modal>
-                        </div>
-                        <!-- End Modal Pakan -->
                     </card>
                 </div>
             </div>
@@ -214,7 +234,9 @@
           tanggal_cuci: '',
           tanggal_pindah: '',
           status_panen: '',
-          keramba_sesudah: ''
+          keramba_sesudah: '',
+          suhu_air: '',
+          do_air: ''
         },
         cucis: [],
         cuci: {
@@ -232,16 +254,6 @@
         sensorDo: {
           id: '',
           do_air: '',
-          keramba_id: ''
-        },
-        sensorHumTemp: {
-          id: '',
-          humidity: '',
-          temperature: ''
-        },
-        sensorPakan: {
-          id: '',
-          baterai_pakan: '',
           keramba_id: ''
         },
         meta: {
@@ -268,45 +280,36 @@
         async getProduksi() {
             await axios.all([
                 axios.get(`apisubproduksi/where?produksi=${this.$route.params.id}`),
-                axios.get(`apisensorhumtemp`)
             ])
-            .then(axios.spread((responseProd, responseHumTemp) => {
+            .then(axios.spread((responseProd) => {
                 this.produksis = responseProd.data.data;
-                this.sensorHumTemp = responseHumTemp.data;
                 this.meta = responseProd.data.meta;
                 this.links = responseProd.data.links;
-                console.log(responseProd.data.data);
             }))
             .catch(function (error) {
                 console.log('Fetch Data Produksi Error!');
             });
         },
-        async showSensor(id){
-            this.showModalSensor = true;
-            await axios.all([
-                axios.get(`apisensorsuhu/where?keramba=${id}`),
-                axios.get(`apisensordo/where?keramba=${id}`)
-            ])
-            .then(axios.spread((responseSuhu, responseDo) => {
-                this.sensorSuhu = responseSuhu.data;
-                this.sensorDo = responseDo.data;
-            }))
-            .catch(function (error) {
-                console.log('Fetch Sensor Error!');
-            });
-        },
-        async showPakan(id){
-            this.showModalPakan = true;
-            await axios.get(`apipakan/where?keramba=${id}`)
-                .then((response) => {
-                    this.sensorPakan = response.data;
-                })
-                .catch(() => {
-                    console.log('Fetch Pakan Error!');
-                });
-        }
+        // async showSensor(id){
+        //     this.showModalSensor = true;
+        //     await axios.all([
+        //         axios.get(`apisensorsuhu/where?keramba=${id}`),
+        //         axios.get(`apisensordo/where?keramba=${id}`)
+        //     ])
+        //     .then(axios.spread((responseSuhu, responseDo) => {
+        //         this.sensorSuhu = responseSuhu.data;
+        //         this.sensorDo = responseDo.data;
+        //     }))
+        //     .catch(function (error) {
+        //         console.log('Fetch Sensor Error!');
+        //     });
+        // }
 
     }
   }
 </script>
-<style></style>
+<style>
+    .alert{
+        border-radius: .25rem;
+    }
+</style>

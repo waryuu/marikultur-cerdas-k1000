@@ -12,9 +12,6 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid d-flex align-items-center">
-                
-            </div>
         </base-header>
 
         <!-- Card Produksi -->
@@ -26,7 +23,7 @@
                         </router-link>
                 </div>
             </div> -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col">
                     <form class="form-inline mr-3 d-none d-flex ml-auto">
                         <div class="form-group mb-0">
@@ -38,7 +35,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col">
                     <card shadow type="secondary" :noBody="true">
@@ -47,7 +44,7 @@
                                 <div class="col-8">
                                     <h3 class="mb-0">Daftar Produksi</h3>
                                 </div>
-                                <div class="col-4 d-flex align-items-center justify-content-end">
+                                <div v-if="produksis.length" class="col-4 d-flex align-items-center justify-content-end">
                                    <base-pagination-dua  :pagination="meta"
                                         @paginate="getProduksi()"
                                         :offset="0">
@@ -55,17 +52,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div v-if="!produksis.length" class="card card-body rounded-0 row">
+                            <div class="col">
+                                <base-alert type="info">
+                                    <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                                    <span class="alert-inner--text"><strong>Belum ada produksi!</strong> Harap lakukan penebaran terlebih dahulu</span>
+                                </base-alert>
+                            </div>
+                        </div>
                         <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card card-body rounded-0">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-7">
                                     <h3 class="card-title text-left mb-0">
                                         {{produksi.nama_ikan}}
                                     </h3>
                                 </div>
                                 <div class="col">
-                                    <h3 class="card-title text-right text-muted font-weight-light mb-0">
-                                        Produksi {{produksi.id}}
-                                    </h3>
+                                    <h5 class="card-title text-right text-muted font-weight-light mb-0">
+                                        ID-{{produksi.id}}
+                                    </h5>
                                 </div>
                             </div>
                             <!-- <div class="row mt-3 mb-2">
@@ -78,13 +83,21 @@
                             <div class="row mt-2">
                                 <div class="col">
                                     <h4 class="text-center text-uppercase font-weight-light">
-                                        Jumlah
+                                        Jumlah Awal
                                     </h4>
                                     <h3 class="text-center">
                                         {{produksi.jumlah_ikan_awal}} Ekor
                                     </h3>
                                 </div>
                                 <div class="col">
+                                    <h4 class="text-center text-uppercase font-weight-light">
+                                        Jumlah Terkini
+                                    </h4>
+                                    <h3 class="text-center">
+                                        {{produksi.jumlah_ikan_awal}} Ekor
+                                    </h3>
+                                </div>
+                                <!-- <div class="col">
                                     <h4 class="text-center text-uppercase font-weight-light">
                                         Ukuran
                                     </h4>
@@ -99,7 +112,7 @@
                                     <h3 class="text-center">
                                         {{produksi.berat_ikan_awal}} Gram
                                     </h3>
-                                </div>
+                                </div> -->
 
                             </div>
                             <div class="row mt-3 mb-3">
@@ -148,7 +161,8 @@
                         <div slot="footer" class="d-flex justify-content-end">
                             <base-pagination-dua  :pagination="meta"
                                     @paginate="getProduksi()"
-                                    :offset="0">
+                                    :offset="0"
+                                    v-if="produksis.length">
                             </base-pagination-dua>
                         </div>
                         <!-- Modal Sensor -->
@@ -197,8 +211,15 @@
 </template>
 <script>
   import axios from 'axios'
+  import {mapGetters} from 'vuex'
   export default {
     name: 'produksi',
+    computed: {
+        ...mapGetters({
+            authenticated: 'auth/authenticated',
+            user: 'auth/user',
+        })
+    },
     data() {
       return {
         errors: '',
@@ -268,21 +289,16 @@
         this.getProduksi();
     },
     methods:{
-        async getProduksi() {
-            await axios.all([
-                axios.get(`apiproduksi?page=${this.meta.current_page}`),
-                axios.get(`apisensorhumtemp`)
-            ])
-            .then(axios.spread((responseProd, responseHumTemp) => {
-                this.produksis = responseProd.data.data;
-                this.sensorHumTemp = responseHumTemp.data;
-                this.meta = responseProd.data.meta;
-                this.links = responseProd.data.links;
-                console.log(responseProd.data.data);
-            }))
-            .catch(function (error) {
-                console.log('Fetch Data Produksi Error!');
-            });
+        async getProduksi(){
+            await axios.get(`apiproduksi/wherepembesaran?user=${this.user.id}&page=${this.meta.current_page}`)
+                .then((response) => {
+                    this.produksis = response.data.data;
+                    this.meta = response.data.meta;
+                    this.links = response.data.links;
+                })
+                .catch(() => {
+                    console.log('Fetch Data Produksi Error!');
+                });
         },
         async showSensor(id){
             this.showModalSensor = true;
@@ -312,4 +328,8 @@
     }
   }
 </script>
-<style></style>
+<style>
+    .alert{
+        border-radius: .25rem;
+    }
+</style>

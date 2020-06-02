@@ -158,7 +158,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("apikelompok/".concat(this.user.kelompok_id)).then(function (response) {
                   _this.kel = response.data.data;
-                  console.log(_this.kel);
                 })["catch"](function () {
                   console.log('Fetch Data Error!');
                 });
@@ -329,7 +328,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("auth/user/".concat(this.id_kelompok, "?page=").concat(this.meta.current_page)).then(function (response) {
                   _this.tableData = response.data.data;
                   _this.meta = response.data.meta;
-                  console.log(_this.tableData);
                 })["catch"](function () {
                   console.log('Fetch Data Tabel Error!');
                 });

@@ -176,6 +176,7 @@
         errors: '',
         kerambas: [],
         keramba: '',
+        jumlah_sebelum: '',
         ikans: [
             'Kerapu Cantang',
             'Kerapu Macan'
@@ -190,6 +191,7 @@
             tanggal_cuci: '',
             tanggal_pindah: '',
             keramba_sesudah: '',
+            keramba_sebelum: '',
             kelompok_id: '',
             user_id: ''
         }
@@ -210,6 +212,7 @@
             .then(axios.spread((responseProd, responseKeramba) => {
                 this.model = responseProd.data.data;
                 this.model.keramba_sebelum = this.model.keramba_sesudah;
+                this.jumlah_sebelum = this.model.jumlah_ikan;
                 this.kerambas = responseKeramba.data;
             }))
             .catch(function (error) {
@@ -219,16 +222,21 @@
         async submitProduksi(){
             this.errors = '';
             this.model.id = '';
-            let credentials = this.model;
-            await axios.post('apisubproduksi/store', credentials)
-            .then(() =>{
-                    this.$router.replace({
-                        name: 'beranda'
+            if (!this.model.jumlah_ikan || !this.model.panjang_ikan || !this.model.berat_ikan || !this.model.tanggal_cuci || !this.model.tanggal_pindah || !this.model.keramba_sesudah || !this.keramba || this.model.keramba_sebelum === this.model.keramba_sesudah || this.jumlah_sebelum < this.model.jumlah_ikan) {
+                this.errors = 'Harap isi semua form dengan benar!';
+            }
+            else{
+                let credentials = this.model;
+                await axios.post('apisubproduksi/store', credentials)
+                .then(() =>{
+                        this.$router.replace({
+                            name: 'produksi'
+                        })
                     })
-                })
-            .catch(() => {
-                    this.errors = 'Harap isi semua form dengan benar!';
-                })
+                .catch(() => {
+                        this.errors = 'Harap isi semua form dengan benar!';
+                    })
+            }
         }
     }
   };

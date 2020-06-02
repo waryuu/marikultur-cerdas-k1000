@@ -225,7 +225,7 @@
             await axios.put('apisubproduksi/update', credentials)
             .then(() =>{
                     this.$router.replace({
-                        name: 'beranda'
+                        name: 'produksi'
                     })
                 })
             .catch(() => {

@@ -3,10 +3,11 @@
         <div class="col-lg-5 col-md-7">
             <div class="card bg-secondary shadow border-0">
                 <div class="card-header bg-transparent">
-                    <div class="text-center text-muted">
+                    <div class="text-center">
                         <h4>Silahkan isi form berikut</h4>
                     </div>
                         <base-alert v-if="errors.length" class="px-lg-5 mt-4" type="warning" dismissible>
+                            <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
                             <span class="alert-inner--text"><strong>Perhatian!</strong> {{ errors }}</span>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -152,4 +153,7 @@
   }
 </script>
 <style>
+    .alert{
+        border-radius: .25rem;
+    }
 </style>

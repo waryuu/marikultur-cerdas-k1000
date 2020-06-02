@@ -65,7 +65,7 @@
                     </router-link>
                 </div>
             </div>
-            <div class="row mt-3 ml-1 mr-1">
+            <!-- <div v-if="totalIkan >= 1 && totalIkan != null" class="row mt-3 ml-1 mr-1">
                 <div class="col card border-0 mr-1 bg-gradient-info">
                     <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">13</h3></div>
                     <div class="row ml-1 mr-1"><h3 class="card-title mb-0 text-white">Produksi</h3></div>
@@ -75,6 +75,14 @@
                     <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">1</h3></div>
                     <div class="row ml-1 mr-1"><h3 class="card-title mb-0 text-white">Produksi</h3></div>
                     <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">Siap Dipanen</h4></div>
+                </div>
+            </div> -->
+            <div v-if="totalIkan < 1 || totalIkan === null" class="row mt-3">
+                <div class="col">
+                    <base-alert type="warning" style="margin-bottom:0">
+                        <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                        <span class="alert-inner--text"><strong>Belum ada produksi!</strong> Harap lakukan penebaran terlebih dahulu</span>
+                    </base-alert>
                 </div>
             </div>
         </base-header>
@@ -94,22 +102,17 @@
                             <div class="table-responsive">
                                 <base-table class="table align-items-center table-flush"
                                             thead-classes="thead-light"
-                                            tbody-classes="list"
-                                            :data="totalProd">
+                                            tbody-classes="list">
                                     <template slot="columns">
-                                        <th>Minggu ini</th>
                                         <th>Bulan ini</th>
                                         <th>Tahun ini</th>
                                     </template>
-                                    <template slot-scope="{row}">
-                                        <td scope="row">
-                                            <span class="font-weight-bold">{{row.minggu}}</span>
+                                    <template slot="object">
+                                        <td>
+                                            <span class="font-weight-bold">{{totalProd.produksibulanini}}</span>
                                         </td>
                                         <td>
-                                            <span class="font-weight-bold">{{row.bulan}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="font-weight-bold">{{row.tahun}}</span>
+                                            <span class="font-weight-bold">{{totalProd.produksitahunini}}</span>
                                         </td>
                                     </template>
                                 </base-table>
@@ -140,24 +143,24 @@
                             <base-table class="table align-items-center table-flush"
                                         thead-classes="thead-light"
                                         tbody-classes="list"
-                                        :data="totalIkan">
+                                        :data="totalIkans">
                                 <template slot="columns">
                                     <th>Nama Ikan</th>
                                     <th>Jumlah Ikan</th>
                                 </template>
                                 <template slot-scope="{row}">
                                     <td scope="row">
-                                        <span class="font-weight-bold">{{row.nama}}</span>
+                                        <span class="font-weight-bold">{{row.nama_ikan}}</span>
                                     </td>
                                     <td>
-                                        <span class="font-weight-bold">{{row.jumlah}}</span>
+                                        <span class="font-weight-bold">{{row.total_ikan}}</span>
                                     </td>
                                 </template>
                             </base-table>
                         </div>
                         </div>
                         <div slot="footer" class="d-flex justify-content-end">
-                            Total 5000 Ikan
+                            Total {{totalIkan}} Ikan
                         </div>
                     </card>
                 </div>
@@ -169,28 +172,21 @@
 </template>
 <script>
   import axios from 'axios'
+  import {mapGetters} from 'vuex'
   export default {
     name: 'beranda',
+    computed: {
+        ...mapGetters({
+            authenticated: 'auth/authenticated',
+            user: 'auth/user',
+        })
+    },
     data() {
       return {
         errors: '',
-        totalProd: [
-          {
-            minggu: '12',
-            bulan: '30',
-            tahun: '50',
-          }
-        ],
-        totalIkan: [
-          {
-            nama: 'Kerapu Cantang',
-            jumlah: '4000',
-          },
-          {
-            nama: 'Kerapu Macan',
-            jumlah: '1000',
-          },
-        ],
+        totalProd: '',
+        totalIkans: [],
+        totalIkan: '',
         sensorHumTemp: {
           id: '',
           humidity: '',
@@ -199,7 +195,7 @@
       }
     },
     mounted() {
-        this.getSensorHumTemp();
+        this.getSummary();
     },
     methods:{
         async getSensorHumTemp() {
@@ -211,6 +207,22 @@
                     console.log('Fetch Data Error!');
                 });
         },
+        async getSummary() {
+            await axios.all([
+                axios.get(`apiproduksi/wheretotalproduksi?user=${this.user.id}`),
+                axios.get(`apisubproduksi/wheretotalikan?user=${this.user.id}`)
+            ])
+            .then(axios.spread((responseProd, responseIkan) => {
+                this.totalProd = responseProd.data;
+                this.totalIkans = responseIkan.data.user;
+                this.totalIkan = responseIkan.data.total;
+                // console.log(responseProd.data);
+                // console.log(responseIkan.data.user);
+            }))
+            .catch(function (error) {
+                console.log('Fetch Data Produksi Error!');
+            });
+        }
     }
   }
 </script>

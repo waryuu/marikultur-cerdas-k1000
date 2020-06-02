@@ -123,7 +123,6 @@
             await axios.get(`apikelompok/${this.user.kelompok_id}`)
                 .then((response) => {
                 this.kel = response.data.data;
-                console.log(this.kel);
                 })
                 .catch(() => {
                     console.log('Fetch Data Error!');

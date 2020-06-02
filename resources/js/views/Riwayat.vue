@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-4 d-flex align-items-center justify-content-end">
                                    <base-pagination-dua  :pagination="meta"
-                                        @paginate=""
+                                        @paginate="getKegiatan()"
                                         :offset="0">
                                     </base-pagination-dua>
                                 </div>
@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="row d-flex justify-content-end">
                                         <h4 class="text-right text-muted font-weight-light mb-0">
-                                            22/01/2020
+                                            {{riwayat.created_at}}
                                         </h4>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                         <!-- End Card Per Riwayat -->
                         <div slot="footer" class="d-flex justify-content-end">
                             <base-pagination-dua  :pagination="meta"
-                                    @paginate=""
+                                    @paginate="getKegiatan()"
                                     :offset="0">
                             </base-pagination-dua>
                         </div>
@@ -108,15 +108,15 @@
                                 </div>
                                 <div class="col-4 d-flex align-items-center justify-content-end">
                                    <base-pagination-dua  :pagination="meta"
-                                        @paginate=""
+                                        @paginate="getPanen()"
                                         :offset="0">
                                     </base-pagination-dua>
                                 </div>
                             </div>
                         </div>
-                        <!-- Card Per Riwayat -->
-                        <div class="card card-body rounded-0">
-                            <div v-if="!panens.length" class="row">
+                        <!-- Card Per Panen -->
+                        <div v-if="!panens.length" class="card card-body rounded-0">
+                            <div  class="row">
                                 <div class="col">
                                     <base-alert type="info">
                                         <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
@@ -124,38 +124,78 @@
                                     </base-alert>
                                 </div>
                             </div>
-                            <div v-for="panen in panens" v-bind:key="panen.id" class="row">
-                                <div class="col-3">
-                                    <div class="icon icon-shape text-white rounded-circle mb-3 shadow bg-gradient-primary">
-                                        <i class="fas fa-fish"></i>
-                                    </div>
+                        </div>
+                        <div v-for="panen in panens" v-bind:key="panen.id" class="card card-body rounded-0">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h3 class="card-title text-left mb-0">
+                                        {{panen.nama_ikan}}
+                                    </h3>
                                 </div>
-                                <div class="col-5">
-                                    <div class="row"><h3 class="card-title text-left mb-0">Ashiap</h3></div>
-                                    <div class="row">
-                                        <h4 class="text-left text-muted font-weight-light mb-0">
-                                          {{panen.nama_ikan}}
-                                        </h4>
-                                    </div>
-                                </div>
-                                <div class="col mr-2">
-                                    <div class="row d-flex justify-content-end">
-                                        <h3 class="text-right mb-0">
-                                            {{panen.jumlah_ikan}}
-                                        </h3>
-                                    </div>
-                                    <div class="row d-flex justify-content-end">
-                                        <h4 class="text-right text-muted font-weight-light mb-0">
-                                            22/01/2020
-                                        </h4>
-                                    </div>
+                                <div class="col">
+                                    <h5 class="card-title text-right text-muted font-weight-light mb-0">
+                                        ID-{{panen.id}}
+                                    </h5>
                                 </div>
                             </div>
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <h4 class="text-center text-uppercase font-weight-light">
+                                        Jumlah Awal
+                                    </h4>
+                                    <h3 class="text-center">
+                                        {{panen.jumlah_ikan_awal}} Ekor
+                                    </h3>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-center text-uppercase font-weight-light">
+                                        Jumlah Akhir
+                                    </h4>
+                                    <h3 class="text-center">
+                                        {{panen.jumlah_ikan_awal}} Ekor
+                                    </h3>
+                                </div>
+                                <!-- <div class="col">
+                                    <h4 class="text-center text-uppercase font-weight-light">
+                                        Ukuran
+                                    </h4>
+                                    <h3 class="text-center">
+                                        {{panen.panjang_ikan_awal}} cm
+                                    </h3>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-center text-uppercase font-weight-light">
+                                        Berat
+                                    </h4>
+                                    <h3 class="text-center">
+                                        {{panen.berat_ikan_awal}} Gram
+                                    </h3>
+                                </div> -->
+
+                            </div>
+                            <div class="row mt-3 mb-3">
+                                <div class="col">
+                                    <h4 class="text-left font-weight-light">
+                                        Tanggal Tebar
+                                    </h4>
+                                </div>
+                                <div class="col">
+                                    <h4 class="text-right font-italic font-weight-light">
+                                        {{panen.tanggal_tebar}}
+                                    </h4>
+                                </div>
+                            </div>
+                            <router-link :to="{ name: 'produksi-detail', params: { id: panen.id }}" class="btn btn-primary">
+                                <span>Detail Panen</span>
+                            </router-link>
+                            <!-- <form class="row align-items-center px-3 mt-3" action="" method="post">
+                                <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Sensor IoT</button>
+                            </form> -->
                         </div>
-                        <!-- End Card Per Riwayat -->
+                        <!-- End Card Per Panen -->
                         <div slot="footer" class="d-flex justify-content-end">
                             <base-pagination-dua  :pagination="meta"
-                                    @paginate=""
+                                    @paginate="getPanen()"
                                     :offset="0">
                             </base-pagination-dua>
                         </div>
@@ -189,7 +229,7 @@
             nama_ikan: '',
             jumlah_ikan: '',
             kegiatan: '',
-            tanggal: '',
+            created_at: '',
         },
         panens: [],
         panen: {
@@ -223,32 +263,44 @@
       }
     },
     mounted() {
-        this.getRiwayat();
         this.showKegiatan();
+        // console.log(this.meta);
     },
     methods:{
-        async getRiwayat() {
-            await axios.all([
-                axios.get(`apisubproduksilog`),
-                axios.get(`apiproduksi/wherepanen?user=${this.user.id}`)
-            ])
-            .then(axios.spread((responseKeg, responsePanen) => {
-                this.riwayats = responseKeg.data.data;
-                this.panens = responsePanen.data.data;
-                this.meta = responseKeg.data.meta;
-                this.links = responseKeg.data.links;
-                console.log(responseKeg.data.data);
-                console.log(responsePanen.data.data);
-            }))
-            .catch(function (error) {
-                console.log('Fetch Data Produksi Error!');
-            });
+        async getKegiatan(){
+            // console.log('Get Kegiatan');
+            await axios.get(`apisubproduksilog?wheresub=${this.user.id}&page=${this.meta.current_page}`)
+                .then((response) => {
+                    this.riwayats = response.data.data;
+                    // console.log(response);
+                    this.meta = response.data.meta;
+                    this.links = response.data.links;
+                })
+                .catch(() => {
+                    console.log('Fetch Data Kegiatan Error!');
+                });
+        },
+        async getPanen(){
+            // console.log('Get Panen');
+            await axios.get(`apiproduksi/wherepanen?user=${this.user.id}&page=${this.meta.current_page}`)
+                .then((response) => {
+                    this.panens = response.data.data;
+                    this.meta = response.data.meta;
+                    this.links = response.data.links;
+                })
+                .catch(() => {
+                    console.log('Fetch Data Panen Error!');
+                });
         },
         showKegiatan(){
+            this.meta.current_page = '1';
+            this.getKegiatan();
             this.riwayatKeg = true;
             this.riwayatPanen = false;
         },
         showPanen(){
+            this.meta.current_page = '1';
+            this.getPanen();
             this.riwayatKeg = false;
             this.riwayatPanen = true;
         }

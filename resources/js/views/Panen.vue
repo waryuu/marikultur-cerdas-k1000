@@ -225,13 +225,14 @@
         },
         async submitProduksi(){
             this.errors = '';
+            this.showModal = false;
             this.model.status_panen = "Panen";
             let credentials = this.model;
             console.log(credentials);
             await axios.put('apisubproduksi/panen', credentials)
             .then(() =>{
                     this.$router.replace({
-                        name: 'beranda'
+                        name: 'produksi'
                     })
                 })
             .catch(() => {

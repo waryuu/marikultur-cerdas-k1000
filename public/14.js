@@ -1,182 +1,21 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[14],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Produksi.vue?vue&type=script&lang=js&":
-/*!**************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Produksi.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Pakan.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Pakan.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -218,185 +57,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'produksi',
+  name: 'pakan',
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])({
+    authenticated: 'auth/authenticated',
+    user: 'auth/user'
+  })),
   data: function data() {
     return {
-      errors: '',
-      showModalSensor: false,
-      showModalPakan: false,
-      offset: 4,
-      produksis: [],
-      produksi: {
-        id: '',
-        nama_ikan: '',
-        jumlah_ikan_awal: '',
-        panjang_ikan_awal: '',
-        berat_ikan_awal: '',
-        tanggal_tebar: '',
-        tanggal_panen: '',
-        tanggal_cuci: '',
-        tanggal_pindah: '',
-        status_panen: '',
-        keramba_id: ''
-      },
-      cucis: [],
-      cuci: {
-        tanggal_cuci: ''
-      },
-      pindahs: [],
-      pindah: {
-        tanggal_pindah: ''
-      },
-      sensorSuhu: {
-        id: '',
-        suhu_air: '',
-        keramba_id: ''
-      },
-      sensorDo: {
-        id: '',
-        do_air: '',
-        keramba_id: ''
-      },
-      sensorHumTemp: {
-        id: '',
-        humidity: '',
-        temperature: ''
-      },
-      sensorPakan: {
-        id: '',
-        baterai_pakan: '',
-        keramba_id: ''
-      },
-      meta: {
-        current_page: 1,
-        from: 1,
-        last_page: '',
-        path: '',
-        per_page: '',
-        to: '',
-        total: ''
-      },
-      links: {
-        first: '',
-        last: '',
-        prev: '',
-        next: ''
+      model: {
+        username: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        address: '',
+        city: '',
+        country: '',
+        zipCode: '',
+        about: ''
       }
     };
-  },
-  mounted: function mounted() {
-    this.getProduksi();
-  },
-  methods: {
-    getProduksi: function () {
-      var _getProduksi = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var _this = this;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apiproduksi?page=".concat(this.meta.current_page)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorhumtemp")]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseProd, responseHumTemp) {
-                  _this.produksis = responseProd.data.data;
-                  _this.sensorHumTemp = responseHumTemp.data;
-                  _this.meta = responseProd.data.meta;
-                  _this.links = responseProd.data.links;
-                  console.log(responseProd.data.data);
-                }))["catch"](function (error) {
-                  console.log('Fetch Data Produksi Error!');
-                });
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function getProduksi() {
-        return _getProduksi.apply(this, arguments);
-      }
-
-      return getProduksi;
-    }(),
-    showSensor: function () {
-      var _showSensor = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(id) {
-        var _this2 = this;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                this.showModalSensor = true;
-                _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.all([axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorsuhu/where?keramba=".concat(id)), axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensordo/where?keramba=".concat(id))]).then(axios__WEBPACK_IMPORTED_MODULE_1___default.a.spread(function (responseSuhu, responseDo) {
-                  _this2.sensorSuhu = responseSuhu.data;
-                  _this2.sensorDo = responseDo.data;
-                }))["catch"](function (error) {
-                  console.log('Fetch Sensor Error!');
-                });
-
-              case 3:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      function showSensor(_x) {
-        return _showSensor.apply(this, arguments);
-      }
-
-      return showSensor;
-    }(),
-    showPakan: function () {
-      var _showPakan = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(id) {
-        var _this3 = this;
-
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                this.showModalPakan = true;
-                _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apipakan/where?keramba=".concat(id)).then(function (response) {
-                  _this3.sensorPakan = response.data;
-                })["catch"](function () {
-                  console.log('Fetch Pakan Error!');
-                });
-
-              case 3:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-
-      function showPakan(_x2) {
-        return _showPakan.apply(this, arguments);
-      }
-
-      return showPakan;
-    }()
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Produksi.vue?vue&type=template&id=2d8c99e2&":
-/*!******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Produksi.vue?vue&type=template&id=2d8c99e2& ***!
-  \******************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Pakan.vue?vue&type=template&id=7ba8a938&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Pakan.vue?vue&type=template&id=7ba8a938& ***!
+  \***************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -429,46 +117,16 @@ var render = function() {
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-lg-7 col-md-10" }, [
                   _c("h1", { staticClass: "display-2 text-white" }, [
-                    _vm._v("Produksi")
+                    _vm._v("Pakan Otomatis")
                   ])
                 ])
               ])
             ]
-          ),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "container-fluid d-flex align-items-center"
-          })
+          )
         ]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "container-fluid mt--7" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col" }, [
-            _c(
-              "form",
-              { staticClass: "form-inline mr-3 d-none d-flex ml-auto" },
-              [
-                _c(
-                  "div",
-                  { staticClass: "form-group mb-0" },
-                  [
-                    _c("base-input", {
-                      staticClass: "input-group-alternative",
-                      attrs: {
-                        placeholder: "Cari",
-                        alternative: "",
-                        "addon-right-icon": "fas fa-search"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c(
             "div",
@@ -476,7 +134,7 @@ var render = function() {
             [
               _c(
                 "card",
-                { attrs: { shadow: "", type: "secondary", noBody: true } },
+                { attrs: { shadow: "", type: "secondary" } },
                 [
                   _c(
                     "div",
@@ -489,347 +147,25 @@ var render = function() {
                       _c("div", { staticClass: "row align-items-center" }, [
                         _c("div", { staticClass: "col-8" }, [
                           _c("h3", { staticClass: "mb-0" }, [
-                            _vm._v("Daftar Produksi")
+                            _vm._v("Daftar Pakan Otomatis")
                           ])
                         ]),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "col-4 d-flex align-items-center justify-content-end"
-                          },
-                          [
-                            _c("base-pagination-dua", {
-                              attrs: { pagination: _vm.meta, offset: 0 },
-                              on: {
-                                paginate: function($event) {
-                                  return _vm.getProduksi()
-                                }
-                              }
-                            })
-                          ],
-                          1
-                        )
+                        _c("div", { staticClass: "col-4 text-right" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-sm btn-primary",
+                              attrs: { href: "#!" }
+                            },
+                            [_vm._v("Pengaturan")]
+                          )
+                        ])
                       ])
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._l(_vm.produksis, function(produksi) {
-                    return _c(
-                      "div",
-                      {
-                        key: produksi.id,
-                        staticClass: "card card-body rounded-0"
-                      },
-                      [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col" }, [
-                            _c(
-                              "h3",
-                              { staticClass: "card-title text-left mb-0" },
-                              [
-                                _vm._v(
-                                  "\n                                    " +
-                                    _vm._s(produksi.nama_ikan) +
-                                    "\n                                "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col" }, [
-                            _c(
-                              "h3",
-                              {
-                                staticClass:
-                                  "card-title text-right text-muted font-weight-light mb-0"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                    Produksi " +
-                                    _vm._s(produksi.id) +
-                                    "\n                                "
-                                )
-                              ]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row mt-2" }, [
-                          _c("div", { staticClass: "col" }, [
-                            _c(
-                              "h4",
-                              {
-                                staticClass:
-                                  "text-center text-uppercase font-weight-light"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                    Jumlah\n                                "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("h3", { staticClass: "text-center" }, [
-                              _vm._v(
-                                "\n                                    " +
-                                  _vm._s(produksi.jumlah_ikan_awal) +
-                                  " Ekor\n                                "
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col" }, [
-                            _c(
-                              "h4",
-                              {
-                                staticClass:
-                                  "text-center text-uppercase font-weight-light"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                    Ukuran\n                                "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("h3", { staticClass: "text-center" }, [
-                              _vm._v(
-                                "\n                                    " +
-                                  _vm._s(produksi.panjang_ikan_awal) +
-                                  " cm\n                                "
-                              )
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col" }, [
-                            _c(
-                              "h4",
-                              {
-                                staticClass:
-                                  "text-center text-uppercase font-weight-light"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                    Berat\n                                "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("h3", { staticClass: "text-center" }, [
-                              _vm._v(
-                                "\n                                    " +
-                                  _vm._s(produksi.berat_ikan_awal) +
-                                  " Gram\n                                "
-                              )
-                            ])
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row mt-3 mb-3" }, [
-                          _c("div", { staticClass: "col" }, [
-                            _c(
-                              "h4",
-                              { staticClass: "text-left font-weight-light" },
-                              [
-                                _vm._v(
-                                  "\n                                    Tanggal Tebar\n                                "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col" }, [
-                            _c(
-                              "h4",
-                              {
-                                staticClass:
-                                  "text-right font-italic font-weight-light"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                    " +
-                                    _vm._s(produksi.tanggal_tebar) +
-                                    "\n                                "
-                                )
-                              ]
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "btn btn-primary",
-                            attrs: {
-                              to: {
-                                name: "produksi-detail",
-                                params: { id: produksi.id }
-                              }
-                            }
-                          },
-                          [_c("span", [_vm._v("Detail Produksi")])]
-                        )
-                      ],
-                      1
-                    )
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "d-flex justify-content-end",
-                      attrs: { slot: "footer" },
-                      slot: "footer"
-                    },
-                    [
-                      _c("base-pagination-dua", {
-                        attrs: { pagination: _vm.meta, offset: 0 },
-                        on: {
-                          paginate: function($event) {
-                            return _vm.getProduksi()
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    [
-                      _c(
-                        "modal",
-                        {
-                          attrs: { show: _vm.showModalSensor },
-                          on: {
-                            "update:show": function($event) {
-                              _vm.showModalSensor = $event
-                            }
-                          }
-                        },
-                        [
-                          _c("template", { slot: "header" }, [
-                            _c(
-                              "h3",
-                              {
-                                staticClass: "modal-title font-weight-light",
-                                attrs: { id: "exampleModalLabel" }
-                              },
-                              [_vm._v("Informasi Sensor")]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("template", { slot: "body" }, [
-                            _c("p", { staticClass: "text-muted" }, [
-                              _vm._v("Suhu Air")
-                            ]),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v(_vm._s(_vm.sensorSuhu.suhu_air) + " ° C")
-                            ]),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "text-muted" }, [
-                              _vm._v("Oksigen Terlarut")
-                            ]),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "font-weight-bold" }, [
-                              _vm._v(_vm._s(_vm.sensorDo.do_air))
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "template",
-                            { slot: "footer" },
-                            [
-                              _c(
-                                "base-button",
-                                {
-                                  staticClass: "text-uppercase",
-                                  attrs: { type: "link" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showModalSensor = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("Kembali")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        2
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    [
-                      _c(
-                        "modal",
-                        {
-                          attrs: { show: _vm.showModalPakan },
-                          on: {
-                            "update:show": function($event) {
-                              _vm.showModalPakan = $event
-                            }
-                          }
-                        },
-                        [
-                          _c("template", { slot: "header" }, [
-                            _c(
-                              "h4",
-                              {
-                                staticClass: "modal-title",
-                                attrs: { id: "exampleModalLabel" }
-                              },
-                              [_vm._v("Informasi Pakan Otomatis")]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("template", { slot: "body" }, [
-                            _c("div", [
-                              _c("p", { staticClass: "text-muted" }, [
-                                _vm._v("Baterai")
-                              ]),
-                              _vm._v(" "),
-                              _c("p", { staticClass: "font-weight-bold" }, [
-                                _vm._v(
-                                  _vm._s(_vm.sensorPakan.baterai_pakan) + " %"
-                                )
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "template",
-                            { slot: "footer" },
-                            [
-                              _c(
-                                "base-button",
-                                {
-                                  attrs: { type: "secondary" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.showModalPakan = false
-                                    }
-                                  }
-                                },
-                                [_vm._v("Kembali")]
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        2
-                      )
-                    ],
-                    1
-                  )
+                  void 0
                 ],
                 2
               )
@@ -849,17 +185,17 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/views/Produksi.vue":
-/*!*****************************************!*\
-  !*** ./resources/js/views/Produksi.vue ***!
-  \*****************************************/
+/***/ "./resources/js/views/Pakan.vue":
+/*!**************************************!*\
+  !*** ./resources/js/views/Pakan.vue ***!
+  \**************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Produksi_vue_vue_type_template_id_2d8c99e2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Produksi.vue?vue&type=template&id=2d8c99e2& */ "./resources/js/views/Produksi.vue?vue&type=template&id=2d8c99e2&");
-/* harmony import */ var _Produksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Produksi.vue?vue&type=script&lang=js& */ "./resources/js/views/Produksi.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Pakan_vue_vue_type_template_id_7ba8a938___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Pakan.vue?vue&type=template&id=7ba8a938& */ "./resources/js/views/Pakan.vue?vue&type=template&id=7ba8a938&");
+/* harmony import */ var _Pakan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pakan.vue?vue&type=script&lang=js& */ "./resources/js/views/Pakan.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -869,9 +205,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Produksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Produksi_vue_vue_type_template_id_2d8c99e2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Produksi_vue_vue_type_template_id_2d8c99e2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Pakan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Pakan_vue_vue_type_template_id_7ba8a938___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Pakan_vue_vue_type_template_id_7ba8a938___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -881,38 +217,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/Produksi.vue"
+component.options.__file = "resources/js/views/Pakan.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/Produksi.vue?vue&type=script&lang=js&":
-/*!******************************************************************!*\
-  !*** ./resources/js/views/Produksi.vue?vue&type=script&lang=js& ***!
-  \******************************************************************/
+/***/ "./resources/js/views/Pakan.vue?vue&type=script&lang=js&":
+/*!***************************************************************!*\
+  !*** ./resources/js/views/Pakan.vue?vue&type=script&lang=js& ***!
+  \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Produksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Produksi.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Produksi.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Produksi_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pakan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Pakan.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Pakan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pakan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/Produksi.vue?vue&type=template&id=2d8c99e2&":
-/*!************************************************************************!*\
-  !*** ./resources/js/views/Produksi.vue?vue&type=template&id=2d8c99e2& ***!
-  \************************************************************************/
+/***/ "./resources/js/views/Pakan.vue?vue&type=template&id=7ba8a938&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/views/Pakan.vue?vue&type=template&id=7ba8a938& ***!
+  \*********************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Produksi_vue_vue_type_template_id_2d8c99e2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Produksi.vue?vue&type=template&id=2d8c99e2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Produksi.vue?vue&type=template&id=2d8c99e2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Produksi_vue_vue_type_template_id_2d8c99e2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pakan_vue_vue_type_template_id_7ba8a938___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Pakan.vue?vue&type=template&id=7ba8a938& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Pakan.vue?vue&type=template&id=7ba8a938&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pakan_vue_vue_type_template_id_7ba8a938___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Produksi_vue_vue_type_template_id_2d8c99e2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pakan_vue_vue_type_template_id_7ba8a938___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
