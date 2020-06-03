@@ -290,7 +290,6 @@
             await axios.get(`apisensorhumtemp`)
             .then((response) => {
                 this.sensorHumTemps = response.data;
-                console.log(this.sensorHumTemps);
                 this.initBigChart(0);
                 // console.log(this.sensorHumTemps);
                 })
@@ -316,35 +315,34 @@
             });
         },
         initBigChart(index) {
-        if (index === 0){
-            let chartData = {
-            datasets: [
-                {
-                label: 'Suhu (°C)',
-                data: this.sensorHumTemps.sensor_tem
-                }
-            ],
-            labels: this.sensorHumTemps.time,
-            };
-            // console.log(this.sensorHumTemps.sensor_tem);
-            this.bigLineChart.chartData = chartData;
-            this.bigLineChart.activeIndex = index;
+            if (index === 0){
+                let chartData = {
+                datasets: [
+                    {
+                    label: 'Suhu (°C)',
+                    data: this.sensorHumTemps.sensor_tem
+                    }
+                ],
+                labels: this.sensorHumTemps.time,
+                };
+                // console.log(this.sensorHumTemps.sensor_tem);
+                this.bigLineChart.chartData = chartData;
+                this.bigLineChart.activeIndex = index;
+            }
+            if (index === 1){
+                let chartData = {
+                datasets: [
+                    {
+                    label: 'Kelembaban (%)',
+                    data: this.sensorHumTemps.sensor_hum
+                    }
+                ],
+                labels: this.sensorHumTemps.time,
+                };
+                this.bigLineChart.chartData = chartData;
+                this.bigLineChart.activeIndex = index;
+            }
         }
-        if (index === 1){
-            let chartData = {
-            datasets: [
-                {
-                label: 'Kelembaban (%)',
-                data: this.sensorHumTemps.sensor_hum
-                }
-            ],
-            labels: this.sensorHumTemps.time,
-            };
-            this.bigLineChart.chartData = chartData;
-            this.bigLineChart.activeIndex = index;
-        }
-        
-      }
     }
   }
 </script>
@@ -355,4 +353,12 @@
   .table td, .table th {
       font-size: 0.9rem;
   }
+  .round .multiselect__tags{
+      border-radius: 1.5rem;
+      box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+      border: 0px;
+  }
+  .alert{
+        border-radius: .25rem;
+    }
 </style>

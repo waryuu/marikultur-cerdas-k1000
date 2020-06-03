@@ -44,7 +44,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '13:00:00',
+            'time' => '16:00:00',
             'date' => '2020/04/01',
             'humidity' => '70',
             'temperature'=>'35',
@@ -52,7 +52,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '14:00:00',
+            'time' => '17:00:00',
             'date' => '2020/05/01',
             'humidity' => '80',
             'temperature'=>'36',
@@ -60,7 +60,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '13:00:00',
+            'time' => '18:00:00',
             'date' => '2020/06/01',
             'humidity' => '40',
             'temperature'=>'25',
@@ -68,7 +68,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '14:00:00',
+            'time' => '19:00:00',
             'date' => '2020/12/01',
             'humidity' => '80',
             'temperature'=>'35',
@@ -76,7 +76,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '17:00:00',
+            'time' => '20:00:00',
             'date' => '2020/09/01',
             'humidity' => '60',
             'temperature'=>'45',
@@ -84,7 +84,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '18:00:00',
+            'time' => '21:00:00',
             'date' => '2020/03/01',
             'humidity' => '40',
             'temperature'=>'35',
@@ -92,7 +92,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '13:00:00',
+            'time' => '22:00:00',
             'date' => '2020/07/01',
             'humidity' => '90',
             'temperature'=>'40',
@@ -100,7 +100,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '15:00:00',
+            'time' => '23:00:00',
             'date' => '2020/06/01',
             'humidity' => '10',
             'temperature'=>'45',
@@ -108,7 +108,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '17:00:00',
+            'time' => '23:00:01',
             'date' => '2020/03/01',
             'humidity' => '10',
             'temperature'=>'25',
@@ -116,7 +116,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '19:00:00',
+            'time' => '23:00:02',
             'date' => '2020/04/01',
             'humidity' => '15',
             'temperature'=>'20',
@@ -124,7 +124,7 @@ class SensorHumTempSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_humtemp')->insert([
-            'time' => '15:00:00',
+            'time' => '23:00:03',
             'date' => '2020/01/02',
             'humidity' => '90',
             'temperature'=>'30',

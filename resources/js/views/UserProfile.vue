@@ -32,7 +32,25 @@
                                 <h6 class="heading-small text-muted mb-4">Informasi Pengguna</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-12">
+                                            <base-alert v-if="errors.length" class="px-lg-5" type="warning" dismissible>
+                                                <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                                                <span class="alert-inner--text"><strong>Perhatian!</strong> {{ errors }}</span>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </base-alert>
+                                        </div>
+                                        <div class="col-12">
+                                            <base-alert v-if="success.length" class="px-lg-5" type="success" dismissible>
+                                                <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                                                <span class="alert-inner--text"><strong>Berhasil!</strong> {{ success }}</span>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </base-alert>
+                                        </div>
+                                        <div class="col-12">
                                             <base-input alternative=""
                                                         label="Alamat Email"
                                                         placeholder="jesse@example.com"
@@ -40,7 +58,7 @@
                                                         v-model="model.email"
                                             />
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-12">
                                             <base-input alternative=""
                                                         label="Username"
                                                         placeholder="username"
@@ -48,7 +66,7 @@
                                                         v-model="model.username"
                                             />
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-12">
                                             <base-input alternative=""
                                                         label="Nama"
                                                         placeholder="Nama"
@@ -80,7 +98,25 @@
                                 <h6 class="heading-small text-muted mb-4">Ubah Kata Sandi</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-12">
+                                            <base-alert v-if="errorsPass.length" class="px-lg-5" type="warning" dismissible>
+                                                <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                                                <span class="alert-inner--text"><strong>Perhatian!</strong> {{ errorsPass }}</span>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </base-alert>
+                                        </div>
+                                        <div class="col-12">
+                                            <base-alert v-if="successPass.length" class="px-lg-5" type="success" dismissible>
+                                                <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                                                <span class="alert-inner--text"><strong>Berhasil!</strong> {{ successPass }}</span>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </base-alert>
+                                        </div>
+                                        <div class="col-12">
                                             <base-input alternative=""
                                                         label="Kata Sandi Baru"
                                                         placeholder="Masukkan Kata Sandi"
@@ -91,7 +127,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-12">
                                             <base-input alternative=""
                                                         label="Konfirmasi Kata Sandi"
                                                         placeholder="Masukkan Kata Sandi"
@@ -126,6 +162,10 @@
     },
     data() {
       return {
+        errors: '',
+        success: '',
+        errorsPass: '',
+        successPass: '',
         kelompoks: [],
         kelompok: {
             id: '',
@@ -162,33 +202,49 @@
         },
         submitInfoUser(){
             this.errors = '';
-            this.updateProfile(this.model)
-            .then(() =>{
-                    this.$router.replace({
-                        name: 'profil'
+            this.success = '';
+            // console.log(this.model);
+            if(this.model.name != null && this.model.name.length >= 1 && this.model.username != null  && this.model.username.length >= 1 && this.model.email != null  && this.model.email.length >= 1){
+                this.updateProfile(this.model)
+                .then(() =>{
+                        this.success = 'Informasi berhasil diubah!';
                     })
-                })
-            .catch(() => {
-                    this.errors = 'Harap isi semua form dengan benar!';
-                })
+                .catch(() => {
+                        this.errors = 'Harap isi semua form dengan benar!';
+                    })
+            }
+            else {
+                this.errors = 'Harap isi semua form dengan benar!';
+            }
+            
         },
         submitPassword(){
-            this.errors = '';
-            this.updateProfile(this.form)
-            .then(() =>{
-                    this.$router.replace({
-                        name: 'profil'
+            this.errorsPass = '';
+            this.successPass = '';
+            if(this.form.password != null && this.form.password.length >= 1 && this.form.password_confirmation != null  && this.form.password_confirmation.length >= 1 && this.form.password === this.form.password_confirmation){
+                this.updateProfile(this.form)
+                .then(() =>{
+                        this.successPass = 'Kata sandi berhasil diubah!';
                     })
-                })
-            .catch(() => {
-                    this.errors = 'Harap isi semua form dengan benar!';
-                })
-        },
-        consolee(){
-            console.log(this.model);
-            console.log(this.form);
+                .catch(() => {
+                        this.errorsPass = 'Harap isi semua form dengan benar!';
+                    })
+            }
+            else {
+                this.errorsPass = 'Harap isi semua form dengan benar!';
+            }
+            
         }
     }
   };
 </script>
-<style></style>
+<style>
+    .round .multiselect__tags{
+        border-radius: 1.5rem;
+        box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+        border: 0px;
+    }
+    .alert{
+            border-radius: .25rem;
+        }
+</style>

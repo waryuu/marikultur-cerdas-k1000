@@ -1,4 +1,4 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[21],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["demo"],{
 
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Dashboard.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************!*\
@@ -324,7 +324,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 2;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisensorhumtemp").then(function (response) {
                   _this.sensorHumTemps = response.data;
-                  console.log(_this.sensorHumTemps);
 
                   _this.initBigChart(0); // console.log(this.sensorHumTemps);
 
@@ -423,7 +422,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.table thead th {\n    font-size: 0.8rem;\n}\n.table td, .table th {\n    font-size: 0.9rem;\n}\n", ""]);
+exports.push([module.i, "\n.table thead th {\n    font-size: 0.8rem;\n}\n.table td, .table th {\n    font-size: 0.9rem;\n}\n.round .multiselect__tags{\n    border-radius: 1.5rem;\n    box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);\n    border: 0px;\n}\n.alert{\n      border-radius: .25rem;\n}\n", ""]);
 
 // exports
 

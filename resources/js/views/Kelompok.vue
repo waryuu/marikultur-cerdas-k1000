@@ -34,6 +34,24 @@
                                     <div class="pl-lg-4">
                                         <div class="row">
                                             <div class="col-12">
+                                                <base-alert v-if="errors.length" class="px-lg-5" type="warning" dismissible>
+                                                    <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                                                    <span class="alert-inner--text"><strong>Perhatian!</strong> {{ errors }}</span>
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </base-alert>
+                                            </div>
+                                            <div class="col-12">
+                                                <base-alert v-if="success.length" class="px-lg-5" type="success" dismissible>
+                                                    <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
+                                                    <span class="alert-inner--text"><strong>Berhasil!</strong> {{ success }}</span>
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </base-alert>
+                                            </div>
+                                            <div class="col-12">
                                                 <base-input alternative=""
                                                             label="Nama Kelompok"
                                                             placeholder="Nama Kelompok"
@@ -72,7 +90,7 @@
                             </template>
                         </div>
                         <div slot="footer" class="text-center">
-                            <base-button @click="" nativeType="submit" type="primary" class="text-uppercase">Ubah</base-button>
+                            <base-button @click="submitKelompok()" nativeType="submit" type="primary" class="text-uppercase">Ubah</base-button>
                         </div>
                     </card>
                 </div>
@@ -108,7 +126,10 @@
     },
     data() {
       return {
+        errors: '',
+        success: '',
         kel: {
+          kelompok_id: '',
           nama_kelompok: '',
           ketua_kelompok: '',
           bendahara_kelompok: '',
@@ -129,10 +150,39 @@
                     console.log('Fetch Data Error!');
                 });
         },
+        async submitKelompok() {
+            this.errors = '';
+            this.success = '';
+            this.kel.kelompok_id = this.user.kelompok_id;
+            // console.log(this.kel);
+            let credentials = this.kel;
+            if(this.kel.nama_kelompok != null && this.kel.nama_kelompok.length >= 1 && this.kel.ketua_kelompok != null  && this.kel.ketua_kelompok.length >= 1 && this.kel.bendahara_kelompok != null  && this.kel.bendahara_kelompok.length >= 1 && this.kel.humas_kelompok != null  && this.kel.humas_kelompok.length >= 1){
+                await axios.put(`apikelompok/store`, credentials)
+                .then((response) => {
+                    this.success = 'Informasi berhasil diubah!';
+                })
+                .catch(() => {
+                    this.errors = 'Harap isi semua form dengan benar!';
+                });
+            }
+            else {
+                this.errors = 'Harap isi semua form dengan benar!';
+            }
+            
+        }
     },
     components: {
       AnggotaTable
     }
   };
 </script>
-<style></style>
+<style>
+  .round .multiselect__tags{
+      border-radius: 1.5rem;
+      box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+      border: 0px;
+  }
+  .alert{
+        border-radius: .25rem;
+    }
+</style>

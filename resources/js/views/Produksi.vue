@@ -94,7 +94,7 @@
                                         Jumlah Terkini
                                     </h4>
                                     <h3 class="text-center">
-                                        {{produksi.jumlah_ikan_awal}} Ekor
+                                        {{produksi.jumlah_terkini}} Ekor
                                     </h3>
                                 </div>
                                 <!-- <div class="col">
@@ -293,6 +293,7 @@
             await axios.get(`apiproduksi/wherepembesaran?user=${this.user.id}&page=${this.meta.current_page}`)
                 .then((response) => {
                     this.produksis = response.data.data;
+                    // console.log(this.produksis);
                     this.meta = response.data.meta;
                     this.links = response.data.links;
                 })

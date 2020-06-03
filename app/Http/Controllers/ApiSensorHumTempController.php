@@ -17,11 +17,11 @@ class ApiSensorHumTempController extends Controller
     public function index()
     {
 
-        // if(auth('api')->user()->status == 'admin'){
-        //     $sensor_humtemp = SensorHumTemp::paginate(5);
-        //     return SensorHumTempResources::collection($sensor_humtemp);
-        // }
-        // else{
+        if(auth('api')->user()->status == 'admin'){
+            $sensor_humtemp = SensorHumTemp::paginate(5);
+            return SensorHumTempResources::collection($sensor_humtemp);
+        }
+        else{
             $sensor_hum = SensorHumTemp::latest('id')->take(5)->get()->pluck('humidity');
             $sensor_tem = SensorHumTemp::latest('id')->take(5)->get()->pluck('temperature');
             $time = SensorHumTemp::latest('id')->take(5)->get()->pluck('time');
@@ -33,7 +33,7 @@ class ApiSensorHumTempController extends Controller
             // // $array = array_merge($sensor_hum->toArray(), $sensor_tem->toArray(), $time->toArray());
             // // return response()->json($sensor_hum);
             return response()->json(['sensor_hum' => $sensor_hum, 'sensor_tem' => $sensor_tem, 'time' => $time]);
-        // }
+        }
     }
 
     //  $produksi = DB::table('produksi')

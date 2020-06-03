@@ -152,7 +152,7 @@
                                         Jumlah Akhir
                                     </h4>
                                     <h3 class="text-center">
-                                        {{panen.jumlah_ikan_awal}} Ekor
+                                        {{panen.jumlah_terkini}} Ekor
                                     </h3>
                                 </div>
                                 <!-- <div class="col">
