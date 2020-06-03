@@ -104,8 +104,6 @@ class ApiProduksiController extends Controller
     public function create(Request $request)
     {
         try{DB::beginTransaction();
-
-
         $produksi = ProduksiModel::create([
             'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
@@ -117,9 +115,6 @@ class ApiProduksiController extends Controller
             'kelompok_id' => $request->input('kelompok_id'),
             'jumlah_subproduksi' => '1'
         ]);
-
-        // Now you have a Family object so we can use that for the contact model
-
         $subproduksi = SubproduksiModel::create([
             'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
@@ -129,7 +124,6 @@ class ApiProduksiController extends Controller
             'produksi_id' => $produksi->id,
             'keramba_sesudah' => $request->input('keramba_id'),
             ]);
-
         $subproduksilog = SubproduksiLogModel::create([
             'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
@@ -138,13 +132,9 @@ class ApiProduksiController extends Controller
             'keramba_sesudah' => $request->input('keramba_id'),
             'kegiatan' => 'Penebaran',
             'subproduksi_id' => $subproduksi->id,
-           
-
         ]);
         DB::commit();
         return new ProduksiResources($produksi);
-        return new SubproduksiResources($subproduksi);
-        return new SubproduksiLogResources($subproduksilog);
         }
         catch(\Exception $e) {
             DB::rollback();
