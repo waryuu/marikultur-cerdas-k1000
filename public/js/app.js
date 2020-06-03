@@ -31268,13 +31268,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/debug',
       name: 'debug',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./views/DashboardBackup.vue */ "./resources/js/views/DashboardBackup.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./views/DashboardBackup.vue */ "./resources/js/views/DashboardBackup.vue"));
       }
     }, {
       path: '/cuci',
       name: 'cuci',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/Cuci.vue */ "./resources/js/views/Cuci.vue"));
+        return __webpack_require__.e(/*! import() */ 17).then(__webpack_require__.bind(null, /*! ./views/Cuci.vue */ "./resources/js/views/Cuci.vue"));
       }
     }, {
       path: '/riwayat',
@@ -31316,13 +31316,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/keramba',
       name: 'keramba',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 18).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
+        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
       }
     }, {
       path: '/profil',
       name: 'profil',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! ./views/UserProfile.vue */ "./resources/js/views/UserProfile.vue"));
+        return __webpack_require__.e(/*! import() */ 16).then(__webpack_require__.bind(null, /*! ./views/UserProfile.vue */ "./resources/js/views/UserProfile.vue"));
       }
     }, {
       path: '/sensor',
@@ -31337,7 +31337,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ./views/Sensor.vue */ "./resources/js/views/Sensor.vue"));
+        return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ./views/Sensor.vue */ "./resources/js/views/Sensor.vue"));
       }
     }, {
       path: '/pakan',
@@ -31352,7 +31352,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
+        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
       }
     }, {
       path: '/kelompok',
@@ -31367,19 +31367,19 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./views/Kelompok.vue */ "./resources/js/views/Kelompok.vue"));
+        return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./views/Kelompok.vue */ "./resources/js/views/Kelompok.vue"));
       }
     }, {
       path: '/icons',
       name: 'icons',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(17)]).then(__webpack_require__.bind(null, /*! ./views/Icons.vue */ "./resources/js/views/Icons.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(5), __webpack_require__.e(18)]).then(__webpack_require__.bind(null, /*! ./views/Icons.vue */ "./resources/js/views/Icons.vue"));
       }
     }, {
       path: '/maps',
       name: 'maps',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ./views/Maps.vue */ "./resources/js/views/Maps.vue"));
+        return __webpack_require__.e(/*! import() */ 20).then(__webpack_require__.bind(null, /*! ./views/Maps.vue */ "./resources/js/views/Maps.vue"));
       }
     }, {
       path: '/tables',
@@ -31439,7 +31439,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/tambahkelompok',
       name: 'tambahkelompok',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ./views/TambahKelompok.vue */ "./resources/js/views/TambahKelompok.vue"));
+        return __webpack_require__.e(/*! import() */ 23).then(__webpack_require__.bind(null, /*! ./views/TambahKelompok.vue */ "./resources/js/views/TambahKelompok.vue"));
       }
     }]
   }]

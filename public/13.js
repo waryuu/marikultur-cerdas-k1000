@@ -302,9 +302,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisubproduksilog?wheresub=".concat(this.user.id, "&page=").concat(this.meta.current_page)).then(function (response) {
-                  _this.riwayats = response.data.data; // console.log(response);
-
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("apisubproduksilog/wheresub?user=".concat(this.user.id, "&page=").concat(this.meta.current_page)).then(function (response) {
+                  _this.riwayats = response.data.data;
+                  console.log(response);
                   _this.meta = response.data.meta;
                   _this.links = response.data.links;
                 })["catch"](function () {
