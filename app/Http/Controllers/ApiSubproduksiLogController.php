@@ -21,7 +21,7 @@ class ApiSubproduksiLogController extends Controller
     {
 
         $user_id = $request->query('user');
-        $subproduksilog = SubproduksiLogModel::join('subproduksi', 'subproduksi.id', '=', 'subproduksilog.subproduksi_id')
+        $subproduksilog = SubproduksiLogModel::leftjoin('subproduksi', 'subproduksi.id', '=', 'subproduksilog.subproduksi_id')
             ->select('subproduksilog.*', 'subproduksi.user_id')
             ->groupBy('subproduksilog.id')
             ->where('subproduksi.user_id',$user_id)
