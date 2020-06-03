@@ -16,20 +16,34 @@ class ApiSensorHumTempController extends Controller
      */
     public function index()
     {
-        if(auth('api')->user()->status == 'admin'){
-            $sensor_humtemp = SensorHumTemp::paginate(5);
-            return SensorHumTemp::collection($sensor_humtemp);
-        }
-        else{
-            $sensor_hum = SensorHumTemp::latest()->take(5)->get()->pluck('humidity');
-            $sensor_tem = SensorHumTemp::latest()->take(5)->get()->pluck('temperature');
-            $time = SensorHumTemp::latest()->take(5)->get()->pluck('time');
-            // $array = array_merge($sensor_hum->toArray(), $sensor_tem->toArray(), $time->toArray());
-            // return response()->json($sensor_hum);
+
+        // if(auth('api')->user()->status == 'admin'){
+        //     $sensor_humtemp = SensorHumTemp::paginate(5);
+        //     return SensorHumTempResources::collection($sensor_humtemp);
+        // }
+        // else{
+            $sensor_hum = SensorHumTemp::latest('id')->take(5)->get()->pluck('humidity');
+            $sensor_tem = SensorHumTemp::latest('id')->take(5)->get()->pluck('temperature');
+            $time = SensorHumTemp::latest('id')->take(5)->get()->pluck('time');
+            // foreach($waktu as $times){
+            //     $ubah[] = substr($times->time, 0, 5);
+            // }
+            // $result = substr($time, 0, 5);
+            // // $jam = substr($time,0,6);
+            // // $array = array_merge($sensor_hum->toArray(), $sensor_tem->toArray(), $time->toArray());
+            // // return response()->json($sensor_hum);
             return response()->json(['sensor_hum' => $sensor_hum, 'sensor_tem' => $sensor_tem, 'time' => $time]);
-        }
+        // }
     }
 
+    //  $produksi = DB::table('produksi')
+    //         ->leftjoin('subproduksi', 'produksi_id', '=', 'produksi.id')
+    //         ->select('produksi.*', 'subproduksi.jumlah_ikan','subproduksi.panjang_ikan','subproduksi.berat_ikan','subproduksi.tanggal_cuci',
+    //         'subproduksi.tanggal_pindah','subproduksi.keramba_sebelum','subproduksi.keramba_sesudah')
+    //         ->groupBy('produksi.id')
+    //         ->whereRaw('subproduksi.id IN (select MAX(subproduksi.id) FROM subproduksi GROUP BY subproduksi.produksi_id)')
+    //         ->orWhereNull('produksi_id')
+    //         ->get();
     /**
      * Show the form for creating a new resource.
      *
