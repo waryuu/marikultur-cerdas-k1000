@@ -83,7 +83,7 @@ class ApiSubproduksiController extends Controller
                     'berat_ikan' => 'required|string',
                     'tanggal_pindah' => 'required|string',
                     'tanggal_cuci' => 'required|string',
-                    'keramba_sebelum' => 'required|integer',
+                    'keramba_sebelum' => 'nullable|integer',
                     'keramba_sesudah' => 'required|integer',
                     'produksi_id'=> 'required|integer',
                     'user_id'=> 'required|integer',
