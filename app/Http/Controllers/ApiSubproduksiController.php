@@ -32,7 +32,8 @@ class ApiSubproduksiController extends Controller
         
         $produksi = SubproduksiModel::leftjoin('sensor_do', 'sensor_do.keramba_id', '=', 'subproduksi.keramba_sesudah')
             ->leftjoin('sensor_suhu', 'sensor_suhu.keramba_id', '=', 'subproduksi.keramba_sesudah')
-            ->select('subproduksi.*', 'sensor_suhu.suhu_air', 'sensor_do.do_air')
+            ->leftjoin('keramba', 'keramba.id', '=','subproduksi.keramba_sesudah')
+            ->select('subproduksi.*', 'keramba.nama_keramba','sensor_suhu.suhu_air', 'sensor_do.do_air')
             ->groupBy('subproduksi.id')
             ->where('produksi_id',$produksi_id)
             ->paginate(5);
