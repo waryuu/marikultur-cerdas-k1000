@@ -20,9 +20,9 @@ class CreateKerambaTable extends Migration
             $table->integer('lebar_keramba');
             $table->string('kapasitas_keramba');
             $table->integer('kelompok_id')->unsigned();
-            $table->foreign('kelompok_id')->references('id')->on('kelompok');
+            // $table->foreign('kelompok_id')->references('id')->on('kelompok');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

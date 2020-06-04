@@ -229,9 +229,7 @@
                 let credentials = this.model;
                 await axios.post(`apisubproduksi/store?subproduksi_yang_dipindah=${this.$route.params.id}`, credentials)
                 .then(() =>{
-                        this.$router.replace({
-                            name: 'produksi'
-                        })
+                        this.$router.go(-1);
                     })
                 .catch(() => {
                         this.errors = 'Harap isi semua form dengan benar!';

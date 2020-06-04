@@ -224,9 +224,7 @@
             let credentials = this.model;
             await axios.put('apisubproduksi/update', credentials)
             .then(() =>{
-                    this.$router.replace({
-                        name: 'produksi'
-                    })
+                    this.$router.go(-1);
                 })
             .catch(() => {
                     this.errors = 'Harap isi semua form dengan benar!';

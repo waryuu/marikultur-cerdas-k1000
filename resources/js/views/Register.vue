@@ -20,7 +20,7 @@
                     <form @submit.prevent="submit" role="form" >
                         <base-input class="input-group-alternative mb-3"
                                     :required="true"
-                                    placeholder="Nama Lengkap"
+                                    placeholder="Nama Lengkap *"
                                     addon-left-icon="ni ni-hat-3"
                                     v-model="model.name">
                         </base-input>
@@ -38,7 +38,7 @@
 
                         <base-input class="input-group-alternative mb-3"
                                     :required="true"
-                                    placeholder="Username"
+                                    placeholder="Username *"
                                     addon-left-icon="ni ni-badge"
                                     v-model="model.username">
                         </base-input>
@@ -52,7 +52,7 @@
 
                         <base-input class="input-group-alternative"
                                     :required="true"
-                                    placeholder="Sandi"
+                                    placeholder="Sandi **"
                                     type="password"
                                     addon-left-icon="ni ni-lock-circle-open"
                                     v-model="model.password">
@@ -60,12 +60,18 @@
 
                         <base-input class="input-group-alternative"
                                     :required="true"
-                                    placeholder="Konfirmasi Sandi"
+                                    placeholder="Konfirmasi Sandi **"
                                     type="password"
                                     addon-left-icon="ni ni-lock-circle-open"
                                     v-model="model.password_confirmation">
                         </base-input>
-
+                        <div class="text-muted font-italic">
+                            <small>* harus diisi</small>
+                        </div>
+                        <div class="text-muted font-italic">
+                            <small>** Kata sandi minimal 6 karakter</small>
+                        </div>
+                        
                         <div v-if="model.status === 'ketua'" class="text-center">
                             <base-button nativeType="submit" type="primary" class="my-4">Selanjutnya</base-button>
                         </div>
@@ -124,7 +130,11 @@
         }),
         submit() {
             this.errors = '';
-            if (this.model.status === 'ketua'){
+            if (!this.model.name || !this.model.username || !this.model.status || !this.model.password || !this.model.password_confirmation || this.model.password != this.model.password_confirmation) {
+                this.errors = 'Harap isi semua form dengan benar!';
+            }
+            else{
+                if (this.model.status === 'ketua'){
                 this.Register(this.model).then(() =>{
                     this.$router.replace({
                         name: 'kelompok'
@@ -132,15 +142,18 @@
                 }).catch(() => {
                         this.errors = 'Harap isi semua form dengan benar!';
                     })
-            } else {
-                this.Register(this.model).then(() =>{
-                    this.$router.replace({
-                        name: 'beranda'
-                    })
-                }).catch(() => {
-                        this.errors = 'Silahkan isi semua form dengan benar!';
-                    })
+                } 
+                else {
+                    this.Register(this.model).then(() =>{
+                        this.$router.replace({
+                            name: 'beranda'
+                        })
+                    }).catch(() => {
+                            this.errors = 'Silahkan isi semua form dengan benar!';
+                        })
+                }
             }
+            
         },
         fetchKelompok(){
             fetch('api/apikelompok')

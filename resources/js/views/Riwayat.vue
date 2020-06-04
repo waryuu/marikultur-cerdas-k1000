@@ -272,7 +272,7 @@
             await axios.get(`apisubproduksilog/wheresub?user=${this.user.id}&page=${this.meta.current_page}`)
                 .then((response) => {
                     this.riwayats = response.data.data;
-                    console.log(response);
+                    // console.log(response);
                     this.meta = response.data.meta;
                     this.links = response.data.links;
                 })

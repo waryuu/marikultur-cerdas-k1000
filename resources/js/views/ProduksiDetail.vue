@@ -105,9 +105,14 @@
                                             Terakhir Mencuci
                                         </h4>
                                     </div>
-                                    <div class="col">
+                                    <div v-if="produksi.tanggal_cuci" class="col">
                                         <h4 class="text-right font-italic font-weight-light">
                                             {{produksi.tanggal_cuci}}
+                                        </h4>
+                                    </div>
+                                    <div v-else class="col">
+                                        <h4 class="text-right font-italic font-weight-light">
+                                            Belum Pernah
                                         </h4>
                                     </div>
                                 </div>
@@ -117,9 +122,14 @@
                                             Terakhir Pindah
                                         </h4>
                                     </div>
-                                    <div class="col">
+                                    <div v-if="produksi.tanggal_pindah" class="col">
                                         <h4 class="text-right font-italic font-weight-light">
                                             {{produksi.tanggal_pindah}}
+                                        </h4>
+                                    </div>
+                                    <div v-else class="col">
+                                        <h4 class="text-right font-italic font-weight-light">
+                                            Belum Pernah
                                         </h4>
                                     </div>
                                 </div>
