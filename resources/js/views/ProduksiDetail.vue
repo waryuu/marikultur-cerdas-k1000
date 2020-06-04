@@ -52,133 +52,137 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card card-body rounded-0">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h3 class="card-title text-left mb-0">
-                                        {{produksi.nama_ikan}}
-                                    </h3>
-                                </div>
-                                <div class="col">
-                                    <h5 class="card-title text-right text-muted font-weight-light mb-0">
-                                        ID-{{$route.params.id}}.{{produksi.id}}
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="row mt-3 mb-2">
-                                <div class="col">
-                                    <h3 class="card-subtitle text-left text-muted">
-                                        Keramba {{produksi.keramba_sesudah}}
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col">
-                                    <h4 class="text-center text-uppercase font-weight-light">
-                                        Jumlah
-                                    </h4>
-                                    <h3 class="text-center">
-                                        {{produksi.jumlah_ikan}} Ekor
-                                    </h3>
-                                </div>
-                                <div class="col">
-                                    <h4 class="text-center text-uppercase font-weight-light">
-                                        Ukuran
-                                    </h4>
-                                    <h3 class="text-center">
-                                        {{produksi.panjang_ikan}} cm
-                                    </h3>
-                                </div>
-                                <div class="col">
-                                    <h4 class="text-center text-uppercase font-weight-light">
-                                        Berat
-                                    </h4>
-                                    <h3 class="text-center">
-                                        {{produksi.berat_ikan}} Gram
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col">
-                                    <h4 class="text-left font-weight-light">
-                                        Tanggal Mencuci
-                                    </h4>
-                                </div>
-                                <div class="col">
-                                    <h4 class="text-right font-italic font-weight-light">
-                                        {{produksi.tanggal_cuci}}
-                                    </h4>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <h4 class="text-left font-weight-light">
-                                        Tanggal Pindah
-                                    </h4>
-                                </div>
-                                <div class="col">
-                                    <h4 class="text-right font-italic font-weight-light">
-                                        {{produksi.tanggal_pindah}}
-                                    </h4>
-                                </div>
-                            </div>
-                            <!-- Pembesaran -->
-                            <div v-if="produksi.status_panen === 'Pembesaran'">
-                                <div class="row mb-3 mt-2 ml-1 mr-1">
-                                    <div v-if="produksi.suhu_air != null && produksi.suhu_air.length" class="col card border-0 mr-1 bg-info" style="border-radius:0.25rem">
-                                        <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">Suhu Air</h3></div>
-                                        <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">{{produksi.suhu_air}} &#176; C</h4></div>
+                        <div v-for="produksi in produksis" v-bind:key="produksi.id">
+                            <div v-if="produksi.jumlah_ikan != null && produksi.jumlah_ikan >= 1" class="card card-body rounded-0">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h3 class="card-title text-left mb-0">
+                                            {{produksi.nama_ikan}}
+                                        </h3>
                                     </div>
-                                    <div v-if="produksi.do_air != null && produksi.do_air.length" class="col card border-0 ml-1 bg-info" style="border-radius:0.25rem">
-                                        <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">Oksigen</h3></div>
-                                        <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">{{produksi.do_air}} %</h4></div>
+                                    <div class="col">
+                                        <h5 class="card-title text-right text-muted font-weight-light mb-0">
+                                            ID-{{$route.params.id}}.{{produksi.id}}
+                                        </h5>
                                     </div>
                                 </div>
-                                <!-- <form class="row align-items-center px-3 mt-3" action="" method="post">
-                                    <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Detail Produksi</button>
-                                </form> -->
-                                <div>
-                                    <!-- <form class="row align-items-center px-3" action="" method="post">
-                                        <button @click="showSensor(produksi.keramba_sesudah)" type="button" class="col btn btn-secondary">Sensor IoT</button>
-                                    </form> -->
-                                    <div class="row mt-3 px-3">
-                                                <router-link :to="{ name: 'ubah', params: { id: produksi.id }}" class="col btn btn-primary">
-                                                    Ubah
-                                                </router-link>
-                                                <router-link :to="{ name: 'pindah', params: { id: produksi.id }}" class="col btn btn-primary">
-                                                    Pindah
-                                                </router-link>
-                                                <router-link :to="{ name: 'panen', params: { id: produksi.id }}" class="col btn btn-primary">
-                                                    Panen
-                                                </router-link>
+                                <div class="row mt-3 mb-2">
+                                    <div class="col">
+                                        <h3 class="card-subtitle text-left text-muted">
+                                            {{produksi.nama_keramba}}
+                                        </h3>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- End Pembesaran -->
-                            <!-- Panen -->
-                            <div v-else>
-                                <div class="row mb-3">
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <h4 class="text-center text-uppercase font-weight-light">
+                                            Jumlah
+                                        </h4>
+                                        <h3 class="text-center">
+                                            {{produksi.jumlah_ikan}} Ekor
+                                        </h3>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="text-center text-uppercase font-weight-light">
+                                            Ukuran
+                                        </h4>
+                                        <h3 class="text-center">
+                                            {{produksi.panjang_ikan}} cm
+                                        </h3>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="text-center text-uppercase font-weight-light">
+                                            Berat
+                                        </h4>
+                                        <h3 class="text-center">
+                                            {{produksi.berat_ikan}} Gram
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
                                     <div class="col">
                                         <h4 class="text-left font-weight-light">
-                                            Tanggal Panen
+                                            Terakhir Mencuci
                                         </h4>
                                     </div>
                                     <div class="col">
                                         <h4 class="text-right font-italic font-weight-light">
-                                            {{produksi.tanggal_panen}}
+                                            {{produksi.tanggal_cuci}}
                                         </h4>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <base-alert type="warning">
-                                            <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
-                                            <span class="alert-inner--text"><strong>Subproduksi sudah dipanen!</strong></span>
-                                        </base-alert>
+                                        <h4 class="text-left font-weight-light">
+                                            Terakhir Pindah
+                                        </h4>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="text-right font-italic font-weight-light">
+                                            {{produksi.tanggal_pindah}}
+                                        </h4>
                                     </div>
                                 </div>
+                                <!-- Pembesaran -->
+                                <div v-if="produksi.status_panen === 'Pembesaran' || produksi.status_panen === 'pembesaran'">
+                                    <div class="row mb-3 mt-2 ml-1 mr-1">
+                                        <div v-if="produksi.suhu_air != null && produksi.suhu_air.length" class="col card border-0 mr-1 bg-info" style="border-radius:0.25rem">
+                                            <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">Suhu Air</h3></div>
+                                            <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">{{produksi.suhu_air}} &#176; C</h4></div>
+                                        </div>
+                                        <div v-if="produksi.do_air != null && produksi.do_air.length" class="col card border-0 ml-1 bg-info" style="border-radius:0.25rem">
+                                            <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">Oksigen</h3></div>
+                                            <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">{{produksi.do_air}} %</h4></div>
+                                        </div>
+                                    </div>
+                                    <!-- <form class="row align-items-center px-3 mt-3" action="" method="post">
+                                        <button @click="showSensor(produksi.id)" type="button" class="col btn btn-primary">Detail Produksi</button>
+                                    </form> -->
+                                    <div>
+                                        <!-- <form class="row align-items-center px-3" action="" method="post">
+                                            <button @click="showSensor(produksi.keramba_sesudah)" type="button" class="col btn btn-secondary">Sensor IoT</button>
+                                        </form> -->
+                                        <div class="row mt-3 px-3">
+                                                    <router-link :to="{ name: 'ubah', params: { id: produksi.id }}" class="col btn btn-primary">
+                                                        Ubah
+                                                    </router-link>
+                                                    <router-link :to="{ name: 'pindah', params: { id: produksi.id }}" class="col btn btn-primary">
+                                                        Pindah
+                                                    </router-link>
+                                                    <router-link :to="{ name: 'panen', params: { id: produksi.id }}" class="col btn btn-primary">
+                                                        Panen 
+                                                    </router-link>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Pembesaran -->
+                                <!-- Panen -->
+                                <div v-else>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <h4 class="text-left font-weight-light">
+                                                Tanggal Panen
+                                            </h4>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="text-right font-italic font-weight-light">
+                                                {{produksi.tanggal_panen}}
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <base-alert type="warning">
+                                                <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                                                <span class="alert-inner--text"><strong>Subproduksi sudah dipanen!</strong></span>
+                                            </base-alert>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Panen -->
                             </div>
-                            <!-- End Panen -->
+                            
+                            
                         </div>
                         <div slot="footer" class="d-flex justify-content-end">
                             <base-pagination-dua  :pagination="meta"

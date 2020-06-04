@@ -127,7 +127,16 @@
                                 :extra-options="bigLineChart.extraOptions"
                         >
                         </line-chart>
-
+                        <div slot="footer">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3 class="text-center">Lokasi Sensor</h3>        
+                                </div>
+                                <div class="col-12">
+                                    <h3 class="font-weight-light text-center"><i class="fas fa-map-marker-alt"></i> Balai Sea Farming</h3>        
+                                </div>
+                            </div>    
+                        </div>
                     </card>
                 </div>
 
