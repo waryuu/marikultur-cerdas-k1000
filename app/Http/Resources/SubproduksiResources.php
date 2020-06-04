@@ -26,6 +26,7 @@ class SubproduksiResources extends JsonResource
             'keramba_sebelum'=>$this->keramba_sebelum,
             'keramba_sesudah'=>$this->keramba_sesudah,    
             'produksi_id'=>$this->produksi_id,
+            'nama_keramba'=>$this->nama_keramba,
             'tanggal_panen'=>$this->tanggal_panen,
             'status_panen'=>$this->status_panen,
             'panjang_ikan_akhir'=>$this->panjang_ikan_akhir,

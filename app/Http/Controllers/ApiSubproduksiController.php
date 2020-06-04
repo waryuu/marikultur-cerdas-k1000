@@ -8,6 +8,7 @@ use App\SubproduksiModel;
 use Response;
 use Illuminate\Support\Facades\Validator;
 use App\ProduksiModel;
+use App\KerambaModel;
 use App\SensorDoModel;
 use App\SensorSuhuModel;
 use App\SubproduksiLogModel;
@@ -42,7 +43,11 @@ class ApiSubproduksiController extends Controller
         $produksi_id = $request->query('produksi');
         $status_panen = $request->query('status');
         
-        $produksi = SubproduksiModel::where('produksi_id',$produksi_id)->where('status_panen','Pembesaran')->paginate(5);
+        $produksi = SubproduksiModel::leftjoin('keramba', 'keramba.id', '=','subproduksi.keramba_sesudah')
+        ->select('subproduksi.*','keramba.nama_keramba')
+        ->groupBy('subproduksi.id')
+        ->where('produksi_id',$produksi_id)->where('status_panen','Pembesaran')
+        ->paginate(5);
         return SubproduksiResources::collection($produksi);
         
         }

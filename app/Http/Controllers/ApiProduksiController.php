@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\ProduksiModel;
 use Response;
 use App\SubproduksiModel;
+use App\KerambaModel;
 use App\SubproduksiLogModel;
 use App\Http\Resources\ProduksiResources;
 use App\PencucianModel;
@@ -59,7 +60,8 @@ class ApiProduksiController extends Controller
         $user_id = $request->query('user');
     
         $produksi = ProduksiModel::leftjoin('subproduksi', 'subproduksi.produksi_id', '=', 'produksi.id')
-        ->select('produksi.*', DB::raw('sum(subproduksi.jumlah_ikan) as jumlah_terkini'))
+        ->leftjoin('keramba', 'keramba.id', '=','produksi.keramba_id')
+        ->select('produksi.*','keramba.nama_keramba', DB::raw('sum(subproduksi.jumlah_ikan) as jumlah_terkini'))
         ->groupBy('produksi.id')
         ->where('produksi.user_id',$user_id)->where('produksi.jumlah_subproduksi', '!=' , 0)
         ->where('subproduksi.status_panen','Pembesaran')
@@ -71,7 +73,8 @@ class ApiProduksiController extends Controller
         $user_id = $request->query('user');
     
         $produksi = ProduksiModel::leftjoin('subproduksi', 'subproduksi.produksi_id', '=', 'produksi.id')
-        ->select('produksi.*', DB::raw('sum(subproduksi.jumlah_ikan) as jumlah_terkini'))
+        ->leftjoin('keramba', 'keramba.id', '=','produksi.keramba_id')
+        ->select('produksi.*','keramba.nama_keramba',  DB::raw('sum(subproduksi.jumlah_ikan) as jumlah_terkini'))
         ->groupBy('produksi.id')
         ->where('produksi.user_id',$user_id)->where('produksi.jumlah_subproduksi', '=' , 0)
         ->where('subproduksi.status_panen','Panen')
