@@ -6,7 +6,7 @@ class ProduksiSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('produksi')->insert([
+          DB::table('produksi')->insert([
             'nama_ikan' => 'Kerapu Cantang',
             'panjang_ikan' => '12',
             'jumlah_ikan' => '700',
@@ -208,6 +208,5 @@ class ProduksiSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
-
     }
 }

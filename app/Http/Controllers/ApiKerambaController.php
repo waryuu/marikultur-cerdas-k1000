@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\KerambaModel;
+use App\UserModel;
 use App\Http\Resources\KerambaResources;
 
 class ApiKerambaController extends Controller
@@ -42,15 +43,20 @@ class ApiKerambaController extends Controller
 
 
     public function store(Request $request)
+    
     {
+           
         $keramba = $request ->isMethod('put') ? KerambaModel::findOrFail($request->keramba_id) : new KerambaModel;
         $keramba->id = $request->input('keramba_id');
         $keramba->nama_keramba = $request->input('nama_keramba');
         $keramba->panjang_keramba = $request->input('panjang_keramba');
         $keramba->lebar_keramba = $request->input('lebar_keramba');
         $keramba->kapasitas_keramba = $request->input('kapasitas_keramba');
-        $keramba->kelompok_id = $request->input('kelompok_id');
-        $keramba->user_id = $request->input('user_id');
+        // $keramba->kelompok_id = $request->input('kelompok_id');
+        // $keramba->user_id = $request->input('user_id');
+        $user = $request->user(); 
+        $keramba->user_id = $user->id;
+        $keramba->kelompok_id = $user->kelompok_id;
 
         if($keramba->save()){
             return new KerambaResources($keramba);

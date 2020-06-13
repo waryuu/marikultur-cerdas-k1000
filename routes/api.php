@@ -53,7 +53,7 @@ Route::delete('/apisubproduksi/delete/{id}','ApiSubproduksiController@destroy');
 Route::put('/apisubproduksi/panen','ApiSubproduksiController@panen');
 
 Route::get('/apisubproduksilog/where','ApiSubproduksiLogController@where');
-Route::get('/apisubproduksilog/wheresub','ApiSubproduksiLogController@getsubproduksilogbyuser');
+Route::get('/apisubproduksilog/wheresub','ApiSubproduksiLogController@getsubproduksilogbyproduksi');
 Route::get('/apisubproduksilog','ApiSubproduksiLogController@subproduksilogget');
 Route::get('/apisubproduksilog/{id}','ApiSubproduksiLogController@showsubproduksilog');
 Route::post('/apisubproduksilog/store','ApiSubproduksiLogController@subproduksilogstore');

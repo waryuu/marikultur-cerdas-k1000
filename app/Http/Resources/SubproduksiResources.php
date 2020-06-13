@@ -16,7 +16,7 @@ class SubproduksiResources extends JsonResource
     {
         $tanggal_pencucian_doang = substr($this->tanggal_cuci,0,10);
         return [
-            'id'=> $this->id,
+             'id'=> $this->id,
             'nama_ikan'=>$this->nama_ikan,
             'panjang_ikan'=>$this->panjang_ikan,
             'jumlah_ikan'=>$this->jumlah_ikan,
@@ -34,7 +34,7 @@ class SubproduksiResources extends JsonResource
             'berat_ikan_akhir'=>$this->berat_ikan_akhir,
             'suhu_air'=>$this->suhu_air,
             'do_air'=>$this->do_air,
-            'user_id'=>$this->user_id
+            // 'user_id'=>$this->user_id
         ];
     }
     public function with($request){

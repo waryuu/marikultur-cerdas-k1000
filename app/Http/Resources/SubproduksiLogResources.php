@@ -14,7 +14,7 @@ class SubproduksiLogResources extends JsonResource
      */
     public function toArray($request)
     {
-        $tanggal_pencucian_doang = substr($this->tanggal_cuci,0,10);
+          $tanggal_pencucian_doang = substr($this->tanggal_cuci,0,10);
         $created_at_doang = substr($this->created_at,0,10);
         return [
             'id'=> $this->id,

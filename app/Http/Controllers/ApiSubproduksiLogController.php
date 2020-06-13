@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SubproduksiModel;
 use App\SubproduksiLogModel;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Resources\SubproduksiResources;
 use App\Http\Resources\SubproduksiLogResources;
@@ -13,42 +12,28 @@ class ApiSubproduksiLogController extends Controller
 {
     public function subproduksilogget()
     {
-        $subproduksilog = SubproduksiLogModel::paginate(5);
+        $subproduksilog = SubproduksiLogModel::paginate(15);
         return SubproduksiLogResources::collection($subproduksilog);
     }
-    
-    public function getsubproduksilogbyuser(Request $request)
+     public function getsubproduksilogbyproduksi(Request $request)
     {
 
-        $user_id = $request->query('user');
+        $produksi_id = $request->query('produksi');
         $subproduksilog = SubproduksiLogModel::leftjoin('subproduksi', 'subproduksi.id', '=', 'subproduksilog.subproduksi_id')
-            ->select('subproduksilog.*', 'subproduksi.user_id')
+            ->leftjoin('produksi', 'produksi.id', '=', 'subproduksi.produksi_id')
+            ->select('subproduksilog.*', 'produksi.user_id')
             ->groupBy('subproduksilog.id')
-            ->where('subproduksi.user_id',$user_id)
+            ->where('produksi.id',$produksi_id)
             ->paginate(5);
 
         return  SubproduksiLogResources::collection($subproduksilog);
-        // ,DB::raw("SELECT MAX(id)
-        //     FROM volumes
-        //     GROUP BY journal_id)")
-
-        // , DB::raw('MAX(subproduksi.id) as subproduksi_id')
-        // $produksi = ProduksiModel::with('subproduksi')->find(1);
-        // return  NEW ProduksiResources($produksi);
     }
-
+    
     public function subproduksilogstore(Request $request)
     {
-
-       
-
-        if($validator->fails()){
-                return response()->json($validator->errors()->toJson(), 400);
-        }
-
         $subproduksilog = $request ->isMethod('put') ? SubproduksiLogModel::findOrFail($request->id) : new SubproduksiLogModel;
         $subproduksilog->id = $request->input('id');
-        // $subproduksilog->user_id = $request->input('user_id');
+        $subproduksilog->user_id = $request->input('user_id');
         $subproduksilog->nama_ikan = $request->input('nama_ikan');
     	$subproduksilog->panjang_ikan = $request->input('panjang_ikan');
         $subproduksilog->jumlah_ikan = $request->input('jumlah_ikan');
@@ -57,7 +42,6 @@ class ApiSubproduksiLogController extends Controller
         $subproduksilog->keramba_sebelum = $request->input('keramba_sebelum');
         $subproduksilog->keramba_sesudah = $request->input('keramba_sesudah');
         $subproduksilog->tanggal_cuci = $request->input('tanggal_cuci');
-        $subproduksilog->kegiatan = $request->input('kegiatan');
         $subproduksilog->produksi_id = $request->input('subproduksi_id');
             
         if($subproduksilog->save()){

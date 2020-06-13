@@ -16,6 +16,7 @@ class ProduksiResources extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
+        // return parent::toArray($request);
         $tanggal_tebar_doang = substr($this->tanggal_tebar,0,10);
         $tanggal_panen_doang = substr($this->tanggal_panen,0,10);
         // $tanggal_cuci_doang = substr($this->tanggal_cuci,0,10);

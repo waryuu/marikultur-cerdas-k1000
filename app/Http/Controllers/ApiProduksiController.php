@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\ProduksiModel;
-use Response;
-use App\SubproduksiModel;
 use App\KerambaModel;
+use App\SubproduksiModel;
 use App\SubproduksiLogModel;
 use App\Http\Resources\ProduksiResources;
 use App\PencucianModel;
@@ -46,16 +45,17 @@ class ApiProduksiController extends Controller
         return  ProduksiResources::collection($produksi);
         // $produksi = ProduksiModel::paginate(5);
     }
+
     public function wheretotalproduksi(Request $request)
-        {
+    {
         $user_id = $request->query('user');
         $produksibulanini = ProduksiModel::where('user_id',$user_id)->whereMonth('created_at', Carbon::now()->month)
         ->whereYear('created_at', Carbon::now()->year)->count();
         $produksitahunini = ProduksiModel::where('user_id',$user_id)->whereYear('created_at', Carbon::now()->year)->count();
         return response()->json(compact('produksibulanini','produksitahunini'),201);
-        }
+    }
 
-    public function whereproduksipembesaran(Request $request)
+     public function whereproduksipembesaran(Request $request)
         {
         $user_id = $request->query('user');
     
@@ -68,7 +68,8 @@ class ApiProduksiController extends Controller
         ->paginate(5);
         return  ProduksiResources::collection($produksi);
         }
-    public function whereproduksipanen(Request $request)
+
+     public function whereproduksipanen(Request $request)
         {
         $user_id = $request->query('user');
     
@@ -95,39 +96,38 @@ class ApiProduksiController extends Controller
 
         return  ProduksiResources::collection($produksi);
 
-        // ,DB::raw("SELECT MAX(id)
-        //     FROM volumes
-        //     GROUP BY journal_id)")
-
-        // , DB::raw('MAX(subproduksi.id) as subproduksi_id')
-        // $produksi = ProduksiModel::with('subproduksi')->find(1);
-        // return  NEW ProduksiResources($produksi);
     }
     
     public function create(Request $request)
     {
         try{DB::beginTransaction();
+        $user = $request->user(); 
         $produksi = ProduksiModel::create([
-            'user_id' => $request->input('user_id'),
+            // 'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
             'berat_ikan' => $request->input('berat_ikan'),
             'jumlah_ikan' => $request->input('jumlah_ikan'),
             'tanggal_tebar' => $request->input('tanggal_tebar'),
             'keramba_id' => $request->input('keramba_id'),
-            'kelompok_id' => $request->input('kelompok_id'),
+            // 'kelompok_id' => $request->input('kelompok_id'),
+            'kelompok_id' => $user->kelompok_id,
+            'user_id' => $user->id,
             'jumlah_subproduksi' => '1'
         ]);
+
         $subproduksi = SubproduksiModel::create([
-            'user_id' => $request->input('user_id'),
+            // 'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
-            'panjang_ikan' => $request->input('panjang_ikan'),
-            'berat_ikan' => $request->input('berat_ikan'),
+            // 'panjang_ikan' => $request->input('panjang_ikan'),
+            // 'berat_ikan' => $request->input('berat_ikan'),
             'jumlah_ikan' => $request->input('jumlah_ikan'),
             'produksi_id' => $produksi->id,
-            'keramba_sesudah' => $request->input('keramba_id'),
-            ]);
+            // 'keramba_sesudah' => $request->input('keramba_id'),
+        ]);
+
         $subproduksilog = SubproduksiLogModel::create([
+            // 'user_id' => $request->input('user_id'),
             'nama_ikan' => $request->input('nama_ikan'),
             'panjang_ikan' => $request->input('panjang_ikan'),
             'berat_ikan' => $request->input('berat_ikan'),
@@ -135,9 +135,10 @@ class ApiProduksiController extends Controller
             'keramba_sesudah' => $request->input('keramba_id'),
             'kegiatan' => 'Penebaran',
             'subproduksi_id' => $subproduksi->id,
-        ]);
+            ]);
         DB::commit();
         return new ProduksiResources($produksi);
+        return new SubproduksiResources($subproduksi);
         }
         catch(\Exception $e) {
             DB::rollback();
@@ -147,65 +148,7 @@ class ApiProduksiController extends Controller
         }
     }
     
-   
-    // public function store(Request $request)
-    // {
-    //     $produksi = $request ->isMethod('put') ? ProduksiModel::findOrFail($request->id) : new ProduksiModel;
-    //     $produksi->id = $request->input('id');
-    //     $produksi->user_id = $request->input('user_id');
-    // 	$produksi->nama_ikan = $request->input('nama_ikan');
-    //     $produksi->panjang_ikan = $request->input('panjang_ikan');
-    //     $produksi->berat_ikan = $request->input('berat_ikan');
-    //     $produksi->jumlah_ikan = $request->input('jumlah_ikan');
-    //     // $produksi->tanggal_tebar = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_tebar'))->format('d-m-Y');
-    //     // $produksi->tanggal_panen = Carbon::createFromFormat('Y-m-d',$request->input('tanggal_panen'))->format('d-m-Y');
-    //     $produksi->tanggal_tebar = $request->input('tanggal_tebar');
-    //     // $produksi->tanggal_panen = $request->input('tanggal_panen');
-    //     // $produksi->status_panen = 'Pembesaran';
-    //     $produksi->keramba_id = $request->input('keramba_id');
-    //     $produksi->kelompok_id = $request->input('kelompok_id');
 
-
-    //     if($produksi->save()){
-    //         return new ProduksiResources($produksi);
-    //     }
-
-    // }
-    
-
-    // public function panen(Request $request,$id)
-    // {
-    //     $berat_ikan_akhir = $request->berat_ikan_akhir;
-    //     $jumlah_ikan_akhir = $request->jumlah_ikan_akhir;
-    //     $panjang_ikan_akhir = $request->panjang_ikan_akhir; 
-    //     $tanggal_panen = $request->tanggal_panen;
-    //     $status_panen = $request->status_panen;
-
-
-    //     $panen = ProduksiModel::find($id);
-        
-    //     $panen->berat_ikan_akhir = $berat_ikan_akhir;
-    //     $panen->jumlah_ikan_akhir = $jumlah_ikan_akhir;
-    //     $panen->panjang_ikan_akhir = $panjang_ikan_akhir;
-    // 	$panen->tanggal_panen = $tanggal_panen;
-    //     $panen->status_panen = 'Panen';
-    // 	$panen->save();
-
-    // 	return new ProduksiResources($panen);
-    // }
-
-    public function panen(Request $request)
-    {
-        $id = $request->id;
-        $status_panen = $request->status_panen;
-
-        $panen = ProduksiModel::find($id);
-        
-        $panen->status_panen = 'Panen';
-        $panen->save();
-
-    	return new ProduksiResources($panen);
-    }
     public function showproduksibyidkelompok($kelompok_id)
     {
         $produksi = ProduksiModel::where(compact('kelompok_id'))->get();
