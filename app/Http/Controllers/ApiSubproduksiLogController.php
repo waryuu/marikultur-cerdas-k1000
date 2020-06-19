@@ -20,12 +20,12 @@ class ApiSubproduksiLogController extends Controller
 
         $subproduksi_id = $request->query('subproduksi');
         $subproduksilog = SubproduksiLogModel::leftjoin('subproduksi', 'subproduksi.id', '=', 'subproduksilog.subproduksi_id')
-            ->select('subproduksilog.nama_ikan','subproduksilog.panjang_ikan','subproduksilog.tanggal_cuci','subproduksilog.tanggal_pindah'
+            ->select('subproduksilog.id','subproduksilog.subproduksi_id','subproduksilog.kegiatan','subproduksilog.nama_ikan','subproduksilog.panjang_ikan','subproduksilog.tanggal_cuci','subproduksilog.tanggal_pindah'
             ,'subproduksilog.berat_ikan','subproduksilog.keramba_sebelum','subproduksilog.keramba_sesudah'
             ,'subproduksi.jumlah_ikan', 'subproduksi.produksi_id')
             ->groupBy('subproduksi.id')
             ->where('subproduksi.id',$subproduksi_id)
-            ->latest('id')->first();
+            ->latest('subproduksilog.id')->first();
 
           return new SubproduksiLogResources($subproduksilog);   
     }
