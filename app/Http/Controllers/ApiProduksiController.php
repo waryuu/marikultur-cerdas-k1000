@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use App\ProduksiModel;
+use App\PakanModel;
 use App\KerambaModel;
 use App\SubproduksiModel;
 use App\SubproduksiLogModel;
@@ -61,7 +62,8 @@ class ApiProduksiController extends Controller
     
         $produksi = ProduksiModel::leftjoin('subproduksi', 'subproduksi.produksi_id', '=', 'produksi.id')
         ->leftjoin('keramba', 'keramba.id', '=','produksi.keramba_id')
-        ->select('produksi.*','keramba.nama_keramba', DB::raw('sum(subproduksi.jumlah_ikan) as jumlah_terkini'))
+        ->leftjoin('pakan', 'pakan.subproduksi_id', '=','subproduksi.id')
+        ->select('produksi.*','keramba.nama_keramba', DB::raw('sum(subproduksi.jumlah_ikan) as jumlah_terkini'),DB::raw('sum(pakan.jumlah_pakan) as total_pakan'))
         ->groupBy('produksi.id')
         ->where('produksi.user_id',$user_id)->where('produksi.jumlah_subproduksi', '!=' , 0)
         ->where('subproduksi.status_panen','Pembesaran')

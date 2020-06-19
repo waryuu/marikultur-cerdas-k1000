@@ -41,6 +41,7 @@ class ProduksiResources extends JsonResource
             'user_id'=>$this->user_id,
               'jumlah_terkini'=>$this->jumlah_terkini,
               'nama_keramba'=>$this->nama_keramba,
+              'total_pakan'=>$this->total_pakan,
             // 'jumlah_ikan'=>$this->jumlah_ikan,
             // 'berat_ikan'=>$this->berat_ikan,
             // 'panjang_ikan'=>$this->panjang_ikan,

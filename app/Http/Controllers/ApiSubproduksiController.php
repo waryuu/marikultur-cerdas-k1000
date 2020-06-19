@@ -8,6 +8,7 @@ use App\SubproduksiModel;
 use Response;
 use Illuminate\Support\Facades\Validator;
 use App\ProduksiModel;
+use App\PakanModel;
 use App\KerambaModel;
 use App\SensorDoModel;
 use App\SensorSuhuModel;
@@ -31,9 +32,10 @@ class ApiSubproduksiController extends Controller
             ->leftjoin('sensor_do', 'sensor_do.keramba_id', '=', 'subproduksilog.keramba_sesudah')
             ->leftjoin('sensor_suhu', 'sensor_suhu.keramba_id', '=', 'subproduksilog.keramba_sesudah')
             ->leftjoin('keramba', 'keramba.id', '=','subproduksilog.keramba_sesudah')
+            ->leftjoin('pakan', 'pakan.subproduksi_id', '=','subproduksi.id')
             ->select('subproduksi.*', 'subproduksilog.panjang_ikan','subproduksilog.tanggal_cuci','subproduksilog.tanggal_pindah'
             ,'subproduksilog.berat_ikan','subproduksilog.keramba_sebelum','subproduksilog.keramba_sesudah','keramba.nama_keramba'
-            ,'sensor_suhu.suhu_air', 'sensor_do.do_air')
+            ,'sensor_suhu.suhu_air', 'sensor_do.do_air', DB::raw('sum(pakan.jumlah_pakan) as total_pakan'))
             ->groupBy('subproduksi.id')
             ->where('subproduksi.produksi_id',$produksi_id)
             ->whereRaw('subproduksilog.id IN (select MAX(subproduksilog.id) FROM subproduksilog GROUP BY subproduksilog.subproduksi_id)')
@@ -47,7 +49,10 @@ class ApiSubproduksiController extends Controller
             
         $produksi = SubproduksiModel::leftjoin('subproduksilog', 'subproduksilog.subproduksi_id', '=','subproduksi.id')
         ->leftjoin('keramba', 'keramba.id', '=','subproduksilog.keramba_sesudah')
-        ->select('subproduksi.*', 'subproduksilog.panjang_ikan','subproduksilog.tanggal_cuci','subproduksilog.tanggal_pindah','subproduksilog.berat_ikan','subproduksilog.keramba_sebelum','subproduksilog.keramba_sesudah','keramba.nama_keramba')
+        ->leftjoin('pakan', 'pakan.subproduksi_id', '=','subproduksi.id')
+        ->select('subproduksi.*', 'subproduksilog.panjang_ikan','subproduksilog.tanggal_cuci',
+        'subproduksilog.tanggal_pindah','subproduksilog.berat_ikan','subproduksilog.keramba_sebelum',
+        'subproduksilog.keramba_sesudah','keramba.nama_keramba', DB::raw('sum(pakan.jumlah_pakan) as total_pakan'))
         ->groupBy('subproduksi.id')
         ->where('produksi_id',$produksi_id)
         ->where('status_panen','Panen')

@@ -127,6 +127,10 @@ Route::post('/apipakan/store','ApiPakanController@store');
 Route::put('/apipakan/store','ApiPakanController@store');
 Route::delete('/apipakan/delete/{id}','ApiPakanController@destroy');
 
+Route::get('/apinamaikan','ApiNamaIkanController@index');
+Route::post('/apinamaikan/store','ApiNamaIkanController@store');
+Route::delete('/apinamaikan/delete/{id}','ApiNamaIkanController@destroy');
+
 Route::get('/apipencucian','ApiPencucianController@pencucianget');
 Route::get('/apipemindahan','ApiPemindahanController@pemindahanget');
 
