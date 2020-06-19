@@ -77,25 +77,25 @@
                     <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">Siap Dipanen</h4></div>
                 </div>
             </div> -->
-            <div v-if="totalIkan < 1 || totalIkan === null" class="row mt-3">
+            <!-- <div v-if="totalIkan < 1 || totalIkan === null" class="row mt-3">
                 <div class="col">
                     <base-alert type="warning" style="margin-bottom:0">
                         <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
                         <span class="alert-inner--text"><strong>Belum ada produksi!</strong> Harap lakukan penebaran terlebih dahulu</span>
                     </base-alert>
                 </div>
-            </div>
+            </div> -->
         </base-header>
 
         <!--Charts-->
-        <div class="container-fluid mt--7">
+        <div class="container-fluid mt--8 bg-primary">
             <div class="row">
                 <div class="col">
                     <card class="shadow" header-classes="bg-transparent" :noBody="true">
                         <div slot="header" class="row align-items-center">
                             <div class="col">
-                                <h5 v-if="bigLineChart.activeIndex === 0" class="h3 mb-0">Sensor Suhu</h5>
-                                <h5 v-if="bigLineChart.activeIndex === 1" class="h3 mb-0">Sensor Kelembaban</h5>
+                                <h5 v-if="bigLineChart.activeIndex === 0" class="h3 mb-0">Suhu Udara</h5>
+                                <h5 v-if="bigLineChart.activeIndex === 1" class="h3 mb-0">Kelembaban</h5>
                             </div>
                             <div class="col">
                                 <ul class="nav nav-pills justify-content-end">
@@ -127,7 +127,7 @@
                                 :extra-options="bigLineChart.extraOptions"
                         >
                         </line-chart>
-                        <div slot="footer">
+                        <!-- <div slot="footer">
                             <div class="row">
                                 <div class="col-12">
                                     <h3 class="text-center">Lokasi Sensor</h3>        
@@ -136,7 +136,7 @@
                                     <h3 class="font-weight-light text-center"><i class="fas fa-map-marker-alt"></i> Balai Sea Farming</h3>        
                                 </div>
                             </div>    
-                        </div>
+                        </div> -->
                     </card>
                 </div>
 
@@ -160,87 +160,7 @@
             </div>
         </div>
         <!-- End charts-->
-        <!-- Card Total Produksi -->
-        <div class="container-fluid mt-3">
-            <div class="row">
-                <div class="col">
-                    <card shadow :noBody="true">
-                        <div slot="header" class="bg-white border-0">
-                            <div class="row align-items-center">
-                                <div class="col-8">
-                                    <h3 class="mb-0">Total Produksi</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="table-responsive">
-                                <base-table class="table align-items-center table-flush"
-                                            thead-classes="thead-light"
-                                            tbody-classes="list">
-                                    <template slot="columns">
-                                        <th>Bulan ini</th>
-                                        <th>Tahun ini</th>
-                                    </template>
-                                    <template slot="object">
-                                        <td>
-                                            <span class="font-weight-bold">{{totalProd.produksibulanini}}</span>
-                                        </td>
-                                        <td>
-                                            <span class="font-weight-bold">{{totalProd.produksitahunini}}</span>
-                                        </td>
-                                    </template>
-                                </base-table>
-                            </div>
-                        </div>
-                        <div slot="footer" class="d-flex justify-content-end">
-                            <a href="/produksi">Lihat Semua Produksi</a>
-                        </div>
-                    </card>
-                </div>
-            </div>
-        </div>
-        <!-- End card Total Produksi -->
-        <!-- Card Total Ikan -->
-        <div class="container-fluid mt-3">
-            <div class="row">
-                <div class="col">
-                    <card shadow :noBody="true">
-                        <div slot="header" class="bg-white border-0">
-                            <div class="row align-items-center">
-                                <div class="col-8">
-                                    <h3 class="mb-0">Total Ikan Saat Ini</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                        <div class="table-responsive">
-                            <base-table class="table align-items-center table-flush"
-                                        thead-classes="thead-light"
-                                        tbody-classes="list"
-                                        :data="totalIkans">
-                                <template slot="columns">
-                                    <th>Nama Ikan</th>
-                                    <th>Jumlah Ikan</th>
-                                </template>
-                                <template slot-scope="{row}">
-                                    <td scope="row">
-                                        <span class="font-weight-bold">{{row.nama_ikan}}</span>
-                                    </td>
-                                    <td>
-                                        <span class="font-weight-bold">{{row.total_ikan}}</span>
-                                    </td>
-                                </template>
-                            </base-table>
-                        </div>
-                        </div>
-                        <div slot="footer" class="d-flex justify-content-end">
-                            Total {{totalIkan}} Ikan
-                        </div>
-                    </card>
-                </div>
-            </div>
-        </div>
-        <!-- End card Total Produksi -->
+        
 
     </div>
 </template>
@@ -265,9 +185,6 @@
     data() {
       return {
         errors: '',
-        totalProd: '',
-        totalIkans: [],
-        totalIkan: '',
         sensorHumTemps: '',
         sensorHumTemp: {
           id: '',
@@ -291,7 +208,6 @@
       }
     },
     mounted() {
-        this.getSummary();
         this.getSensorHumTemp();
     },
     methods:{
@@ -306,22 +222,6 @@
                     console.log('Fetch Data Error!');
                 });
             
-        },
-        async getSummary() {
-            await axios.all([
-                axios.get(`apiproduksi/wheretotalproduksi?user=${this.user.id}`),
-                axios.get(`apisubproduksi/wheretotalikan?user=${this.user.id}`)
-            ])
-            .then(axios.spread((responseProd, responseIkan) => {
-                this.totalProd = responseProd.data;
-                this.totalIkans = responseIkan.data.user;
-                this.totalIkan = responseIkan.data.total;
-                // console.log(responseProd.data);
-                // console.log(responseIkan.data.user);
-            }))
-            .catch(function (error) {
-                console.log('Fetch Data Produksi Error!');
-            });
         },
         initBigChart(index) {
             if (index === 0){

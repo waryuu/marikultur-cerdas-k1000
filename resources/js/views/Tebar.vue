@@ -1,21 +1,21 @@
 <template>
     <div>
-        <base-header class="header pb-7 pt-6 pt-lg-7 d-flex align-items-center"
-                     style="min-height: 300px; background-size: cover; background-position: center top;">
+        <base-header class="header pb-7 pt-4 pt-lg-7 d-flex align-items-center"
+                     style="min-height: 100px; background-size: cover; background-position: center top;">
             <!-- Mask -->
             <!-- <span class="mask bg-gradient-success opacity-8"></span> -->
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
-                    <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Penebaran</h1>
-                        <p class="text-white mt-0 mb-5">Silahkan isi form berikut untuk melakukan penebaran</p>
+                    <div class="col">
+                        <!-- <h1 class="display-2 text-white">Penebaran</h1> -->
+                        <p class="text-white mt-0 mb-3">Silahkan isi form berikut untuk melakukan penebaran</p>
                     </div>
                 </div>
             </div>
         </base-header>
 
-        <div class="container-fluid mt--7">
+        <div class="container-fluid mt--7 bg-primary">
             <!-- <div class="row mb-3">
                 <div class="col text-left">
                         <router-link to="/beranda" class="btn btn-secondary text-uppercase">
@@ -65,7 +65,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+                                        <div class="text-muted mb-3">
+                                            <small>
+                                                <span class="font-italic">Tambah ikan?</span>
+                                                <router-link to="/beranda"> Klik disini</router-link>
+                                            </small> 
+                                        </div>
                                         <base-input alternative=""
                                                     label="Jumlah Ikan"
                                                     placeholder="Masukkan Jumlah Ikan"
@@ -131,6 +136,12 @@
                                                     </multiselect>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="text-muted">
+                                            <small>
+                                                <span class="font-italic">Tambah keramba?</span>
+                                                <router-link to="/keramba"> Klik disini</router-link>
+                                            </small> 
                                         </div>
                                     </div>
                                 </form>
