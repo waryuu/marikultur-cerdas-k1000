@@ -141,6 +141,11 @@ class ApiSubproduksiController extends Controller
             'subproduksi_id' => $subproduksi->id,
             'kegiatan' => 'Pengubahan'
         ]);
+
+        if($subproduksi->jumlah_ikan == '0'){
+            $id = $request->produksi_id;
+            $produksi = ProduksiModel::find($id)->decrement('jumlah_subproduksi');
+        }
             DB::commit();
            
             return new SubproduksiResources($subproduksi);
@@ -201,6 +206,24 @@ class ApiSubproduksiController extends Controller
 
         $id_pindah = $request->subproduksi_yang_dipindah;
         $subproduksi_decent = SubproduksiModel::find($id_pindah)->decrement('jumlah_ikan', $subproduksi->jumlah_ikan);
+        $subproduksi_sebelumnya = SubproduksiModel::find($id_pindah);
+    
+        if($subproduksi_sebelumnya->jumlah_ikan == '0'){
+            $id = $request->produksi_id;
+            $produksi = ProduksiModel::find($id)->decrement('jumlah_subproduksi');
+        }
+        // $subproduksi_check = SubproduksiModel::find($id_pindah)->decrement('jumlah_ikan', $subproduksi->jumlah_ikan)->;
+        
+
+        
+        // $produksi_decent = SubproduksiModel::leftjoin('produksi', 'produksi.id', '=', 'subproduksi.produksi_id')
+        // ->select('produksi.*','subproduksi.*')
+        // ->where('subproduksi.id',$id_pindah)->where('produksi.id',$produksi_id)
+        // ->where('subproduksi.jumlah_ikan', '=' , 0)->decrement('produksi.jumlah_subproduksi');
+
+       
+        // $produksi_decent = SubproduksiModel::find($id_pindah)->ProduksiModel::find($produksi_id)
+        // ->where('subproduksi.jumlah_ikan', '=' , 0)->decrement('produksi.jumlah_subproduksi');
 
         DB::commit();
         return new SubproduksiResources($subproduksi);
