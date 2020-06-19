@@ -62,11 +62,11 @@ class ApiSubproduksiController extends Controller
     {
     $user_id = $request->query('user');
     
-    $user = SubproduksiModel::leftjoin('subproduksi', 'subproduksi.produksi_id', '=', 'produksi.id')
+    $user = SubproduksiModel::leftjoin('produksi', 'produksi.id', '=', 'subproduksi.produksi_id')
     ->groupBy('subproduksi.nama_ikan')->where('produksi.user_id',$user_id)->where('subproduksi.status_panen','Pembesaran')
     ->select('subproduksi.nama_ikan', DB::raw('sum(subproduksi.jumlah_ikan) as total_ikan'))->get();
     
-    $total = SubproduksiModel::leftjoin('subproduksi', 'subproduksi.produksi_id', '=', 'produksi.id')
+    $total = SubproduksiModel::leftjoin('produksi', 'produksi.id', '=', 'subproduksi.produksi_id')
     ->where('produksi.user_id',$user_id)->where('subproduksi.status_panen','Pembesaran')->sum('subproduksi.jumlah_ikan');
    
     return response()->json(compact('user','total'),201);
