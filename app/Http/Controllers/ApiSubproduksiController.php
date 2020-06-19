@@ -61,6 +61,7 @@ class ApiSubproduksiController extends Controller
     public function wheretotalikan(Request $request)
     {
     $user_id = $request->query('user');
+    
     $user = SubproduksiModel::leftjoin('subproduksi', 'subproduksi.produksi_id', '=', 'produksi.id')
     ->groupBy('subproduksi.nama_ikan')->where('produksi.user_id',$user_id)->where('subproduksi.status_panen','Pembesaran')
     ->select('subproduksi.nama_ikan', DB::raw('sum(subproduksi.jumlah_ikan) as total_ikan'))->get();
@@ -156,7 +157,7 @@ class ApiSubproduksiController extends Controller
             'berat_ikan' => 'required|string',
             'tanggal_pindah' => 'required|string',
             'tanggal_cuci' => 'required|string',
-            'keramba_sebelum' => 'required|integer',
+            'keramba_sebelum' => 'nullable|integer',
             'keramba_sesudah' => 'required|integer',
             'produksi_id'=> 'required|integer',
           

@@ -24,7 +24,6 @@ Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function(){
     Route::get('user/{idKelompok}','ApiUserController@byIdKelompok');
 });
 
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -54,6 +53,7 @@ Route::put('/apisubproduksi/panen','ApiSubproduksiController@panen');
 
 Route::get('/apisubproduksilog/where','ApiSubproduksiLogController@where');
 Route::get('/apisubproduksilog/wheresub','ApiSubproduksiLogController@getsubproduksilogbyproduksi');
+Route::get('/apisubproduksilog/whereid','ApiSubproduksiLogController@getsubproduksilogbyid');
 Route::get('/apisubproduksilog','ApiSubproduksiLogController@subproduksilogget');
 Route::get('/apisubproduksilog/{id}','ApiSubproduksiLogController@showsubproduksilog');
 Route::post('/apisubproduksilog/store','ApiSubproduksiLogController@subproduksilogstore');
