@@ -28,6 +28,7 @@ class SubproduksiLogResources extends JsonResource
             'keramba_sesudah'=>$this->keramba_sesudah, 
             'kegiatan'=>$this->kegiatan,    
             'subproduksi_id'=>$this->subproduksi_id,
+            'produksi_id'=>$this->produksi_id,
             'created_at'=>$created_at_doang,
             'user_id'=>$this->user_id
         ];
