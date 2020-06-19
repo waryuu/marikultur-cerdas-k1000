@@ -23,9 +23,9 @@ class ApiSubproduksiLogController extends Controller
             ->select('subproduksilog.*')
             ->groupBy('subproduksi.id')
             ->where('subproduksi.id',$subproduksi_id)
-            ->latest('id')->get();
+            ->latest('id')->first();
 
-        return  SubproduksiLogResources::collection($subproduksilog);
+        return new SubproduksiLogResources($subproduksilog);
     }
     public function getsubproduksilogbyproduksi(Request $request)
     {
