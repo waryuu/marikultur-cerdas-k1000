@@ -21,10 +21,9 @@ class ApiSubproduksiLogController extends Controller
         $subproduksi_id = $request->query('subproduksi');
         $subproduksilog = SubproduksiLogModel::leftjoin('subproduksi', 'subproduksi.id', '=', 'subproduksilog.subproduksi_id')
             ->select('subproduksilog.*')
-            ->groupBy('subproduksilog.id')
+            ->groupBy('subproduksi.id')
             ->where('subproduksi.id',$subproduksi_id)
-            ->whereRaw('subproduksilog.id IN (select MAX(subproduksilog.id) FROM subproduksilog GROUP BY subproduksilog.subproduksi_id)')
-            ->paginate(5);
+            ->latest('id')->get();
 
         return  SubproduksiLogResources::collection($subproduksilog);
     }
