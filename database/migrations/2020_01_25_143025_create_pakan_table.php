@@ -15,9 +15,9 @@ class CreatePakanTable extends Migration
     {
         Schema::create('pakan', function (Blueprint $table) {
             $table->Increments('id');
-            $table->string('baterai_pakan');
-            $table->integer('keramba_id')->unsigned();
-            $table->foreign('keramba_id')->references('id')->on('keramba');
+            $table->string('jumlah_pakan');
+            $table->integer('subproduksi_id')->unsigned();
+            $table->foreign('subproduksi_id')->references('id')->on('subproduksi');
             $table->timestamps();
         });
     }

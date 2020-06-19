@@ -68,8 +68,8 @@ class ApiSubproduksiController extends Controller
     
     $total = SubproduksiModel::leftjoin('subproduksi', 'subproduksi.produksi_id', '=', 'produksi.id')
     ->where('produksi.user_id',$user_id)->where('subproduksi.status_panen','Pembesaran')->sum('subproduksi.jumlah_ikan');
+   
     return response()->json(compact('user','total'),201);
-
     }
 
     public function getallsubproduksi()
@@ -160,7 +160,6 @@ class ApiSubproduksiController extends Controller
             'keramba_sebelum' => 'nullable|integer',
             'keramba_sesudah' => 'required|integer',
             'produksi_id'=> 'required|integer',
-          
         ]);
 
         if($validator->fails()){

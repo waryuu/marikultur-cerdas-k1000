@@ -20,12 +20,14 @@ class ApiSubproduksiLogController extends Controller
 
         $subproduksi_id = $request->query('subproduksi');
         $subproduksilog = SubproduksiLogModel::leftjoin('subproduksi', 'subproduksi.id', '=', 'subproduksilog.subproduksi_id')
-            ->select('subproduksilog.*', 'subproduksi.produksi_id')
+            ->select('subproduksilog.nama_ikan','subproduksilog.panjang_ikan','subproduksilog.tanggal_cuci','subproduksilog.tanggal_pindah'
+            ,'subproduksilog.berat_ikan','subproduksilog.keramba_sebelum','subproduksilog.keramba_sesudah'
+            ,'subproduksi.jumlah_ikan', 'subproduksi.produksi_id')
             ->groupBy('subproduksi.id')
             ->where('subproduksi.id',$subproduksi_id)
             ->latest('id')->first();
 
-        return new SubproduksiLogResources($subproduksilog);
+          return new SubproduksiLogResources($subproduksilog);   
     }
     public function getsubproduksilogbyproduksi(Request $request)
     {
@@ -38,7 +40,8 @@ class ApiSubproduksiLogController extends Controller
             ->where('produksi.id',$produksi_id)
             ->paginate(5);
 
-        return  SubproduksiLogResources::collection($subproduksilog);
+
+      return  SubproduksiLogResources::collection($subproduksilog);
     }
     
     public function subproduksilogstore(Request $request)
