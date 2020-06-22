@@ -11756,7 +11756,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("footer", { staticClass: "footer px-4" }, [
+  return _c("footer", { staticClass: "footer px-4 bg-primary" }, [
     _c(
       "div",
       { staticClass: "row align-items-center justify-content-lg-between" },
@@ -11764,13 +11764,15 @@ var render = function() {
         _c("div", { staticClass: "col-lg-6" }, [
           _c(
             "div",
-            { staticClass: "copyright text-center text-lg-left text-muted" },
+            {
+              staticClass: "copyright text-center text-lg-left text-secondary"
+            },
             [
               _vm._v("\n        © " + _vm._s(_vm.year) + " "),
               _c(
                 "a",
                 {
-                  staticClass: "font-weight-bold ml-1",
+                  staticClass: "font-weight-bold ml-1 text-white",
                   attrs: { href: "https://www.ipb.ac.id/", target: "_blank" }
                 },
                 [_vm._v("IPB University")]
@@ -11968,33 +11970,11 @@ var render = function() {
     },
     [
       _c(
-        "form",
+        "ul",
         {
           staticClass:
-            "navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
+            "navbar-nav align-items-center ml-lg-auto d-none d-md-flex"
         },
-        [
-          _c(
-            "div",
-            { staticClass: "form-group mb-0" },
-            [
-              _c("base-input", {
-                staticClass: "input-group-alternative",
-                attrs: {
-                  placeholder: "Cari",
-                  alternative: "",
-                  "addon-right-icon": "fas fa-search"
-                }
-              })
-            ],
-            1
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "navbar-nav align-items-center d-none d-md-flex" },
         [
           _c(
             "li",
@@ -31313,10 +31293,22 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/Panen.vue */ "./resources/js/views/Panen.vue"));
       }
     }, {
+      path: '/produksi/pakan/:id',
+      name: 'pakan',
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
+      }
+    }, {
       path: '/keramba',
       name: 'keramba',
       component: function component() {
         return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
+      }
+    }, {
+      path: '/ikan',
+      name: 'ikan',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! ./views/Ikan.vue */ "./resources/js/views/Ikan.vue"));
       }
     }, {
       path: '/profil',
@@ -31352,7 +31344,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
       }
     }, {
       path: '/kelompok',

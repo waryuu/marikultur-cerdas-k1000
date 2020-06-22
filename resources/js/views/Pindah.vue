@@ -1,21 +1,21 @@
 <template>
     <div>
-        <base-header class="header pb-7 pt-6 pt-lg-7 d-flex align-items-center"
-                     style="min-height: 300px; background-size: cover; background-position: center top;">
+        <base-header class="header pb-7 pt-4 pt-lg-7 d-flex align-items-center"
+                     style="min-height: 100px; background-size: cover; background-position: center top;">
             <!-- Mask -->
             <!-- <span class="mask bg-gradient-success opacity-8"></span> -->
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
-                    <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Pindah dan Cuci Produksi</h1>
-                        <p class="text-white mt-0 mb-5">Silahkan isi form berikut untuk melakukan pencucian dan pemindahan</p>
+                    <div class="col">
+                        <!-- <h1 class="display-2 text-white">Pindah dan Cuci Produksi</h1> -->
+                        <p class="text-white mt-0 mb-3">Silahkan isi form berikut untuk melakukan pencucian dan pemindahan</p>
                     </div>
                 </div>
             </div>
         </base-header>
 
-        <div class="container-fluid mt--7">
+        <div class="container-fluid mt--7 bg-primary">
             <!-- <div class="row mb-3">
                 <div class="col text-left">
                         <router-link to="/beranda" class="btn btn-secondary text-uppercase">
@@ -206,7 +206,7 @@
         async getProduksi() {
             let id = this.user.kelompok_id;
             await axios.all([
-                axios.get(`apisubproduksi/${this.$route.params.id}`),
+                axios.get(`apisubproduksilog/whereid?subproduksi=${this.$route.params.id}`),
                 axios.get(`apikeramba/where?kelompok=${id}`)
             ])
             .then(axios.spread((responseProd, responseKeramba) => {
@@ -214,6 +214,7 @@
                 this.model.keramba_sebelum = this.model.keramba_sesudah;
                 this.jumlah_sebelum = this.model.jumlah_ikan;
                 this.kerambas = responseKeramba.data;
+                console.log(this.model);
             }))
             .catch(function (error) {
                 console.log('Fetch Data Produksi Error!');
@@ -221,12 +222,13 @@
         },
         async submitProduksi(){
             this.errors = '';
-            this.model.id = '';
+            this.model.id = this.model.subproduksi_id;
             if (!this.model.jumlah_ikan || !this.model.panjang_ikan || !this.model.berat_ikan || !this.model.tanggal_cuci || !this.model.tanggal_pindah || !this.model.keramba_sesudah || !this.keramba || this.model.keramba_sebelum === this.model.keramba_sesudah || this.jumlah_sebelum <= this.model.jumlah_ikan) {
                 this.errors = 'Harap isi semua form dengan benar!';
             }
             else{
                 let credentials = this.model;
+                console.log(credentials);
                 await axios.post(`apisubproduksi/store?subproduksi_yang_dipindah=${this.$route.params.id}`, credentials)
                 .then(() =>{
                         this.$router.go(-1);

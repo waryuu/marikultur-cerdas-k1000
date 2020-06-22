@@ -1,21 +1,21 @@
 <template>
     <div>
-        <base-header class="header pb-7 pt-6 pt-lg-7 d-flex align-items-center"
-                     style="min-height: 300px; background-size: cover; background-position: center top;">
+        <base-header class="header pb-7 pt-4 pt-lg-7 d-flex align-items-center"
+                     style="min-height: 100px; background-size: cover; background-position: center top;">
             <!-- Mask -->
             <!-- <span class="mask bg-gradient-success opacity-8"></span> -->
             <!-- Header container -->
-            <div class="container-fluid d-flex align-items-center">
+            <!-- <div class="container-fluid d-flex align-items-center">
                 <div class="row">
                     <div class="col-lg-7 col-md-10">
                         <h1 class="display-2 text-white">Detail</h1>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </base-header>
 
         <!-- Card Produksi -->
-        <div class="container-fluid mt--7">
+        <div class="container-fluid mt--7 bg-primary">
             <!-- <div class="row mb-3">
                 <div class="col text-left">
                         <router-link to="/produksi" class="btn btn-secondary text-uppercase">
@@ -90,12 +90,25 @@
                                             {{produksi.panjang_ikan}} cm
                                         </h3>
                                     </div>
+                                </div>
+                                <div class="row mt-2">
                                     <div class="col">
                                         <h4 class="text-center text-uppercase font-weight-light">
                                             Berat
                                         </h4>
                                         <h3 class="text-center">
                                             {{produksi.berat_ikan}} Gram
+                                        </h3>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="text-center text-uppercase font-weight-light">
+                                            Pakan
+                                        </h4>
+                                        <h3 v-if="produksi.total_pakan" class="text-center">
+                                            {{produksi.total_pakan}} Kg
+                                        </h3>
+                                        <h3 v-else class="text-center">
+                                            Belum Ada
                                         </h3>
                                     </div>
                                 </div>
@@ -142,7 +155,7 @@
                                         </div>
                                         <div v-if="produksi.do_air != null && produksi.do_air.length" class="col card border-0 ml-1 bg-info" style="border-radius:0.25rem">
                                             <div class="row ml-1 mr-1 mt-2"><h3 class="card-title mb-0 text-white">Oksigen</h3></div>
-                                            <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">{{produksi.do_air}} %</h4></div>
+                                            <div class="row ml-1 mr-1 mb-2"><h4 class="card-title font-weight-light mb-0 text-white">{{produksi.do_air}} ppm</h4></div>
                                         </div>
                                     </div>
                                     <!-- <form class="row align-items-center px-3 mt-3" action="" method="post">
@@ -158,6 +171,11 @@
                                                     </router-link>
                                                     <router-link :to="{ name: 'pindah', params: { id: produksi.id }}" class="col btn btn-primary">
                                                         Pindah
+                                                    </router-link>
+                                        </div>
+                                        <div class="row mt-3 px-3">
+                                                    <router-link :to="{ name: 'pakan', params: { id: produksi.id }}" class="col btn btn-primary">
+                                                        Pakan
                                                     </router-link>
                                                     <router-link :to="{ name: 'panen', params: { id: produksi.id }}" class="col btn btn-primary">
                                                         Panen 

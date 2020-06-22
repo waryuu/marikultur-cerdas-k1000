@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col">
                         <!-- <h1 class="display-2 text-white">Penebaran</h1> -->
-                        <p class="text-white mt-0 mb-3">Silahkan isi form berikut untuk menambah keramba baru</p>
+                        <p class="text-white mt-0 mb-3">Silahkan isi form berikut untuk menambah ikan baru</p>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                         <div slot="header" class="bg-white border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Informasi Keramba</h3>
+                                    <h3 class="mb-0">Informasi Ikan</h3>
                                 </div>
                             </div>
                         </div>
@@ -45,45 +45,20 @@
                                             </button>
                                         </base-alert>
                                         <base-input alternative=""
-                                                    label="Nama Keramba"
-                                                    placeholder="Masukkan Nama Keramba"
+                                                    label="Nama Ikan"
+                                                    placeholder="Masukkan Nama Ikan"
                                                     input-classes="form-control-alternative"
                                                     type="text"
-                                                    v-model="model.nama_keramba"
+                                                    v-model="model.nama_ikan"
 
                                         />
-                                        <base-input alternative=""
-                                                    label="Panjang Keramba (m)"
-                                                    placeholder="Masukkan Panjang Keramba (m)"
-                                                    input-classes="form-control-alternative"
-                                                    type="number"
-                                                    v-model="model.panjang_keramba"
-
-                                        />
-                                        <base-input alternative=""
-                                                    label="Lebar Keramba (m)"
-                                                    placeholder="Masukkan Lebar Keramba (m)"
-                                                    input-classes="form-control-alternative"
-                                                    type="number"
-                                                    v-model="model.lebar_keramba"
-
-                                        />
-                                        <base-input alternative=""
-                                                    label="Kapasitas Keramba (max jumlah ikan)"
-                                                    placeholder="Masukkan Kapasitas Keramba"
-                                                    input-classes="form-control-alternative"
-                                                    type="number"
-                                                    v-model="model.kapasitas_keramba"
-
-                                        />
-                                       
                                     </div>
                                 </form>
                             </template>
                         </div>
                         <div slot="footer" class="text-center d-flex">
                             <a @click="$router.go(-1)" class="btn btn-link text-uppercase text-primary">Batal</a>
-                            <base-button @click="submitKeramba()" nativeType="submit" type="primary" class="text-uppercase ml-auto">Simpan</base-button>
+                            <base-button @click="submitIkan()" nativeType="submit" type="primary" class="text-uppercase ml-auto">Simpan</base-button>
                         </div>
                     </card>
                 </div>
@@ -94,24 +69,21 @@
 <script>
   import axios from 'axios'
   export default {
-    name: 'keramba',
+    name: 'ikan',
     data() {
       return {
         errors: '',
         model: {
-            nama_keramba: '',
-            panjang_keramba: '',
-            lebar_keramba: '',
-            kapasitas_keramba: '',
+            nama_ikan: '',
         }
       }
     },
     methods:{
-        async submitKeramba(){
+        async submitIkan(){
             this.errors = '';
             let credentials = this.model;
             console.log(credentials);
-            await axios.post('apikeramba/store', credentials)
+            await axios.post('apinamaikan/store', credentials)
             .then(() =>{
                     this.$router.go(-1)
                 })

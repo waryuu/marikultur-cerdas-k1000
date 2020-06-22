@@ -1,21 +1,96 @@
 <template>
     <div>
-        <base-header class="header pb-7 pt-6 pt-lg-7 d-flex align-items-center"
+        <base-header class="header pb-7 pt-4 pt-lg-7 d-flex align-items-center"
                      style="min-height: 300px; background-size: cover; background-position: center top;">
             <!-- Mask -->
             <!-- <span class="mask bg-gradient-success opacity-8"></span> -->
             <!-- Header container -->
-            <div class="container-fluid d-flex align-items-center">
+            <!-- <div class="container-fluid d-flex align-items-center">
                 <div class="row">
-                    <div class="col-lg-7 col-md-10">
+                    <div class="col-lg-7">
                         <h1 class="display-2 text-white">Produksi</h1>
                     </div>
                 </div>
+            </div> -->
+            <!-- Card Total Produksi -->
+            <div class="row">
+                <div class="col-lg-6 mb-3">
+                    <card shadow :noBody="true">
+                        <div slot="header" class="bg-white border-0">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0">Total Produksi</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="table-responsive">
+                                <base-table class="table align-items-center table-flush"
+                                            thead-classes="thead-light"
+                                            tbody-classes="list">
+                                    <template slot="columns">
+                                        <th>Bulan ini</th>
+                                        <th>Tahun ini</th>
+                                    </template>
+                                    <template slot="object">
+                                        <td>
+                                            <span class="font-weight-bold">{{totalProd.produksibulanini}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="font-weight-bold">{{totalProd.produksitahunini}}</span>
+                                        </td>
+                                    </template>
+                                </base-table>
+                            </div>
+                        </div>
+                        <div slot="footer" class="d-flex justify-content-end">
+                            <!-- <a href="/produksi">Lihat Semua Produksi</a> -->
+                        </div>
+                    </card>
+                </div>
+            <!-- End card Total Produksi -->
+            <!-- Card Total Ikan -->
+                <div class="col-lg-6 mb-3">
+                    <card shadow :noBody="true">
+                        <div slot="header" class="bg-white border-0">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0">Total Ikan Saat Ini</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                        <div class="table-responsive">
+                            <base-table class="table align-items-center table-flush"
+                                        thead-classes="thead-light"
+                                        tbody-classes="list"
+                                        :data="totalIkans">
+                                <template slot="columns">
+                                    <th>Nama Ikan</th>
+                                    <th>Jumlah Ikan</th>
+                                </template>
+                                <template slot-scope="{row}">
+                                    <td scope="row">
+                                        <span class="font-weight-bold">{{row.nama_ikan}}</span>
+                                    </td>
+                                    <td>
+                                        <span class="font-weight-bold">{{row.total_ikan}}</span>
+                                    </td>
+                                </template>
+                            </base-table>
+                        </div>
+                        </div>
+                        <div slot="footer" class="d-flex justify-content-end">
+                            Total {{totalIkan}} Ikan
+                        </div>
+                    </card>
+                </div>
             </div>
+            <!-- End card Total Ikan -->
         </base-header>
 
         <!-- Card Produksi -->
-        <div class="container-fluid mt--7">
+        <div class="container-fluid mt--7 bg-primary">
             <!-- <div class="row mb-3">
                 <div class="col text-left">
                         <router-link to="/beranda" class="btn btn-secondary text-uppercase">
@@ -113,7 +188,19 @@
                                         {{produksi.berat_ikan_awal}} Gram
                                     </h3>
                                 </div> -->
-
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <h4 class="text-center text-uppercase font-weight-light">
+                                        Total Pakan
+                                    </h4>
+                                    <h3 v-if="produksi.total_pakan" class="text-center">
+                                        {{produksi.total_pakan}} Kg
+                                    </h3>
+                                    <h3 v-else class="text-center">
+                                        Belum Ada
+                                    </h3>
+                                </div>
                             </div>
                             <div class="row mt-3 mb-3">
                                 <div class="col">
@@ -226,6 +313,9 @@
         showModalSensor: false,
         showModalPakan: false,
         offset: 4,
+        totalProd: '',
+        totalIkans: [],
+        totalIkan: '',
         produksis: [],
         produksi: {
           id: '',
@@ -238,6 +328,7 @@
           tanggal_cuci: '',
           tanggal_pindah: '',
           status_panen: '',
+          jumlah_terkini: '',
           keramba_id: ''
         },
         cucis: [],
@@ -287,6 +378,7 @@
     },
     mounted() {
         this.getProduksi();
+        this.getSummary();
     },
     methods:{
         async getProduksi(){
@@ -296,6 +388,7 @@
                     // console.log(this.produksis);
                     this.meta = response.data.meta;
                     this.links = response.data.links;
+                    console.log(this.produksis);
                 })
                 .catch(() => {
                     console.log('Fetch Data Produksi Error!');
@@ -324,7 +417,23 @@
                 .catch(() => {
                     console.log('Fetch Pakan Error!');
                 });
-        }
+        },
+        async getSummary() {
+            await axios.all([
+                axios.get(`apiproduksi/wheretotalproduksi?user=${this.user.id}`),
+                axios.get(`apisubproduksi/wheretotalikan?user=${this.user.id}`)
+            ])
+            .then(axios.spread((responseProd, responseIkan) => {
+                this.totalProd = responseProd.data;
+                this.totalIkans = responseIkan.data.user;
+                this.totalIkan = responseIkan.data.total;
+                // console.log(responseProd.data);
+                // console.log(responseIkan.data.user);
+            }))
+            .catch(function (error) {
+                console.log('Fetch Data Produksi Error!');
+            });
+        },
 
     }
   }

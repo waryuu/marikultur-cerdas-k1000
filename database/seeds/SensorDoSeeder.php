@@ -18,6 +18,30 @@ class SensorDoSeeder extends Seeder
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
+            'do_air' => '35',
+            'keramba_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('sensor_do')->insert([
+            'do_air' => '36',
+            'keramba_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('sensor_do')->insert([
+            'do_air' => '40',
+            'keramba_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('sensor_do')->insert([
+            'do_air' => '37',
+            'keramba_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('sensor_do')->insert([
             'do_air' => '40',
             'keramba_id' => '2',
             'created_at' => now(),

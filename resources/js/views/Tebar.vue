@@ -1,21 +1,21 @@
 <template>
     <div>
-        <base-header class="header pb-7 pt-6 pt-lg-7 d-flex align-items-center"
-                     style="min-height: 300px; background-size: cover; background-position: center top;">
+        <base-header class="header pb-7 pt-4 pt-lg-7 d-flex align-items-center"
+                     style="min-height: 100px; background-size: cover; background-position: center top;">
             <!-- Mask -->
             <!-- <span class="mask bg-gradient-success opacity-8"></span> -->
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
-                    <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Penebaran</h1>
-                        <p class="text-white mt-0 mb-5">Silahkan isi form berikut untuk melakukan penebaran</p>
+                    <div class="col">
+                        <!-- <h1 class="display-2 text-white">Penebaran</h1> -->
+                        <p class="text-white mt-0 mb-3">Silahkan isi form berikut untuk melakukan penebaran</p>
                     </div>
                 </div>
             </div>
         </base-header>
 
-        <div class="container-fluid mt--7">
+        <div class="container-fluid mt--7 bg-primary">
             <!-- <div class="row mb-3">
                 <div class="col text-left">
                         <router-link to="/beranda" class="btn btn-secondary text-uppercase">
@@ -50,7 +50,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </base-alert>
-                                        <div class="row mb-3">
+                                        <!-- <div class="row mb-3">
                                             <div class="col-lg-12">
                                                 <div class="form-control-label">Nama Ikan</div>
                                                 <div class="round">
@@ -64,8 +64,32 @@
                                                     </multiselect>
                                                 </div>
                                             </div>
+                                        </div> -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-12">
+                                                <div class="form-control-label">Nama Ikan</div>
+                                                <div class="round">
+                                                    <multiselect @input="opt => model.nama_ikan = opt.nama_ikan" 
+                                                                v-model="ikan"
+                                                                :value="ikan"
+                                                                track-by="id"
+                                                                label="nama_ikan"
+                                                                :close-on-select="true" 
+                                                                placeholder="Pilih Nama Ikan"
+                                                                :options="ikans"
+                                                                :searchable="true"
+                                                                :allow-empty="false"
+                                                                :show-labels="false">
+                                                    </multiselect>
+                                                </div>
+                                            </div>
                                         </div>
-                                        
+                                        <div class="text-muted mb-3">
+                                            <small>
+                                                <span class="font-italic">Tambah ikan?</span>
+                                                <router-link to="/ikan"> Klik disini</router-link>
+                                            </small> 
+                                        </div>
                                         <base-input alternative=""
                                                     label="Jumlah Ikan"
                                                     placeholder="Masukkan Jumlah Ikan"
@@ -132,6 +156,12 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="text-muted">
+                                            <small>
+                                                <span class="font-italic">Tambah keramba?</span>
+                                                <router-link to="/keramba"> Klik disini</router-link>
+                                            </small> 
+                                        </div>
                                     </div>
                                 </form>
                             </template>
@@ -165,13 +195,8 @@
         errors: '',
         kerambas: [],
         keramba: '',
-        ikans: [
-            'Kerapu Cantang',
-            'Kerapu Macan'
-        ],
-        ikan: {
-            nama_ikan: ''
-        },
+        ikans: [],
+        ikan: '',
         model: {
             nama_ikan: '',
             jumlah_ikan: '',
@@ -186,9 +211,10 @@
     },
     created() {
         this.getKeramba();
+        this.getIkan();
         this.model.kelompok_id = this.user.kelompok_id;
         this.model.user_id = this.user.id;
-        console.log(this.keramba);
+        // console.log(this.keramba);
     },
     methods:{
         async getKeramba(){
@@ -196,6 +222,16 @@
             await axios.get(`apikeramba/where?kelompok=${id}`)
                 .then((response) => {
                     this.kerambas = response.data;
+                })
+                .catch(() => {
+                    console.log('Fetch Data Error!');
+                });
+        },
+        async getIkan(){
+            await axios.get(`apinamaikan`)
+                .then((response) => {
+                    this.ikans = response.data.data;
+                    console.log(response.data);
                 })
                 .catch(() => {
                     console.log('Fetch Data Error!');

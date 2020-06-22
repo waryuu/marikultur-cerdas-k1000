@@ -4,7 +4,7 @@
             <div class="card bg-secondary shadow border-0">
                 <div class="card-header bg-transparent">
                     <div class="text-center">
-                        <h4>Silahkan isi form berikut</h4>
+                        <h4 class="mb-0">Silahkan isi form berikut</h4>
                     </div>
                         <base-alert v-if="errors.length" class="px-lg-5 mt-4" type="warning" dismissible>
                             <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
@@ -26,7 +26,7 @@
                         </base-input>
 
                         <select v-model="model.status" class="input-group-alternative mb-3 form-control">
-                            <option disabled value="">Pilih Jabatan Anda</option>
+                            <option disabled value="">Pilih Jabatan Anda *</option>
                             <option value="ketua">Ketua Kelompok</option>
                             <option value="user">Anggota</option>
                         </select>
@@ -50,27 +50,30 @@
                                     v-model="model.email">
                         </base-input>
 
-                        <base-input class="input-group-alternative"
+                        <base-input class="input-group-alternative mb-1"
                                     :required="true"
-                                    placeholder="Sandi **"
+                                    placeholder="Sandi *"
                                     type="password"
                                     addon-left-icon="ni ni-lock-circle-open"
                                     v-model="model.password">
                         </base-input>
-
-                        <base-input class="input-group-alternative"
+                        <div class="text-muted font-italic">
+                            <small>Kata sandi minimal 6 karakter</small>
+                        </div>
+                        <base-input class="input-group-alternative mb-1"
                                     :required="true"
-                                    placeholder="Konfirmasi Sandi **"
+                                    placeholder="Konfirmasi Sandi *"
                                     type="password"
                                     addon-left-icon="ni ni-lock-circle-open"
                                     v-model="model.password_confirmation">
                         </base-input>
                         <div class="text-muted font-italic">
+                            <small>Ketik ulang kata sandi Anda</small>
+                        </div>
+                        <div class="text-muted font-italic mt-2">
                             <small>* harus diisi</small>
                         </div>
-                        <div class="text-muted font-italic">
-                            <small>** Kata sandi minimal 6 karakter</small>
-                        </div>
+
                         
                         <div v-if="model.status === 'ketua'" class="text-center">
                             <base-button nativeType="submit" type="primary" class="my-4">Selanjutnya</base-button>

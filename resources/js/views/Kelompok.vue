@@ -1,22 +1,22 @@
 <template>
-    <div>
-        <base-header class="header pb-7 pt-6 pt-lg-7 d-flex align-items-center"
-                     style="min-height: 300px; background-size: cover; background-position: center top;">
+    <div class="bg-primary">
+        <base-header class="header pb-7 pt-4 pt-lg-7 d-flex align-items-center"
+                     style="min-height: 100px; background-size: cover; background-position: center top;">
             <!-- Mask -->
             <!-- <span class="mask bg-gradient-success opacity-8"></span> -->
             <!-- Header container -->
             <div class="container-fluid d-flex align-items-center">
                 <div class="row">
-                    <div class="col-lg-7 col-md-10">
-                        <h1 class="display-2 text-white">Kelompok</h1>
-                        <p class="text-white mt-0 mb-5">Silahkan isi form berikut untuk mengubah data kelompok Anda</p>
+                    <div class="col">
+                        <!-- <h1 class="display-2 text-white">Kelompok</h1> -->
+                        <p class="text-white mt-0 mb-3">Silahkan isi form berikut untuk mengubah data kelompok Anda</p>
                     </div>
                 </div>
             </div>
         </base-header>
 
         <!-- Card -->
-        <div class="container-fluid mt--7">
+        <div class="container-fluid mt--7 bg-primary">
             <div class="row">
                 <div class="col">
                     <card shadow type="secondary">
@@ -100,7 +100,7 @@
         <!-- Card Table -->
         <template>
             <div>
-                <div class="container-fluid mt-3">
+                <div class="container-fluid mt-3 bg-primary">
                     <div class="row">
                         <div class="col">
                             <anggota-table title="Anggota Kelompok" :id_kelompok="user.kelompok_id"></anggota-table>

@@ -19,6 +19,30 @@ class SensorSuhuSeeder extends Seeder
         ]);
         DB::table('sensor_suhu')->insert([
             'suhu_air' => '40',
+            'keramba_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('sensor_suhu')->insert([
+            'suhu_air' => '37',
+            'keramba_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('sensor_suhu')->insert([
+            'suhu_air' => '35',
+            'keramba_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('sensor_suhu')->insert([
+            'suhu_air' => '34',
+            'keramba_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('sensor_suhu')->insert([
+            'suhu_air' => '40',
             'keramba_id' => '2',
             'created_at' => now(),
             'updated_at' => now()

@@ -3,7 +3,7 @@
               id="navbar-main"
               :show-toggle-button="false"
               expand>
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+        <!-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div class="form-group mb-0">
                 <base-input placeholder="Cari"
                             class="input-group-alternative"
@@ -11,8 +11,8 @@
                             addon-right-icon="fas fa-search">
                 </base-input>
             </div>
-        </form>
-        <ul class="navbar-nav align-items-center d-none d-md-flex">
+        </form> -->
+        <ul class="navbar-nav align-items-center ml-lg-auto d-none d-md-flex">
             <li class="nav-item dropdown">
                 <base-dropdown class="nav-link pr-0">
                     <div class="media align-items-center" slot="title">

@@ -83,9 +83,19 @@ export default new Router({
             component: () => import('./views/Panen.vue')
         },
         {
+            path: '/produksi/pakan/:id',
+            name: 'pakan',
+            component: () => import('./views/Pakan.vue')
+        },
+        {
             path: '/keramba',
             name: 'keramba',
             component: () => import('./views/Keramba.vue')
+        },
+        {
+            path: '/ikan',
+            name: 'ikan',
+            component: () => import('./views/Ikan.vue')
         },
         {
             path: '/profil',
