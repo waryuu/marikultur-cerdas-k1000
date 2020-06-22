@@ -116,19 +116,6 @@ export default new Router({
             component: () => import('./views/Sensor.vue')
         },
         {
-            path: '/pakan',
-            name: 'pakan',
-            beforeEnter: (to, from, next) => {
-                if(store.getters['auth/user'].status !== 'admin'){
-                    return next({
-                        name: 'beranda'
-                    })
-                }
-                next()
-            },
-            component: () => import('./views/Pakan.vue')
-        },
-        {
             path: '/kelompok',
             name: 'kelompok',
             beforeEnter: (to, from, next) => {

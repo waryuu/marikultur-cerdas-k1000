@@ -50,7 +50,7 @@
                                                     placeholder="Masukkan Tanggal Pakan"
                                                     input-classes="form-control-alternative"
                                                     type="date"
-                                                    v-model="model.tanggal_pakan"
+                                                    v-model="model.waktu_pakan"
 
                                         />
                                     </div>
@@ -87,31 +87,16 @@
         model: {
             id: '',
             jumlah_pakan: '',
-            tanggal_pakan: '',
+            waktu_pakan: '',
             subproduksi_id: ''
         }
       }
     },
-    created() {
-        this.getPakan();
-    },
     methods:{
-        async getPakan() {
-            await axios.all([
-                axios.get(`apipakan/where?subproduksi=${this.$route.params.id}`),
-            ])
-            .then(axios.spread((response) => {
-                this.model = response.data.data;
-                console.log(this.model);
-            }))
-            .catch(function (error) {
-                console.log('Fetch Data Pakan Error!');
-            });
-        },
         async submitPakan(){
             this.errors = '';
             this.model.subproduksi_id = this.$route.params.id;
-            if (!this.model.jumlah_pakan || !this.model.tanggal_pakan || !this.model.subproduksi_id || this.model.jumlah_pakan <= 0) {
+            if (!this.model.jumlah_pakan || !this.model.waktu_pakan || !this.model.subproduksi_id || this.model.jumlah_pakan <= 0) {
                 this.errors = 'Harap isi semua form dengan benar!';
             }
             else{
