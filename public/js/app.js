@@ -31242,7 +31242,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/tebar',
       name: 'tebar',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(19), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
       }
     }, {
       path: '/debug',
@@ -31278,25 +31278,37 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/produksi/ubah/:id',
       name: 'ubah',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(19), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ./views/UbahProduksi.vue */ "./resources/js/views/UbahProduksi.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ./views/UbahProduksi.vue */ "./resources/js/views/UbahProduksi.vue"));
       }
     }, {
       path: '/produksi/pindah/:id',
       name: 'pindah',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(19), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/Pindah.vue */ "./resources/js/views/Pindah.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/Pindah.vue */ "./resources/js/views/Pindah.vue"));
       }
     }, {
       path: '/produksi/panen/:id',
       name: 'panen',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(19), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/Panen.vue */ "./resources/js/views/Panen.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/Panen.vue */ "./resources/js/views/Panen.vue"));
+      }
+    }, {
+      path: '/produksi/pakan/:id',
+      name: 'pakan',
+      component: function component() {
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
       }
     }, {
       path: '/keramba',
       name: 'keramba',
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
+        return __webpack_require__.e(/*! import() */ 19).then(__webpack_require__.bind(null, /*! ./views/Keramba.vue */ "./resources/js/views/Keramba.vue"));
+      }
+    }, {
+      path: '/ikan',
+      name: 'ikan',
+      component: function component() {
+        return __webpack_require__.e(/*! import() */ 24).then(__webpack_require__.bind(null, /*! ./views/Ikan.vue */ "./resources/js/views/Ikan.vue"));
       }
     }, {
       path: '/profil',
@@ -31332,7 +31344,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         next();
       },
       component: function component() {
-        return __webpack_require__.e(/*! import() */ 21).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
       }
     }, {
       path: '/kelompok',

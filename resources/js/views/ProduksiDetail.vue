@@ -90,12 +90,25 @@
                                             {{produksi.panjang_ikan}} cm
                                         </h3>
                                     </div>
+                                </div>
+                                <div class="row mt-2">
                                     <div class="col">
                                         <h4 class="text-center text-uppercase font-weight-light">
                                             Berat
                                         </h4>
                                         <h3 class="text-center">
                                             {{produksi.berat_ikan}} Gram
+                                        </h3>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="text-center text-uppercase font-weight-light">
+                                            Pakan
+                                        </h4>
+                                        <h3 v-if="produksi.total_pakan" class="text-center">
+                                            {{produksi.total_pakan}} Kg
+                                        </h3>
+                                        <h3 v-else class="text-center">
+                                            Belum Ada
                                         </h3>
                                     </div>
                                 </div>
@@ -158,6 +171,11 @@
                                                     </router-link>
                                                     <router-link :to="{ name: 'pindah', params: { id: produksi.id }}" class="col btn btn-primary">
                                                         Pindah
+                                                    </router-link>
+                                        </div>
+                                        <div class="row mt-3 px-3">
+                                                    <router-link :to="{ name: 'pakan', params: { id: produksi.id }}" class="col btn btn-primary">
+                                                        Pakan
                                                     </router-link>
                                                     <router-link :to="{ name: 'panen', params: { id: produksi.id }}" class="col btn btn-primary">
                                                         Panen 

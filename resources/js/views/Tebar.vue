@@ -50,7 +50,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </base-alert>
-                                        <div class="row mb-3">
+                                        <!-- <div class="row mb-3">
                                             <div class="col-lg-12">
                                                 <div class="form-control-label">Nama Ikan</div>
                                                 <div class="round">
@@ -64,11 +64,30 @@
                                                     </multiselect>
                                                 </div>
                                             </div>
+                                        </div> -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-12">
+                                                <div class="form-control-label">Nama Ikan</div>
+                                                <div class="round">
+                                                    <multiselect @input="opt => model.nama_ikan = opt.nama_ikan" 
+                                                                v-model="ikan"
+                                                                :value="ikan"
+                                                                track-by="id"
+                                                                label="nama_ikan"
+                                                                :close-on-select="true" 
+                                                                placeholder="Pilih Nama Ikan"
+                                                                :options="ikans"
+                                                                :searchable="true"
+                                                                :allow-empty="false"
+                                                                :show-labels="false">
+                                                    </multiselect>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="text-muted mb-3">
                                             <small>
                                                 <span class="font-italic">Tambah ikan?</span>
-                                                <router-link to="/beranda"> Klik disini</router-link>
+                                                <router-link to="/ikan"> Klik disini</router-link>
                                             </small> 
                                         </div>
                                         <base-input alternative=""
@@ -176,13 +195,8 @@
         errors: '',
         kerambas: [],
         keramba: '',
-        ikans: [
-            'Kerapu Cantang',
-            'Kerapu Macan'
-        ],
-        ikan: {
-            nama_ikan: ''
-        },
+        ikans: [],
+        ikan: '',
         model: {
             nama_ikan: '',
             jumlah_ikan: '',
@@ -197,9 +211,10 @@
     },
     created() {
         this.getKeramba();
+        this.getIkan();
         this.model.kelompok_id = this.user.kelompok_id;
         this.model.user_id = this.user.id;
-        console.log(this.keramba);
+        // console.log(this.keramba);
     },
     methods:{
         async getKeramba(){
@@ -207,6 +222,16 @@
             await axios.get(`apikeramba/where?kelompok=${id}`)
                 .then((response) => {
                     this.kerambas = response.data;
+                })
+                .catch(() => {
+                    console.log('Fetch Data Error!');
+                });
+        },
+        async getIkan(){
+            await axios.get(`apinamaikan`)
+                .then((response) => {
+                    this.ikans = response.data.data;
+                    console.log(response.data);
                 })
                 .catch(() => {
                     console.log('Fetch Data Error!');
