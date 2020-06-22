@@ -15,7 +15,7 @@ class CreateNamaIkanTable extends Migration
     {
         Schema::create('nama_ikan', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama_ikan')->unique();;
+            $table->string('nama_ikan')->unique();
             $table->timestamps();
         });
     }

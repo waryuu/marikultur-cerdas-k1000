@@ -29,19 +29,21 @@ class ApiSubproduksiController extends Controller
         $produksi_id = $request->query('produksi');
         
         $produksi = SubproduksiModel::leftjoin('subproduksilog', 'subproduksilog.subproduksi_id', '=', 'subproduksi.id')
+        ->leftjoin('pakan', 'pakan.subproduksi_id', '=','subproduksi.id')
             ->leftjoin('sensor_do', 'sensor_do.keramba_id', '=', 'subproduksilog.keramba_sesudah')
             ->leftjoin('sensor_suhu', 'sensor_suhu.keramba_id', '=', 'subproduksilog.keramba_sesudah')
             ->leftjoin('keramba', 'keramba.id', '=','subproduksilog.keramba_sesudah')
-            ->leftjoin('pakan', 'pakan.subproduksi_id', '=','subproduksi.id')
             ->select('subproduksi.*', 'subproduksilog.panjang_ikan','subproduksilog.tanggal_cuci','subproduksilog.tanggal_pindah'
             ,'subproduksilog.berat_ikan','subproduksilog.keramba_sebelum','subproduksilog.keramba_sesudah','keramba.nama_keramba'
-            ,'sensor_suhu.suhu_air', 'sensor_do.do_air', DB::raw('sum(pakan.jumlah_pakan) as total_pakan'))
+            ,'sensor_suhu.suhu_air',DB::raw('sum(pakan.jumlah_pakan) as total_pakan'), 'sensor_do.do_air')
             ->groupBy('subproduksi.id')
             ->where('subproduksi.produksi_id',$produksi_id)
             ->whereRaw('subproduksilog.id IN (select MAX(subproduksilog.id) FROM subproduksilog GROUP BY subproduksilog.subproduksi_id)')
             ->paginate(5);
             return SubproduksiResources::collection($produksi);
         }
+        
+     
 
     public function wherepanen(Request $request)
         {
