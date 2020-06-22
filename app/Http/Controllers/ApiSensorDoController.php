@@ -6,9 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\SensorDoModel as SensorDo;
 use App\Http\Resources\SensorDoResources;
+use Carbon\Carbon;
 
 class ApiSensorDoController extends Controller
 {
+    public function where(Request $request)
+    {
+            $keramba_id = $request->query('keramba');
+            $sensor_do = SensorDo::where('keramba_id', $keramba_id)->latest('id')->take(5)->get()->reverse()->pluck('do_air');
+            $time = SensorDo::where('keramba_id', $keramba_id)->latest('id')->take(5)->get()->reverse()->pluck('created_at');
+            
+            return response()->json(['sensor_do' => $sensor_do, 'time' => $time]);
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,16 +40,7 @@ class ApiSensorDoController extends Controller
         //
     }
 
-    public function where(Request $request)
-    {
-        $keramba_id = $request->query('keramba');
-        $sensor_do = SensorDo::where('keramba_id', $keramba_id)->latest('id')->first();
-        return response()->json($sensor_do);
-        // $keramba_id = $request->query('keramba');
-        // $sensor_do = SensorDo::where('keramba_id', $keramba_id)->paginate(2);
-        // return SensorDoResources::collection($sensor_do);
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      *

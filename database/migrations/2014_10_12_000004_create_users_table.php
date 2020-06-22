@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            // $table->integer('pin');
             $table->string('status')->default('user');
             $table->integer('kelompok_id')->unsigned()->nullable();
             $table->foreign('kelompok_id')->references('id')->on('kelompok');

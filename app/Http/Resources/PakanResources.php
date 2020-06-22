@@ -18,6 +18,7 @@ class PakanResources extends JsonResource
         return [
             'id'=> $this->id,
             'jumlah_pakan'=>$this->jumlah_pakan,
+            'waktu_pakan'=>$this->waktu_pakan,
             'subproduksi_id'=>$this->subproduksi_id
         ];
     }

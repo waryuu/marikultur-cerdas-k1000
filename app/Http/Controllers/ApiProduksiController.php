@@ -140,7 +140,6 @@ class ApiProduksiController extends Controller
             ]);
         DB::commit();
         return new ProduksiResources($produksi);
-        return new SubproduksiResources($subproduksi);
         }
         catch(\Exception $e) {
             DB::rollback();

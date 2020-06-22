@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\PakanModel;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\PakanResources;
 
 class ApiPakanController extends Controller
@@ -22,8 +23,19 @@ class ApiPakanController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'jumlah_pakan' => 'required|string',
+            'waktu_pakan' => 'required',
+            'subproduksi_id' => 'required|integer',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+    }
+
         $pakan = PakanModel::create([
             'subproduksi_id' => $request->input('subproduksi_id'),
+            'waktu_pakan' => $request->input('waktu_pakan'),
             'jumlah_pakan' =>  $request->input('jumlah_pakan'),
         ]);
         if($pakan->save()){

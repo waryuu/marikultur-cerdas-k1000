@@ -9,6 +9,16 @@ use App\Http\Resources\SensorSuhuResources;
 
 class ApiSensorSuhuController extends Controller
 {
+
+    public function where(Request $request)
+    {
+            $keramba_id = $request->query('keramba');
+            $sensor_suhu = SensorSuhu::where('keramba_id', $keramba_id)->latest('id')->take(5)->get()->reverse()->pluck('suhu_air');
+            $time = SensorSuhu::where('keramba_id', $keramba_id)->latest('id')->take(5)->get()->reverse()->pluck('created_at');
+            
+            return response()->json(['sensor_suhu' => $sensor_suhu, 'time' => $time]);
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,16 +40,16 @@ class ApiSensorSuhuController extends Controller
         //
     }
 
-    public function where(Request $request)
-    {
-        $keramba_id = $request->query('keramba');
-        $sensor_suhu = SensorSuhu::where('keramba_id', $keramba_id)->latest('id')->first();
-        return response()->json($sensor_suhu);
-        // $sensor_suhu = SensorSuhu::where('keramba_id', $keramba_id)->paginate(2);
-        // return SensorSuhuResources::collection($sensor_suhu);
+    // public function where(Request $request)
+    // {
+    //     $keramba_id = $request->query('keramba');
+    //     $sensor_suhu = SensorSuhu::where('keramba_id', $keramba_id)->latest('id')->first();
+    //     return response()->json($sensor_suhu);
+    //     // $sensor_suhu = SensorSuhu::where('keramba_id', $keramba_id)->paginate(2);
+    //     // return SensorSuhuResources::collection($sensor_suhu);
 
 
-    }
+    // }
 
     /**
      * Store a newly created resource in storage.
