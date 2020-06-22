@@ -31236,19 +31236,19 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: function component() {
-        return Promise.all(/*! import() | demo */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/js/views/Dashboard.vue"));
+        return Promise.all(/*! import() | demo */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(21), __webpack_require__.e("demo")]).then(__webpack_require__.bind(null, /*! ./views/Dashboard.vue */ "./resources/js/views/Dashboard.vue"));
       }
     }, {
       path: '/tebar',
       name: 'tebar',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(14)]).then(__webpack_require__.bind(null, /*! ./views/Tebar.vue */ "./resources/js/views/Tebar.vue"));
       }
     }, {
       path: '/debug',
       name: 'debug',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(2), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./views/DashboardBackup.vue */ "./resources/js/views/DashboardBackup.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(2), __webpack_require__.e(21), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./views/DashboardBackup.vue */ "./resources/js/views/DashboardBackup.vue"));
       }
     }, {
       path: '/cuci',
@@ -31278,25 +31278,25 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/produksi/ubah/:id',
       name: 'ubah',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ./views/UbahProduksi.vue */ "./resources/js/views/UbahProduksi.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(15)]).then(__webpack_require__.bind(null, /*! ./views/UbahProduksi.vue */ "./resources/js/views/UbahProduksi.vue"));
       }
     }, {
       path: '/produksi/pindah/:id',
       name: 'pindah',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/Pindah.vue */ "./resources/js/views/Pindah.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(9)]).then(__webpack_require__.bind(null, /*! ./views/Pindah.vue */ "./resources/js/views/Pindah.vue"));
       }
     }, {
       path: '/produksi/panen/:id',
       name: 'panen',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/Panen.vue */ "./resources/js/views/Panen.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(8)]).then(__webpack_require__.bind(null, /*! ./views/Panen.vue */ "./resources/js/views/Panen.vue"));
       }
     }, {
       path: '/produksi/pakan/:id',
       name: 'pakan',
       component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
+        return Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
       }
     }, {
       path: '/keramba',

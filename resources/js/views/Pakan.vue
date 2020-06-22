@@ -46,8 +46,8 @@
 
                                         />
                                         <base-input alternative=""
-                                                    label="Tanggal Pakan"
-                                                    placeholder="Masukkan Tanggal Pakan"
+                                                    label="Waktu Pakan"
+                                                    placeholder="Masukkan Waktu Pakan"
                                                     input-classes="form-control-alternative"
                                                     type="date"
                                                     v-model="model.waktu_pakan"

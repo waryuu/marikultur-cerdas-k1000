@@ -89,30 +89,31 @@
 
         <!--Charts-->
         <div class="container-fluid mt--8 bg-primary">
+            <!-- Sensor Hum Temp -->
             <div class="row">
                 <div class="col">
                     <card class="shadow" header-classes="bg-transparent" :noBody="true">
                         <div slot="header" class="row align-items-center">
                             <div class="col">
-                                <h5 v-if="bigLineChart.activeIndex === 0" class="h3 mb-0">Suhu Udara</h5>
-                                <h5 v-if="bigLineChart.activeIndex === 1" class="h3 mb-0">Kelembaban</h5>
+                                <h5 v-if="chartHumTemp.activeIndex === 0" class="h3 mb-0">Suhu Udara</h5>
+                                <h5 v-if="chartHumTemp.activeIndex === 1" class="h3 mb-0">Kelembaban</h5>
                             </div>
                             <div class="col">
                                 <ul class="nav nav-pills justify-content-end">
                                     <li class="nav-item mr-2 mr-md-0">
                                         <a class="nav-link py-2 px-3"
                                            href="#"
-                                           :class="{active: bigLineChart.activeIndex === 0}"
-                                           @click.prevent="initBigChart(0)">
+                                           :class="{active: chartHumTemp.activeIndex === 0}"
+                                           @click.prevent="initChartHumTemp(0)">
                                             <span class="d-none d-md-block">Suhu</span>
-                                            <span class="d-md-none">SH</span>
+                                            <span class="d-md-none">SU</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link py-2 px-3"
                                            href="#"
-                                           :class="{active: bigLineChart.activeIndex === 1}"
-                                           @click.prevent="initBigChart(1)">
+                                           :class="{active: chartHumTemp.activeIndex === 1}"
+                                           @click.prevent="initChartHumTemp(1)">
                                             <span class="d-none d-md-block">Kelembaban</span>
                                             <span class="d-md-none">KB</span>
                                         </a>
@@ -121,12 +122,18 @@
                             </div>
                         </div>
                         <line-chart
+                                v-if="sensorHumTemps.time && sensorHumTemps.time.length"
                                 :height="350"
                                 ref="bigChart"
-                                :chart-data="bigLineChart.chartData"
-                                :extra-options="bigLineChart.extraOptions"
+                                :chart-data="chartHumTemp.chartData"
+                                :extra-options="chartHumTemp.extraOptions"
                         >
                         </line-chart>
+                        <div v-else class="row card-body">
+                            <div class="col">
+                                <h3 class="text-center mb-0">Tidak ada Sensor</h3>
+                            </div>
+                        </div>
                         <!-- <div slot="footer">
                             <div class="row">
                                 <div class="col-12">
@@ -139,25 +146,102 @@
                         </div> -->
                     </card>
                 </div>
-
-                <!-- <div class="col-xl-4">
-                    <card header-classes="bg-transparent">
+            </div>
+            <!-- End Sensor Hum Temp -->
+            <!-- Sensor DO Air -->
+            <div class="row mt-3">
+                <div class="col">
+                    <card class="shadow" header-classes="bg-transparent" :noBody="true">
                         <div slot="header" class="row align-items-center">
                             <div class="col">
-                                <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                                <h5 class="h3 mb-0">Total orders</h5>
+                                <h5 class="h3 mb-0">DO Air</h5>
                             </div>
                         </div>
-
-                        <bar-chart
+                        <line-chart
+                                v-if="sensorDos.time && sensorDos.time.length"
                                 :height="350"
-                                ref="barChart"
-                                :chart-data="redBarChart.chartData"
+                                ref="bigChart"
+                                :chart-data="chartDo.chartData"
+                                :extra-options="chartDo.extraOptions"
                         >
-                        </bar-chart>
+                        </line-chart>
+                        <div v-else class="row card-body">
+                            <div class="col">
+                                <h3 class="text-center mb-0">Tidak ada Sensor</h3>
+                            </div>
+                        </div>
+                        <div slot="footer">
+                            <div class="row mb-3">
+                                <div class="col-lg-12">
+                                    <div class="form-control-label">Lokasi Sensor</div>
+                                    <div class="round">
+                                        <multiselect @input="opt => getSensorDo(opt.id)" 
+                                                    v-model="kerambaDo"
+                                                    :value="kerambaDo"
+                                                    track-by="id"
+                                                    label="nama_keramba"
+                                                    :close-on-select="true" 
+                                                    placeholder="Pilih Lokasi Keramba"
+                                                    :options="kerambas"
+                                                    :searchable="true"
+                                                    :allow-empty="false"
+                                                    :show-labels="false">
+                                        </multiselect>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
                     </card>
-                </div> -->
+                </div>
             </div>
+            <!-- End Sensor DO Air -->
+            <!-- Sensor Suhu Air -->
+            <div class="row mt-3">
+                <div class="col">
+                    <card class="shadow" header-classes="bg-transparent" :noBody="true">
+                        <div slot="header" class="row align-items-center">
+                            <div class="col">
+                                <h5 class="h3 mb-0">Suhu Air</h5>
+                            </div>
+                        </div>
+                        <line-chart
+                                v-if="sensorSuhus.time && sensorSuhus.time.length"
+                                :height="350"
+                                ref="bigChart"
+                                :chart-data="chartSuhu.chartData"
+                                :extra-options="chartSuhu.extraOptions"
+                        >
+                        </line-chart>
+                        <div v-else class="row card-body">
+                            <div class="col">
+                                <h3 class="text-center mb-0">Tidak ada Sensor</h3>
+                            </div>
+                        </div>
+                        <div slot="footer">
+                            <div class="row mb-3">
+                                <div class="col-lg-12">
+                                    <div class="form-control-label">Lokasi Sensor</div>
+                                    <div class="round">
+                                        <multiselect @input="opt => getSensorSuhu(opt.id)" 
+                                                    v-model="kerambaSuhu"
+                                                    :value="kerambaSuhu"
+                                                    track-by="id"
+                                                    label="nama_keramba"
+                                                    :close-on-select="true" 
+                                                    placeholder="Pilih Lokasi Keramba"
+                                                    :options="kerambas"
+                                                    :searchable="true"
+                                                    :allow-empty="false"
+                                                    :show-labels="false">
+                                        </multiselect>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </card>
+                </div>
+            </div>
+            <!-- End Sensor Suhu Air -->
         </div>
         <!-- End charts-->
         
@@ -167,14 +251,14 @@
 <script>
   import axios from 'axios'
   import {mapGetters} from 'vuex'
+  import Multiselect from 'vue-multiselect'
   import * as chartConfigs from '@/js/components/Charts/config';
   import LineChart from '@/js/components/Charts/LineChart';
-  import BarChart from '@/js/components/Charts/BarChart';
   export default {
     name: 'beranda',
     components: {
       LineChart,
-      BarChart,
+      Multiselect
     },
     computed: {
         ...mapGetters({
@@ -185,6 +269,9 @@
     data() {
       return {
         errors: '',
+        kerambas: [],
+        kerambaDo: '',
+        kerambaSuhu: '',
         sensorHumTemps: '',
         sensorHumTemp: {
           id: '',
@@ -193,11 +280,37 @@
           humidity: '',
           temperature: ''
         },
-        bigLineChart: {
-          allData: [
-            [0, 20, 10, 30, 15, 40, 20, 60, 60],
-            [0, 20, 5, 25, 10, 30, 15, 40, 40]
-          ],
+        sensorDos: '',
+        sensorDo: {
+          id: '',
+          time: '',
+          do_air: '',
+          keramba_id: ''
+        },
+        sensorSuhus: '',
+        sensorSuhu: {
+          id: '',
+          time: '',
+          suhu_air: '',
+          keramba_id: ''
+        },
+        chartHumTemp: {
+          activeIndex: 0,
+          chartData: {
+            datasets: [],
+            labels: [],
+          },
+          extraOptions: chartConfigs.blueChartOptions,
+        },
+        chartDo: {
+          activeIndex: 0,
+          chartData: {
+            datasets: [],
+            labels: [],
+          },
+          extraOptions: chartConfigs.blueChartOptions,
+        },
+        chartSuhu: {
           activeIndex: 0,
           chartData: {
             datasets: [],
@@ -207,15 +320,28 @@
         }
       }
     },
-    mounted() {
-        this.getSensorHumTemp();
+    async mounted() {
+        await this.getKeramba(this.user.kelompok_id);
+        await this.getSensorHumTemp();
+        await this.getSensorDo(this.kerambas[0].id);
+        await this.getSensorSuhu(this.kerambas[0].id);
     },
     methods:{
+        async getKeramba(id){
+            await axios.get(`apikeramba/where?kelompok=${id}`)
+                .then((response) => {
+                    this.kerambas = response.data;
+                    // console.log(this.kerambas[0].id);
+                })
+                .catch(() => {
+                    console.log('Fetch Data Error!');
+                });
+        },
         async getSensorHumTemp() {
             await axios.get(`apisensorhumtemp`)
             .then((response) => {
                 this.sensorHumTemps = response.data;
-                this.initBigChart(0);
+                this.initChartHumTemp(0);
                 // console.log(this.sensorHumTemps);
                 })
                 .catch(() => {
@@ -223,7 +349,31 @@
                 });
             
         },
-        initBigChart(index) {
+        async getSensorDo(id) {
+            await axios.get(`apisensordo/where?keramba=${id}`)
+            .then((response) => {
+                this.sensorDos = response.data;
+                this.initChartDo(0);
+                // console.log(this.sensorDos);
+                })
+                .catch(() => {
+                    console.log('Fetch Data Error!');
+                });
+            
+        },
+        async getSensorSuhu(id) {
+            await axios.get(`apisensorsuhu/where?keramba=${id}`)
+            .then((response) => {
+                this.sensorSuhus = response.data;
+                this.initChartSuhu(0);
+                // console.log(this.sensorHumTemps);
+                })
+                .catch(() => {
+                    console.log('Fetch Data Error!');
+                });
+            
+        },
+        initChartHumTemp(index) {
             if (index === 0){
                 let chartData = {
                 datasets: [
@@ -235,8 +385,8 @@
                 labels: this.sensorHumTemps.time,
                 };
                 // console.log(this.sensorHumTemps.sensor_tem);
-                this.bigLineChart.chartData = chartData;
-                this.bigLineChart.activeIndex = index;
+                this.chartHumTemp.chartData = chartData;
+                this.chartHumTemp.activeIndex = index;
             }
             if (index === 1){
                 let chartData = {
@@ -248,13 +398,40 @@
                 ],
                 labels: this.sensorHumTemps.time,
                 };
-                this.bigLineChart.chartData = chartData;
-                this.bigLineChart.activeIndex = index;
+                this.chartHumTemp.chartData = chartData;
+                this.chartHumTemp.activeIndex = index;
             }
+        },
+        initChartDo(index) {
+            let chartData = {
+            datasets: [
+                {
+                label: 'DO Air (ppm)',
+                data: this.sensorDos.sensor_do
+                }
+            ],
+            labels: this.sensorDos.time,
+            };
+            this.chartDo.chartData = chartData;
+            this.chartDo.activeIndex = index;
+        },
+        initChartSuhu(index) {
+            let chartData = {
+            datasets: [
+                {
+                label: 'Suhu (°C)',
+                data: this.sensorSuhus.sensor_suhu
+                }
+            ],
+            labels: this.sensorSuhus.time,
+            };
+            this.chartSuhu.chartData = chartData;
+            this.chartSuhu.activeIndex = index;
         }
     }
   }
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
   .table thead th {
       font-size: 0.8rem;
