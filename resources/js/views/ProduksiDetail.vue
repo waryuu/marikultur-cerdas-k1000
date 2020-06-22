@@ -317,6 +317,7 @@
                 this.produksis = responseProd.data.data;
                 this.meta = responseProd.data.meta;
                 this.links = responseProd.data.links;
+                console.log(this.produksis);
             }))
             .catch(function (error) {
                 console.log('Fetch Data Produksi Error!');

@@ -31332,21 +31332,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         return __webpack_require__.e(/*! import() */ 22).then(__webpack_require__.bind(null, /*! ./views/Sensor.vue */ "./resources/js/views/Sensor.vue"));
       }
     }, {
-      path: '/pakan',
-      name: 'pakan',
-      beforeEnter: function beforeEnter(to, from, next) {
-        if (_store__WEBPACK_IMPORTED_MODULE_4__["default"].getters['auth/user'].status !== 'admin') {
-          return next({
-            name: 'beranda'
-          });
-        }
-
-        next();
-      },
-      component: function component() {
-        return Promise.all(/*! import() */[__webpack_require__.e(0), __webpack_require__.e(25)]).then(__webpack_require__.bind(null, /*! ./views/Pakan.vue */ "./resources/js/views/Pakan.vue"));
-      }
-    }, {
       path: '/kelompok',
       name: 'kelompok',
       beforeEnter: function beforeEnter(to, from, next) {
