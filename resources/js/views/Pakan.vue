@@ -45,14 +45,22 @@
                                                     v-model="model.jumlah_pakan"
 
                                         />
-                                        <base-input alternative=""
+                                        <!-- <base-input alternative=""
                                                     label="Waktu Pakan"
                                                     placeholder="Masukkan Waktu Pakan"
                                                     input-classes="form-control-alternative"
                                                     type="date"
                                                     v-model="model.waktu_pakan"
 
-                                        />
+                                        /> -->
+                                        <div class="row mb-3">
+                                            <div class="col-lg-12">
+                                                <div class="form-control-label">Waktu Pakan</div>
+                                                <div class="round">
+                                                    <date-picker v-model="model.waktu_pakan" type="datetime" format="DD/MM/YYYY hh:mm:ss" value-type="YYYY-MM-DD hh:mm:ss"></date-picker>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </template>
@@ -70,7 +78,8 @@
 <script>
   import {mapGetters} from 'vuex'
   import axios from 'axios'
-  import Multiselect from 'vue-multiselect'
+  import DatePicker from 'vue2-datepicker'
+  import 'vue2-datepicker/index.css'
   export default {
     name: 'pakan',
     computed: {
@@ -79,7 +88,7 @@
         })
     },
     components: {
-        Multiselect
+        DatePicker
     },
     data() {
       return {
@@ -114,12 +123,27 @@
     }
   };
 </script>
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style>
-  .round .multiselect__tags{
+  .mx-datepicker{
+      display: inline-block;
+      width: 100%;
+  }
+  .mx-input{
       border-radius: 1.5rem;
       box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
       border: 0px;
+      display: block;
+      width: 100%;
+      height: calc(1.5em + 1.25rem + 2px);
+      padding: 0.625rem 0.75rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #8898aa;
+      background-color: #fff;
+      background-clip: padding-box;
+  }
+  .mx-icon-calendar{
+      right: 15px;
   }
   .alert{
         border-radius: .25rem;

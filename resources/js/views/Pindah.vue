@@ -225,6 +225,7 @@
             this.model.id = this.model.subproduksi_id;
             if (!this.model.jumlah_ikan || !this.model.panjang_ikan || !this.model.berat_ikan || !this.model.tanggal_cuci || !this.model.tanggal_pindah || !this.model.keramba_sesudah || !this.keramba || this.model.keramba_sebelum === this.model.keramba_sesudah || this.jumlah_sebelum < this.model.jumlah_ikan) {
                 this.errors = 'Harap isi semua form dengan benar!';
+                window.scrollTo(0,0);
             }
             else{
                 let credentials = this.model;
@@ -235,6 +236,7 @@
                     })
                 .catch(() => {
                         this.errors = 'Harap isi semua form dengan benar!';
+                        window.scrollTo(0,0);
                     })
             }
         }

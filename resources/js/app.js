@@ -30,6 +30,7 @@ Vue.config.productionTip = false
 
 store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
     Vue.use(ArgonDashboard)
+    Vue.use(require('vue-moment'))
     new Vue({
       router,
       store,

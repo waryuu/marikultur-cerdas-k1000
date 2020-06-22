@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="col">
                                             <h4 class="text-right font-italic font-weight-light">
-                                                {{produksi.tanggal_tebar}}
+                                                {{ produksi.tanggal_tebar | moment("DD MMM YYYY") }}
                                             </h4>
                                         </div>
                                     </div>
@@ -237,7 +237,7 @@
                                     </div>
                                     <div class="col">
                                         <h4 class="text-right font-italic font-weight-light">
-                                            {{panen.tanggal_tebar}}
+                                            {{ panen.tanggal_tebar | moment("DD MMM YYYY") }}
                                         </h4>
                                     </div>
                                 </div>

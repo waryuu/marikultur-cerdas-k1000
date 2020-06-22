@@ -120,7 +120,7 @@
                                     </div>
                                     <div v-if="produksi.tanggal_cuci" class="col">
                                         <h4 class="text-right font-italic font-weight-light">
-                                            {{produksi.tanggal_cuci}}
+                                            {{ produksi.tanggal_cuci | moment("DD MMM YYYY") }}
                                         </h4>
                                     </div>
                                     <div v-else class="col">
@@ -137,7 +137,7 @@
                                     </div>
                                     <div v-if="produksi.tanggal_pindah" class="col">
                                         <h4 class="text-right font-italic font-weight-light">
-                                            {{produksi.tanggal_pindah}}
+                                            {{ produksi.tanggal_pindah | moment("DD MMM YYYY") }}
                                         </h4>
                                     </div>
                                     <div v-else class="col">

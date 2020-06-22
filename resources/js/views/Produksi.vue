@@ -127,12 +127,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="!produksis.length" class="card card-body rounded-0 row">
-                            <div class="col">
-                                <base-alert type="info">
-                                    <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
-                                    <span class="alert-inner--text"><strong>Belum ada produksi!</strong> Harap lakukan penebaran terlebih dahulu</span>
-                                </base-alert>
+                        <div v-if="!produksis.length" class="card card-body rounded-0">
+                            <div class="row">
+                                <div class="col">
+                                    <base-alert type="info">
+                                        <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                                        <span class="alert-inner--text"><strong>Belum ada produksi!</strong> Harap lakukan penebaran terlebih dahulu</span>
+                                    </base-alert>
+                                </div>
                             </div>
                         </div>
                         <div v-for="produksi in produksis" v-bind:key="produksi.id" class="card card-body rounded-0">
@@ -210,7 +212,7 @@
                                 </div>
                                 <div class="col">
                                     <h4 class="text-right font-italic font-weight-light">
-                                        {{produksi.tanggal_tebar}}
+                                        {{ produksi.tanggal_tebar | moment("DD MMM YYYY") }}
                                     </h4>
                                 </div>
                             </div>
