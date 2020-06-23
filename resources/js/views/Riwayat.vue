@@ -254,7 +254,7 @@
                                         </h3>
                                     </div>
                                 </div>
-                                <div class="row mt-3 mb-3">
+                                <div class="row mt-3">
                                     <div class="col">
                                         <h4 class="text-left font-weight-light">
                                             Tanggal Tebar
@@ -263,6 +263,17 @@
                                     <div class="col">
                                         <h4 class="text-right font-italic font-weight-light">
                                             {{ panen.tanggal_tebar | moment("DD MMM YYYY") }}
+                                        </h4>
+                                    </div>
+                                </div><div class="row mb-3">
+                                    <div class="col">
+                                        <h4 class="text-left font-weight-light">
+                                            Tanggal Panen
+                                        </h4>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="text-right font-italic font-weight-light">
+                                            {{ panen.tanggal_panen | moment("DD MMM YYYY") }}
                                         </h4>
                                     </div>
                                 </div>

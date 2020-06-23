@@ -29,7 +29,7 @@
                         </div>
                         <div slot="body">
                             <template>
-                                <form @submit.prevent="" role="form">
+                                <form @submit.prevent="submitKelompok" role="form">
                                     <!-- Data Diri -->
                                     <div class="pl-lg-4">
                                         <div class="row">
@@ -134,11 +134,11 @@
           ketua_kelompok: '',
           bendahara_kelompok: '',
           humas_kelompok: '',
-        },
+        }
       }
     },
-    mounted() {
-        this.getData();
+    async mounted() {
+        await this.getData();
     },
     methods:{
         async getData() {
@@ -154,19 +154,22 @@
             this.errors = '';
             this.success = '';
             this.kel.kelompok_id = this.user.kelompok_id;
-            // console.log(this.kel);
+            console.log(this.kel);
             let credentials = this.kel;
-            if(this.kel.nama_kelompok != null && this.kel.nama_kelompok.length >= 1 && this.kel.ketua_kelompok != null  && this.kel.ketua_kelompok.length >= 1 && this.kel.bendahara_kelompok != null  && this.kel.bendahara_kelompok.length >= 1 && this.kel.humas_kelompok != null  && this.kel.humas_kelompok.length >= 1){
+            if(this.kel.nama_kelompok != null && this.kel.nama_kelompok.length >= 1 && this.kel.ketua_kelompok != null  && this.kel.ketua_kelompok.length >= 1 && this.kel.bendahara_kelompok != null  && this.kel.bendahara_kelompok.length >= 1 && this.kel.humas_kelompok != null && this.kel.humas_kelompok.length >= 1){
                 await axios.put(`apikelompok/store`, credentials)
                 .then((response) => {
                     this.success = 'Informasi berhasil diubah!';
+                    window.scrollTo(0,0);
                 })
                 .catch(() => {
                     this.errors = 'Harap isi semua form dengan benar!';
+                    window.scrollTo(0,0);
                 });
             }
             else {
                 this.errors = 'Harap isi semua form dengan benar!';
+                window.scrollTo(0,0);
             }
             
         }

@@ -211,10 +211,12 @@
                     })
                 .catch(() => {
                         this.errors = 'Harap isi semua form dengan benar!';
+                        window.scrollTo(0,0);
                     })
             }
             else {
                 this.errors = 'Harap isi semua form dengan benar!';
+                window.scrollTo(0,0);
             }
             
         },

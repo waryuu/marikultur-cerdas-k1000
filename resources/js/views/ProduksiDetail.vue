@@ -237,6 +237,16 @@
                                 </div>
                                 <!-- End Panen -->
                             </div>
+                            <!-- <div v-if="produksis.length === 0" class="card card-body rounded-0">
+                                <div  class="row">
+                                    <div class="col">
+                                        <base-alert type="info">
+                                            <span class="alert-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+                                            <span class="alert-inner--text"><strong>Produksi tidak ditemukan</strong></span>
+                                        </base-alert>
+                                    </div>
+                                </div>
+                            </div> -->
                             
                             
                         </div>

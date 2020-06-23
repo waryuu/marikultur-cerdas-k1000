@@ -224,15 +224,16 @@
                 window.scrollTo(0,0);
             }
             else {
-            let credentials = this.model;
-            await axios.put('apisubproduksi/update', credentials)
-            .then(() =>{
-                    this.$router.go(-1);
-                })
-            .catch(() => {
-                    this.errors = 'Harap isi semua form dengan benar!';
-                    window.scrollTo(0,0);
-                })
+                let credentials = this.model;
+                console.log(credentials);
+                await axios.put('apisubproduksi/update', credentials)
+                .then(() =>{
+                        this.$router.go(-1);
+                    })
+                .catch(() => {
+                        this.errors = 'Harap isi semua form dengan benar!';
+                        window.scrollTo(0,0);
+                    })
             }
         },
     }
