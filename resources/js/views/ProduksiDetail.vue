@@ -335,12 +335,12 @@
       }
     },
     async mounted() {
-        await this.getProduksi();
+        await this.getProduksi(this.$route.params.id);
     },
     methods:{
-        async getProduksi() {
+        async getProduksi(id) {
             await axios.all([
-                axios.get(`apisubproduksi/where?produksi=${this.$route.params.id}`),
+                axios.get(`apisubproduksi/where?produksi=${id}`),
             ])
             .then(axios.spread((responseProd) => {
                 this.produksis = responseProd.data.data;

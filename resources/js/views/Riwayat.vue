@@ -93,6 +93,19 @@
                                             </h3>
                                         </div>
                                     </div>
+                                    <div class="row mt-2">
+                                        <div class="col">
+                                            <h4 class="text-center text-uppercase font-weight-light">
+                                                Total Pakan
+                                            </h4>
+                                            <h3 v-if="produksi.total_pakan" class="text-center">
+                                                {{produksi.total_pakan}} Kg
+                                            </h3>
+                                            <h3 v-else class="text-center">
+                                                Belum Ada
+                                            </h3>
+                                        </div>
+                                    </div>
                                     <div class="row mt-3 mb-3">
                                         <div class="col">
                                             <h4 class="text-left font-weight-light">
@@ -227,7 +240,19 @@
                                             {{panen.berat_ikan_awal}} Gram
                                         </h3>
                                     </div> -->
-
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <h4 class="text-center text-uppercase font-weight-light">
+                                            Total Pakan
+                                        </h4>
+                                        <h3 v-if="produksi.total_pakan" class="text-center">
+                                            {{panen.total_pakan}} Kg
+                                        </h3>
+                                        <h3 v-else class="text-center">
+                                            Belum Ada
+                                        </h3>
+                                    </div>
                                 </div>
                                 <div class="row mt-3 mb-3">
                                     <div class="col">
@@ -407,6 +432,7 @@
                     this.panens = response.data.data;
                     this.meta = response.data.meta;
                     this.links = response.data.links;
+                    console.log(this.panens);
                 })
                 .catch(() => {
                     console.log('Fetch Data Panen Error!');
