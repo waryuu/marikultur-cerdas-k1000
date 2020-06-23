@@ -38,11 +38,11 @@ class ApiSubproduksiController extends Controller
             ,'sensor_suhu.suhu_air',DB::raw('sum(pakan.jumlah_pakan) as total_pakan'), DB::raw('MAX(pakan.waktu_pakan) as waktu_terakhir'), 'sensor_do.do_air')
             ->groupBy('subproduksi.id')
             ->where('subproduksi.produksi_id',$produksi_id)
-            ->orWhereNull('sensor_do.keramba_id')
-            ->orWhereNull('sensor_suhu.keramba_id')
+            ->orWhereNull('keramba.id')
             ->whereRaw('subproduksilog.id IN (select MAX(subproduksilog.id) FROM subproduksilog GROUP BY subproduksilog.subproduksi_id)')
             ->whereRaw('sensor_suhu.id IN (select MAX(sensor_suhu.id) FROM sensor_suhu GROUP BY sensor_suhu.keramba_id)')
             ->whereRaw('sensor_do.id IN (select MAX(sensor_do.id) FROM sensor_do GROUP BY sensor_do.keramba_id)')
+            // ->orWhereNull('subproduksilog.subproduksi_id')
             ->paginate(5);
             // ->whereRaw('pakan.waktu_pakan IN (select MAX(sensor_do.id) FROM sensor_do GROUP BY sensor_do.keramba_id)')
             // ->whereRaw('select MAX(pakan.waktu_pakan) FROM pakan GROUP BY pakan.subproduksi_id)')

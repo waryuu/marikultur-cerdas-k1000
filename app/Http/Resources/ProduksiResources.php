@@ -32,7 +32,7 @@ class ProduksiResources extends JsonResource
             // 'jumlah_ikan_akhir'=>$this->jumlah_ikan_akhir,
             // 'berat_ikan_akhir'=>$this->berat_ikan_akhir,
             'tanggal_tebar'=>$tanggal_tebar_doang,
-            // 'tanggal_panen'=>$tanggal_panen_doang,
+            'tanggal_panen'=>$tanggal_panen_doang,
             // 'tanggal_cuci'=>$this->tanggal_cuci,
             // 'tanggal_pindah'=>$this->pemindahan->tanggal_pindah,
             // 'status_panen'=>$this->status_panen,
