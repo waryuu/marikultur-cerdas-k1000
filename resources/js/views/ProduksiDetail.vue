@@ -152,18 +152,18 @@
                                             Terakhir Makan
                                         </h4>
                                     </div>
-                                    <div v-if="produksi.waktu_pakan" class="col">
+                                    <div v-if="produksi.waktu_terakhir" class="col">
                                         <div class="row">
                                             <div class="col">
                                                 <h4 class="text-right font-italic font-weight-light">
-                                                    {{ produksi.waktu_pakan | moment("[Pukul] HH:mm,") }}
+                                                    {{ produksi.waktu_terakhir | moment("[Pukul] HH:mm,") }}
                                                 </h4>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <h4 class="text-right font-italic font-weight-light">
-                                                    {{ produksi.waktu_pakan | moment("DD MMM YYYY") }}
+                                                    {{ produksi.waktu_terakhir | moment("DD MMM YYYY") }}
                                                 </h4>
                                             </div>
                                         </div>
@@ -295,7 +295,7 @@
           tanggal_pindah: '',
           status_panen: '',
           keramba_sesudah: '',
-          waktu_pakan: '',
+          waktu_terakhir: '',
           suhu_air: '',
           do_air: ''
         },
@@ -334,8 +334,8 @@
         },
       }
     },
-    mounted() {
-        this.getProduksi();
+    async mounted() {
+        await this.getProduksi();
     },
     methods:{
         async getProduksi() {
