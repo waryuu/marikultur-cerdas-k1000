@@ -46,7 +46,6 @@ class ApiSubproduksiController extends Controller
             ->paginate(5);
             // ->whereRaw('pakan.waktu_pakan IN (select MAX(sensor_do.id) FROM sensor_do GROUP BY sensor_do.keramba_id)')
             // ->whereRaw('select MAX(pakan.waktu_pakan) FROM pakan GROUP BY pakan.subproduksi_id)')
-            
         // $produksi->total_pakan()->latest();
         // $product->prices()->latest()->amount
 
