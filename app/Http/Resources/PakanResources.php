@@ -19,7 +19,9 @@ class PakanResources extends JsonResource
             'id'=> $this->id,
             'jumlah_pakan'=>$this->jumlah_pakan,
             'waktu_pakan'=>$this->waktu_pakan,
+            'total_pakan'=>$this->total_pakan,
             'subproduksi_id'=>$this->subproduksi_id
+
         ];
     }
     public function with($request){

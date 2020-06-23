@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use App\PakanModel;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\PakanResources;
@@ -69,11 +70,13 @@ class ApiPakanController extends Controller
     public function where(Request $request)
     {
         $subproduksi_id = $request->query('subproduksi');
-        $pakan = PakanModel::where('subproduksi_id', $subproduksi_id)->latest('id')->first();
+        $pakan = PakanModel::leftjoin('subproduksi', 'subproduksi.id', '=','pakan.subproduksi_id')
+        ->select(DB::raw('sum(pakan.jumlah_pakan) as total_pakan'))
+        ->groupBy('pakan.subproduksi_id')
+        ->where('pakan.subproduksi_id',$subproduksi_id)
+        ->get();
         return response()->json($pakan);
-        // $keramba_id = $request->query('keramba');
-        // $sensor_do = SensorDo::where('keramba_id', $keramba_id)->paginate(2);
-        // return SensorDoResources::collection($sensor_do);
+
     }
     /**
      * Update the specified resource in storage.
