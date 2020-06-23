@@ -35,7 +35,7 @@ class ApiSubproduksiController extends Controller
             ->leftjoin('keramba', 'keramba.id', '=','subproduksilog.keramba_sesudah')
             ->select('subproduksi.*', 'subproduksilog.panjang_ikan','subproduksilog.tanggal_cuci','subproduksilog.tanggal_pindah'
             ,'subproduksilog.berat_ikan','subproduksilog.keramba_sebelum','subproduksilog.keramba_sesudah','keramba.nama_keramba'
-            ,'sensor_suhu.suhu_air',DB::raw('SUM(pakan.jumlah_pakan) as total_pakan'), DB::raw('MAX(pakan.waktu_pakan) as waktu_terakhir'), 'sensor_do.do_air')
+            ,'sensor_suhu.suhu_air', DB::raw('MAX(pakan.waktu_pakan) as waktu_terakhir'), 'sensor_do.do_air')
             ->groupBy('subproduksi.id')
             ->where('subproduksi.produksi_id',$produksi_id)
             ->whereRaw('subproduksilog.id IN (select MAX(subproduksilog.id) FROM subproduksilog GROUP BY subproduksilog.subproduksi_id)')
