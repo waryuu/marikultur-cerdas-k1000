@@ -76,6 +76,7 @@ class ApiPakanController extends Controller
         ->where('pakan.subproduksi_id',$subproduksi_id)
         ->get();
         return response()->json($pakan);
+        // return PakanResources::collection($pakan);
 
     }
     /**

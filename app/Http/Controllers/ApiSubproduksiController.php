@@ -35,13 +35,14 @@ class ApiSubproduksiController extends Controller
             ->leftjoin('keramba', 'keramba.id', '=','subproduksilog.keramba_sesudah')
             ->select('subproduksi.*', 'subproduksilog.panjang_ikan','subproduksilog.tanggal_cuci','subproduksilog.tanggal_pindah'
             ,'subproduksilog.berat_ikan','subproduksilog.keramba_sebelum','subproduksilog.keramba_sesudah','keramba.nama_keramba'
-            ,'sensor_suhu.suhu_air', DB::raw('MAX(pakan.waktu_pakan) as waktu_terakhir'), 'sensor_do.do_air')
+            ,DB::raw('MAX(sensor_suhu.suhu_air) as suhu_air'), DB::raw('MAX(pakan.waktu_pakan) as waktu_terakhir'), DB::raw('MAX(sensor_do.do_air) as do_air') )
             ->groupBy('subproduksi.id')
             ->where('subproduksi.produksi_id',$produksi_id)
             ->whereRaw('subproduksilog.id IN (select MAX(subproduksilog.id) FROM subproduksilog GROUP BY subproduksilog.subproduksi_id)')
-            ->orwhereNull('keramba.id')
-            ->whereRaw('sensor_suhu.id IN (select MAX(sensor_suhu.id) FROM sensor_suhu GROUP BY sensor_suhu.keramba_id)')
-            ->whereRaw('sensor_do.id IN (select MAX(sensor_do.id) FROM sensor_do GROUP BY sensor_do.keramba_id)')
+            // ->whereRaw('sensor_suhu.id IN (select MAX(sensor_suhu.id) FROM sensor_suhu GROUP BY sensor_suhu.keramba_id)')
+            // ->whereRaw('sensor_do.id IN (select MAX(sensor_do.id) FROM sensor_do GROUP BY sensor_do.keramba_id)')
+            ->orWhereNull('keramba.id')
+            // ->orWhereNull('sensor_suhu.keramba_id')
              
             // ->orWhereNull('subproduksilog.subproduksi_id')
             ->paginate(5);
