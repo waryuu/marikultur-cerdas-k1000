@@ -146,6 +146,34 @@
                                         </h4>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h4 class="text-left font-weight-light">
+                                            Terakhir Makan
+                                        </h4>
+                                    </div>
+                                    <div v-if="produksi.waktu_pakan" class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h4 class="text-right font-italic font-weight-light">
+                                                    {{ produksi.waktu_pakan | moment("[Pukul] HH:mm,") }}
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <h4 class="text-right font-italic font-weight-light">
+                                                    {{ produksi.waktu_pakan | moment("DD MMM YYYY") }}
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-else class="col">
+                                        <h4 class="text-right font-italic font-weight-light">
+                                            Belum Pernah
+                                        </h4>
+                                    </div>
+                                </div>
                                 <!-- Pembesaran -->
                                 <div v-if="produksi.status_panen === 'Pembesaran' || produksi.status_panen === 'pembesaran'">
                                     <div class="row mb-3 mt-2 ml-1 mr-1">
@@ -267,6 +295,7 @@
           tanggal_pindah: '',
           status_panen: '',
           keramba_sesudah: '',
+          waktu_pakan: '',
           suhu_air: '',
           do_air: ''
         },

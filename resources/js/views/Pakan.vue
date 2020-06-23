@@ -57,7 +57,7 @@
                                             <div class="col-lg-12">
                                                 <div class="form-control-label">Waktu Pakan</div>
                                                 <div class="round">
-                                                    <date-picker v-model="model.waktu_pakan" type="datetime" format="DD/MM/YYYY hh:mm:ss" value-type="YYYY-MM-DD hh:mm:ss"></date-picker>
+                                                    <date-picker v-model="model.waktu_pakan" type="datetime" format="DD/MM/YYYY, [Pukul] HH:mm:ss" value-type="YYYY-MM-DD HH:mm:ss"></date-picker>
                                                 </div>
                                             </div>
                                         </div>
