@@ -69,7 +69,7 @@ class ApiPakanController extends Controller
     public function where(Request $request)
     {
         $subproduksi_id = $request->query('subproduksi');
-        $pakan = Pakan::where('subproduksi_id', $subproduksi_id)->latest('id')->first();
+        $pakan = PakanModel::where('subproduksi_id', $subproduksi_id)->latest('id')->first();
         return response()->json($pakan);
         // $keramba_id = $request->query('keramba');
         // $sensor_do = SensorDo::where('keramba_id', $keramba_id)->paginate(2);
