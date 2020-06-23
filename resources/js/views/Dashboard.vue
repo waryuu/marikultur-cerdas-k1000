@@ -134,6 +134,16 @@
                                 <h3 class="text-center mb-0">Tidak ada Sensor</h3>
                             </div>
                         </div>
+                        <div slot="footer">
+                            <div class="row mb-3">
+                                <div class="col-lg-12">
+                                    <div class="form-control-label">Lokasi Sensor</div>
+                                    <div class="round">
+                                        <h4 class="font-weight-light"><i class="fas fa-map-marker-alt"></i> Pulau Panggang, Kepulauan Seribu</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- <div slot="footer">
                             <div class="row">
                                 <div class="col-12">
