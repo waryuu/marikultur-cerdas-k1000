@@ -106,6 +106,7 @@
                                         </h4>
                                         <h3 v-if="produksi.total_pakan" class="text-center">
                                             {{produksi.total_pakan}} Kg
+                                            
                                         </h3>
                                         <h3 v-else class="text-center">
                                             Belum Ada
@@ -341,7 +342,7 @@
             last: '',
             prev: '',
             next: ''
-        },
+        }
       }
     },
     async mounted() {
@@ -356,12 +357,26 @@
                 this.produksis = responseProd.data.data;
                 this.meta = responseProd.data.meta;
                 this.links = responseProd.data.links;
-                console.log(this.produksis);
+                console.log(responseProd);
             }))
             .catch(function (error) {
                 console.log('Fetch Data Produksi Error!');
             });
         },
+        // async getPakan(id){
+        //     let total_pakan;
+        //     await axios.all([
+        //         axios.get(`apipakan/where?subproduksi=${id}`),
+        //     ])
+        //     .then(axios.spread((response) => {
+        //         total_pakan = response.data[0].total_pakan;
+        //     }))
+        //     .catch(function (error) {
+        //         console.log('Fetch Data Produksi Error!');
+        //     });
+        //     console.log(total_pakan);
+        //     return total_pakan;
+        // }
         // async showSensor(id){
         //     this.showModalSensor = true;
         //     await axios.all([
