@@ -17,7 +17,7 @@ class ApiPakanController extends Controller
      */
     public function index()
     {
-        $pakan = Pakan::paginate(2);
+        $pakan = PakanModel::paginate(2);
         return PakanResources::collection($pakan);
     }
 
@@ -51,7 +51,7 @@ class ApiPakanController extends Controller
      */
     public function show($id)
     {
-        $pakan = Pakan::findOrFail($id);
+        $pakan = PakanModel::findOrFail($id);
         return new PakanResources($pakan);
     }
 
@@ -95,7 +95,7 @@ class ApiPakanController extends Controller
      */
     public function destroy(Request $request)
     {
-        $pakan = Pakan::findOrFail($request->id)->delete();
+        $pakan = PakanModel::findOrFail($request->id)->delete();
         return response()->json(['success' => true],200);
 
     }

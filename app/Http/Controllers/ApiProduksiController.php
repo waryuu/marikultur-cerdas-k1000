@@ -77,7 +77,7 @@ class ApiProduksiController extends Controller
     
         $produksi = ProduksiModel::leftjoin('subproduksi', 'subproduksi.produksi_id', '=', 'produksi.id')
         ->leftjoin('keramba', 'keramba.id', '=','produksi.keramba_id')
-        ->select('produksi.*','keramba.nama_keramba',  DB::raw('sum(subproduksi.jumlah_ikan) as jumlah_terkini', 'subproduksi.tanggal_panen'))
+        ->select('produksi.*','keramba.nama_keramba',DB::raw('MAX(subproduksi.tanggal_panen) as tanggal_panen') , DB::raw('sum(subproduksi.jumlah_ikan) as jumlah_terkini'))
         ->groupBy('produksi.id')
         ->where('produksi.user_id',$user_id)->where('produksi.jumlah_subproduksi', '=' , 0)
         ->where('subproduksi.status_panen','Panen')
