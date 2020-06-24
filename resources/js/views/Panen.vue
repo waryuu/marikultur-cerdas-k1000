@@ -212,6 +212,7 @@
             ])
             .then(axios.spread((responseProd, responseKeramba) => {
                 this.getModel = responseProd.data.data;
+                // console.log(this.getModel);
                 this.model.id = this.getModel.id;
                 this.model.jumlah_ikan_akhir = this.getModel.jumlah_ikan;
                 this.model.panjang_ikan_akhir = this.getModel.panjang_ikan;
@@ -241,7 +242,7 @@
                 })
         },
         showPanen(){
-            if (!this.model.jumlah_ikan_akhir || !this.model.panjang_ikan_akhir || !this.model.berat_ikan_akhir || !this.model.tanggal_panen) {
+            if (!this.model.jumlah_ikan_akhir || this.model.jumlah_ikan_akhir < 0 || !this.model.panjang_ikan_akhir || this.model.panjang_ikan_akhir < 0 || !this.model.berat_ikan_akhir || this.model.berat_ikan_akhir || !this.model.tanggal_panen) {
                 this.errors = 'Harap isi semua form dengan benar!';
                 window.scrollTo(0,0);
             }

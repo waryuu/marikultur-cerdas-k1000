@@ -239,18 +239,25 @@
         },
         async submitPenebaran(){
             this.errors = '';
-            let credentials = this.model;
-            console.log(credentials);
-            await axios.post('apiproduksi/create', credentials)
-            .then(() =>{
-                    this.$router.replace({
-                        name: 'beranda'
+            if (!this.model.jumlah_ikan || this.model.jumlah_ikan <= 0 || !this.model.panjang_ikan || this.model.panjang_ikan <= 0 || !this.model.berat_ikan || this.model.berat_ikan <= 0 ) {
+                this.errors = 'Harap isi semua form dengan benar!';
+                window.scrollTo(0,0);
+            }
+            else{
+                let credentials = this.model;
+                console.log(credentials);
+                await axios.post('apiproduksi/create', credentials)
+                .then(() =>{
+                        this.$router.replace({
+                            name: 'beranda'
+                        })
                     })
-                })
-            .catch(() => {
-                    this.errors = 'Harap isi semua form dengan benar!';
-                    window.scrollTo(0,0);
-                })
+                .catch(() => {
+                        this.errors = 'Harap isi semua form dengan benar!';
+                        window.scrollTo(0,0);
+                    })
+            }
+            
         },
     }
   };
@@ -262,4 +269,7 @@
       box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
       border: 0px;
   }
+  .alert{
+        border-radius: .25rem;
+    }
 </style>
