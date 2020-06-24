@@ -242,7 +242,7 @@
                 })
         },
         showPanen(){
-            if (!this.model.jumlah_ikan_akhir || this.model.jumlah_ikan_akhir < 0 || !this.model.panjang_ikan_akhir || this.model.panjang_ikan_akhir < 0 || !this.model.berat_ikan_akhir || this.model.berat_ikan_akhir || !this.model.tanggal_panen) {
+            if (!this.model.jumlah_ikan_akhir || this.model.jumlah_ikan_akhir < 0 || !this.model.panjang_ikan_akhir || this.model.panjang_ikan_akhir < 0 || !this.model.berat_ikan_akhir || this.model.berat_ikan_akhir < 0 || !this.model.tanggal_panen) {
                 this.errors = 'Harap isi semua form dengan benar!';
                 window.scrollTo(0,0);
             }
