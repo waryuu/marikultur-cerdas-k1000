@@ -56,7 +56,7 @@ class ApiProduksiController extends Controller
         return response()->json(compact('produksibulanini','produksitahunini'),201);
     }
 
-     public function whereproduksipembesaran(Request $request)
+    public function whereproduksipembesaran(Request $request)
         {
         $user_id = $request->query('user');
     

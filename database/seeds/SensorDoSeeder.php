@@ -12,121 +12,121 @@ class SensorDoSeeder extends Seeder
     public function run()
     {
         DB::table('sensor_do')->insert([
-            'do_air' => '30',
+            'do_air' => '5',
             'keramba_id' => '1',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '35',
+            'do_air' => '7',
             'keramba_id' => '1',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '36',
+            'do_air' => '6',
             'keramba_id' => '1',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '40',
+            'do_air' => '8',
             'keramba_id' => '1',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '37',
+            'do_air' => '9',
             'keramba_id' => '1',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '40',
+            'do_air' => '8',
             'keramba_id' => '2',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '50',
+            'do_air' => '5',
             'keramba_id' => '2',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '30',
+            'do_air' => '7',
             'keramba_id' => '2',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '20',
+            'do_air' => '8',
             'keramba_id' => '2',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '20',
+            'do_air' => '8',
             'keramba_id' => '2',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '27',
+            'do_air' => '6',
             'keramba_id' => '3',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '28',
+            'do_air' => '7',
             'keramba_id' => '3',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '30',
+            'do_air' => '8',
             'keramba_id' => '3',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '35',
+            'do_air' => '7',
             'keramba_id' => '3',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '37',
+            'do_air' => '8',
             'keramba_id' => '3',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '38',
+            'do_air' => '6',
             'keramba_id' => '4',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '27',
+            'do_air' => '9',
             'keramba_id' => '4',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '28',
+            'do_air' => '8',
             'keramba_id' => '4',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '30',
+            'do_air' => '5',
             'keramba_id' => '4',
             'created_at' => now(),
             'updated_at' => now()
         ]);
         DB::table('sensor_do')->insert([
-            'do_air' => '33',
+            'do_air' => '6',
             'keramba_id' => '4',
             'created_at' => now(),
             'updated_at' => now()

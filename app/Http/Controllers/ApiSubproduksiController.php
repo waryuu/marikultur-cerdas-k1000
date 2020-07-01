@@ -381,5 +381,43 @@ class ApiSubproduksiController extends Controller
     if($subproduksi->delete()){
     return new SubproduksiResources($subproduksi);
 }
+// $produksi_id = $request->query('produksi');
+    //  Cache::flush();   
+// $produksi = SubproduksiModel::leftjoin('subproduksilog', 'subproduksilog.subproduksi_id', '=', 'subproduksi.id')
+//     ->leftjoin('pakan', 'pakan.subproduksi_id', '=','subproduksi.id')
+//     ->leftjoin('sensor_do', 'sensor_do.keramba_id', '=', 'subproduksilog.keramba_sesudah')
+//     ->leftjoin('sensor_suhu', 'sensor_suhu.keramba_id', '=', 'subproduksilog.keramba_sesudah')
+//     ->leftjoin('keramba', 'keramba.id', '=','subproduksilog.keramba_sesudah')
+//     ->select('subproduksi.*', 'subproduksilog.panjang_ikan','subproduksilog.tanggal_cuci','subproduksilog.tanggal_pindah'
+//     ,'subproduksilog.berat_ikan','subproduksilog.keramba_sebelum','subproduksilog.keramba_sesudah','keramba.nama_keramba'
+//     ,DB::raw('MAX(sensor_suhu.suhu_air) as suhu_air'), DB::raw('MAX(pakan.waktu_pakan) as waktu_terakhir'), DB::raw('MAX(sensor_do.do_air) as do_air') )
+//     ->groupBy('subproduksi.id')
+//     ->where('subproduksi.produksi_id',$produksi_id)
+//     ->whereRaw('subproduksilog.id IN (select MAX(subproduksilog.id) FROM subproduksilog GROUP BY subproduksilog.subproduksi_id)')
+//     // ->whereRaw('sensor_suhu.id IN (select MAX(sensor_suhu.id) FROM sensor_suhu GROUP BY sensor_suhu.keramba_id)')
+//     // ->whereRaw('sensor_do.id IN (select MAX(sensor_do.id) FROM sensor_do GROUP BY sensor_do.keramba_id)')
+//     ->orWhereNull('keramba.id')
+//     ->selectRaw('SUM(jumlah_pakan) as total_pakan')
+//     ->paginate(5);
+
+    
+// // $produksi = SubproduksiModel::leftjoin('subproduksilog', 'subproduksilog.subproduksi_id', '=', 'subproduksi.id')
+// //     ->leftjoin('pakan', 'pakan.subproduksi_id', '=','subproduksi.id')->groupBy('subproduksi.id')   ; 
+//     // ->whereRaw('pakan.waktu_pakan IN (select MAX(sensor_do.id) FROM sensor_do GROUP BY sensor_do.keramba_id)')
+//     // ->whereRaw('select MAX(pakan.waktu_pakan) FROM pakan GROUP BY pakan.subproduksi_id)')
+// // $produksi->total_pakan()->latest();
+// // $product->prices()->latest()->amount
+
+// $jumlah_pakan =SubproduksiModel::leftjoin('pakan', 'pakan.subproduksi_id', '=','subproduksi.id')
+// ->select(DB::raw('sum(pakan.jumlah_pakan) as _pakan'))
+// ->groupBy('subproduksi.id')
+// ->where('subproduksi.produksi_id',$produksi_id)
+// ->get();
+
+// for($i=0;$i<count($produksi);$i++){
+//     $produksi[$i]->total_pakan = $jumlah_pakan[$i]->_pakan;
+// }
+
+//     return SubproduksiResources::collection($produksi);
 }
 }
