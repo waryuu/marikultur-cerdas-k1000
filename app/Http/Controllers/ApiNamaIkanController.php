@@ -19,13 +19,17 @@ class ApiNamaIkanController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'nama_ikan' => 'required|string|unique:nama_ikan',
-        ]);
+            ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
-    }
+    //     $validator = Validator::make($request->all(), [
+    //         'nama_ikan' => 'required|string|unique:nama_ikan',
+    //     ]);
+
+    //     if($validator->fails()){
+    //         return response()->json($validator->errors()->toJson(), 400);
+    // }
         $nama_ikan = NamaIkanModel::create([
             'nama_ikan' => $request->input('nama_ikan'),
            

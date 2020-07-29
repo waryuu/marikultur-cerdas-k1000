@@ -125,21 +125,33 @@ class ApiSubproduksiController extends Controller
     
     public function updatesubproduksi(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-                    'nama_ikan' => 'required|string',
-                    'panjang_ikan' => 'required|integer',
-                    'jumlah_ikan' => 'required|integer',
-                    'berat_ikan' => 'required|string',
-                    'tanggal_pindah' => 'nullable|string',
-                    'tanggal_cuci' => 'nullable|string',
-                    'keramba_sebelum' => 'nullable|integer',
-                    'keramba_sesudah' => 'required|integer',
-                    'produksi_id'=> 'required|integer',
-                ]);
+        $request->validate([
+            'nama_ikan' => 'required|string',
+            'panjang_ikan' => 'required|integer',
+            'jumlah_ikan' => 'required|integer',
+            'berat_ikan' => 'required|string',
+            'tanggal_pindah' => 'nullable|string',
+            'tanggal_cuci' => 'nullable|string',
+            'keramba_sebelum' => 'nullable|integer',
+            'keramba_sesudah' => 'required|integer',
+            'produksi_id'=> 'required|integer',
+        ]);
+
+        // $validator = Validator::make($request->all(), [
+        //             'nama_ikan' => 'required|string',
+        //             'panjang_ikan' => 'required|integer',
+        //             'jumlah_ikan' => 'required|integer',
+        //             'berat_ikan' => 'required|string',
+        //             'tanggal_pindah' => 'nullable|string',
+        //             'tanggal_cuci' => 'nullable|string',
+        //             'keramba_sebelum' => 'nullable|integer',
+        //             'keramba_sesudah' => 'required|integer',
+        //             'produksi_id'=> 'required|integer',
+        //         ]);
     
-                if($validator->fails()){
-                    return response()->json($validator->errors()->toJson(), 400);
-            }
+        //         if($validator->fails()){
+        //             return response()->json($validator->errors()->toJson(), 400);
+        //     }
         try{DB::beginTransaction();
 
             $nama_ikan = $request->nama_ikan;
@@ -183,7 +195,7 @@ class ApiSubproduksiController extends Controller
     }
      public function pindahsubproduksi(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'nama_ikan' => 'required|string',
             'panjang_ikan' => 'required|integer',
             'jumlah_ikan' => 'required|integer',
@@ -193,11 +205,23 @@ class ApiSubproduksiController extends Controller
             'keramba_sebelum' => 'nullable|integer',
             'keramba_sesudah' => 'required|integer',
             'produksi_id'=> 'required|integer',
-        ]);
+       ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
-         }
+        // $validator = Validator::make($request->all(), [
+        //     'nama_ikan' => 'required|string',
+        //     'panjang_ikan' => 'required|integer',
+        //     'jumlah_ikan' => 'required|integer',
+        //     'berat_ikan' => 'required|string',
+        //     'tanggal_pindah' => 'required|string',
+        //     'tanggal_cuci' => 'required|string',
+        //     'keramba_sebelum' => 'nullable|integer',
+        //     'keramba_sesudah' => 'required|integer',
+        //     'produksi_id'=> 'required|integer',
+        // ]);
+
+        // if($validator->fails()){
+        //     return response()->json($validator->errors()->toJson(), 400);
+        //  }
         try{DB::beginTransaction();
 
         $id = $request->produksi_id;
@@ -346,6 +370,15 @@ class ApiSubproduksiController extends Controller
 
     public function panen(Request $request)
     {
+        $request->validate([
+            'berat_ikan_akhir' => 'required|string',
+            'jumlah_ikan_akhir' => 'required|integer',
+            'panjang_ikan_akhir' => 'required|integer',
+            'tanggal_panen' => 'required|string',
+            'status_panen' => 'required|string',
+            'produksi_id'=> 'required|integer',
+       ]);
+
         $id = $request->id;
         $berat_ikan_akhir = $request->berat_ikan_akhir;
         $jumlah_ikan_akhir = $request->jumlah_ikan_akhir;
@@ -355,7 +388,7 @@ class ApiSubproduksiController extends Controller
         $produksi_id = $request->produksi_id;
 
 
-        $panen = SubproduksiModel::find($id);
+        $panen = SubproduksiModel::findorfail($id);
         
         $panen->berat_ikan_akhir = $berat_ikan_akhir;
         $panen->jumlah_ikan_akhir = $jumlah_ikan_akhir;

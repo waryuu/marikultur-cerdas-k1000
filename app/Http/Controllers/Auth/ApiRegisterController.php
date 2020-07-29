@@ -14,18 +14,14 @@ class ApiRegisterController extends Controller
 {
     public function register(Request $request)
         {
-                $validator = Validator::make($request->all(), [
+            $request->validate([
                 'name' => 'required|string|max:255',
                 'username' => 'required|string|min:3|max:255|unique:users',
-                'status' => 'required|string|max:6',
+                'status' => 'required|string|max:7',
                 'kelompok_id' => 'nullable|integer',
                 'email' => 'nullable|string|email|max:255|unique:users',
                 'password' => 'required|string|min:6|confirmed',
             ]);
-
-            if($validator->fails()){
-                    return response()->json($validator->errors()->toJson(), 400);
-            }
 
             $user = User::create([
                 'name' => $request->get('name'),

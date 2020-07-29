@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\KerambaModel;
+use Illuminate\Support\Facades\Validator;
 use App\UserModel;
 use App\Http\Resources\KerambaResources;
 
@@ -46,6 +47,15 @@ class ApiKerambaController extends Controller
     
     {
            
+        $request->validate([
+            'nama_keramba' => 'nullable|string|min:1|max:255',
+            'panjang_keramba' => 'nullable|integer|max:255',
+            'lebar_keramba' => 'nullable|integer|max:255',
+            'kapasitas_keramba' => 'nullable|string',
+            'kelompok_id' => 'nullable|integer',
+            'user_id' => 'nullable|integer',
+            ]);
+
         $keramba = $request ->isMethod('put') ? KerambaModel::findOrFail($request->keramba_id) : new KerambaModel;
         $keramba->id = $request->input('keramba_id');
         $keramba->nama_keramba = $request->input('nama_keramba');

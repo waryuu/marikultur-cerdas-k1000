@@ -24,15 +24,21 @@ class ApiPakanController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'jumlah_pakan' => 'required|string',
             'waktu_pakan' => 'required',
             'subproduksi_id' => 'required|integer',
-        ]);
+            ]);
+        
+    //     $validator = Validator::make($request->all(), [
+    //         'jumlah_pakan' => 'required|string',
+    //         'waktu_pakan' => 'required',
+    //         'subproduksi_id' => 'required|integer',
+    //     ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
-    }
+    //     if($validator->fails()){
+    //         return response()->json($validator->errors()->toJson(), 400);
+    // }
 
         $pakan = PakanModel::create([
             'subproduksi_id' => $request->input('subproduksi_id'),

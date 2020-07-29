@@ -102,6 +102,15 @@ class ApiProduksiController extends Controller
     
     public function create(Request $request)
     {
+        $request->validate([
+            'nama_ikan' => 'required|string',
+            'panjang_ikan' => 'required|integer',
+            'jumlah_ikan' => 'required|integer',
+            'berat_ikan' => 'required|string',
+            'keramba_id'=> 'required|integer',
+            'tanggal_tebar'=> 'required|string',
+        ]);
+
         try{DB::beginTransaction();
         $user = $request->user(); 
         $produksi = ProduksiModel::create([

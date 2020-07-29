@@ -28,6 +28,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function(){
+    Route::post('register','ApiRegisterController@register');
+    Route::post('signin','ApiSignInController');
+    Route::post('signout','ApiSignOutController');
+    Route::put('update/profile','ApiProfileController@updateProfile');
+    Route::get('me','ApiMeController');
+});
+
+
 Route::get('/apikerambaidkelompok/{kelompok_id}','ApiKerambaController@showkerambabyidkelompok');
 Route::get('/apiproduksiidkelompok/{kelompok_id}','ApiProduksiController@showproduksibyidkelompok');
 

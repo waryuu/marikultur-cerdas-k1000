@@ -71,18 +71,27 @@ class ApiProfileController extends Controller
     {
         $user = auth('api')->user();
 
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'name' => 'nullable|string|max:255',
-            'status' => 'nullable|string|max:6',
+            'status' => 'nullable|string|max:7',
             'username' => 'nullable|string|min:3|max:255|unique:users',
             'kelompok_id' => 'nullable|integer',
             'email' => 'nullable|string|email|max:255|unique:users,email,'.$user->id,
             'password' => 'nullable|string|min:6|confirmed',
         ]);
+       
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'nullable|string|max:255',
+        //     'status' => 'nullable|string|max:6',
+        //     'username' => 'nullable|string|min:3|max:255|unique:users',
+        //     'kelompok_id' => 'nullable|integer',
+        //     'email' => 'nullable|string|email|max:255|unique:users,email,'.$user->id,
+        //     'password' => 'nullable|string|min:6|confirmed',
+        // ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
-        }
+        // if($validator->fails()){
+        //     return response()->json($validator->errors()->toJson(), 400);
+        // }
 
         if(!empty($request->password)){
             $request->merge(['password' => bcrypt($request['password'])]);

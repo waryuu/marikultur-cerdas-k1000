@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\KelompokModel;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\KelompokResources;
 
 class ApiKelompokController extends Controller
@@ -39,8 +40,14 @@ class ApiKelompokController extends Controller
      */
     public function store(Request $request)
     {
-        $kelompok = $request ->isMethod('put') ? KelompokModel::findOrFail($request->kelompok_id) : new KelompokModel;
+        $request->validate([
+            'nama_kelompok' => 'nullable|string|min:1|max:255',
+            'ketua_kelompok' => 'nullable|string|max:255',
+            'bendahara_kelompok' => 'nullable|string|max:255',
+            'humas_kelompok' => 'nullable|string|max:255',
+            ]);
 
+        $kelompok = $request ->isMethod('put') ? KelompokModel::findOrFail($request->kelompok_id) : new KelompokModel;
         $kelompok->id = $request->input('kelompok_id');
         $kelompok->nama_kelompok = $request->input('nama_kelompok');
         $kelompok->ketua_kelompok = $request->input('ketua_kelompok');
